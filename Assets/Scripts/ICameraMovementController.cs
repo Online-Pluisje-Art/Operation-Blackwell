@@ -6,6 +6,6 @@ using UnityEngine;
  * SetCamera will be used to set the camera object to be controlled.
  */
 interface ICameraMovementController {
-    void HandleInput();
-    void SetCamera(Camera camera);
+	void HandleInput();
+	void SetCamera(Camera camera);
 }
