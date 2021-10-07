@@ -2,21 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OperationBlackwell {
-	public class MovementController : MonoBehaviour {
-
+namespace OperationBlackwell.Core {
+	public class GameController : MonoBehaviour {
 		private const bool DebugMovement = false;
-		private Grid grid;
-		[SerializeField] private Transform player;
 
-		// private void Start() {
-		// 	// This creates a grid of 6 wide and 3 high, cell size 10 and no offset (so bottom left is 0,0,0).
-		// 	grid = new Grid(6, 3, 10f, new Vector3(0, 0, 0));
-		// }
+		[SerializeField] private Vector3 gridWorldSize_;
+		[SerializeField] private float nodeRadius_;
+
+		[SerializeField] private Transform player_;
+
+		private Node[,] nodes_;
+
+		private Grid grid_;
+		private void Start() {
+			grid_ = new Grid(gridWorldSize_, nodeRadius_);
+			nodes_ = grid_.CreateGrid();
+		}
 
 		private void Update() {
 			if(Input.GetMouseButtonDown(0)) {
-				Vector3 gridClicked = GetMouseWorldPosition3d();
+				Vector3 gridClicked = Utils.GetMouseWorldPosition3d();
 				if(gridClicked == Vector3.zero) {
 					if(DebugMovement) {
 						// Chances of you clicking on _exactly_ 0,0,0 are almost 0, so oob is likely.
@@ -25,15 +30,17 @@ namespace OperationBlackwell {
 				} else {
 					// Get the current position and the position clicked in X, Z coordinates.
 					int currentX, currentZ, clickedX, clickedZ, diffX, diffZ;
-					Vector3 currentPosition = player.position;
-					grid.GetXZ(currentPosition, out currentX, out currentZ);
-					grid.GetXZ(gridClicked, out clickedX, out clickedZ);
+					Vector3 currentPosition = player_.position;
+					// Vector3 movement;
+					grid_.GetXZ(currentPosition, out currentX, out currentZ);
+					grid_.GetXZ(gridClicked, out clickedX, out clickedZ);
 					if(DebugMovement) {
 						Debug.Log("Player current X: " + currentX + ", current Z: " + currentZ);
 						Debug.Log("Player clicked X: " + clickedX + ", clicked Z: " + clickedZ);
 					}
 					// Check if we can move, if we can, do so.
 					if(CanMove(currentX, currentZ, clickedX, clickedZ, out diffX, out diffZ)) {
+					// if(CanMove(currentPosition, gridClicked, currentX, currentZ, clickedX, clickedZ, out movement)) {
 						if(DebugMovement) {
 							Debug.Log("Yes we can move");
 						}
@@ -42,7 +49,8 @@ namespace OperationBlackwell {
 						* We multiply by our cellSize to make it not suck and actually move entire cells at once.
 						* Pass 0 as Y, as we don't care about it.
 						*/
-						player.Translate(-diffX * grid.cellSize, 0, -diffZ * grid.cellSize);
+						player_.Translate(-diffX * grid_.nodeDiameter, 0, -diffZ * grid_.nodeDiameter);
+						// player_.Translate(-movement);
 					} else {
 						if(DebugMovement) {
 							Debug.Log("No we can't move");
@@ -53,25 +61,12 @@ namespace OperationBlackwell {
 		}
 
 		/*
-		* CodeMonkey code, grab me some 3d mouse position.
-		* Requires a collider below the play grid for our use case!
-		* TODO: This collider grid is hacked in now, make this nicer.
-		*/
-		private Vector3 GetMouseWorldPosition3d() {
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if(Physics.Raycast(ray, out RaycastHit raycastHit, 999f)) {
-				return raycastHit.point;
-			} else {
-				return Vector3.zero;
-			}
-		}
-
-		/*
 		* Checks if the clicked coordinate is valid, returning true if it is.
 		* We need diffX and diffZ to move, so for now they are out parameters.
 		*/
-		private bool CanMove(int currentX, int currentZ, int clickedX, int clickedZ, out int diffX, out int diffZ) {
+		private bool CanMove(/*Vector3 playerPosition, Vector3 targetPosition,*/ int currentX, int currentZ, int clickedX, int clickedZ, /*out Vector3 movement) {,*/ out int diffX, out int diffZ) {
 			// Move can happen unless exited out early.
+			// movement = Vector3.zero;
 			bool ret = true;
 			// Unusable, but needs setting for early bail.
 			diffX = diffZ = -999;
@@ -80,9 +75,25 @@ namespace OperationBlackwell {
 				return false;
 			}
 			// Out of range, we won't move!
-			if(clickedX < 0 || clickedZ < 0 || clickedX > grid.width || clickedZ > grid.height) {
+			if(clickedX > grid_.gridSizeX / 2 || clickedZ > grid_.gridSizeY / 2 || clickedX < -grid_.gridSizeX / 2 || clickedZ < -grid_.gridSizeY / 2) {
 				return false;
 			}
+
+			// Node playerNode = grid_.NodeFromWorldPoint(playerPosition);
+			// Node targetNode = grid_.NodeFromWorldPoint(targetPosition);
+			// if(playerNode.worldPosition == targetNode.worldPosition) {
+			// 	Debug.Log("Check 2");
+			// 	return false;
+			// }
+			// List<Node> neighbours = grid_.GetNeighbours(playerNode);
+			// if(neighbours.Contains(targetNode)) {
+			// 	// TODO: Check if node is walkable!
+			// 	movement = playerNode.worldPosition - targetNode.worldPosition;
+			// 	return true;
+			// } else {
+			// 	Debug.Log("Check 3");
+			// 	return false;
+			// }
 			/*
 			* Calculate the actual diff, a negative Z is up, positive Z is down.
 			* Negative X is to the right, positive X is to the left, yes confusing.

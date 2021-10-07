@@ -2,7 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This class is the base class for all hex types.
+ * The base class is the default hex, no cover, walkable and shootable.
+ * Child classes will have different properties.
+ */
 public class Hex : MonoBehaviour {
+	public enum CoverStatus {
+		NONE,
+		HALF,
+		FULL,
+	}
+
+	// Holds the amount of cover this tile gives.
+	public CoverStatus cover {get; protected set;}
+	// Holds if the tile can be walked over.
+	public bool walkable {get; protected set;}
+	// Holds if the tile can be shot through.
+	public bool shootable {get; protected set;}
 	// Unity Location of the X and Z position.
 	private float unityPosX_, unityPosZ_;
 
@@ -13,9 +30,24 @@ public class Hex : MonoBehaviour {
 
 	public int[,] hexArray;
 
-	public Hex(int coordinateX, int coordinateZ) {
+	public Hex(int coordinateX, int coordinateZ, bool walkable = true, bool shootable = true, CoverStatus cover = CoverStatus.NONE) {
 		this.coordinateX = coordinateX;
 		this.coordinateZ = coordinateZ;
+		this.walkable = walkable;
+		this.shootable = shootable;
+		this.cover = cover;
+	}
+
+	public bool getWalkable() {
+		return this.walkable;
+	}
+
+	public bool getShootable() {
+		return this.shootable;
+	}
+
+	public CoverStatus getCover() {
+		return this.cover;
 	}
 
 	// Start is called before the first frame update.
