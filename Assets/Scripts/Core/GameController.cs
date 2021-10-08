@@ -43,10 +43,8 @@ namespace OperationBlackwell.Core {
 						if(DebugMovement) {
 							Debug.Log("Yes we can move");
 						}
-						/*
-						 * Translate our tictac, to make it work as we want we do -movement.
-						 */
-						player_.Translate(-movement);
+						// Translate our tictac.
+						player_.Translate(movement);
 					} else {
 						if(DebugMovement) {
 							Debug.Log("No we can't move");
@@ -80,7 +78,7 @@ namespace OperationBlackwell.Core {
 			List<Node> neighbours = grid_.GetNeighbours(playerNode);
 			if(neighbours.Contains(targetNode)) {
 				if(targetNode.walkable) {
-					movement = playerNode.worldPosition - targetNode.worldPosition;
+					movement = targetNode.worldPosition - playerNode.worldPosition;
 					return true;	
 				} else {
 					return false;
