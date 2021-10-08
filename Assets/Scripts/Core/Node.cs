@@ -10,14 +10,14 @@ namespace OperationBlackwell.Core {
 			FULL,
 		}
 		// Holds the amount of cover this tile gives.
-		public CoverStatus cover {get; protected set;}
+		public CoverStatus cover {get; private set;}
 		// Holds if the tile can be walked over.
-		public bool walkable {get; protected set;}
+		public bool walkable; // {get; protected set;}
 		// Holds if the tile can be shot through.
-		public bool shootable {get; protected set;}
-		public Vector3 worldPosition { get; private set; }
-		public int gridX { get; private set; }
-		public int gridY { get; private set; }
+		public bool shootable {get; private set;}
+		public Vector3 worldPosition {get; private set;}
+		public int gridX {get; private set;}
+		public int gridY {get; private set;}
 
 		private Grid<Node> grid_;
 		// public int gCost;

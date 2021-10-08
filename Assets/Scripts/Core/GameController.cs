@@ -15,6 +15,8 @@ namespace OperationBlackwell.Core {
 		private void Start() {
 			grid_ = new Grid<Node>((int)gridWorldSize_.x, (int)gridWorldSize_.z, nodeRadius_, new Vector3(0, 0, 0), 
 				(Grid<Node> g, Vector3 worldPos, int x, int z) => new Node(worldPos, x, z, g, true, true, Node.CoverStatus.NONE));
+			Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
+			unwalkableNode.walkable = false;
 		}
 
 		private void Update() {
@@ -27,7 +29,7 @@ namespace OperationBlackwell.Core {
 					}
 				} else {
 					// Get the current position and the position clicked in X, Z coordinates.
-					int currentX, currentZ, clickedX, clickedZ, diffX, diffZ;
+					int currentX, currentZ, clickedX, clickedZ;
 					Vector3 currentPosition = player_.position;
 					Vector3 movement;
 					grid_.GetXZ(currentPosition, out currentX, out currentZ);
@@ -37,17 +39,13 @@ namespace OperationBlackwell.Core {
 						Debug.Log("Player clicked X: " + clickedX + ", clicked Z: " + clickedZ);
 					}
 					// Check if we can move, if we can, do so.
-					// if(CanMove(currentX, currentZ, clickedX, clickedZ, out diffX, out diffZ)) {
 					if(CanMove(currentPosition, gridClicked, currentX, currentZ, clickedX, clickedZ, out movement)) {
 						if(DebugMovement) {
 							Debug.Log("Yes we can move");
 						}
 						/*
-						* Translate our tictac, to make it work as we want we do -diffX and -diffZ.
-						* We multiply by our cellSize to make it not suck and actually move entire cells at once.
-						* Pass 0 as Y, as we don't care about it.
-						*/
-						// player_.Translate(-diffX * grid_.cellSize, 0, -diffZ * grid_.cellSize);
+						 * Translate our tictac, to make it work as we want we do -movement.
+						 */
 						player_.Translate(-movement);
 					} else {
 						if(DebugMovement) {
@@ -59,23 +57,15 @@ namespace OperationBlackwell.Core {
 		}
 
 		/*
-		* Checks if the clicked coordinate is valid, returning true if it is.
-		* We need diffX and diffZ to move, so for now they are out parameters.
-		*/
-		private bool CanMove(Vector3 playerPosition, Vector3 targetPosition, int currentX, int currentZ, int clickedX, int clickedZ, out Vector3 movement) {// out int diffX, out int diffZ) {
+		 * Checks if the clicked coordinate is valid, returning true if it is.
+		 */
+		private bool CanMove(Vector3 playerPosition, Vector3 targetPosition, int currentX, int currentZ, int clickedX, int clickedZ, out Vector3 movement) {
 			// Move can happen unless exited out early.
 			movement = Vector3.zero;
-			// bool ret = true;
-			// Unusable, but needs setting for early bail.
-			// diffX = diffZ = -999;
 			// We're already here! Why move?
 			if(currentX == clickedX && currentZ == clickedZ) {
 				return false;
 			}
-			// Out of range, we won't move!
-			// if(clickedX > grid_.gridSizeX / 2 || clickedZ > grid_.gridSizeY / 2 || clickedX < -grid_.gridSizeX / 2 || clickedZ < -grid_.gridSizeY / 2) {
-			// 	return false;
-			// }
 			if(clickedX < 0 || clickedZ < 0 || clickedX > grid_.gridSizeX || clickedZ > grid_.gridSizeY) {
 				return false;
 			}
@@ -84,13 +74,11 @@ namespace OperationBlackwell.Core {
 			Node targetNode = grid_.NodeFromWorldPoint(targetPosition);
 
 			if(playerNode.worldPosition == targetNode.worldPosition) {
-				Debug.Log("Check 2");
 				return false;
 			}
 			// We're moving, so we need to check if we can move.
 			List<Node> neighbours = grid_.GetNeighbours(playerNode);
 			if(neighbours.Contains(targetNode)) {
-				// TODO: Check if node is walkable!
 				if(targetNode.walkable) {
 					movement = playerNode.worldPosition - targetNode.worldPosition;
 					return true;	
@@ -98,32 +86,8 @@ namespace OperationBlackwell.Core {
 					return false;
 				}
 			} else {
-				Debug.Log("Check 3");
 				return false;
 			}
-			/*
-			* Calculate the actual diff, a negative Z is up, positive Z is down.
-			* Negative X is to the right, positive X is to the left, yes confusing.
-			* Catch invalid movements (so either X or Z diff bigger than 1 or minus 1).
-			*/
-			// diffX = currentX - clickedX;
-			// diffZ = currentZ - clickedZ;
-			// if(DebugMovement) {
-			// 	Debug.Log("diffX: " + diffX + ", diffZ: " + diffZ);
-			// }
-			// if(diffX < -1 || diffX > 1) {
-			// 	if(DebugMovement) {
-			// 		Debug.Log("Can't move on invalid X (diffX: " + diffX + ")!");
-			// 	}
-			// 	ret = false;
-			// }
-			// if(diffZ < -1 || diffZ > 1) {
-			// 	if(DebugMovement) {
-			// 		Debug.Log("Can't move on invalid Z (diffZ: " + diffZ + ")!");
-			// 	}
-			// 	ret = false;
-			// }
-			// return ret;
 		}
 	}
 }
