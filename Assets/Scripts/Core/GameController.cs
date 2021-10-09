@@ -11,6 +11,9 @@ namespace OperationBlackwell.Core {
 
 		[SerializeField] private Transform player_;
 
+		public delegate void MoveEvent(Vector3 position);
+		public event MoveEvent Moved;
+
 		private Grid<Node> grid_;
 		private void Start() {
 			grid_ = new Grid<Node>((int)gridWorldSize_.x, (int)gridWorldSize_.z, nodeRadius_, new Vector3(0, 0, 0), 
@@ -45,6 +48,8 @@ namespace OperationBlackwell.Core {
 						}
 						// Translate our tictac.
 						player_.Translate(movement);
+						// Notify listeners.
+						Moved?.Invoke(player_.position);
 					} else {
 						if(DebugMovement) {
 							Debug.Log("No we can't move");
