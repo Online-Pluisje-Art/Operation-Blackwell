@@ -1,6 +1,6 @@
 {
     "name": "Core",
-    "rootNamespace": "Core",
+    "rootNamespace": "OperationBlackwell.Core",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
