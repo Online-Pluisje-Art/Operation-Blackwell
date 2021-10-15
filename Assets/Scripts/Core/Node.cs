@@ -34,6 +34,10 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
+		public void SetNodeVisual(NodeVisual nodeVisual) {
+			nodeVisual.SetGrid(this, grid_);
+		}
+
 		public class SaveObject {
 			public NodeObject.SaveObject[] nodeObjectSaveObjectArray;
 		}

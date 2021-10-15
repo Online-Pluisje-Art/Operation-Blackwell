@@ -42,15 +42,19 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		public void SetGrid(Grid<Node.NodeObject> grid) {
+		public void SetGrid(Node node, Grid<Node.NodeObject> grid) {
 			this.grid_ = grid;
 			UpdateNodeVisual();
 
 			grid_.OnGridObjectChanged += Grid_OnGridValueChanged;
-			// tilemap.OnLoaded += Tilemap_OnLoaded;
+			node.OnLoaded += NodeVisual_OnLoaded;
 		}
 
 		private void Grid_OnGridValueChanged(object sender, Grid<Node.NodeObject>.OnGridObjectChangedEventArgs e) {
+			updateMesh_ = true;
+		}
+
+		private void NodeVisual_OnLoaded(object sender, System.EventArgs e) {
 			updateMesh_ = true;
 		}
 
