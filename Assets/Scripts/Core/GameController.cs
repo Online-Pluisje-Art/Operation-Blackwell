@@ -14,13 +14,14 @@ namespace OperationBlackwell.Core {
 		public delegate void MoveEvent(Vector3 position);
 		public event MoveEvent Moved;
 
-		private Grid<Node> grid_;
+		private Grid<Node.NodeObject> grid_;
+		private Node nodes_;
 
 		[SerializeField] private NodeVisual nodeVisual_;
-		private Node.NodeSprite nodeSprite_;
+		private Node.NodeObject.NodeSprite nodeSprite_;
 		private void Start() {
-			grid_ = new Grid<Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_, new Vector3(0, 0, 0), 
-				(Grid<Node> g, Vector3 worldPos, int x, int y) => new Node(worldPos, x, y, g, true, true, Node.CoverStatus.NONE));
+			nodes_ = new Node((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_);
+			grid_ = nodes_.GetGrid();
 			nodeVisual_.SetGrid(grid_);
 			// Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
 			// unwalkableNode.walkable = false;
@@ -72,23 +73,23 @@ namespace OperationBlackwell.Core {
 		private void HandlePainting() {
 			// Tilemap code, rightclick please!
 			if(Input.GetKeyDown(KeyCode.T)) {
-				nodeSprite_ = Node.NodeSprite.NONE;
+				nodeSprite_ = Node.NodeObject.NodeSprite.NONE;
 			}
 			if(Input.GetKeyDown(KeyCode.Y)) {
-				nodeSprite_ = Node.NodeSprite.GROUND;
+				nodeSprite_ = Node.NodeObject.NodeSprite.GROUND;
 			}
 			if(Input.GetKeyDown(KeyCode.U)) {
-				nodeSprite_ = Node.NodeSprite.PATH;
+				nodeSprite_ = Node.NodeObject.NodeSprite.PATH;
 			}
 			if(Input.GetKeyDown(KeyCode.I)) {
-				nodeSprite_ = Node.NodeSprite.DIRT;
+				nodeSprite_ = Node.NodeObject.NodeSprite.DIRT;
 			}
 			if(Input.GetKeyDown(KeyCode.O)) {
-				nodeSprite_ = Node.NodeSprite.SAND;
+				nodeSprite_ = Node.NodeObject.NodeSprite.SAND;
 			}
 			if(Input.GetMouseButtonDown(1)) {
 				Vector3 mouseWorldPosition = Utils.GetMouseWorldPosition();
-				Node node = grid_.NodeFromWorldPoint(mouseWorldPosition);
+				Node.NodeObject node = grid_.NodeFromWorldPoint(mouseWorldPosition);
 				node.SetNodeSprite(nodeSprite_);
 				grid_.TriggerGridObjectChanged(node.gridX, node.gridY);
 			}
@@ -117,14 +118,14 @@ namespace OperationBlackwell.Core {
 				return false;
 			}
 
-			Node playerNode = grid_.NodeFromWorldPoint(playerPosition);
-			Node targetNode = grid_.NodeFromWorldPoint(targetPosition);
+			Node.NodeObject playerNode = grid_.GetGridObject(playerPosition);
+			Node.NodeObject targetNode = grid_.GetGridObject(targetPosition);
 
 			if(playerNode.worldPosition == targetNode.worldPosition) {
 				return false;
 			}
 			// We're moving, so we need to check if we can move.
-			List<Node> neighbours = grid_.GetNeighbours(playerNode);
+			List<Node.NodeObject> neighbours = grid_.GetNeighbours(playerNode);
 			if(neighbours.Contains(targetNode)) {
 				if(targetNode.walkable) {
 					movement = targetNode.worldPosition - playerNode.worldPosition;
