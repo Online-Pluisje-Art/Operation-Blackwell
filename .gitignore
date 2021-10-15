@@ -77,3 +77,6 @@ crashlytics-build.properties
 # Map files are not needed for now
 /[Aa]ssets/[Ss]avesWorld/
 /[Aa]ssets/[Ss]avesWorld.meta
+
+# Ignore my Build storage please
+/[Bb]uilds/
