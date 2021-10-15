@@ -7,7 +7,7 @@ namespace OperationBlackwell.Core {
 
 		[System.Serializable]
 		public struct NodeSpriteUV {
-			public Node.NodeSprite nodeSprite;
+			public Node.NodeObject.NodeSprite nodeSprite;
 			public Vector2Int uv00Pixels;
 			public Vector2Int uv11Pixels;
 		}
@@ -17,12 +17,12 @@ namespace OperationBlackwell.Core {
 			public Vector2 uv11;
 		}
 		
-		private Grid<Node> grid_;
+		private Grid<Node.NodeObject> grid_;
 		private Mesh mesh_;
 		private bool updateMesh_;
 
 		[SerializeField] private NodeSpriteUV[] nodeSpriteUVArray_;
-		private Dictionary<Node.NodeSprite, UVCoords> uvCoordsDictionary_;
+		private Dictionary<Node.NodeObject.NodeSprite, UVCoords> uvCoordsDictionary_;
 
 		private void Awake() {
 			mesh_ = new Mesh();
@@ -32,9 +32,9 @@ namespace OperationBlackwell.Core {
 			float textureWidth = texture.width;
 			float textureHeight = texture.height;
 
-			uvCoordsDictionary_ = new Dictionary<Node.NodeSprite, UVCoords>();
+			uvCoordsDictionary_ = new Dictionary<Node.NodeObject.NodeSprite, UVCoords>();
 
-			foreach (NodeSpriteUV nodeSpriteUV in nodeSpriteUVArray_) {
+			foreach(NodeSpriteUV nodeSpriteUV in nodeSpriteUVArray_) {
 				uvCoordsDictionary_[nodeSpriteUV.nodeSprite] = new UVCoords {
 					uv00 = new Vector2(nodeSpriteUV.uv00Pixels.x / textureWidth, nodeSpriteUV.uv00Pixels.y / textureHeight),
 					uv11 = new Vector2(nodeSpriteUV.uv11Pixels.x / textureWidth, nodeSpriteUV.uv11Pixels.y / textureHeight),
@@ -42,7 +42,7 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		public void SetGrid(Grid<Node> grid) {
+		public void SetGrid(Grid<Node.NodeObject> grid) {
 			this.grid_ = grid;
 			UpdateNodeVisual();
 
@@ -50,7 +50,7 @@ namespace OperationBlackwell.Core {
 			// tilemap.OnLoaded += Tilemap_OnLoaded;
 		}
 
-		private void Grid_OnGridValueChanged(object sender, Grid<Node>.OnGridObjectChangedEventArgs e) {
+		private void Grid_OnGridValueChanged(object sender, Grid<Node.NodeObject>.OnGridObjectChangedEventArgs e) {
 			updateMesh_ = true;
 		}
 
@@ -69,12 +69,12 @@ namespace OperationBlackwell.Core {
 					int index = x * grid_.gridSizeY + y;
 					Vector3 quadSize = new Vector3(1, 1) * grid_.cellSize;
 
-					Node node;
+					Node.NodeObject node;
 					Vector3 worldPosition = grid_.GetWorldPosition(x, y);
-					node = grid_.NodeFromWorldPoint(worldPosition);
-					Node.NodeSprite nodeSprite = node.GetNodeSprite();
+					node = grid_.GetGridObject(worldPosition);
+					Node.NodeObject.NodeSprite nodeSprite = node.GetNodeSprite();
 					Vector2 gridUV00, gridUV11;
-					if (nodeSprite == Node.NodeSprite.NONE) {
+					if (nodeSprite == Node.NodeObject.NodeSprite.NONE) {
 						gridUV00 = Vector2.zero;
 						gridUV11 = Vector2.zero;
 						quadSize = Vector3.zero;
