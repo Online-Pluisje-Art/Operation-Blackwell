@@ -109,6 +109,12 @@ namespace OperationBlackwell.Core {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
 				Application.Quit(0);
 			}
+			if(Input.GetKeyDown(KeyCode.Home)) {
+				Application.OpenURL("https://github.com/Online-Pluisje-Art/Operation-Blackwell/tree/development");
+			}
+			if(Input.GetKeyDown(KeyCode.End)) {
+				Application.OpenURL("https://docs.opa.rip/");
+			}
 		}
 
 		/*
