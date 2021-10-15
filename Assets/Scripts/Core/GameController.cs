@@ -31,6 +31,7 @@ namespace OperationBlackwell.Core {
 			HandleMovement();
 			HandlePainting();
 			HandleSaveLoad();
+			HandleMisc();
 		}
 
 		private void HandleMovement() {
@@ -101,6 +102,12 @@ namespace OperationBlackwell.Core {
 			}
 			if(Input.GetKeyDown(KeyCode.L)) {
 				nodes_.Load();
+			}
+		}
+
+		private void HandleMisc() {
+			if(Input.GetKeyDown(KeyCode.Escape)) {
+				Application.Quit(0);
 			}
 		}
 
