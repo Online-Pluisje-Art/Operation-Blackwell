@@ -22,7 +22,7 @@ namespace OperationBlackwell.Core {
 		private void Start() {
 			nodes_ = new Node((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_);
 			grid_ = nodes_.GetGrid();
-			nodeVisual_.SetGrid(grid_);
+			nodes_.SetNodeVisual(nodeVisual_);
 			// Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
 			// unwalkableNode.walkable = false;
 		}
@@ -96,12 +96,12 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void HandleSaveLoad() {
-			// if(Input.GetKeyDown(KeyCode.P)) {
-			// 	tilemap.Save();
-			// }
-			// if(Input.GetKeyDown(KeyCode.L)) {
-			// 	tilemap.Load();
-			// }
+			if(Input.GetKeyDown(KeyCode.P)) {
+				nodes_.Save();
+			}
+			if(Input.GetKeyDown(KeyCode.L)) {
+				nodes_.Load();
+			}
 		}
 
 		/*
