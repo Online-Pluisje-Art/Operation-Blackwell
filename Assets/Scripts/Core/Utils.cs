@@ -12,7 +12,8 @@ namespace OperationBlackwell.Core {
 			lr.material = (Material)Resources.Load("Materials/Line");
 			lr.startColor = Color.white;
 			lr.endColor = Color.white;
-			lr.SetWidth(0.1f, 0.1f);
+			lr.startWidth = .1f;
+			lr.endWidth = .1f;
 			lr.SetPosition(0, start);
 			lr.SetPosition(1, end);
 		}

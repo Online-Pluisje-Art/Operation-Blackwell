@@ -2,10 +2,6 @@ using UnityEngine;
 
 namespace OperationBlackwell.Core {
 	class CameraController : MonoBehaviour {
-		// The gamecontroller of the game that holds all other controller.
-		[SerializeField]
-		private GameController gameController_;
-
 		private Camera camera_;
 
 		/*
@@ -14,11 +10,11 @@ namespace OperationBlackwell.Core {
 		*/
 		private void Awake() {
 			camera_ = GetComponent<Camera>();
-			gameController_.Moved += OnPlayerMove;
+			// GameController.Instance.Moved += OnPlayerMove;
 		}
 
 		private void OnDestroy() {
-			gameController_.Moved -= OnPlayerMove;
+			// GameController.Instance.Moved -= OnPlayerMove;
 		}
 
 		private void OnPlayerMove(Vector3 position) {

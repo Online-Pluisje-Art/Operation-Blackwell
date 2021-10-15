@@ -83,6 +83,9 @@ namespace OperationBlackwell.Core {
 			public int gridY {get; private set;}
 			private NodeSprite nodeSprite_;
 
+			private bool isValidMovePosition_;
+			private IGameObject unitGridCombat_;
+
 			private Grid<Node> grid_;
 
 			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, bool shootable, bool cover) {
@@ -160,6 +163,26 @@ namespace OperationBlackwell.Core {
 					this.cover = true;
 				}
 				grid_.TriggerGridObjectChanged(gridX, gridY);
+			}
+
+			public void SetIsValidMovePosition(bool set) {
+				isValidMovePosition_ = set;
+			}
+
+			public bool GetIsValidMovePosition() {
+				return isValidMovePosition_;
+			}
+
+			public void SetUnitGridCombat(IGameObject unitGridCombat) {
+				this.unitGridCombat_ = unitGridCombat;
+			}
+
+			public void ClearUnitGridCombat() {
+				SetUnitGridCombat(null);
+			}
+
+			public IGameObject GetUnitGridCombat() {
+				return unitGridCombat_;
 			}
 		}
 	}

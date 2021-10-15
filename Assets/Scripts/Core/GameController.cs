@@ -6,6 +6,8 @@ namespace OperationBlackwell.Core {
 	public class GameController : MonoBehaviour {
 		private const bool DebugMovement = false;
 
+		public static GameController Instance { get; private set; }
+
 		[SerializeField] private Vector3 gridWorldSize_;
 		[SerializeField] private float nodeRadius_;
 
@@ -16,6 +18,7 @@ namespace OperationBlackwell.Core {
 
 		private Grid<Tilemap.Node> grid_;
 		private Tilemap tilemap_;
+		public GridPathfinding gridPathfinding { get; private set; }
 
 		[SerializeField] private TilemapVisual tilemapVisual_;
 		private Tilemap.Node.NodeSprite nodeSprite_;
@@ -24,12 +27,16 @@ namespace OperationBlackwell.Core {
 				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, true, false));
 			tilemap_ = new Tilemap(grid_);
 			tilemap_.SetTilemapVisual(tilemapVisual_);
+			Instance = this;
+			Vector3 origin = new Vector3(0, 0);
+
+			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * nodeRadius_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * nodeRadius_, nodeRadius_);
 			// Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
 			// unwalkableNode.walkable = false;
 		}
 
 		private void Update() {
-			HandleMovement();
+			// HandleMovement();
 			HandlePainting();
 			HandleSaveLoad();
 			HandleMisc();
@@ -95,6 +102,10 @@ namespace OperationBlackwell.Core {
 				node.SetNodeSprite(nodeSprite_);
 				grid_.TriggerGridObjectChanged(node.gridX, node.gridY);
 			}
+		}
+
+		public Grid<Tilemap.Node> GetGrid() {
+			return grid_;
 		}
 
 		private void HandleSaveLoad() {
