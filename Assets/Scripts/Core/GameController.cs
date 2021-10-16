@@ -14,15 +14,16 @@ namespace OperationBlackwell.Core {
 		public delegate void MoveEvent(Vector3 position);
 		public event MoveEvent Moved;
 
-		private Grid<Node.NodeObject> grid_;
-		private Node nodes_;
+		private Grid<Tilemap.Node> grid_;
+		private Tilemap tilemap_;
 
-		[SerializeField] private NodeVisual nodeVisual_;
-		private Node.NodeObject.NodeSprite nodeSprite_;
+		[SerializeField] private TilemapVisual tilemapVisual_;
+		private Tilemap.Node.NodeSprite nodeSprite_;
 		private void Start() {
-			nodes_ = new Node((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_);
-			grid_ = nodes_.GetGrid();
-			nodes_.SetNodeVisual(nodeVisual_);
+			grid_ = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_, new Vector3(0, 0, 0), 
+				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, true, Tilemap.Node.CoverStatus.NONE));
+			tilemap_ = new Tilemap(grid_);
+			tilemap_.SetTilemapVisual(tilemapVisual_);
 			// Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
 			// unwalkableNode.walkable = false;
 		}
@@ -74,23 +75,23 @@ namespace OperationBlackwell.Core {
 		private void HandlePainting() {
 			// Tilemap code, rightclick please!
 			if(Input.GetKeyDown(KeyCode.T)) {
-				nodeSprite_ = Node.NodeObject.NodeSprite.NONE;
+				nodeSprite_ = Tilemap.Node.NodeSprite.NONE;
 			}
 			if(Input.GetKeyDown(KeyCode.Y)) {
-				nodeSprite_ = Node.NodeObject.NodeSprite.GROUND;
+				nodeSprite_ = Tilemap.Node.NodeSprite.GROUND;
 			}
 			if(Input.GetKeyDown(KeyCode.U)) {
-				nodeSprite_ = Node.NodeObject.NodeSprite.PATH;
+				nodeSprite_ = Tilemap.Node.NodeSprite.PATH;
 			}
 			if(Input.GetKeyDown(KeyCode.I)) {
-				nodeSprite_ = Node.NodeObject.NodeSprite.DIRT;
+				nodeSprite_ = Tilemap.Node.NodeSprite.DIRT;
 			}
 			if(Input.GetKeyDown(KeyCode.O)) {
-				nodeSprite_ = Node.NodeObject.NodeSprite.SAND;
+				nodeSprite_ = Tilemap.Node.NodeSprite.SAND;
 			}
 			if(Input.GetMouseButtonDown(1)) {
 				Vector3 mouseWorldPosition = Utils.GetMouseWorldPosition();
-				Node.NodeObject node = grid_.NodeFromWorldPoint(mouseWorldPosition);
+				Tilemap.Node node = grid_.NodeFromWorldPoint(mouseWorldPosition);
 				node.SetNodeSprite(nodeSprite_);
 				grid_.TriggerGridObjectChanged(node.gridX, node.gridY);
 			}
@@ -98,10 +99,10 @@ namespace OperationBlackwell.Core {
 
 		private void HandleSaveLoad() {
 			if(Input.GetKeyDown(KeyCode.P)) {
-				nodes_.Save();
+				tilemap_.Save();
 			}
 			if(Input.GetKeyDown(KeyCode.L)) {
-				nodes_.Load();
+				tilemap_.Load();
 			}
 		}
 
@@ -131,14 +132,14 @@ namespace OperationBlackwell.Core {
 				return false;
 			}
 
-			Node.NodeObject playerNode = grid_.GetGridObject(playerPosition);
-			Node.NodeObject targetNode = grid_.GetGridObject(targetPosition);
+			Tilemap.Node playerNode = grid_.GetGridObject(playerPosition);
+			Tilemap.Node targetNode = grid_.GetGridObject(targetPosition);
 
 			if(playerNode.worldPosition == targetNode.worldPosition) {
 				return false;
 			}
 			// We're moving, so we need to check if we can move.
-			List<Node.NodeObject> neighbours = grid_.GetNeighbours(playerNode);
+			List<Tilemap.Node> neighbours = grid_.GetNeighbours(playerNode);
 			if(neighbours.Contains(targetNode)) {
 				if(targetNode.walkable) {
 					movement = targetNode.worldPosition - playerNode.worldPosition;

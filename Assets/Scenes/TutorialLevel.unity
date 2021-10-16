@@ -155,7 +155,7 @@ MonoBehaviour:
   gridWorldSize_: {x: 11, y: 11, z: 0}
   nodeRadius_: 1
   player_: {fileID: 1989744811}
-  nodeVisual_: {fileID: 2098585260}
+  tilemapVisual_: {fileID: 2098585260}
 --- !u!4 &593590128
 Transform:
   m_ObjectHideFlags: 0
@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 2098585263}
   - component: {fileID: 2098585262}
   m_Layer: 0
-  m_Name: NodeVisual
+  m_Name: TilemapVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2098585259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 510f0267f7403407d88d7e99b10c503d, type: 3}
+  m_Script: {fileID: 11500000, guid: 73e6ef86219694b368b91b5016232253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nodeSpriteUVArray_:

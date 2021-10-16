@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
-	public class Node {
+	public class Tilemap {
 		public event System.EventHandler OnLoaded;
 
-		private Grid<NodeObject> grid_;
+		private Grid<Node> grid_;
 		// public int gCost;
 		// public int hCost;
 
@@ -18,53 +18,52 @@ namespace OperationBlackwell.Core {
 
 		// public Node parent;
 
-		public Node(int width, int height, float nodeRadius) {
-			grid_ = new Grid<NodeObject>(width, height, nodeRadius, new Vector3(0, 0, 0), 
-				(Grid<NodeObject> g, Vector3 worldPos, int x, int y) => new NodeObject(worldPos, x, y, g, true, true, Node.NodeObject.CoverStatus.NONE));
+		public Tilemap(Grid<Node> grid) {
+			this.grid_ = grid;
 		}
 
-		public Grid<NodeObject> GetGrid() {
+		public Grid<Node> GetGrid() {
 			return grid_;
 		}
 
-		public void SetNodeSprite(Vector3 worldPosition, NodeObject.NodeSprite nodeSprite) {
-			NodeObject nodeObject = grid_.GetGridObject(worldPosition);
-			if(nodeObject != null) {
-				nodeObject.SetNodeSprite(nodeSprite);
+		public void SetNodeSprite(Vector3 worldPosition, Node.NodeSprite nodeSprite) {
+			Node node = grid_.GetGridObject(worldPosition);
+			if(node != null) {
+				node.SetNodeSprite(nodeSprite);
 			}
 		}
 
-		public void SetNodeVisual(NodeVisual nodeVisual) {
-			nodeVisual.SetGrid(this, grid_);
+		public void SetTilemapVisual(TilemapVisual tilemapVisual) {
+			tilemapVisual.SetGrid(this, grid_);
 		}
 
 		public class SaveObject {
-			public NodeObject.SaveObject[] nodeObjectSaveObjectArray;
+			public Node.SaveObject[] nodeSaveObjectArray;
 		}
 	
 		public void Save() {
-			List<NodeObject.SaveObject> nodeSaveObjectList = new List<NodeObject.SaveObject>();
+			List<Node.SaveObject> nodeSaveObjectList = new List<Node.SaveObject>();
 			for(int x = 0; x < grid_.gridSizeX; x++) {
 				for(int y = 0; y < grid_.gridSizeY; y++) {
-					NodeObject nodeObject = grid_.NodeFromWorldPoint(grid_.GetWorldPosition(x, y));
-					nodeSaveObjectList.Add(nodeObject.Save());
+					Node node = grid_.GetGridObject(x, y);
+					nodeSaveObjectList.Add(node.Save());
 				}
 			}
 
-			SaveObject saveObject = new SaveObject { nodeObjectSaveObjectArray = nodeSaveObjectList.ToArray() };
+			SaveObject saveObject = new SaveObject { nodeSaveObjectArray = nodeSaveObjectList.ToArray() };
 			SaveSystem.SaveObject(saveObject);
 		}
 
 		public void Load() {
 			SaveObject saveObject = SaveSystem.LoadMostRecentObject<SaveObject>();
-			foreach(NodeObject.SaveObject nodeObjectSaveObject in saveObject.nodeObjectSaveObjectArray) {				
-				NodeObject nodeObject = grid_.GetGridObject(nodeObjectSaveObject.x, nodeObjectSaveObject.y);
-				nodeObject.Load(nodeObjectSaveObject);
+			foreach(Node.SaveObject nodeSaveObject in saveObject.nodeSaveObjectArray) {				
+				Node node = grid_.GetGridObject(nodeSaveObject.x, nodeSaveObject.y);
+				node.Load(nodeSaveObject);
 			}
 			OnLoaded?.Invoke(this, System.EventArgs.Empty);
 		}
 
-		public class NodeObject {
+		public class Node {
 
 			public enum CoverStatus {
 				NONE,
@@ -90,9 +89,9 @@ namespace OperationBlackwell.Core {
 			public int gridY {get; private set;}
 			private NodeSprite nodeSprite_;
 
-			private Grid<NodeObject> grid_;
+			private Grid<Node> grid_;
 
-			public NodeObject(Vector3 worldPosition, int gridX, int gridY, Grid<NodeObject> grid, bool walkable, bool shootable, CoverStatus cover) {
+			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, bool shootable, CoverStatus cover) {
 				this.worldPosition = worldPosition;
 				this.gridX = gridX;
 				this.gridY = gridY;
