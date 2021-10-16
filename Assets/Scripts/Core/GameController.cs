@@ -14,14 +14,16 @@ namespace OperationBlackwell.Core {
 		public delegate void MoveEvent(Vector3 position);
 		public event MoveEvent Moved;
 
-		private Grid<Node> grid_;
+		private Grid<Tilemap.Node> grid_;
+		private Tilemap tilemap_;
 
-		[SerializeField] private NodeVisual nodeVisual_;
-		private Node.NodeSprite nodeSprite_;
+		[SerializeField] private TilemapVisual tilemapVisual_;
+		private Tilemap.Node.NodeSprite nodeSprite_;
 		private void Start() {
-			grid_ = new Grid<Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_, new Vector3(0, 0, 0), 
-				(Grid<Node> g, Vector3 worldPos, int x, int y) => new Node(worldPos, x, y, g, true, true, Node.CoverStatus.NONE));
-			nodeVisual_.SetGrid(grid_);
+			grid_ = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_, new Vector3(0, 0, 0), 
+				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, true, Tilemap.Node.CoverStatus.NONE));
+			tilemap_ = new Tilemap(grid_);
+			tilemap_.SetTilemapVisual(tilemapVisual_);
 			// Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
 			// unwalkableNode.walkable = false;
 		}
@@ -30,6 +32,7 @@ namespace OperationBlackwell.Core {
 			HandleMovement();
 			HandlePainting();
 			HandleSaveLoad();
+			HandleMisc();
 		}
 
 		private void HandleMovement() {
@@ -72,35 +75,47 @@ namespace OperationBlackwell.Core {
 		private void HandlePainting() {
 			// Tilemap code, rightclick please!
 			if(Input.GetKeyDown(KeyCode.T)) {
-				nodeSprite_ = Node.NodeSprite.NONE;
+				nodeSprite_ = Tilemap.Node.NodeSprite.NONE;
 			}
 			if(Input.GetKeyDown(KeyCode.Y)) {
-				nodeSprite_ = Node.NodeSprite.GROUND;
+				nodeSprite_ = Tilemap.Node.NodeSprite.GROUND;
 			}
 			if(Input.GetKeyDown(KeyCode.U)) {
-				nodeSprite_ = Node.NodeSprite.PATH;
+				nodeSprite_ = Tilemap.Node.NodeSprite.PATH;
 			}
 			if(Input.GetKeyDown(KeyCode.I)) {
-				nodeSprite_ = Node.NodeSprite.DIRT;
+				nodeSprite_ = Tilemap.Node.NodeSprite.DIRT;
 			}
 			if(Input.GetKeyDown(KeyCode.O)) {
-				nodeSprite_ = Node.NodeSprite.SAND;
+				nodeSprite_ = Tilemap.Node.NodeSprite.SAND;
 			}
 			if(Input.GetMouseButtonDown(1)) {
 				Vector3 mouseWorldPosition = Utils.GetMouseWorldPosition();
-				Node node = grid_.NodeFromWorldPoint(mouseWorldPosition);
+				Tilemap.Node node = grid_.NodeFromWorldPoint(mouseWorldPosition);
 				node.SetNodeSprite(nodeSprite_);
 				grid_.TriggerGridObjectChanged(node.gridX, node.gridY);
 			}
 		}
 
 		private void HandleSaveLoad() {
-			// if(Input.GetKeyDown(KeyCode.P)) {
-			// 	tilemap.Save();
-			// }
-			// if(Input.GetKeyDown(KeyCode.L)) {
-			// 	tilemap.Load();
-			// }
+			if(Input.GetKeyDown(KeyCode.P)) {
+				tilemap_.Save();
+			}
+			if(Input.GetKeyDown(KeyCode.L)) {
+				tilemap_.Load();
+			}
+		}
+
+		private void HandleMisc() {
+			if(Input.GetKeyDown(KeyCode.Escape)) {
+				Application.Quit(0);
+			}
+			if(Input.GetKeyDown(KeyCode.Home)) {
+				Application.OpenURL("https://github.com/Online-Pluisje-Art/Operation-Blackwell/tree/development");
+			}
+			if(Input.GetKeyDown(KeyCode.End)) {
+				Application.OpenURL("https://docs.opa.rip/");
+			}
 		}
 
 		/*
@@ -117,14 +132,14 @@ namespace OperationBlackwell.Core {
 				return false;
 			}
 
-			Node playerNode = grid_.NodeFromWorldPoint(playerPosition);
-			Node targetNode = grid_.NodeFromWorldPoint(targetPosition);
+			Tilemap.Node playerNode = grid_.GetGridObject(playerPosition);
+			Tilemap.Node targetNode = grid_.GetGridObject(targetPosition);
 
 			if(playerNode.worldPosition == targetNode.worldPosition) {
 				return false;
 			}
 			// We're moving, so we need to check if we can move.
-			List<Node> neighbours = grid_.GetNeighbours(playerNode);
+			List<Tilemap.Node> neighbours = grid_.GetNeighbours(playerNode);
 			if(neighbours.Contains(targetNode)) {
 				if(targetNode.walkable) {
 					movement = targetNode.worldPosition - playerNode.worldPosition;

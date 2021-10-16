@@ -1,0 +1,139 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace OperationBlackwell.Core {
+	public class Tilemap {
+		public event System.EventHandler OnLoaded;
+
+		private Grid<Node> grid_;
+		// public int gCost;
+		// public int hCost;
+
+		// public int fCost {
+		// 	get {
+		// 		return gCost + hCost;
+		// 	}
+		// }
+
+		// public Node parent;
+
+		public Tilemap(Grid<Node> grid) {
+			this.grid_ = grid;
+		}
+
+		public Grid<Node> GetGrid() {
+			return grid_;
+		}
+
+		public void SetNodeSprite(Vector3 worldPosition, Node.NodeSprite nodeSprite) {
+			Node node = grid_.GetGridObject(worldPosition);
+			if(node != null) {
+				node.SetNodeSprite(nodeSprite);
+			}
+		}
+
+		public void SetTilemapVisual(TilemapVisual tilemapVisual) {
+			tilemapVisual.SetGrid(this, grid_);
+		}
+
+		public class SaveObject {
+			public Node.SaveObject[] nodeSaveObjectArray;
+		}
+	
+		public void Save() {
+			List<Node.SaveObject> nodeSaveObjectList = new List<Node.SaveObject>();
+			for(int x = 0; x < grid_.gridSizeX; x++) {
+				for(int y = 0; y < grid_.gridSizeY; y++) {
+					Node node = grid_.GetGridObject(x, y);
+					nodeSaveObjectList.Add(node.Save());
+				}
+			}
+
+			SaveObject saveObject = new SaveObject { nodeSaveObjectArray = nodeSaveObjectList.ToArray() };
+			SaveSystem.SaveObject(saveObject);
+		}
+
+		public void Load() {
+			SaveObject saveObject = SaveSystem.LoadMostRecentObject<SaveObject>();
+			foreach(Node.SaveObject nodeSaveObject in saveObject.nodeSaveObjectArray) {				
+				Node node = grid_.GetGridObject(nodeSaveObject.x, nodeSaveObject.y);
+				node.Load(nodeSaveObject);
+			}
+			OnLoaded?.Invoke(this, System.EventArgs.Empty);
+		}
+
+		public class Node {
+
+			public enum CoverStatus {
+				NONE,
+				HALF,
+				FULL,
+			}
+
+			public enum NodeSprite {
+				NONE,
+				GROUND,
+				PATH,
+				DIRT,
+				SAND,
+			}
+			// Holds the amount of cover this tile gives.
+			public CoverStatus cover {get; private set;}
+			// Holds if the tile can be walked over.
+			public bool walkable; // {get; protected set;}
+			// Holds if the tile can be shot through.
+			public bool shootable {get; private set;}
+			public Vector3 worldPosition {get; private set;}
+			public int gridX {get; private set;}
+			public int gridY {get; private set;}
+			private NodeSprite nodeSprite_;
+
+			private Grid<Node> grid_;
+
+			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, bool shootable, CoverStatus cover) {
+				this.worldPosition = worldPosition;
+				this.gridX = gridX;
+				this.gridY = gridY;
+				this.grid_ = grid;
+				this.walkable = walkable;
+				this.shootable = shootable;
+				this.cover = cover;
+			}
+			[System.Serializable]
+			public class SaveObject {
+				public NodeSprite nodeSprite;
+				public int x;
+				public int y;
+			}
+
+			/*
+			* Save - Load
+			* */
+			public SaveObject Save() {
+				return new SaveObject { 
+					nodeSprite = this.nodeSprite_,
+					x = this.gridX,
+					y = this.gridY,
+				};
+			}
+
+			public void Load(SaveObject saveObject) {
+				this.nodeSprite_ = saveObject.nodeSprite;
+			}
+
+			public NodeSprite GetNodeSprite() {
+				return nodeSprite_;
+			}
+
+			public override string ToString() {
+				return nodeSprite_.ToString();
+			}
+
+			public void SetNodeSprite(NodeSprite nodeSprite) {
+				this.nodeSprite_ = nodeSprite;
+				grid_.TriggerGridObjectChanged(gridX, gridY);
+			}
+		}
+	}
+}
