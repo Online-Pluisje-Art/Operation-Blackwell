@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
-	public class NodeVisual : MonoBehaviour {
+	public class TilemapVisual : MonoBehaviour {
 
 		[System.Serializable]
 		public struct NodeSpriteUV {
-			public Node.NodeObject.NodeSprite nodeSprite;
+			public Tilemap.Node.NodeSprite nodeSprite;
 			public Vector2Int uv00Pixels;
 			public Vector2Int uv11Pixels;
 		}
@@ -17,12 +17,12 @@ namespace OperationBlackwell.Core {
 			public Vector2 uv11;
 		}
 		
-		private Grid<Node.NodeObject> grid_;
+		private Grid<Tilemap.Node> grid_;
 		private Mesh mesh_;
 		private bool updateMesh_;
 
 		[SerializeField] private NodeSpriteUV[] nodeSpriteUVArray_;
-		private Dictionary<Node.NodeObject.NodeSprite, UVCoords> uvCoordsDictionary_;
+		private Dictionary<Tilemap.Node.NodeSprite, UVCoords> uvCoordsDictionary_;
 
 		private void Awake() {
 			mesh_ = new Mesh();
@@ -32,7 +32,7 @@ namespace OperationBlackwell.Core {
 			float textureWidth = texture.width;
 			float textureHeight = texture.height;
 
-			uvCoordsDictionary_ = new Dictionary<Node.NodeObject.NodeSprite, UVCoords>();
+			uvCoordsDictionary_ = new Dictionary<Tilemap.Node.NodeSprite, UVCoords>();
 
 			foreach(NodeSpriteUV nodeSpriteUV in nodeSpriteUVArray_) {
 				uvCoordsDictionary_[nodeSpriteUV.nodeSprite] = new UVCoords {
@@ -42,19 +42,19 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		public void SetGrid(Node node, Grid<Node.NodeObject> grid) {
+		public void SetGrid(Tilemap tilemap, Grid<Tilemap.Node> grid) {
 			this.grid_ = grid;
 			UpdateNodeVisual();
 
 			grid_.OnGridObjectChanged += Grid_OnGridValueChanged;
-			node.OnLoaded += NodeVisual_OnLoaded;
+			tilemap.OnLoaded += TilemapVisual_OnLoaded;
 		}
 
-		private void Grid_OnGridValueChanged(object sender, Grid<Node.NodeObject>.OnGridObjectChangedEventArgs e) {
+		private void Grid_OnGridValueChanged(object sender, Grid<Tilemap.Node>.OnGridObjectChangedEventArgs e) {
 			updateMesh_ = true;
 		}
 
-		private void NodeVisual_OnLoaded(object sender, System.EventArgs e) {
+		private void TilemapVisual_OnLoaded(object sender, System.EventArgs e) {
 			updateMesh_ = true;
 		}
 
@@ -73,12 +73,12 @@ namespace OperationBlackwell.Core {
 					int index = x * grid_.gridSizeY + y;
 					Vector3 quadSize = new Vector3(1, 1) * grid_.cellSize;
 
-					Node.NodeObject node;
+					Tilemap.Node node;
 					Vector3 worldPosition = grid_.GetWorldPosition(x, y);
 					node = grid_.GetGridObject(worldPosition);
-					Node.NodeObject.NodeSprite nodeSprite = node.GetNodeSprite();
+					Tilemap.Node.NodeSprite nodeSprite = node.GetNodeSprite();
 					Vector2 gridUV00, gridUV11;
-					if (nodeSprite == Node.NodeObject.NodeSprite.NONE) {
+					if (nodeSprite == Tilemap.Node.NodeSprite.NONE) {
 						gridUV00 = Vector2.zero;
 						gridUV11 = Vector2.zero;
 						quadSize = Vector3.zero;
