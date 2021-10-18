@@ -29,7 +29,6 @@ namespace OperationBlackwell.Core {
 			grid_ = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
 				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, true, false));
 			tilemap_ = new Tilemap(grid_);
-
 			Instance = this;
 			Vector3 origin = new Vector3(0, 0);
 

@@ -75,7 +75,7 @@ namespace OperationBlackwell.Core {
 			// Holds the amount of cover this tile gives.
 			public bool cover {get; private set;}
 			// Holds if the tile can be walked over.
-			public bool walkable; // {get; protected set;}
+			public bool walkable {get; protected set;}
 			// Holds if the tile can be shot through.
 			public bool shootable {get; private set;}
 			public Vector3 worldPosition {get; private set;}
