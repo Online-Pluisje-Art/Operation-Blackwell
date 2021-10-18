@@ -54,8 +54,8 @@ namespace OperationBlackwell.Core {
 			SaveSystem.SaveObject(saveObject, name);
 		}
 
-		public void Load() {
-			SaveObject saveObject = SaveSystem.LoadMostRecentObject<SaveObject>();
+		public void Load(System.String name) {
+			SaveObject saveObject = SaveSystem.LoadObject<SaveObject>(name);
 			foreach(Node.SaveObject nodeSaveObject in saveObject.nodeSaveObjectArray) {				
 				Node node = grid_.GetGridObject(nodeSaveObject.x, nodeSaveObject.y);
 				node.Load(nodeSaveObject);
