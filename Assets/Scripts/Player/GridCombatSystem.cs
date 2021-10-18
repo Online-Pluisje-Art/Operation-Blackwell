@@ -5,7 +5,6 @@ using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
     public class GridCombatSystem : MonoBehaviour {
-
         [SerializeField] private UnitGridCombat[] unitGridCombatArray;
 
         private State state;
@@ -34,8 +33,8 @@ namespace OperationBlackwell.Player {
 
             // Set all UnitGridCombat on their GridPosition
             foreach (UnitGridCombat unitGridCombat in unitGridCombatArray) {
-                // GameController.Instance.GetGrid().NodeFromWorldPoint(unitGridCombat.GetPosition())
-                    // .SetUnitGridCombat(unitGridCombat);
+                GameController.Instance.GetGrid().GetGridObject(unitGridCombat.GetPosition())
+                    .SetUnitGridCombat(unitGridCombat);
 
                 if (unitGridCombat.GetTeam() == Team.Blue) {
                     blueTeamList.Add(unitGridCombat);
@@ -57,13 +56,13 @@ namespace OperationBlackwell.Player {
 
             // GameController.Instance.SetCameraFollowPosition(unitGridCombat.GetPosition());
             canMoveThisTurn = true;
-            canAttackThisTurn = true;
+            canAttackThisTurn = false;
         }
 
         private UnitGridCombat GetNextActiveUnit(Team team) {
             if (team == Team.Blue) {
                 blueTeamActiveUnitIndex = (blueTeamActiveUnitIndex + 1) % blueTeamList.Count;
-                if (blueTeamList[blueTeamActiveUnitIndex] == null) { // || blueTeamList[blueTeamActiveUnitIndex].IsDead()) {
+                if (blueTeamList[blueTeamActiveUnitIndex] == null) {// || blueTeamList[blueTeamActiveUnitIndex].IsDead()) {
                     // Unit is Dead, get next one
                     return GetNextActiveUnit(team);
                 } else {
@@ -87,19 +86,19 @@ namespace OperationBlackwell.Player {
             // Get Unit Grid Position X, Y
             grid.GetXY(unitGridCombat.GetPosition(), out int unitX, out int unitY);
 
-            // // Set entire Tilemap to Invisible
-            // GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
-            //     MovementTilemap.TilemapObject.TilemapSprite.None
-            // );
+            // Set entire Tilemap to Invisible
+            GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+                MovementTilemap.TilemapObject.TilemapSprite.None
+            );
 
             // Reset Entire Grid ValidMovePositions
-            for (int x = 0; x < grid.gridSizeX; x++) {
-                for (int y = 0; y < grid.gridSizeY; y++) {
-                    grid.NodeFromWorldPoint(new Vector3(x, y)).SetIsValidMovePosition(false);
+            for (int x = 0; x < grid.GetWidth(); x++) {
+                for (int y = 0; y < grid.GetHeight(); y++) {
+                    grid.GetGridObject(x, y).SetIsValidMovePosition(false);
                 }
             }
 
-            int maxMoveDistance = 5;
+            int maxMoveDistance = unitGridCombat.GetActionPoints() + 1;
             for (int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
                 for (int y = unitY - maxMoveDistance; y <= unitY + maxMoveDistance; y++) {
                     if (gridPathfinding.IsWalkable(x, y)) {
@@ -109,12 +108,12 @@ namespace OperationBlackwell.Player {
                             if (gridPathfinding.GetPath(unitX, unitY, x, y).Count <= maxMoveDistance) {
                                 // Path within Move Distance
 
-                                // // Set Tilemap Tile to Move
-                                // GameController.Instance.GetMovementTilemap().SetTilemapSprite(
-                                //     x, y, MovementTilemap.TilemapObject.TilemapSprite.Move
-                                // );
+                                // Set Tilemap Tile to Move
+                                GameController.Instance.GetMovementTilemap().SetTilemapSprite(
+                                    x, y, MovementTilemap.TilemapObject.TilemapSprite.Move
+                                );
 
-                                grid.NodeFromWorldPoint(new Vector3(x, y)).SetIsValidMovePosition(true);
+                                grid.GetGridObject(x, y).SetIsValidMovePosition(true);
                             } else { 
                                 // Path outside Move Distance!
                             }
@@ -166,23 +165,22 @@ namespace OperationBlackwell.Player {
                         if (gridObject.GetIsValidMovePosition()) {
                             // Valid Move Position
 
-                            if (canMoveThisTurn) {
-                                canMoveThisTurn = false;
-
+                            if (unitGridCombat.GetActionPoints() > 0) {
                                 state = State.Waiting;
 
-                                // // Set entire Tilemap to Invisible
-                                // GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
-                                //     MovementTilemap.TilemapObject.TilemapSprite.None
-                                // );
+                                // Set entire Tilemap to Invisible
+                                GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+                                    MovementTilemap.TilemapObject.TilemapSprite.None
+                                );
 
                                 // Remove Unit from current Grid Object
-                                grid.NodeFromWorldPoint(unitGridCombat.GetPosition()).ClearUnitGridCombat();
+                                grid.GetGridObject(unitGridCombat.GetPosition()).ClearUnitGridCombat();
                                 // Set Unit on target Grid Object
                                 gridObject.SetUnitGridCombat(unitGridCombat);
 
                                 unitGridCombat.MoveTo(Utils.GetMouseWorldPosition(), () => {
                                     state = State.Normal;
+                                    unitGridCombat.SetActionPoints(unitGridCombat.GetActionPoints() - 1);
                                     UpdateValidMovePositions();
                                     TestTurnOver();
                                 });
@@ -200,13 +198,14 @@ namespace OperationBlackwell.Player {
         }
 
         private void TestTurnOver() {
-            if (!canMoveThisTurn && !canAttackThisTurn) {
+            if (unitGridCombat.GetActionPoints() <= 0) {
                 // Cannot move or attack, turn over
                 ForceTurnOver();
             }
         }
 
         private void ForceTurnOver() {
+            unitGridCombat.ResetActionPoints();
             SelectNextActiveUnit();
             UpdateValidMovePositions();
         }
