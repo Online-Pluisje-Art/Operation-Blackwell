@@ -79,7 +79,7 @@ namespace OperationBlackwell.Core {
 
 		public static void SaveObject(string fileName, object saveObject, bool overwrite) {
 			Init();
-			string json = JsonUtility.ToJson(saveObject);
+			string json = JsonUtility.ToJson(saveObject, true);
 			Save(fileName, json, overwrite);
 		}
 
