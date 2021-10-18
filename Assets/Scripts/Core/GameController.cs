@@ -21,7 +21,7 @@ namespace OperationBlackwell.Core {
 		private Tilemap.Node.NodeSprite nodeSprite_;
 		private void Start() {
 			grid_ = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_, new Vector3(0, 0, 0), 
-				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, true, Tilemap.Node.CoverStatus.NONE));
+				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, true, false));
 			tilemap_ = new Tilemap(grid_);
 			tilemap_.SetTilemapVisual(tilemapVisual_);
 			// Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
@@ -78,16 +78,16 @@ namespace OperationBlackwell.Core {
 				nodeSprite_ = Tilemap.Node.NodeSprite.NONE;
 			}
 			if(Input.GetKeyDown(KeyCode.Y)) {
-				nodeSprite_ = Tilemap.Node.NodeSprite.GROUND;
+				nodeSprite_ = Tilemap.Node.NodeSprite.PIT;
 			}
 			if(Input.GetKeyDown(KeyCode.U)) {
-				nodeSprite_ = Tilemap.Node.NodeSprite.PATH;
+				nodeSprite_ = Tilemap.Node.NodeSprite.FLOOR;
 			}
 			if(Input.GetKeyDown(KeyCode.I)) {
-				nodeSprite_ = Tilemap.Node.NodeSprite.DIRT;
+				nodeSprite_ = Tilemap.Node.NodeSprite.WALL;
 			}
 			if(Input.GetKeyDown(KeyCode.O)) {
-				nodeSprite_ = Tilemap.Node.NodeSprite.SAND;
+				nodeSprite_ = Tilemap.Node.NodeSprite.COVER;
 			}
 			if(Input.GetMouseButtonDown(1)) {
 				Vector3 mouseWorldPosition = Utils.GetMouseWorldPosition();
