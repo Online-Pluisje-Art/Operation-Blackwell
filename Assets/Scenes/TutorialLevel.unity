@@ -302,25 +302,26 @@ TextMesh:
     - T selects
     paint remover
 
-    - Y selects ground
+    - Y selects pit tile
 
-    - U selects path
+    - U selects floor tile
 
-    - I selects
-    dirt
+    - I
+    selects wall tile
 
-    - O selects sand
+    - O selects cover tile
 
     - P saves
 
-    - L loads the latest save
+    - L loads the
+    latest save
 
-    -
-    Esc quits the game
+    - Esc quits the game
 
     - Home opens github
 
-    - End opens the docs'
+    - End opens
+    the docs'
   m_OffsetZ: 0
   m_CharacterSize: 0.35
   m_LineSpacing: 1

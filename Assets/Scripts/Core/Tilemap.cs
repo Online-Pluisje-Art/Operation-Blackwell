@@ -64,22 +64,16 @@ namespace OperationBlackwell.Core {
 		}
 
 		public class Node {
-
-			public enum CoverStatus {
-				NONE,
-				HALF,
-				FULL,
-			}
-
 			public enum NodeSprite {
+				// Default sprite.
 				NONE,
-				GROUND,
-				PATH,
-				DIRT,
-				SAND,
+				PIT,
+				FLOOR,
+				WALL,
+				COVER,
 			}
 			// Holds the amount of cover this tile gives.
-			public CoverStatus cover {get; private set;}
+			public bool cover {get; private set;}
 			// Holds if the tile can be walked over.
 			public bool walkable; // {get; protected set;}
 			// Holds if the tile can be shot through.
@@ -91,7 +85,7 @@ namespace OperationBlackwell.Core {
 
 			private Grid<Node> grid_;
 
-			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, bool shootable, CoverStatus cover) {
+			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, bool shootable, bool cover) {
 				this.worldPosition = worldPosition;
 				this.gridX = gridX;
 				this.gridY = gridY;
@@ -100,11 +94,15 @@ namespace OperationBlackwell.Core {
 				this.shootable = shootable;
 				this.cover = cover;
 			}
+
 			[System.Serializable]
 			public class SaveObject {
 				public NodeSprite nodeSprite;
 				public int x;
 				public int y;
+				public bool walkable;
+				public bool shootable;
+				public bool cover;
 			}
 
 			/*
@@ -115,11 +113,17 @@ namespace OperationBlackwell.Core {
 					nodeSprite = this.nodeSprite_,
 					x = this.gridX,
 					y = this.gridY,
+					walkable = this.walkable,
+					shootable = this.shootable,
+					cover = this.cover,
 				};
 			}
 
 			public void Load(SaveObject saveObject) {
 				this.nodeSprite_ = saveObject.nodeSprite;
+				this.walkable = saveObject.walkable;
+				this.shootable = saveObject.shootable;
+				this.cover = saveObject.cover;
 			}
 
 			public NodeSprite GetNodeSprite() {
@@ -132,6 +136,29 @@ namespace OperationBlackwell.Core {
 
 			public void SetNodeSprite(NodeSprite nodeSprite) {
 				this.nodeSprite_ = nodeSprite;
+				if(nodeSprite == NodeSprite.NONE) {
+					// Should be error state!
+					Debug.Log("NodeSprite none will become an hard error in the future!");
+					this.walkable = true;
+					this.shootable = true;
+					this.cover = false;
+				} else if(nodeSprite == NodeSprite.PIT) {
+					this.walkable = false;
+					this.shootable = true;
+					this.cover = false;
+				} else if(nodeSprite == NodeSprite.FLOOR) {
+					this.walkable = true;
+					this.shootable = true;
+					this.cover = false;
+				} else if(nodeSprite == NodeSprite.WALL) {
+					this.walkable = false;
+					this.shootable = false;
+					this.cover = false;
+				} else if(nodeSprite == NodeSprite.COVER) {
+					this.walkable = false;
+					this.shootable = true;
+					this.cover = true;
+				}
 				grid_.TriggerGridObjectChanged(gridX, gridY);
 			}
 		}
