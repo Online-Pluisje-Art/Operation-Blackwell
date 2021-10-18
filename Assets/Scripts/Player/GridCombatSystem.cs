@@ -13,8 +13,6 @@ namespace OperationBlackwell.Player {
         private List<UnitGridCombat> redTeamList;
         private int blueTeamActiveUnitIndex;
         private int redTeamActiveUnitIndex;
-        private bool canMoveThisTurn;
-        private bool canAttackThisTurn;
 
         private enum State {
             Normal,
@@ -55,8 +53,6 @@ namespace OperationBlackwell.Player {
             }
 
             // GameController.Instance.SetCameraFollowPosition(unitGridCombat.GetPosition());
-            canMoveThisTurn = true;
-            canAttackThisTurn = false;
         }
 
         private UnitGridCombat GetNextActiveUnit(Team team) {
