@@ -41,7 +41,7 @@ namespace OperationBlackwell.Core {
 			public Node.SaveObject[] nodeSaveObjectArray;
 		}
 	
-		public void Save() {
+		public void Save(System.String name) {
 			List<Node.SaveObject> nodeSaveObjectList = new List<Node.SaveObject>();
 			for(int x = 0; x < grid_.gridSizeX; x++) {
 				for(int y = 0; y < grid_.gridSizeY; y++) {
@@ -51,7 +51,7 @@ namespace OperationBlackwell.Core {
 			}
 
 			SaveObject saveObject = new SaveObject { nodeSaveObjectArray = nodeSaveObjectList.ToArray() };
-			SaveSystem.SaveObject(saveObject);
+			SaveSystem.SaveObject(saveObject, name);
 		}
 
 		public void Load() {

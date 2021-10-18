@@ -84,11 +84,16 @@ namespace OperationBlackwell.Core {
 
 		private void HandleSaveLoad() {
 			if(Input.GetKeyDown(KeyCode.P)) {
-				tilemap_.Save();
+				System.String saveName = getSaveName();
+				tilemap_.Save(saveName);
 			}
 			if(Input.GetKeyDown(KeyCode.L)) {
 				tilemap_.Load();
 			}
+		}
+
+		private System.String getSaveName() {
+			return "testing";
 		}
 
 		private void HandleMisc() {

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace OperationBlackwell.Core {
 	public static class SaveSystem {
 
-		private const string SAVE_EXTENSION = "txt";
+		private const string SAVE_EXTENSION = "json";
 
 		private static readonly string SAVE_FOLDER = Application.dataPath + "/SavesWorld/";
 		private static bool isInit = false;
@@ -73,8 +73,8 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		public static void SaveObject(object saveObject) {
-			SaveObject("save", saveObject, false);
+		public static void SaveObject(object saveObject, System.String name) {
+			SaveObject(name, saveObject, false);
 		}
 
 		public static void SaveObject(string fileName, object saveObject, bool overwrite) {
