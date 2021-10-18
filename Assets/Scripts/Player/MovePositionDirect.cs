@@ -16,7 +16,9 @@ namespace OperationBlackwell.Player {
 
 		private void Update() {
 			Vector3 moveDir = (movePosition_ - transform.position).normalized;
-			if (Vector3.Distance(movePosition_, transform.position) < 1f) moveDir = Vector3.zero; // Stop moving when near
+			if(Vector3.Distance(movePosition_, transform.position) < 1f) {
+				moveDir = Vector3.zero; // Stop moving when near
+			}
 			GetComponent<IMoveVelocity>().SetVelocity(moveDir);
 		}
 	}
