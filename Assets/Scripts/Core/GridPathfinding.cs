@@ -651,12 +651,12 @@ namespace OperationBlackwell.Core {
         }
 
         public bool IsWalkable(int x, int y) {
-            if(x < 0 || x >= widthMax || y < 0 || y >= heightMax)
-                return false;
+            if(x < 0 || x >= widthMax || y < 0 || y >= heightMax) return false;
             return mapNodes[x][y].weight != WALL_WEIGHT;
         }
 
         public bool IsWall(int x, int y) {
+            if(x < 0 || x > widthMax || y < 0 || y > heightMax) return false;
             return mapNodes[x][y].weight == WALL_WEIGHT;
         }
 
@@ -669,6 +669,7 @@ namespace OperationBlackwell.Core {
             x = (int)((position.x - worldOrigin.x) / nodeSize);
             y = (int)((position.y - worldOrigin.y) / nodeSize);
         }
+        
         private void ConvertVectorPositionValidate(Vector3 position, out int x, out int y) {
             ConvertVectorPosition(position, out x, out y);
 
@@ -677,6 +678,5 @@ namespace OperationBlackwell.Core {
             if (x >= widthMax) x = widthMax - 1;
             if (y >= heightMax) y = heightMax - 1;
         }
-
     }
 }

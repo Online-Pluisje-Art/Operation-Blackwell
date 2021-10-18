@@ -14,9 +14,7 @@ using UnityEngine;
 using System.Collections;
 
 namespace OperationBlackwell.Core {
-
     public class BinaryTree {
-
         private class BinaryNode {
             //public static int nextId = 0;
             //public int id;

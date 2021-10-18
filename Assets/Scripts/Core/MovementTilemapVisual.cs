@@ -77,14 +77,14 @@ namespace OperationBlackwell.Core {
         }
 
         private void UpdateHeatMapVisual() {
-            MeshUtils.CreateEmptyMeshArrays(grid.gridSizeX * grid.gridSizeY, out Vector3[] vertices, out Vector2[] uv, out int[] triangles);
+            MeshUtils.CreateEmptyMeshArrays(grid.GetWidth() * grid.GetHeight(), out Vector3[] vertices, out Vector2[] uv, out int[] triangles);
 
-            for (int x = 0; x < grid.gridSizeX; x++) {
-                for (int y = 0; y < grid.gridSizeY; y++) {
-                    int index = x * grid.gridSizeY + y;
-                    Vector3 quadSize = new Vector3(1, 1) * grid.cellSize;
+            for (int x = 0; x < grid.GetWidth(); x++) {
+                for (int y = 0; y < grid.GetHeight(); y++) {
+                    int index = x * grid.GetHeight() + y;
+                    Vector3 quadSize = new Vector3(1, 1) * grid.GetCellSize();
 
-                    MovementTilemap.TilemapObject gridObject = grid.NodeFromWorldPoint(new Vector3(x, y));
+                    MovementTilemap.TilemapObject gridObject = grid.GetGridObject(x, y);
                     MovementTilemap.TilemapObject.TilemapSprite tilemapSprite = gridObject.GetTilemapSprite();
                     Vector2 gridUV00, gridUV11;
                     if (tilemapSprite == MovementTilemap.TilemapObject.TilemapSprite.None) {
@@ -104,6 +104,5 @@ namespace OperationBlackwell.Core {
             mesh.uv = uv;
             mesh.triangles = triangles;
         }
-
     }
 }

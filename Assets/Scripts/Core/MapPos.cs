@@ -13,9 +13,7 @@
 using System.Collections.Generic;
 
 namespace OperationBlackwell.Core {
-
     public class MapPos {
-
         public int x;
         public int y;
         public float offsetX;
@@ -29,30 +27,38 @@ namespace OperationBlackwell.Core {
             offsetY = _offsetY;
             straightToOffset = _straightToOffset;
         }
+
         public bool Equals(MapPos p2) {
             // Check if this one equals that one
             return x == p2.x && y == p2.y;
         }
+
         public bool EqualsDeep(MapPos p2) {
             // Check if this one equals that one
             return x == p2.x && y == p2.y && offsetX == p2.offsetX && offsetY == p2.offsetY && straightToOffset == p2.straightToOffset;
         }
+
         public override string ToString() {
             return "x:" + x + ", y:" + y;
         }
+
         public string ToStringThorough() {
             return "x:" + x + ", y:" + y + "; ox:" + offsetX + ", oy:" + offsetY + ", s: " + straightToOffset;
         }
+
         public void ResetOffset() {
             offsetX = 0f;
             offsetY = 0f;
         }
+
         public MapPos ClearOffset() {
             return new MapPos(x, y);
         }
+
         public MapPos Clone() {
             return new MapPos(x, y, offsetX, offsetY, straightToOffset);
         }
+
         public MapPos AddPosCopy(int x, int y) {
             return new MapPos(this.x + x, this.y + y);
         }
@@ -71,17 +77,19 @@ namespace OperationBlackwell.Core {
         public string Save() {
             // Returns a string to be used in savefiles
             string[] content = new string[]{
-            ""+x,
-            ""+y,
-            ""+offsetX,
-            ""+offsetY,
-            ""+straightToOffset,
-        };
+                ""+x,
+                ""+y,
+                ""+offsetX,
+                ""+offsetY,
+                ""+straightToOffset,
+            };
             return string.Join("#MAPPOS#", content);
         }
+
         public static MapPos Load(string save) {
             return new MapPos(save);
         }
+        
         public MapPos(string save) {
             // Loads a MapPos object form a given savefile string
             string[] content = save.Split(new string[] { "#MAPPOS#" }, System.StringSplitOptions.None);

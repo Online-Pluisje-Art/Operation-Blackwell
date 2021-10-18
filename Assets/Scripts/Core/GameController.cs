@@ -9,7 +9,10 @@ namespace OperationBlackwell.Core {
 		public static GameController Instance { get; private set; }
 
 		[SerializeField] private Vector3 gridWorldSize_;
-		[SerializeField] private float nodeRadius_;
+		[SerializeField] private float cellSize_;
+
+		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
+		private MovementTilemap movementTilemap_;
 
 		[SerializeField] private Transform player_;
 
@@ -35,48 +38,14 @@ namespace OperationBlackwell.Core {
 			// unwalkableNode.walkable = false;
 		}
 
+		private void Start() {
+			movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
+		}
+
 		private void Update() {
-			// HandleMovement();
 			HandlePainting();
 			HandleSaveLoad();
 			HandleMisc();
-		}
-
-		private void HandleMovement() {
-			if(Input.GetMouseButtonDown(0)) {
-				Vector3 gridClicked = Utils.GetMouseWorldPosition();
-				if(gridClicked == Vector3.zero) {
-					if(DebugMovement) {
-						// Chances of you clicking on _exactly_ 0,0,0 are almost 0, so oob is likely.
-						Debug.Log("Clicked at 0,0,0 or out of the map!");
-					}
-				} else {
-					// Get the current position and the position clicked in X, Y coordinates.
-					int currentX, currentY, clickedX, clickedY;
-					Vector3 currentPosition = player_.position;
-					Vector3 movement;
-					grid_.GetXY(currentPosition, out currentX, out currentY);
-					grid_.GetXY(gridClicked, out clickedX, out clickedY);
-					if(DebugMovement) {
-						Debug.Log("Player current X: " + currentX + ", current Y: " + currentY);
-						Debug.Log("Player clicked X: " + clickedX + ", clicked Y: " + clickedY);
-					}
-					// Check if we can move, if we can, do so.
-					if(CanMove(currentPosition, gridClicked, currentX, currentY, clickedX, clickedY, out movement)) {
-						if(DebugMovement) {
-							Debug.Log("Yes we can move");
-						}
-						// Translate our tictac.
-						player_.Translate(movement);
-						// Notify listeners.
-						Moved?.Invoke(player_.position);
-					} else {
-						if(DebugMovement) {
-							Debug.Log("No we can't move");
-						}
-					}
-				}
-			}
 		}
 
 		private void HandlePainting() {
@@ -108,6 +77,10 @@ namespace OperationBlackwell.Core {
 			return grid_;
 		}
 
+		public MovementTilemap GetMovementTilemap() {
+			return movementTilemap_;
+		}
+
 		private void HandleSaveLoad() {
 			if(Input.GetKeyDown(KeyCode.P)) {
 				tilemap_.Save();
@@ -126,40 +99,6 @@ namespace OperationBlackwell.Core {
 			}
 			if(Input.GetKeyDown(KeyCode.End)) {
 				Application.OpenURL("https://docs.opa.rip/");
-			}
-		}
-
-		/*
-		 * Checks if the clicked coordinate is valid, returning true if it is.
-		 */
-		private bool CanMove(Vector3 playerPosition, Vector3 targetPosition, int currentX, int currentY, int clickedX, int clickedY, out Vector3 movement) {
-			// Move can happen unless exited out early.
-			movement = Vector3.zero;
-			// We're already here! Why move?
-			if(currentX == clickedX && currentY == clickedY) {
-				return false;
-			}
-			if(clickedX < 0 || clickedY < 0 || clickedX > grid_.gridSizeX || clickedY > grid_.gridSizeY) {
-				return false;
-			}
-
-			Tilemap.Node playerNode = grid_.GetGridObject(playerPosition);
-			Tilemap.Node targetNode = grid_.GetGridObject(targetPosition);
-
-			if(playerNode.worldPosition == targetNode.worldPosition) {
-				return false;
-			}
-			// We're moving, so we need to check if we can move.
-			List<Tilemap.Node> neighbours = grid_.GetNeighbours(playerNode);
-			if(neighbours.Contains(targetNode)) {
-				if(targetNode.walkable) {
-					movement = targetNode.worldPosition - playerNode.worldPosition;
-					return true;	
-				} else {
-					return false;
-				}
-			} else {
-				return false;
 			}
 		}
 	}
