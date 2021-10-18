@@ -8,7 +8,7 @@ namespace OperationBlackwell.Core {
 
 		private const string SAVE_EXTENSION = "json";
 
-		private static readonly string SAVE_FOLDER = Application.dataPath + "/SavesWorld/";
+		private static readonly string SAVE_FOLDER = Application.streamingAssetsPath + "/SavesWorld/";
 		private static bool isInit = false;
 
 		public static void Init() {
