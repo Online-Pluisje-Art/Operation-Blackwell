@@ -1,6 +1,6 @@
 namespace OperationBlackwell.Core {
-    public enum Team {
-        Blue,
-        Red
-    }
+	public enum Team {
+		Blue,
+		Red
+	}
 }

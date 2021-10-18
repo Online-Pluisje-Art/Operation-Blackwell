@@ -5,76 +5,76 @@ using UnityEngine;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
-    public class UnitGridCombat : MonoBehaviour, IGameObject {
+	public class UnitGridCombat : MonoBehaviour, IGameObject {
 
-        [SerializeField] private Team team;
-        [SerializeField] private int actionPoints_;
-        [SerializeField] private int maxActionPoints_;
-        
-        private PlayerBase characterBase;
-        private GameObject selectedGameObject;
-        private MovePositionPathfinding movePosition;
-        private State state;
+		[SerializeField] private Team team_;
+		[SerializeField] private int actionPoints_;
+		[SerializeField] private int maxActionPoints_;
+		
+		private PlayerBase characterBase_;
+		private GameObject selectedGameObject_;
+		private MovePositionPathfinding movePosition_;
+		private State state_;
 
-        private enum State {
-            Normal,
-            Moving,
-            Attacking
-        }
+		private enum State {
+			Normal,
+			Moving,
+			Attacking
+		}
 
-        private void Awake() {
-            characterBase = GetComponent<PlayerBase>();
-            selectedGameObject = transform.Find("Selected").gameObject;
-            movePosition = GetComponent<MovePositionPathfinding>();
-            //SetSelectedVisible(false);
-            state = State.Normal;
-        }
+		private void Awake() {
+			characterBase_ = GetComponent<PlayerBase>();
+			selectedGameObject_ = transform.Find("Selected").gameObject;
+			movePosition_ = GetComponent<MovePositionPathfinding>();
+			//SetSelectedVisible(false);
+			state_ = State.Normal;
+		}
 
-        private void Update() {
-            switch (state) {
-                case State.Normal:
-                    break;
-                case State.Moving:
-                    break;
-                case State.Attacking:
-                    break;
-            }
-        }
+		private void Update() {
+			switch (state_) {
+				case State.Normal:
+					break;
+				case State.Moving:
+					break;
+				case State.Attacking:
+					break;
+			}
+		}
 
-        public void SetSelectedVisible(bool visible) {
-            selectedGameObject.SetActive(visible);
-        }
+		public void SetSelectedVisible(bool visible) {
+			selectedGameObject_.SetActive(visible);
+		}
 
-        public void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
-            state = State.Moving;
-            movePosition.SetMovePosition(targetPosition, () => {
-                state = State.Normal;
-                onReachedPosition();
-            });
-        }
+		public void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
+			state_ = State.Moving;
+			movePosition_.SetMovePosition(targetPosition, () => {
+				state_ = State.Normal;
+				onReachedPosition();
+			});
+		}
 
-        public Vector3 GetPosition() {
-            return transform.position;
-        }
+		public Vector3 GetPosition() {
+			return transform.position;
+		}
 
-        public Team GetTeam() {
-            return team;
-        }
+		public Team GetTeam() {
+			return team_;
+		}
 
-        public bool IsEnemy(IGameObject unitGridCombat) {
-            return unitGridCombat.GetTeam() != team;
-        }
+		public bool IsEnemy(IGameObject unitGridCombat) {
+			return unitGridCombat.GetTeam() != team_;
+		}
 
-        public void SetActionPoints(int actionPoints) {
-            actionPoints_ = actionPoints;
-        }
+		public void SetActionPoints(int actionPoints) {
+			actionPoints_ = actionPoints;
+		}
 
-        public int GetActionPoints() {
-            return actionPoints_;
-        }
+		public int GetActionPoints() {
+			return actionPoints_;
+		}
 
-        public void ResetActionPoints() {
-            actionPoints_ = maxActionPoints_;
-        }
-    }
+		public void ResetActionPoints() {
+			actionPoints_ = maxActionPoints_;
+		}
+	}
 }

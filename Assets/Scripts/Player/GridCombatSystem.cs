@@ -4,206 +4,178 @@ using UnityEngine;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
-    public class GridCombatSystem : MonoBehaviour {
-        [SerializeField] private UnitGridCombat[] unitGridCombatArray;
+	public class GridCombatSystem : MonoBehaviour {
+		[SerializeField] private UnitGridCombat[] unitGridCombatArray_;
 
-        private State state;
-        private UnitGridCombat unitGridCombat;
-        private List<UnitGridCombat> blueTeamList;
-        private List<UnitGridCombat> redTeamList;
-        private int blueTeamActiveUnitIndex;
-        private int redTeamActiveUnitIndex;
+		private State state_;
+		private UnitGridCombat unitGridCombat_;
+		private List<UnitGridCombat> blueTeamList_;
+		private List<UnitGridCombat> redTeamList_;
+		private int blueTeamActiveUnitIndex_;
+		private int redTeamActiveUnitIndex_;
 
-        private enum State {
-            Normal,
-            Waiting
-        }
+		private enum State {
+			Normal,
+			Waiting
+		}
 
-        private void Awake() {
-            state = State.Normal;
-        }
+		private void Awake() {
+			state_ = State.Normal;
+		}
 
-        private void Start() {
-            blueTeamList = new List<UnitGridCombat>();
-            redTeamList = new List<UnitGridCombat>();
-            blueTeamActiveUnitIndex = -1;
-            redTeamActiveUnitIndex = -1;
+		private void Start() {
+			blueTeamList_ = new List<UnitGridCombat>();
+			redTeamList_ = new List<UnitGridCombat>();
+			blueTeamActiveUnitIndex_ = -1;
+			redTeamActiveUnitIndex_ = -1;
 
-            // Set all UnitGridCombat on their GridPosition
-            foreach (UnitGridCombat unitGridCombat in unitGridCombatArray) {
-                GameController.Instance.GetGrid().GetGridObject(unitGridCombat.GetPosition())
-                    .SetUnitGridCombat(unitGridCombat);
+			// Set all UnitGridCombat on their GridPosition
+			foreach (UnitGridCombat unitGridCombat_ in unitGridCombatArray_) {
+				GameController.Instance.GetGrid().GetGridObject(unitGridCombat_.GetPosition())
+					.SetUnitGridCombat(unitGridCombat_);
 
-                if (unitGridCombat.GetTeam() == Team.Blue) {
-                    blueTeamList.Add(unitGridCombat);
-                } else {
-                    redTeamList.Add(unitGridCombat);
-                }
-            }
+				if (unitGridCombat_.GetTeam() == Team.Blue) {
+					blueTeamList_.Add(unitGridCombat_);
+				} else {
+					redTeamList_.Add(unitGridCombat_);
+				}
+			}
 
-            SelectNextActiveUnit();
-            UpdateValidMovePositions();
-        }
+			SelectNextActiveUnit();
+			UpdateValidMovePositions();
+		}
 
-        private void SelectNextActiveUnit() {
-            if (unitGridCombat == null || unitGridCombat.GetTeam() == Team.Red) {
-                unitGridCombat = GetNextActiveUnit(Team.Blue);
-            } else {
-                unitGridCombat = GetNextActiveUnit(Team.Red);
-            }
+		private void SelectNextActiveUnit() {
+			if (unitGridCombat_ == null || unitGridCombat_.GetTeam() == Team.Red) {
+				unitGridCombat_ = GetNextActiveUnit(Team.Blue);
+			} else {
+				unitGridCombat_ = GetNextActiveUnit(Team.Red);
+			}
 
-            // GameController.Instance.SetCameraFollowPosition(unitGridCombat.GetPosition());
-        }
+			// GameController.Instance.SetCameraFollowPosition(unitGridCombat_.GetPosition());
+		}
 
-        private UnitGridCombat GetNextActiveUnit(Team team) {
-            if (team == Team.Blue) {
-                blueTeamActiveUnitIndex = (blueTeamActiveUnitIndex + 1) % blueTeamList.Count;
-                if (blueTeamList[blueTeamActiveUnitIndex] == null) {// || blueTeamList[blueTeamActiveUnitIndex].IsDead()) {
-                    // Unit is Dead, get next one
-                    return GetNextActiveUnit(team);
-                } else {
-                    return blueTeamList[blueTeamActiveUnitIndex];
-                }
-            } else {
-                redTeamActiveUnitIndex = (redTeamActiveUnitIndex + 1) % redTeamList.Count;
-                if (redTeamList[redTeamActiveUnitIndex] == null) { //|| redTeamList[redTeamActiveUnitIndex].IsDead()) {
-                    // Unit is Dead, get next one
-                    return GetNextActiveUnit(team);
-                } else {
-                    return redTeamList[redTeamActiveUnitIndex];
-                }
-            }
-        }
+		private UnitGridCombat GetNextActiveUnit(Team team) {
+			if (team == Team.Blue) {
+				blueTeamActiveUnitIndex_ = (blueTeamActiveUnitIndex_ + 1) % blueTeamList_.Count;
+				if (blueTeamList_[blueTeamActiveUnitIndex_] == null) {// || blueTeamList_[blueTeamActiveUnitIndex_].IsDead()) {
+					// Unit is Dead, get next one
+					return GetNextActiveUnit(team);
+				} else {
+					return blueTeamList_[blueTeamActiveUnitIndex_];
+				}
+			} else {
+				redTeamActiveUnitIndex_ = (redTeamActiveUnitIndex_ + 1) % redTeamList_.Count;
+				if (redTeamList_[redTeamActiveUnitIndex_] == null) { //|| redTeamList_[redTeamActiveUnitIndex_].IsDead()) {
+					// Unit is Dead, get next one
+					return GetNextActiveUnit(team);
+				} else {
+					return redTeamList_[redTeamActiveUnitIndex_];
+				}
+			}
+		}
 
-        private void UpdateValidMovePositions() {
-            Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-            GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
+		private void UpdateValidMovePositions() {
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
 
-            // Get Unit Grid Position X, Y
-            grid.GetXY(unitGridCombat.GetPosition(), out int unitX, out int unitY);
+			// Get Unit Grid Position X, Y
+			grid.GetXY(unitGridCombat_.GetPosition(), out int unitX, out int unitY);
 
-            // Set entire Tilemap to Invisible
-            GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
-                MovementTilemap.TilemapObject.TilemapSprite.None
-            );
+			// Set entire Tilemap to Invisible
+			GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+				MovementTilemap.TilemapObject.TilemapSprite.None
+			);
 
-            // Reset Entire Grid ValidMovePositions
-            for (int x = 0; x < grid.GetWidth(); x++) {
-                for (int y = 0; y < grid.GetHeight(); y++) {
-                    grid.GetGridObject(x, y).SetIsValidMovePosition(false);
-                }
-            }
+			// Reset Entire Grid ValidMovePositions
+			for (int x = 0; x < grid.GetWidth(); x++) {
+				for (int y = 0; y < grid.GetHeight(); y++) {
+					grid.GetGridObject(x, y).SetIsValidMovePosition(false);
+				}
+			}
 
-            int maxMoveDistance = unitGridCombat.GetActionPoints() + 1;
-            for (int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
-                for (int y = unitY - maxMoveDistance; y <= unitY + maxMoveDistance; y++) {
-                    if (gridPathfinding.IsWalkable(x, y)) {
-                        // Position is Walkable
-                        if (gridPathfinding.HasPath(unitX, unitY, x, y)) {
-                            // There is a Path
-                            if (gridPathfinding.GetPath(unitX, unitY, x, y).Count <= maxMoveDistance) {
-                                // Path within Move Distance
+			int maxMoveDistance = unitGridCombat_.GetActionPoints() + 1;
+			for (int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
+				for (int y = unitY - maxMoveDistance; y <= unitY + maxMoveDistance; y++) {
+					if (gridPathfinding.IsWalkable(x, y)) {
+						// Position is Walkable
+						if (gridPathfinding.HasPath(unitX, unitY, x, y)) {
+							// There is a Path
+							if (gridPathfinding.GetPath(unitX, unitY, x, y).Count <= maxMoveDistance) {
+								// Path within Move Distance
 
-                                // Set Tilemap Tile to Move
-                                GameController.Instance.GetMovementTilemap().SetTilemapSprite(
-                                    x, y, MovementTilemap.TilemapObject.TilemapSprite.Move
-                                );
+								// Set Tilemap Tile to Move
+								GameController.Instance.GetMovementTilemap().SetTilemapSprite(
+									x, y, MovementTilemap.TilemapObject.TilemapSprite.Move
+								);
 
-                                grid.GetGridObject(x, y).SetIsValidMovePosition(true);
-                            } else { 
-                                // Path outside Move Distance!
-                            }
-                        } else {
-                            // No valid Path
-                        }
-                    } else {
-                        // Position is not Walkable
-                    }
-                }
-            }
-        }
+								grid.GetGridObject(x, y).SetIsValidMovePosition(true);
+							} else { 
+								// Path outside Move Distance!
+							}
+						} else {
+							// No valid Path
+						}
+					} else {
+						// Position is not Walkable
+					}
+				}
+			}
+		}
 
-        private void Update() {
-            switch (state) {
-                case State.Normal:
-                    if (Input.GetMouseButtonDown(0)) {
-                        Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-                        Tilemap.Node gridObject = grid.NodeFromWorldPoint(Utils.GetMouseWorldPosition());
+		private void Update() {
+			switch (state_) {
+				case State.Normal:
+					if (Input.GetMouseButtonDown(0)) {
+						Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+						Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 
-                        // Check if clicking on a unit position
-                        if (gridObject.GetUnitGridCombat() != null) {
-                            // // Clicked on top of a Unit
-                            // if (unitGridCombat.IsEnemy(gridObject.GetUnitGridCombat())) {
-                            //     // Clicked on an Enemy of the current unit
-                            //     if (unitGridCombat.CanAttackUnit(gridObject.GetUnitGridCombat())) {
-                            //         // Can Attack Enemy
-                            //         if (canAttackThisTurn) {
-                            //             canAttackThisTurn = false;
-                            //             // Attack Enemy
-                            //             state = State.Waiting;
-                            //             unitGridCombat.AttackUnit(gridObject.GetUnitGridCombat(), () => {
-                            //                 state = State.Normal;
-                            //                 TestTurnOver();
-                            //             });
-                            //         }
-                            //     } else {
-                            //         // Cannot attack enemy
-                            //         CodeMonkey.CMDebug.TextPopupMouse("Cannot attack!");
-                            //     }
-                            //     break;
-                            // } else {
-                            //     // Not an enemy
-                            // }
-                        } else {
-                            // No unit here
-                        }
+						if (gridObject.GetIsValidMovePosition()) {
+							// Valid Move Position
 
-                        if (gridObject.GetIsValidMovePosition()) {
-                            // Valid Move Position
+							if (unitGridCombat_.GetActionPoints() > 0) {
+								state_ = State.Waiting;
 
-                            if (unitGridCombat.GetActionPoints() > 0) {
-                                state = State.Waiting;
+								// Set entire Tilemap to Invisible
+								GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+									MovementTilemap.TilemapObject.TilemapSprite.None
+								);
 
-                                // Set entire Tilemap to Invisible
-                                GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
-                                    MovementTilemap.TilemapObject.TilemapSprite.None
-                                );
+								// Remove Unit from current Grid Object
+								grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
+								// Set Unit on target Grid Object
+								gridObject.SetUnitGridCombat(unitGridCombat_);
 
-                                // Remove Unit from current Grid Object
-                                grid.GetGridObject(unitGridCombat.GetPosition()).ClearUnitGridCombat();
-                                // Set Unit on target Grid Object
-                                gridObject.SetUnitGridCombat(unitGridCombat);
+								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
+									state_ = State.Normal;
+									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 1);
+									UpdateValidMovePositions();
+									TestTurnOver();
+								});
+							}
+						}
+					}
 
-                                unitGridCombat.MoveTo(Utils.GetMouseWorldPosition(), () => {
-                                    state = State.Normal;
-                                    unitGridCombat.SetActionPoints(unitGridCombat.GetActionPoints() - 1);
-                                    UpdateValidMovePositions();
-                                    TestTurnOver();
-                                });
-                            }
-                        }
-                    }
+					if (Input.GetKeyDown(KeyCode.Space)) {
+						ForceTurnOver();
+					}
+					break;
+				case State.Waiting:
+					break;
+			}
+		}
 
-                    if (Input.GetKeyDown(KeyCode.Space)) {
-                        ForceTurnOver();
-                    }
-                    break;
-                case State.Waiting:
-                    break;
-            }
-        }
+		private void TestTurnOver() {
+			if (unitGridCombat_.GetActionPoints() <= 0) {
+				// Cannot move or attack, turn over
+				ForceTurnOver();
+			}
+		}
 
-        private void TestTurnOver() {
-            if (unitGridCombat.GetActionPoints() <= 0) {
-                // Cannot move or attack, turn over
-                ForceTurnOver();
-            }
-        }
-
-        private void ForceTurnOver() {
-            unitGridCombat.ResetActionPoints();
-            SelectNextActiveUnit();
-            UpdateValidMovePositions();
-        }
-    }
+		private void ForceTurnOver() {
+			unitGridCombat_.ResetActionPoints();
+			SelectNextActiveUnit();
+			UpdateValidMovePositions();
+		}
+	}
 }

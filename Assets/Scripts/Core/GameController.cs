@@ -25,15 +25,15 @@ namespace OperationBlackwell.Core {
 
 		[SerializeField] private TilemapVisual tilemapVisual_;
 		private Tilemap.Node.NodeSprite nodeSprite_;
-		private void Start() {
-			grid_ = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, nodeRadius_, new Vector3(0, 0, 0), 
+		private void Awake() {
+			grid_ = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
 				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, true, false));
 			tilemap_ = new Tilemap(grid_);
 			tilemap_.SetTilemapVisual(tilemapVisual_);
 			Instance = this;
 			Vector3 origin = new Vector3(0, 0);
 
-			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * nodeRadius_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * nodeRadius_, nodeRadius_);
+			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * cellSize_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * cellSize_, cellSize_);
 			// Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
 			// unwalkableNode.walkable = false;
 		}
@@ -67,7 +67,7 @@ namespace OperationBlackwell.Core {
 			}
 			if(Input.GetMouseButtonDown(1)) {
 				Vector3 mouseWorldPosition = Utils.GetMouseWorldPosition();
-				Tilemap.Node node = grid_.NodeFromWorldPoint(mouseWorldPosition);
+				Tilemap.Node node = grid_.GetGridObject(mouseWorldPosition);
 				node.SetNodeSprite(nodeSprite_);
 				grid_.TriggerGridObjectChanged(node.gridX, node.gridY);
 			}
