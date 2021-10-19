@@ -6,14 +6,14 @@ using UnityEngine;
 namespace OperationBlackwell.Core {
 	public static class SaveSystem {
 
-		private const string SAVE_EXTENSION = "txt";
+		private const string SAVE_EXTENSION = "json";
 
-		private static readonly string SAVE_FOLDER = Application.dataPath + "/SavesWorld/";
-		private static bool isInit = false;
+		private static readonly string SAVE_FOLDER = Application.streamingAssetsPath + "/SavesWorld/";
+		private static bool isInit_ = false;
 
 		public static void Init() {
-			if(!isInit) {
-				isInit = true;
+			if(!isInit_) {
+				isInit_ = true;
 				// Test if Save Folder exists.
 				if(!Directory.Exists(SAVE_FOLDER)) {
 					// Create Save Folder.
@@ -73,13 +73,14 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		public static void SaveObject(object saveObject) {
-			SaveObject("save", saveObject, false);
+		public static void SaveObject(object saveObject, System.String name) {
+			SaveObject(name, saveObject, false);
 		}
 
 		public static void SaveObject(string fileName, object saveObject, bool overwrite) {
 			Init();
-			string json = JsonUtility.ToJson(saveObject);
+			// Pretty print please!
+			string json = JsonUtility.ToJson(saveObject, true);
 			Save(fileName, json, overwrite);
 		}
 

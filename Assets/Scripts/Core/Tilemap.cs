@@ -41,7 +41,7 @@ namespace OperationBlackwell.Core {
 			public Node.SaveObject[] nodeSaveObjectArray;
 		}
 	
-		public void Save() {
+		public void Save(System.String name) {
 			List<Node.SaveObject> nodeSaveObjectList = new List<Node.SaveObject>();
 			for(int x = 0; x < grid_.gridSizeX; x++) {
 				for(int y = 0; y < grid_.gridSizeY; y++) {
@@ -51,11 +51,11 @@ namespace OperationBlackwell.Core {
 			}
 
 			SaveObject saveObject = new SaveObject { nodeSaveObjectArray = nodeSaveObjectList.ToArray() };
-			SaveSystem.SaveObject(saveObject);
+			SaveSystem.SaveObject(saveObject, name);
 		}
 
-		public void Load() {
-			SaveObject saveObject = SaveSystem.LoadMostRecentObject<SaveObject>();
+		public void Load(System.String name) {
+			SaveObject saveObject = SaveSystem.LoadObject<SaveObject>(name);
 			foreach(Node.SaveObject nodeSaveObject in saveObject.nodeSaveObjectArray) {				
 				Node node = grid_.GetGridObject(nodeSaveObject.x, nodeSaveObject.y);
 				node.Load(nodeSaveObject);
@@ -64,6 +64,10 @@ namespace OperationBlackwell.Core {
 		}
 
 		public class Node {
+			public static float floorHitChanceModifier = 5f;
+			public static float wallHitChanceModifier = 100f;
+			public static float pitChanceModifier = 5f;
+			public static float coverHitChanceModifier = 30f;
 			public enum NodeSprite {
 				// Default sprite.
 				NONE,
@@ -73,14 +77,13 @@ namespace OperationBlackwell.Core {
 				COVER,
 			}
 			// Holds the amount of cover this tile gives.
-			public bool cover {get; private set;}
+			public bool cover { get; private set; }
 			// Holds if the tile can be walked over.
-			public bool walkable; // {get; protected set;}
-			// Holds if the tile can be shot through.
-			public bool shootable {get; private set;}
-			public Vector3 worldPosition {get; private set;}
-			public int gridX {get; private set;}
-			public int gridY {get; private set;}
+			public bool walkable { get; protected set; }
+			public float hitChanceModifier;
+			public Vector3 worldPosition { get; private set; }
+			public int gridX { get; private set; }
+			public int gridY { get; private set; }
 			private NodeSprite nodeSprite_;
 
 			private bool isValidMovePosition_;
@@ -88,13 +91,13 @@ namespace OperationBlackwell.Core {
 
 			private Grid<Node> grid_;
 
-			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, bool shootable, bool cover) {
+			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, float hitChanceModifier, bool cover) {
 				this.worldPosition = worldPosition;
 				this.gridX = gridX;
 				this.gridY = gridY;
 				this.grid_ = grid;
 				this.walkable = walkable;
-				this.shootable = shootable;
+				this.hitChanceModifier = hitChanceModifier;
 				this.cover = cover;
 			}
 
@@ -104,7 +107,7 @@ namespace OperationBlackwell.Core {
 				public int x;
 				public int y;
 				public bool walkable;
-				public bool shootable;
+				public float hitChanceModifier;
 				public bool cover;
 			}
 
@@ -117,7 +120,7 @@ namespace OperationBlackwell.Core {
 					x = this.gridX,
 					y = this.gridY,
 					walkable = this.walkable,
-					shootable = this.shootable,
+					hitChanceModifier = this.hitChanceModifier,
 					cover = this.cover,
 				};
 			}
@@ -125,7 +128,7 @@ namespace OperationBlackwell.Core {
 			public void Load(SaveObject saveObject) {
 				this.nodeSprite_ = saveObject.nodeSprite;
 				this.walkable = saveObject.walkable;
-				this.shootable = saveObject.shootable;
+				this.hitChanceModifier = saveObject.hitChanceModifier;
 				this.cover = saveObject.cover;
 			}
 
@@ -143,23 +146,23 @@ namespace OperationBlackwell.Core {
 					// Should be error state!
 					Debug.Log("NodeSprite none will become an hard error in the future!");
 					this.walkable = true;
-					this.shootable = true;
+					this.hitChanceModifier = floorHitChanceModifier;
 					this.cover = false;
 				} else if(nodeSprite == NodeSprite.PIT) {
 					this.walkable = false;
-					this.shootable = true;
+					this.hitChanceModifier = pitChanceModifier;
 					this.cover = false;
 				} else if(nodeSprite == NodeSprite.FLOOR) {
 					this.walkable = true;
-					this.shootable = true;
+					this.hitChanceModifier = floorHitChanceModifier;
 					this.cover = false;
 				} else if(nodeSprite == NodeSprite.WALL) {
 					this.walkable = false;
-					this.shootable = false;
+					this.hitChanceModifier = wallHitChanceModifier;
 					this.cover = false;
 				} else if(nodeSprite == NodeSprite.COVER) {
 					this.walkable = false;
-					this.shootable = true;
+					this.hitChanceModifier = coverHitChanceModifier;
 					this.cover = true;
 				}
 				grid_.TriggerGridObjectChanged(gridX, gridY);
