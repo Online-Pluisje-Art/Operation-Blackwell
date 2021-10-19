@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace OperationBlackwell.Core {
 	public class SaveController : MonoBehaviour {
-		private const bool debugSaving_ = false;
+		private readonly bool debugSaving_ = false;
 
 		private string savePath_;
 		private void Update() {

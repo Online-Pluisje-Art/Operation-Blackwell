@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace OperationBlackwell.Core {
 	public class GameController : MonoBehaviour {
-		public static GameController Instance {get; private set;}
 		private const bool DebugMovement = false;
 
 		public static GameController Instance { get; private set; }
@@ -20,16 +19,16 @@ namespace OperationBlackwell.Core {
 		public delegate void MoveEvent(Vector3 position);
 		public event MoveEvent Moved;
 
-		public Grid<Tilemap.Node> grid {get; private set;}
+		public Grid<Tilemap.Node> grid { get; private set; }
 
 		public GridPathfinding gridPathfinding { get; private set; }
-		public Tilemap tilemap {get; private set;}
+		public Tilemap tilemap { get; private set; }
 
 		[SerializeField] private TilemapVisual tilemapVisual_;
 		private Tilemap.Node.NodeSprite nodeSprite_;
 		private void Awake() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
-				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, true, false));
+				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, Tilemap.Node.floorHitChanceModifier, false));
 			tilemap = new Tilemap(grid);
 			Instance = this;
 			Vector3 origin = new Vector3(0, 0);

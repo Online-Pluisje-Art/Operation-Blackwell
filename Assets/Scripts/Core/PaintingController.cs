@@ -30,7 +30,7 @@ namespace OperationBlackwell.Core {
 			}
 			if(Input.GetMouseButtonDown(1)) {
 				Vector3 mouseWorldPosition = Utils.GetMouseWorldPosition();
-				Tilemap.Node node = GameController.Instance.grid.NodeFromWorldPoint(mouseWorldPosition);
+				Tilemap.Node node = GameController.Instance.grid.GetGridObject(mouseWorldPosition);
 				node.SetNodeSprite(nodeSprite_);
 				GameController.Instance.grid.TriggerGridObjectChanged(node.gridX, node.gridY);
 			}

@@ -9,11 +9,11 @@ namespace OperationBlackwell.Core {
 		private const string SAVE_EXTENSION = "json";
 
 		private static readonly string SAVE_FOLDER = Application.streamingAssetsPath + "/SavesWorld/";
-		private static bool isInit = false;
+		private static bool isInit_ = false;
 
 		public static void Init() {
-			if(!isInit) {
-				isInit = true;
+			if(!isInit_) {
+				isInit_ = true;
 				// Test if Save Folder exists.
 				if(!Directory.Exists(SAVE_FOLDER)) {
 					// Create Save Folder.
@@ -79,6 +79,7 @@ namespace OperationBlackwell.Core {
 
 		public static void SaveObject(string fileName, object saveObject, bool overwrite) {
 			Init();
+			// Pretty print please!
 			string json = JsonUtility.ToJson(saveObject, true);
 			Save(fileName, json, overwrite);
 		}
