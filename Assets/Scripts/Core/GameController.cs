@@ -58,7 +58,11 @@ namespace OperationBlackwell.Core {
 
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
-				Application.Quit(0);
+				if(!Application.isEditor) {
+					Application.Quit(0);
+				} else {
+					Debug.Log("Game asked to quit while in editor, call ignored.");
+				}
 			}
 			if(Input.GetKeyDown(KeyCode.Home)) {
 				Application.OpenURL("https://github.com/Online-Pluisje-Art/Operation-Blackwell/tree/development");
