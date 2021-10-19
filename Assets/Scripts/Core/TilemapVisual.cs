@@ -90,7 +90,6 @@ namespace OperationBlackwell.Core {
 					Utils.AddToMeshArrays(vertices, uv, triangles, index, worldPosition + quadSize * .5f, 0f, quadSize, gridUV00, gridUV11);
 				}
 			}
-
 			mesh_.vertices = vertices;
 			mesh_.uv = uv;
 			mesh_.triangles = triangles;
