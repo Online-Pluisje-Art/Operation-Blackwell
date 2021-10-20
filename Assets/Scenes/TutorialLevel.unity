@@ -718,6 +718,10 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6024918881656354217, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f2e5ccfa489b5920bdd8989e77e18e4, type: 2}
     - target: {fileID: 9202709930041509463, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
       propertyPath: moveSpeed_
       value: 5
@@ -799,6 +803,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6024918881656354217, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0371a75d5ad091c33926ce0b791b838f, type: 2}
     - target: {fileID: 9202709930041509463, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
       propertyPath: moveSpeed_
       value: 5
