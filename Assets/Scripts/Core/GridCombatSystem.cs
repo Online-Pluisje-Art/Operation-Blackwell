@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// using OperationBlackwell.Core;
+using System;
 
 namespace OperationBlackwell.Core {
 	public class GridCombatSystem : MonoBehaviour {
 
 		public static GridCombatSystem Instance { get; private set; }
-		[SerializeField, SerializeReference] private CoreUnit[] unitGridCombatArray_;
+		[SerializeField] private CoreUnit[] unitGridCombatArray_;
 
 		private State state_;
 		private CoreUnit unitGridCombat_;
@@ -16,6 +16,14 @@ namespace OperationBlackwell.Core {
 		private int blueTeamActiveUnitIndex_;
 		private int redTeamActiveUnitIndex_;
 		private int pathLength_;
+
+		public EventHandler<UnitPositionEvent> OnUnitSelect;
+		public EventHandler<UnitPositionEvent> OnUnitMove;
+
+		public class UnitPositionEvent : EventArgs {
+			public CoreUnit unit;
+			public Vector3 position;
+		}
 
 		private enum State {
 			Normal,
@@ -66,6 +74,10 @@ namespace OperationBlackwell.Core {
 					// Unit is Dead, get next one
 					return GetNextActiveUnit(team);
 				} else {
+					OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+						unit = blueTeamList_[blueTeamActiveUnitIndex_],
+						position = blueTeamList_[blueTeamActiveUnitIndex_].GetPosition()
+					});
 					return blueTeamList_[blueTeamActiveUnitIndex_];
 				}
 			} else {
@@ -74,6 +86,10 @@ namespace OperationBlackwell.Core {
 					// Unit is Dead, get next one
 					return GetNextActiveUnit(team);
 				} else {
+					OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+						unit = redTeamList_[blueTeamActiveUnitIndex_],
+						position = redTeamList_[blueTeamActiveUnitIndex_].GetPosition()
+					});
 					return redTeamList_[redTeamActiveUnitIndex_];
 				}
 			}
@@ -158,6 +174,12 @@ namespace OperationBlackwell.Core {
 
 								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
 									state_ = State.Normal;
+									if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
+										OnUnitMove?.Invoke(this, new UnitPositionEvent() {
+											unit = unitGridCombat_,
+											position = Utils.GetMouseWorldPosition()
+										});
+									}
 									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
 									UpdateValidMovePositions();
 									TestTurnOver();
