@@ -5,6 +5,8 @@ using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
 	public class GridCombatSystem : MonoBehaviour {
+
+		public static GridCombatSystem Instance { get; private set; }
 		[SerializeField] private UnitGridCombat[] unitGridCombatArray_;
 
 		private State state_;
@@ -21,6 +23,7 @@ namespace OperationBlackwell.Player {
 		}
 
 		private void Awake() {
+			Instance = this;
 			state_ = State.Normal;
 		}
 
@@ -185,6 +188,10 @@ namespace OperationBlackwell.Player {
 			unitGridCombat_.ResetActionPoints();
 			SelectNextActiveUnit();
 			UpdateValidMovePositions();
+		}
+
+		public UnitGridCombat GetActiveUnit() {
+			return unitGridCombat_;
 		}
 	}
 }
