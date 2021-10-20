@@ -9,7 +9,7 @@ namespace OperationBlackwell.UI {
 		[SerializeField] private Text ActionPointsText_;
 
 		private void Update() {
-			ActionPointsText_.text = "Action Points: " + OperationBlackwell.Player.GridCombatSystem.Instance.GetActiveUnit().GetActionPoints();
+			ActionPointsText_.text = "Action Points: " + OperationBlackwell.Core.GridCombatSystem.Instance.GetActiveUnit().GetActionPoints();
 		}
 
 	}
