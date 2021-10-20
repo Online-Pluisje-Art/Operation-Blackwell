@@ -14,11 +14,6 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
 		private MovementTilemap movementTilemap_;
 
-		[SerializeField] private Transform player_;
-
-		public delegate void MoveEvent(Vector3 position);
-		public event MoveEvent Moved;
-
 		public Grid<Tilemap.Node> grid { get; private set; }
 
 		public GridPathfinding gridPathfinding { get; private set; }
@@ -35,8 +30,6 @@ namespace OperationBlackwell.Core {
 
 			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * cellSize_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * cellSize_, cellSize_);
 			movementTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
-			// Node unwalkableNode = grid_.NodeFromWorldPoint(new Vector3(0, 0, 2));
-			// unwalkableNode.walkable = false;
 		}
 
 		private void Start() {
