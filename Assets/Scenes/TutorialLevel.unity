@@ -155,7 +155,6 @@ MonoBehaviour:
   gridWorldSize_: {x: 11, y: 11, z: 0}
   cellSize_: 1
   movementTilemapVisual_: {fileID: 1176652284}
-  player_: {fileID: 1087319437}
   tilemapVisual_: {fileID: 2098585260}
 --- !u!4 &593590128
 Transform:
@@ -394,11 +393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0af036b690810680a9cceaaa13a91e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1087319437 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 197259336583530509, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
-  m_PrefabInstance: {fileID: 1667741768}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1176652284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -865,7 +859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098585259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
