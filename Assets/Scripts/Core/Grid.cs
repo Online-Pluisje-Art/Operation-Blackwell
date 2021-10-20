@@ -89,5 +89,15 @@ namespace OperationBlackwell.Core {
 			GetXY(worldPosition, out x, out y);
 			return GetGridObject(x, y);
 		}
+
+		public List<TGridObject> GetAllGridObjects() {
+			List<TGridObject> gridObjects = new List<TGridObject>();
+			for(int x = 0; x < gridArray_.GetLength(0); x++) {
+				for(int y = 0; y < gridArray_.GetLength(1); y++) {
+					gridObjects.Add(gridArray_[x, y]);
+				}
+			}
+			return gridObjects;
+		}
 	}
 }

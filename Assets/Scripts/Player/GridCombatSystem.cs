@@ -13,6 +13,7 @@ namespace OperationBlackwell.Player {
 		private List<UnitGridCombat> redTeamList_;
 		private int blueTeamActiveUnitIndex_;
 		private int redTeamActiveUnitIndex_;
+		private int pathLength_;
 
 		private enum State {
 			Normal,
@@ -97,6 +98,10 @@ namespace OperationBlackwell.Player {
 			int maxMoveDistance = unitGridCombat_.GetActionPoints() + 1;
 			for(int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
 				for(int y = unitY - maxMoveDistance; y <= unitY + maxMoveDistance; y++) {
+					// if(GameController.Instance.grid.GetGridObject(x, y).GetUnitGridCombat() != null) {
+					// 	Debug.Log("A player is already here.");
+					// 	continue;
+					// }
 					if(gridPathfinding.IsWalkable(x, y)) {
 						// Position is Walkable
 						if(gridPathfinding.HasPath(unitX, unitY, x, y)) {
@@ -146,9 +151,11 @@ namespace OperationBlackwell.Player {
 								// Set Unit on target Grid Object
 								gridObject.SetUnitGridCombat(unitGridCombat_);
 
+								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
+
 								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
 									state_ = State.Normal;
-									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 1);
+									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
 									UpdateValidMovePositions();
 									TestTurnOver();
 								});

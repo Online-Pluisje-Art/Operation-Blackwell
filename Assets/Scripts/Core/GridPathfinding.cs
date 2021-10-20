@@ -42,11 +42,11 @@ namespace OperationBlackwell.Core {
 			worldOrigin_ = worldLowerLeft;
 			this.nodeSize_ = nodeSize_;
 
-			float worldWidth = worldUpperRight.x - worldLowerLeft.x;
-			float worldHeight = worldUpperRight.y - worldLowerLeft.y;
+			float worldWidth = worldUpperRight.x - worldLowerLeft.x + 1;
+			float worldHeight = worldUpperRight.y - worldLowerLeft.y + 1;
 
-			int mapWidth = Mathf.RoundToInt(worldWidth / nodeSize_);
-			int mapHeight = Mathf.RoundToInt(worldHeight / nodeSize_);
+			int mapWidth = (int)(worldWidth / nodeSize_);
+			int mapHeight = (int)(worldHeight / nodeSize_);
 
 			mapNodes_ = new PathNode[mapWidth][];
 			for(int i = 0; i < mapWidth; i++) {
@@ -56,6 +56,8 @@ namespace OperationBlackwell.Core {
 			heightMax_ = mapHeight;
 
 			Initialize(mapWidth, mapHeight);
+			GameController.Instance.grid.OnGridObjectChanged += OnNodeChanged;
+			GameController.Instance.tilemap.OnLoaded += OnLevelChanged;
 		}
 
 		public GridPathfinding(int mapWidth, int mapHeight, float nodeSize_, Vector3 worldOrigin_) {//, Texture2D map) {
@@ -80,6 +82,26 @@ namespace OperationBlackwell.Core {
 					if(raycastHit.collider != null) {
 						mapNodes_[i][j].SetWalkable(false);
 					}
+				}
+			}
+		}
+
+		private void OnNodeChanged(object grid, Grid<Tilemap.Node>.OnGridObjectChangedEventArgs args) {
+			int x = args.x;
+			int y = args.y;
+			Tilemap.Node node = GameController.Instance.grid.GetGridObject(x, y);
+			if(node != null && x >= 0 && x < widthMax_ && y >= 0 && y < heightMax_) {
+				mapNodes_[x][y].SetWalkable(node.walkable);
+			}
+		}
+
+		private void OnLevelChanged(object grid, System.EventArgs args) {
+			Grid<Tilemap.Node> grid_ = GameController.Instance.grid;
+			foreach(Tilemap.Node node in grid_.GetAllGridObjects()) {
+				if(node.walkable) {
+					SetWalkable(node.gridX, node.gridY, true);
+				} else {
+					SetWalkable(node.gridX, node.gridY, false);
 				}
 			}
 		}
