@@ -7,7 +7,7 @@ namespace OperationBlackwell.Core {
 		private static readonly Vector3 Vector3yDown = new Vector3(0, -1);
 		
 		// Graciously taken from the interwebs, draws a line like Debug.DrawLine does.
-		public static void DrawLine(Vector3 start, Vector3 end, float duration = 0.2f) {
+		public static void DrawLine(Vector3 start, Vector3 end, float duration = 0.2f, float startWidth = 0.01f, float endWidth = 0.01f) {
 			GameObject myLine = new GameObject();
 			myLine.transform.position = start;
 			myLine.AddComponent<LineRenderer>();
@@ -16,8 +16,8 @@ namespace OperationBlackwell.Core {
 			lr.material = (Material)Resources.Load("Materials/Line");
 			lr.startColor = Color.white;
 			lr.endColor = Color.white;
-			lr.startWidth = .1f;
-			lr.endWidth = .1f;
+			lr.startWidth = startWidth;
+			lr.endWidth = endWidth;
 			lr.SetPosition(0, start);
 			lr.SetPosition(1, end);
 		}
