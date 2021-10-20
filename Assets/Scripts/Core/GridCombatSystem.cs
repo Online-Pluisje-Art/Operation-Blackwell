@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using OperationBlackwell.Core;
+// using OperationBlackwell.Core;
 
-namespace OperationBlackwell.Player {
+namespace OperationBlackwell.Core {
 	public class GridCombatSystem : MonoBehaviour {
 
 		public static GridCombatSystem Instance { get; private set; }
-		[SerializeField] private UnitGridCombat[] unitGridCombatArray_;
+		[SerializeField, SerializeReference] private CoreUnit[] unitGridCombatArray_;
 
 		private State state_;
-		private UnitGridCombat unitGridCombat_;
-		private List<UnitGridCombat> blueTeamList_;
-		private List<UnitGridCombat> redTeamList_;
+		private CoreUnit unitGridCombat_;
+		private List<CoreUnit> blueTeamList_;
+		private List<CoreUnit> redTeamList_;
 		private int blueTeamActiveUnitIndex_;
 		private int redTeamActiveUnitIndex_;
 		private int pathLength_;
@@ -28,13 +28,13 @@ namespace OperationBlackwell.Player {
 		}
 
 		private void Start() {
-			blueTeamList_ = new List<UnitGridCombat>();
-			redTeamList_ = new List<UnitGridCombat>();
+			blueTeamList_ = new List<CoreUnit>();
+			redTeamList_ = new List<CoreUnit>();
 			blueTeamActiveUnitIndex_ = -1;
 			redTeamActiveUnitIndex_ = -1;
 
 			// Set all UnitGridCombat on their GridPosition
-			foreach(UnitGridCombat unitGridCombat_ in unitGridCombatArray_) {
+			foreach(CoreUnit unitGridCombat_ in unitGridCombatArray_) {
 				GameController.Instance.GetGrid().GetGridObject(unitGridCombat_.GetPosition())
 					.SetUnitGridCombat(unitGridCombat_);
 
@@ -59,7 +59,7 @@ namespace OperationBlackwell.Player {
 			// GameController.Instance.SetCameraFollowPosition(unitGridCombat_.GetPosition());
 		}
 
-		private UnitGridCombat GetNextActiveUnit(Team team) {
+		private CoreUnit GetNextActiveUnit(Team team) {
 			if(team == Team.Blue) {
 				blueTeamActiveUnitIndex_ = (blueTeamActiveUnitIndex_ + 1) % blueTeamList_.Count;
 				if(blueTeamList_[blueTeamActiveUnitIndex_] == null) {// || blueTeamList_[blueTeamActiveUnitIndex_].IsDead()) {
@@ -190,7 +190,7 @@ namespace OperationBlackwell.Player {
 			UpdateValidMovePositions();
 		}
 
-		public UnitGridCombat GetActiveUnit() {
+		public CoreUnit GetActiveUnit() {
 			return unitGridCombat_;
 		}
 	}

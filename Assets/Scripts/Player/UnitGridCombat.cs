@@ -5,7 +5,7 @@ using UnityEngine;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
-	public class UnitGridCombat : MonoBehaviour, IGameObject {
+	public class UnitGridCombat : CoreUnit {
 
 		[SerializeField] private Team team_;
 		[SerializeField] private int actionPoints_;
@@ -47,7 +47,7 @@ namespace OperationBlackwell.Player {
 			selectedGameObject_.SetActive(visible);
 		}
 
-		public void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
+		public override void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
 			state_ = State.Moving;
 			movePosition_.SetMovePosition(targetPosition, () => {
 				state_ = State.Normal;
@@ -55,27 +55,27 @@ namespace OperationBlackwell.Player {
 			});
 		}
 
-		public Vector3 GetPosition() {
+		public override Vector3 GetPosition() {
 			return transform.position;
 		}
 
-		public Team GetTeam() {
+		public override Team GetTeam() {
 			return team_;
 		}
 
-		public bool IsEnemy(IGameObject unitGridCombat) {
+		public override bool IsEnemy(CoreUnit unitGridCombat) {
 			return unitGridCombat.GetTeam() != team_;
 		}
 
-		public void SetActionPoints(int actionPoints) {
+		public override void SetActionPoints(int actionPoints) {
 			actionPoints_ = actionPoints;
 		}
 
-		public int GetActionPoints() {
+		public override int GetActionPoints() {
 			return actionPoints_;
 		}
 
-		public void ResetActionPoints() {
+		public override void ResetActionPoints() {
 			actionPoints_ = maxActionPoints_;
 		}
 	}

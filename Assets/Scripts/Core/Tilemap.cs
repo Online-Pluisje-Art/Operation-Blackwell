@@ -87,7 +87,7 @@ namespace OperationBlackwell.Core {
 			private NodeSprite nodeSprite_;
 
 			private bool isValidMovePosition_;
-			private IGameObject unitGridCombat_;
+			private CoreUnit unitGridCombat_;
 
 			private Grid<Node> grid_;
 
@@ -176,7 +176,7 @@ namespace OperationBlackwell.Core {
 				return isValidMovePosition_;
 			}
 
-			public void SetUnitGridCombat(IGameObject unitGridCombat) {
+			public void SetUnitGridCombat(CoreUnit unitGridCombat) {
 				this.unitGridCombat_ = unitGridCombat;
 			}
 
@@ -184,7 +184,7 @@ namespace OperationBlackwell.Core {
 				SetUnitGridCombat(null);
 			}
 
-			public IGameObject GetUnitGridCombat() {
+			public CoreUnit GetUnitGridCombat() {
 				return unitGridCombat_;
 			}
 		}
