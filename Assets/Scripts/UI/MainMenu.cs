@@ -10,6 +10,10 @@ namespace OperationBlackwell.UI {
 			SceneManager.LoadScene("TutorialLevel");
 		}
 
+		public void LaunchMapEditor() {
+			SceneManager.LoadScene("MapEditor");
+		}
+
 		public void ExitGame() {
 			if(!Application.isEditor) {
 				Application.Quit(0);

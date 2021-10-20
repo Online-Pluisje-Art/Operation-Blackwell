@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace OperationBlackwell.Core {
 	public class GameController : MonoBehaviour {
@@ -42,6 +43,11 @@ namespace OperationBlackwell.Core {
 		private void Start() {
 			tilemap.SetTilemapVisual(tilemapVisual_);
 			movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
+			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
+				tilemap.Load("tutoriallevel");
+			} else {
+				Debug.Log(SceneManager.GetActiveScene().name + " has no level to load!");
+			}
 		}
 
 		private void Update() {
@@ -58,11 +64,7 @@ namespace OperationBlackwell.Core {
 
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
-				if(!Application.isEditor) {
-					Application.Quit(0);
-				} else {
-					Debug.Log("Game asked to quit while in editor, call ignored.");
-				}
+				SceneManager.LoadScene("MainMenu");
 			}
 			if(Input.GetKeyDown(KeyCode.Home)) {
 				Application.OpenURL("https://github.com/Online-Pluisje-Art/Operation-Blackwell/tree/development");
