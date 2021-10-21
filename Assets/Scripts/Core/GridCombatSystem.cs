@@ -119,9 +119,9 @@ namespace OperationBlackwell.Core {
 						continue;
 					}
 					if(GameController.Instance.grid.GetGridObject(x, y).GetUnitGridCombat() != null) {
-						Debug.Log("A player is already here.");
 						continue;
 					}
+
 					if(gridPathfinding.IsWalkable(x, y)) {
 						// Position is Walkable
 						if(gridPathfinding.HasPath(unitX, unitY, x, y)) {
@@ -170,9 +170,9 @@ namespace OperationBlackwell.Core {
 								grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
 								// Set Unit on target Grid Object
 								gridObject.SetUnitGridCombat(unitGridCombat_);
-
-								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
-
+								
+								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;													
+								
 								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
 									state_ = State.Normal;
 									if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
@@ -187,6 +187,35 @@ namespace OperationBlackwell.Core {
 								});
 							}
 						}
+
+						// // Check if clicking on a unit position
+						// if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.GetActionPoints() > 0) {
+						// 	// Clicked on top of a Unit
+						// 	if(unitGridCombat_.IsEnemy(gridObject.GetUnitGridCombat())) {
+						// 		// Clicked on an Enemy of the current unit
+						// 		if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
+						// 			// Can Attack Enemy
+						// 			// 3 is chosen as a placeholder for the attack cost
+						// 			if(unitGridCombat_.GetActionPoints() >= 3) {
+						// 				// Attack Enemy
+						// 				state_ = State.Waiting;
+						// 				unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 3);
+						// 				unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
+						// 					state_ = State.Normal;
+						// 					UpdateValidMovePositions();
+						// 					TestTurnOver();
+						// 				});
+						// 			}
+						// 		} else {
+						// 			// Cannot attack enemy
+						// 		}
+						// 		break;
+						// 	} else {
+						// 		// Not an enemy
+						// 	}
+						// } else {
+						// 	// No unit here
+						// }
 					}
 
 					if(Input.GetKeyDown(KeyCode.Space)) {
