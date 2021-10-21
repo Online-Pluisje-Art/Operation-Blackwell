@@ -63,8 +63,6 @@ namespace OperationBlackwell.Core {
 			} else {
 				unitGridCombat_ = GetNextActiveUnit(Team.Red);
 			}
-
-			// GameController.Instance.SetCameraFollowPosition(unitGridCombat_.GetPosition());
 		}
 
 		private CoreUnit GetNextActiveUnit(Team team) {
@@ -117,10 +115,13 @@ namespace OperationBlackwell.Core {
 			int maxMoveDistance = unitGridCombat_.GetActionPoints() + 1;
 			for(int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
 				for(int y = unitY - maxMoveDistance; y <= unitY + maxMoveDistance; y++) {
-					// if(GameController.Instance.grid.GetGridObject(x, y).GetUnitGridCombat() != null) {
-					// 	Debug.Log("A player is already here.");
-					// 	continue;
-					// }
+					if(x < 0 || x >= grid.GetWidth() || y < 0 || y >= grid.GetHeight()) {
+						continue;
+					}
+					if(GameController.Instance.grid.GetGridObject(x, y).GetUnitGridCombat() != null) {
+						Debug.Log("A player is already here.");
+						continue;
+					}
 					if(gridPathfinding.IsWalkable(x, y)) {
 						// Position is Walkable
 						if(gridPathfinding.HasPath(unitX, unitY, x, y)) {
