@@ -59,7 +59,12 @@ namespace OperationBlackwell.Player {
 		}
 
 		public override bool CanAttackUnit(CoreUnit unitGridCombat) {
-			return Vector3.Distance(GetPosition(), unitGridCombat.GetPosition()) < 50f;
+			/* 
+			 * TODO: Check if unit is in range
+			 * TODO: Check if unit is on the same team
+			 * The value of 1.5f is a placeholder for the range of the units attack.
+			 */
+			return Vector3.Distance(GetPosition(), unitGridCombat.GetPosition()) < 1.5f;
 		}
 
 		public override void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
@@ -105,25 +110,17 @@ namespace OperationBlackwell.Player {
 
 		private void ShootUnit(CoreUnit unitGridCombat, Action onShootComplete) {
 			GetComponent<IMoveVelocity>().Disable();
-			Vector3 attackDir = (unitGridCombat.GetPosition() - transform.position).normalized;
 
-			// characterBase_.PlayShootAnimation(attackDir, (Vector3 vec) => {
-			// 	Shoot_Flash.AddFlash(vec);
-			// 	WeaponTracer.Create(vec, unitGridCombat.GetPosition() + UtilsClass.GetRandomDir() * UnityEngine.Random.Range(-2f, 4f));
-			unitGridCombat.Damage(this, 50);//UnityEngine.Random.Range(4, 12));
-			// }, () => {
-			// 	characterBase.PlayIdleAnim();
+			// The value of 50 is a placeholder for the damage of the units attack.
+			unitGridCombat.Damage(this, 50); //UnityEngine.Random.Range(4, 12));
+
 			GetComponent<IMoveVelocity>().Enable();
-
 			onShootComplete();
-			// });
 		}
 
-		public override void Damage(CoreUnit attacker, int damageAmount) {
-			Vector3 bloodDir = (GetPosition() - attacker.GetPosition()).normalized;
-			
+		public override void Damage(CoreUnit attacker, int damageAmount) {	
 			healthSystem_.Damage(damageAmount);
-			if (healthSystem_.IsDead()) {
+			if(healthSystem_.IsDead()) {
 				GridCombatSystem.Instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
 				Destroy(gameObject);
 			} else {

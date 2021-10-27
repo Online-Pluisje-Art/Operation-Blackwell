@@ -159,7 +159,7 @@ namespace OperationBlackwell.Core {
 								);
 
 								grid.GetGridObject(x, y).SetIsValidMovePosition(true);
-							} else { 
+							} else {
 								// Path outside Move Distance!
 							}
 						} else {
@@ -194,9 +194,9 @@ namespace OperationBlackwell.Core {
 								grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
 								// Set Unit on target Grid Object
 								gridObject.SetUnitGridCombat(unitGridCombat_);
-								
-								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;													
-								
+
+								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
+
 								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
 									state_ = State.Normal;
 									if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {

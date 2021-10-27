@@ -11,35 +11,35 @@ namespace OperationBlackwell.Player {
 		public event EventHandler OnHealed;
 		public event EventHandler OnDead;
 
-		private int healthMax;
-		private int health;
+		private int healthMax_;
+		private int health_;
 
-		public HealthSystem(int healthMax) {
-			this.healthMax = healthMax;
-			health = healthMax;
+		public HealthSystem(int healthMax_) {
+			this.healthMax_ = healthMax_;
+			health_ = healthMax_;
 		}
 
 		public int GetHealth() {
-			return health;
+			return health_;
 		}
 
 		public int GetHealthMax() {
-			return healthMax;
+			return healthMax_;
 		}
 
 		public float GetHealthNormalized() {
-			return (float)health / healthMax;
+			return (float)health_ / healthMax_;
 		}
 
 		public void Damage(int amount) {
-			health -= amount;
-			if(health < 0) {
-				health = 0;
+			health_ -= amount;
+			if(health_ < 0) {
+				health_ = 0;
 			}
 			OnHealthChanged?.Invoke(this, EventArgs.Empty);
 			OnDamaged?.Invoke(this, EventArgs.Empty);
 
-			if(health <= 0) {
+			if(health_ <= 0) {
 				Die();
 			}
 		}
@@ -49,28 +49,28 @@ namespace OperationBlackwell.Player {
 		}
 
 		public bool IsDead() {
-			return health <= 0;
+			return health_ <= 0;
 		}
 
 		public void Heal(int amount) {
-			health += amount;
-			if(health > healthMax) {
-				health = healthMax;
+			health_ += amount;
+			if(health_ > healthMax_) {
+				health_ = healthMax_;
 			}
 			OnHealthChanged?.Invoke(this, EventArgs.Empty);
 			OnHealed?.Invoke(this, EventArgs.Empty);
 		}
 
 		public void HealComplete() {
-			health = healthMax;
+			health_ = healthMax_;
 			OnHealthChanged?.Invoke(this, EventArgs.Empty);
 			OnHealed?.Invoke(this, EventArgs.Empty);
 		}
 
-		public void SetHealthMax(int healthMax, bool fullHealth) {
-			this.healthMax = healthMax;
+		public void SetHealthMax(int healthMax_, bool fullHealth) {
+			this.healthMax_ = healthMax_;
 			if(fullHealth) {
-				health = healthMax;
+				health_ = healthMax_;
 			}
 			OnHealthMaxChanged?.Invoke(this, EventArgs.Empty);
 			OnHealthChanged?.Invoke(this, EventArgs.Empty);
