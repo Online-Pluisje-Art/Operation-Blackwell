@@ -94,29 +94,8 @@ namespace OperationBlackwell.Player {
 			state_ = State.Attacking;
 
 			ShootUnit(unitGridCombat, () => {
-				if (!unitGridCombat.IsDead()) {
-					ShootUnit(unitGridCombat, () => {
-						if (!unitGridCombat.IsDead()) {
-							ShootUnit(unitGridCombat, () => {
-								if (!unitGridCombat.IsDead()) {
-									ShootUnit(unitGridCombat, () => {
-										state_ = State.Normal;
-										onAttackComplete();
-									});
-								} else { 
-									state_ = State.Normal; 
-									onAttackComplete(); 
-								}
-							});
-						} else { 
-							state_ = State.Normal; 
-							onAttackComplete(); 
-						}
-					});
-				} else { 
-					state_ = State.Normal; 
-					onAttackComplete(); 
-				}
+				state_ = State.Normal;
+				onAttackComplete(); 
 			});
 		}
 
@@ -127,16 +106,16 @@ namespace OperationBlackwell.Player {
 			// characterBase_.PlayShootAnimation(attackDir, (Vector3 vec) => {
 			// 	Shoot_Flash.AddFlash(vec);
 			// 	WeaponTracer.Create(vec, unitGridCombat.GetPosition() + UtilsClass.GetRandomDir() * UnityEngine.Random.Range(-2f, 4f));
-			// 	unitGridCombat.Damage(this, UnityEngine.Random.Range(4, 12));
+			unitGridCombat.Damage(this, 50);//UnityEngine.Random.Range(4, 12));
 			// }, () => {
 			// 	characterBase.PlayIdleAnim();
-			// 	GetComponent<IMoveVelocity>().Enable();
+			GetComponent<IMoveVelocity>().Enable();
 
 			onShootComplete();
 			// });
 		}
 
-		public void Damage(CoreUnit attacker, int damageAmount) {
+		public override void Damage(CoreUnit attacker, int damageAmount) {
 			Vector3 bloodDir = (GetPosition() - attacker.GetPosition()).normalized;
 			
 			healthSystem_.Damage(damageAmount);
