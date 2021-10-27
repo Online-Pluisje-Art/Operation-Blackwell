@@ -17,6 +17,7 @@ namespace OperationBlackwell.Core {
 		private int redTeamActiveUnitIndex_;
 		private int pathLength_;
 
+		public EventHandler<EventArgs> OnUnitDeath;
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
 		public EventHandler<UnitPositionEvent> OnUnitMove;
 
@@ -33,6 +34,7 @@ namespace OperationBlackwell.Core {
 		private void Awake() {
 			Instance = this;
 			state_ = State.Normal;
+			OnUnitDeath += RemoveUnitOnDeath;
 		}
 
 		private void Start() {
@@ -57,6 +59,22 @@ namespace OperationBlackwell.Core {
 			UpdateValidMovePositions();
 		}
 
+		private void OnDestroy() {
+			OnUnitDeath -= RemoveUnitOnDeath;
+		}
+
+		private void RemoveUnitOnDeath(object sender, EventArgs e) {
+			CoreUnit unit = (CoreUnit)sender;
+			if(unit.GetTeam() == Team.Blue) {
+				blueTeamList_.Remove(unit);
+			} else {
+				redTeamList_.Remove(unit);
+			}
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Tilemap.Node gridObject = grid.GetGridObject(unit.GetPosition());
+			gridObject.SetUnitGridCombat(null);
+		}
+
 		private void SelectNextActiveUnit() {
 			if(unitGridCombat_ == null || unitGridCombat_.GetTeam() == Team.Red) {
 				unitGridCombat_ = GetNextActiveUnit(Team.Blue);
@@ -67,31 +85,35 @@ namespace OperationBlackwell.Core {
 
 		private CoreUnit GetNextActiveUnit(Team team) {
 			if(team == Team.Blue) {
-				blueTeamActiveUnitIndex_ = (blueTeamActiveUnitIndex_ + 1) % blueTeamList_.Count;
-				Debug.Log("Blue Team Active Unit Index: " + blueTeamActiveUnitIndex_);
-				Debug.Log("Blue Team List Count: " + blueTeamList_.Count);
-				if(blueTeamList_[blueTeamActiveUnitIndex_] == null || blueTeamList_[blueTeamActiveUnitIndex_].IsDead()) {
-					// Unit is Dead, get next one
-					return GetNextActiveUnit(team);
+				if(blueTeamList_.Count == 0) {
+					return GetNextActiveUnit(Team.Red);
 				} else {
-					OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
-						unit = blueTeamList_[blueTeamActiveUnitIndex_],
-						position = blueTeamList_[blueTeamActiveUnitIndex_].GetPosition()
-					});
-					return blueTeamList_[blueTeamActiveUnitIndex_];
+					blueTeamActiveUnitIndex_ = (blueTeamActiveUnitIndex_ + 1) % blueTeamList_.Count;
+					return GetUnitTeam(blueTeamList_, blueTeamActiveUnitIndex_, team);
 				}
 			} else {
-				redTeamActiveUnitIndex_ = (redTeamActiveUnitIndex_ + 1) % redTeamList_.Count;
-				if(redTeamList_[redTeamActiveUnitIndex_] == null || redTeamList_[redTeamActiveUnitIndex_].IsDead()) {
-					// Unit is Dead, get next one
-					return GetNextActiveUnit(team);
+				if(redTeamList_.Count == 0) {
+					return GetNextActiveUnit(Team.Blue);
 				} else {
-					OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
-						unit = redTeamList_[blueTeamActiveUnitIndex_],
-						position = redTeamList_[blueTeamActiveUnitIndex_].GetPosition()
-					});
-					return redTeamList_[redTeamActiveUnitIndex_];
+					redTeamActiveUnitIndex_ = (redTeamActiveUnitIndex_ + 1) % redTeamList_.Count;
+					return GetUnitTeam(redTeamList_, redTeamActiveUnitIndex_, team);
 				}
+			}
+		}
+
+		private CoreUnit GetUnitTeam(List<CoreUnit> teamList, int index, Team team) {
+			if(index < 0 || index >= teamList.Count) {
+				return null;
+			}
+			if(teamList[index] == null || teamList[index].IsDead()) {
+				// Unit is Dead, get next one
+				return GetNextActiveUnit(team);
+			} else {
+				OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+					unit = teamList[index],
+					position = teamList[index].GetPosition()
+				});
+				return teamList[index];
 			}
 		}
 

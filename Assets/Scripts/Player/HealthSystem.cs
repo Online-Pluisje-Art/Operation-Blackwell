@@ -33,13 +33,13 @@ namespace OperationBlackwell.Player {
 
 		public void Damage(int amount) {
 			health -= amount;
-			if (health < 0) {
+			if(health < 0) {
 				health = 0;
 			}
 			OnHealthChanged?.Invoke(this, EventArgs.Empty);
 			OnDamaged?.Invoke(this, EventArgs.Empty);
 
-			if (health <= 0) {
+			if(health <= 0) {
 				Die();
 			}
 		}
@@ -54,7 +54,7 @@ namespace OperationBlackwell.Player {
 
 		public void Heal(int amount) {
 			health += amount;
-			if (health > healthMax) {
+			if(health > healthMax) {
 				health = healthMax;
 			}
 			OnHealthChanged?.Invoke(this, EventArgs.Empty);
@@ -69,10 +69,11 @@ namespace OperationBlackwell.Player {
 
 		public void SetHealthMax(int healthMax, bool fullHealth) {
 			this.healthMax = healthMax;
-			if (fullHealth) health = healthMax;
+			if(fullHealth) {
+				health = healthMax;
+			}
 			OnHealthMaxChanged?.Invoke(this, EventArgs.Empty);
 			OnHealthChanged?.Invoke(this, EventArgs.Empty);
 		}
-
 	}
 }

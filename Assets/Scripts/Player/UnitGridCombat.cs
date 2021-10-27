@@ -46,6 +46,10 @@ namespace OperationBlackwell.Player {
 			}
 		}
 
+		private void OnDestroy() {
+			healthSystem_.OnHealthChanged -= HealthSystem_OnHealthChanged;
+		}
+
 		private void HealthSystem_OnHealthChanged(object sender, EventArgs e) {
 			// healthBar.SetSize(healthSystem.GetHealthNormalized());
 		}
@@ -120,6 +124,7 @@ namespace OperationBlackwell.Player {
 			
 			healthSystem_.Damage(damageAmount);
 			if (healthSystem_.IsDead()) {
+				GridCombatSystem.Instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
 				Destroy(gameObject);
 			} else {
 				// Knockback
