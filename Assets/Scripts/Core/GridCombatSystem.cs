@@ -68,7 +68,9 @@ namespace OperationBlackwell.Core {
 		private CoreUnit GetNextActiveUnit(Team team) {
 			if(team == Team.Blue) {
 				blueTeamActiveUnitIndex_ = (blueTeamActiveUnitIndex_ + 1) % blueTeamList_.Count;
-				if(blueTeamList_[blueTeamActiveUnitIndex_] == null) {// || blueTeamList_[blueTeamActiveUnitIndex_].IsDead()) {
+				Debug.Log("Blue Team Active Unit Index: " + blueTeamActiveUnitIndex_);
+				Debug.Log("Blue Team List Count: " + blueTeamList_.Count);
+				if(blueTeamList_[blueTeamActiveUnitIndex_] == null || blueTeamList_[blueTeamActiveUnitIndex_].IsDead()) {
 					// Unit is Dead, get next one
 					return GetNextActiveUnit(team);
 				} else {
@@ -80,7 +82,7 @@ namespace OperationBlackwell.Core {
 				}
 			} else {
 				redTeamActiveUnitIndex_ = (redTeamActiveUnitIndex_ + 1) % redTeamList_.Count;
-				if(redTeamList_[redTeamActiveUnitIndex_] == null) { //|| redTeamList_[redTeamActiveUnitIndex_].IsDead()) {
+				if(redTeamList_[redTeamActiveUnitIndex_] == null || redTeamList_[redTeamActiveUnitIndex_].IsDead()) {
 					// Unit is Dead, get next one
 					return GetNextActiveUnit(team);
 				} else {
@@ -188,34 +190,34 @@ namespace OperationBlackwell.Core {
 							}
 						}
 
-						// // Check if clicking on a unit position
-						// if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.GetActionPoints() > 0) {
-						// 	// Clicked on top of a Unit
-						// 	if(unitGridCombat_.IsEnemy(gridObject.GetUnitGridCombat())) {
-						// 		// Clicked on an Enemy of the current unit
-						// 		if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
-						// 			// Can Attack Enemy
-						// 			// 3 is chosen as a placeholder for the attack cost
-						// 			if(unitGridCombat_.GetActionPoints() >= 3) {
-						// 				// Attack Enemy
-						// 				state_ = State.Waiting;
-						// 				unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 3);
-						// 				unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
-						// 					state_ = State.Normal;
-						// 					UpdateValidMovePositions();
-						// 					TestTurnOver();
-						// 				});
-						// 			}
-						// 		} else {
-						// 			// Cannot attack enemy
-						// 		}
-						// 		break;
-						// 	} else {
-						// 		// Not an enemy
-						// 	}
-						// } else {
-						// 	// No unit here
-						// }
+						// Check if clicking on a unit position
+						if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.GetActionPoints() > 0) {
+							// Clicked on top of a Unit
+							if(unitGridCombat_.IsEnemy(gridObject.GetUnitGridCombat())) {
+								// Clicked on an Enemy of the current unit
+								if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
+									// Can Attack Enemy
+									// 3 is chosen as a placeholder for the attack cost
+									if(unitGridCombat_.GetActionPoints() >= 3) {
+										// Attack Enemy
+										state_ = State.Waiting;
+										unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 3);
+										unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
+											state_ = State.Normal;
+											UpdateValidMovePositions();
+											TestTurnOver();
+										});
+									}
+								} else {
+									// Cannot attack enemy
+								}
+								break;
+							} else {
+								// Not an enemy
+							}
+						} else {
+							// No unit here
+						}
 					}
 
 					if(Input.GetKeyDown(KeyCode.Space)) {
