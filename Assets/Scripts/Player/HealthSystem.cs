@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OperationBlackwell.Core {
+namespace OperationBlackwell.Player {
 	public class HealthSystem {
 		public event EventHandler OnHealthChanged;
 		public event EventHandler OnHealthMaxChanged;
