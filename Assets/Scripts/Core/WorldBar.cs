@@ -1,9 +1,4 @@
-using System.Runtime.InteropServices;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 namespace OperationBlackwell.Core {
 	/*
@@ -25,6 +20,7 @@ namespace OperationBlackwell.Core {
 			public Color color = Color.black;
 		}
 
+		// The ? in the parameter listing means that parameter is optional.
 		public WorldBar(Transform parent, Vector3 localPosition, Vector3 localScale, Color? backgroundColor, Color barColor, float sizeRatio, int sortingOrder, Outline outline = null) {
 			this.outline_ = outline;
 			SetupParent(parent, localPosition);
