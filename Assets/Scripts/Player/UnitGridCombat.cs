@@ -16,6 +16,7 @@ namespace OperationBlackwell.Player {
 		private MovePositionPathfinding movePosition_;
 		private State state_;
 		private HealthSystem healthSystem_;
+		private WorldBar healthBar_;
 
 		private enum State {
 			Normal,
@@ -30,6 +31,7 @@ namespace OperationBlackwell.Player {
 			//SetSelectedVisible(false);
 			state_ = State.Normal;
 			healthSystem_ = new HealthSystem(100);
+			healthBar_ = new WorldBar(transform, new Vector3(0, 1), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
 		}
 
@@ -51,7 +53,7 @@ namespace OperationBlackwell.Player {
 		}
 
 		private void HealthSystem_OnHealthChanged(object sender, EventArgs e) {
-			// healthBar.SetSize(healthSystem.GetHealthNormalized());
+			healthBar_.SetSize(healthSystem_.GetHealthNormalized());
 		}
 
 		public void SetSelectedVisible(bool visible) {

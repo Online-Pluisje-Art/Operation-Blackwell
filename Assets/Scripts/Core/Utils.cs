@@ -190,5 +190,29 @@ namespace OperationBlackwell.Core {
 
 			return mesh;
 		}
+
+		// Get Default Unity Font, used in text objects if no font given
+		public static Font GetDefaultFont() {
+			return Resources.GetBuiltinResource<Font>("Arial.ttf");
+		}
+
+		// Create a Sprite in the World, no parent
+		public static GameObject CreateWorldSprite(string name, Sprite sprite, Vector3 position, Vector3 localScale, int sortingOrder, Color color) {
+			return CreateWorldSprite(null, name, sprite, position, localScale, sortingOrder, color);
+		}
+
+		// Create a Sprite in the World
+		public static GameObject CreateWorldSprite(Transform parent, string name, Sprite sprite, Vector3 localPosition, Vector3 localScale, int sortingOrder, Color color) {
+			GameObject gameObject = new GameObject(name, typeof(SpriteRenderer));
+			Transform transform = gameObject.transform;
+			transform.SetParent(parent, false);
+			transform.localPosition = localPosition;
+			transform.localScale = localScale;
+			SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+			spriteRenderer.sprite = sprite;
+			spriteRenderer.sortingOrder = sortingOrder;
+			spriteRenderer.color = color;
+			return gameObject;
+		}
 	}
 }
