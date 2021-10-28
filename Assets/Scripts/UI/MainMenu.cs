@@ -21,5 +21,11 @@ namespace OperationBlackwell.UI {
 				Debug.Log("Game asked to quit while in editor, call ignored.");
 			}
 		}
+
+		private void Update() {
+			if(Input.GetKeyDown(KeyCode.Escape)) {
+				ExitGame();
+			}
+		}
 	}
 }
