@@ -55,6 +55,8 @@ namespace OperationBlackwell.Core {
 				}
 			}
 
+			Debug.Log("Hit chance: " + RangedHitChance(blueTeamList_[0].GetPosition(), redTeamList_[0].GetPosition(), 100f));
+
 			SelectNextActiveUnit();
 			UpdateValidMovePositions();
 		}
@@ -268,6 +270,39 @@ namespace OperationBlackwell.Core {
 
 		public CoreUnit GetActiveUnit() {
 			return unitGridCombat_;
+		}
+
+		/*	
+		 *	This method calculates and returns the hit chance between two Vector3's 
+		 *	It is possible to add another float variable WeaponModifierHitChance to this method, then adjust float hitChance accordingly.
+		 */
+		private float RangedHitChance(Vector3 player, Vector3 target, float weaponMaxRange) {
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			List<Vector3> points = CalculatePoints(player, target);
+			float hitChance = 100f;
+
+			if(weaponMaxRange >= Vector3.Distance(player, target)) {
+				// Target is in range
+				foreach(Vector3 v in points) {
+					// Calculates hitchance
+					hitChance -= grid.GetGridObject(v).hitChanceModifier;
+				}
+			}
+			return hitChance;
+		}
+
+		// The methods `CalculatePoints` is from https://www.redblobgames.com/grids/line-drawing.html and adjusted accordingly.
+
+		// Calculates the length between two Vector3's and returns N nodes between them.
+		private List<Vector3> CalculatePoints(Vector3 p0, Vector3 p1) {
+			List<Vector3> points = new List<Vector3>();
+			// A cast to int is used here to make sure the variable has a whole number
+			float diagonalLength = (int)Vector3.Distance(p0, p1);
+			for(int step = 0; step <= diagonalLength; step++) {
+				float pointOnLine = diagonalLength == 0 ? 0.0f : step / diagonalLength;
+				points.Add(Vector3.Lerp(p0, p1, pointOnLine));
+			}
+			return points;
 		}
 	}
 }
