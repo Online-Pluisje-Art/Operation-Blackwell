@@ -16,12 +16,12 @@ jobs:
           - editmode
     steps:
       - name: Checkout repo
-        if: github.ref == 'refs/heads/master'
+        if: github.repository_owner == 'Online-Pluisje-Art'
         uses: actions/checkout@v2
         with:
           lfs: true
       - name: Cache library files
-        if: github.ref == 'refs/heads/master'
+        if: github.repository_owner == 'Online-Pluisje-Art'
         uses: actions/cache@v2
         with:
           path: ${{ matrix.projectPath }}/Library
@@ -29,7 +29,7 @@ jobs:
           restore-keys: |
             Library-
       - name: Run tests
-        if: github.ref == 'refs/heads/master'
+        if: github.repository_owner == 'Online-Pluisje-Art'
         uses: game-ci/unity-test-runner@v2
         id: tests
         env:
@@ -41,9 +41,8 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           checkName: ${{ matrix.testMode }} Test Results
       - name: Upload results
-        if: github.ref == 'refs/heads/master'
+        if: github.repository_owner == 'Online-Pluisje-Art'
         uses: actions/upload-artifact@v2
-        if: always()
         with:
           name: Test results for ${{ matrix.testMode }}
           path: ${{ steps.tests.outputs.artifactsPath }}
