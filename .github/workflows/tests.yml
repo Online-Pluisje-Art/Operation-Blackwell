@@ -1,0 +1,45 @@
+name: Run unit tests
+
+on: [push, pull_request]
+
+jobs:
+  testAllModes:
+    name: Test in ${{ matrix.testMode }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        testMode:
+          - playmode
+          - editmode
+    steps:
+      - name: Checkout repo
+        if: github.repository_owner == 'Online-Pluisje-Art'
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Cache library files
+        if: github.repository_owner == 'Online-Pluisje-Art'
+        uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+      - name: Run tests
+        if: github.repository_owner == 'Online-Pluisje-Art'
+        uses: game-ci/unity-test-runner@v2
+        id: tests
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          testMode: ${{ matrix.testMode }}
+          artifactsPath: ${{ matrix.testMode }}-artifacts
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          checkName: ${{ matrix.testMode }} Test Results
+      - name: Upload results
+        if: github.repository_owner == 'Online-Pluisje-Art'
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test results for ${{ matrix.testMode }}
+          path: ${{ steps.tests.outputs.artifactsPath }}
