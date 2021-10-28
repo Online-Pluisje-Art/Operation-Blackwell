@@ -14,10 +14,10 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void HandleSaveLoad() {
-			if(Input.GetKeyDown(KeyCode.P)) {
+			if(Input.GetKeyDown(KeyCode.Backslash)) {
 				StartCoroutine(getSaveNameForSaving());
 			}
-			if(Input.GetKeyDown(KeyCode.L)) {
+			if(Input.GetKeyDown(KeyCode.Pipe)) {
 				StartCoroutine(getSaveNameForLoading());
 			}
 		}

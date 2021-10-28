@@ -484,16 +484,17 @@ TextMesh:
     - O selects cover tile
 
     -
-    P saves to the given filename
+    ''\'' saves to the given filename
 
-    - L loads the specified save
+    - ''|'' loads the specified save
 
-    - Esc goes
-    back to the main menu
+    -
+    Esc goes back to the main menu
 
     - Home opens github
 
-    - End opens the docs'
+    - End opens the
+    docs'
   m_OffsetZ: 0
   m_CharacterSize: 0.35
   m_LineSpacing: 1
