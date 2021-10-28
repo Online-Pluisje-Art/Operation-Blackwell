@@ -10,5 +10,9 @@ namespace OperationBlackwell.Core {
 		public abstract int GetActionPoints();
 		public abstract void SetActionPoints(int actionPoints);
 		public abstract void ResetActionPoints();
+		public abstract bool CanAttackUnit(CoreUnit unitGridCombat);
+		public abstract void AttackUnit(CoreUnit unitGridCombat, Action onAttackComplete);
+		public abstract bool IsDead();
+		public abstract void Damage(CoreUnit attacker, int damageAmount);
 	}
 }
