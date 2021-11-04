@@ -222,3 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4068276e63dd8e67ea8e68b19260004c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team_: 0
+  actionPoints_: 0
+  maxActionPoints_: 0
+  weapons_:
+  - {fileID: -1085397881649897317, guid: 313cca6ff964ba3ebbf5359d33899667, type: 3}
