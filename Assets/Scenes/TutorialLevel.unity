@@ -16650,6 +16650,7 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 6238058716552792254, guid: 0f35d99036394798ba8689ba84f9f3ca, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
@@ -16688,6 +16689,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 1368884411}
     m_Modifications:
     - target: {fileID: 228455980099277315, guid: e527fbf181b394b29a569afae275ef12, type: 3}
+=======
+    - target: {fileID: -4549131017487381479, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
+      propertyPath: weapons_.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4549131017487381479, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
+      propertyPath: weapons_.Array.data[0]
+      value: 
+      objectReference: {fileID: -1085397881649897317, guid: 313cca6ff964ba3ebbf5359d33899667, type: 3}
+    - target: {fileID: -4549131017487381479, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
+      propertyPath: weapons_.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -4549131017487381479, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
+      propertyPath: weapons_.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 197259336583530509, guid: d3221a1cf8229adf4b66641c061cd0a9, type: 3}
+>>>>>>> 33a140d (player: Construct a basic weapon system)
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
