@@ -34,9 +34,6 @@ namespace OperationBlackwell.Core {
 			if(Input.GetKeyDown(KeyCode.C)) {
 				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_FULL_MIDDLE_TEXTURE;
 			}
-			if(Input.GetKeyDown(KeyCode.V)) {
-				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_FULL_FRONT_TEXTURE;
-			}
 			if(Input.GetKeyDown(KeyCode.B)) {
 				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_SIDE_RIGHT_TEXTURE;
 			}

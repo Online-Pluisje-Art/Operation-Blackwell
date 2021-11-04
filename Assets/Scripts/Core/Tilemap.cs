@@ -77,8 +77,6 @@ namespace OperationBlackwell.Core {
 				WALL_FULL_TEXTURE,
 				// The middle
 				WALL_FULL_MIDDLE_TEXTURE,
-				// The front
-				WALL_FULL_FRONT_TEXTURE,
 				// This is the side visible wall.
 				WALL_SIDE_LEFT_TEXTURE,
 				// This is the side visible wall.
@@ -161,7 +159,8 @@ namespace OperationBlackwell.Core {
 					this.walkable = true;
 					this.hitChanceModifier = floorHitChanceModifier;
 					this.cover = false;
-				} else if(nodeSprite == NodeSprite.WALL_FULL_TEXTURE || nodeSprite == NodeSprite.WALL_SIDE_LEFT_TEXTURE || nodeSprite == NodeSprite.WALL_SIDE_RIGHT_TEXTURE || nodeSprite == NodeSprite.WALL_BACK_TEXTURE || nodeSprite == NodeSprite.WALL_FULL_MIDDLE_TEXTURE || nodeSprite == NodeSprite.WALL_FULL_FRONT_TEXTURE || nodeSprite == NodeSprite.NONE) {					this.walkable = false;
+				} else if(nodeSprite == NodeSprite.WALL_FULL_TEXTURE || nodeSprite == NodeSprite.WALL_SIDE_LEFT_TEXTURE || nodeSprite == NodeSprite.WALL_SIDE_RIGHT_TEXTURE || nodeSprite == NodeSprite.WALL_BACK_TEXTURE || nodeSprite == NodeSprite.WALL_FULL_MIDDLE_TEXTURE || nodeSprite == NodeSprite.NONE) {
+					this.walkable = false;
 					this.hitChanceModifier = wallHitChanceModifier;
 					this.cover = false;
 				} else if(nodeSprite == NodeSprite.COVER) {

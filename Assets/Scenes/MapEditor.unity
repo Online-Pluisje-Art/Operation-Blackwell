@@ -156,7 +156,7 @@ MonoBehaviour:
   cellSize_: 1
   drawGridLines_: 1
   movementTilemapVisual_: {fileID: 1176652284}
-  tilemapVisual_: {fileID: 1279300369}
+  tilemapVisual_: {fileID: 2023860250}
 --- !u!4 &593590128
 Transform:
   m_ObjectHideFlags: 0
@@ -490,24 +490,21 @@ TextMesh:
     - C selects full middle wall tile
 
     -
-    V selects full front wall tile
+    B selects right side wall tile
 
-    - B selects right side wall tile
+    - O selects cover tile
 
-    - O
-    selects cover tile
+    - ''\'' saves
+    to the given filename
 
-    - ''\'' saves to the given filename
+    - ''|'' loads the specified save
 
-    - ''|'' loads
-    the specified save
-
-    - Esc goes back to the main menu
+    - Esc goes back
+    to the main menu
 
     - Home opens github
 
-    -
-    End opens the docs'
+    - End opens the docs'
   m_OffsetZ: 0
   m_CharacterSize: 0.35
   m_LineSpacing: 1
@@ -576,7 +573,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1279300366
+--- !u!1 &2023860247
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -584,10 +581,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1279300370}
-  - component: {fileID: 1279300369}
-  - component: {fileID: 1279300368}
-  - component: {fileID: 1279300367}
+  - component: {fileID: 2023860251}
+  - component: {fileID: 2023860250}
+  - component: {fileID: 2023860249}
+  - component: {fileID: 2023860248}
   m_Layer: 0
   m_Name: TilemapVisual
   m_TagString: Untagged
@@ -595,13 +592,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!23 &1279300367
+--- !u!23 &2023860248
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279300366}
+  m_GameObject: {fileID: 2023860247}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -636,21 +633,21 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1279300368
+--- !u!33 &2023860249
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279300366}
+  m_GameObject: {fileID: 2023860247}
   m_Mesh: {fileID: 0}
---- !u!114 &1279300369
+--- !u!114 &2023860250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279300366}
+  m_GameObject: {fileID: 2023860247}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73e6ef86219694b368b91b5016232253, type: 3}
@@ -658,8 +655,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeSpriteUVArray_:
   - nodeSprite: 8
-    uv00Pixels: {x: 384, y: 512}
-    uv11Pixels: {x: 512, y: 640}
+    uv00Pixels: {x: 384, y: 384}
+    uv11Pixels: {x: 512, y: 512}
   - nodeSprite: 3
     uv00Pixels: {x: 512, y: 512}
     uv11Pixels: {x: 640, y: 640}
@@ -669,25 +666,22 @@ MonoBehaviour:
   - nodeSprite: 2
     uv00Pixels: {x: 384, y: 0}
     uv11Pixels: {x: 512, y: 128}
-  - nodeSprite: 9
-    uv00Pixels: {x: 0, y: 0}
-    uv11Pixels: {x: 128, y: 128}
   - nodeSprite: 6
     uv00Pixels: {x: 0, y: 512}
     uv11Pixels: {x: 128, y: 640}
   - nodeSprite: 7
     uv00Pixels: {x: 128, y: 512}
     uv11Pixels: {x: 256, y: 640}
-  - nodeSprite: 5
-    uv00Pixels: {x: 256, y: 128}
-    uv11Pixels: {x: 384, y: 256}
---- !u!4 &1279300370
+  - nodeSprite: 9
+    uv00Pixels: {x: 384, y: 0}
+    uv11Pixels: {x: 512, y: 128}
+--- !u!4 &2023860251
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279300366}
+  m_GameObject: {fileID: 2023860247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
