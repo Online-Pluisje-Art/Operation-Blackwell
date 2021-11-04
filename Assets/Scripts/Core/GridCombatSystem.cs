@@ -20,9 +20,13 @@ namespace OperationBlackwell.Core {
 		public EventHandler<EventArgs> OnUnitDeath;
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
 		public EventHandler<UnitPositionEvent> OnUnitMove;
+		public EventHandler<UnitEvent> OnUnitActionPointsChanged;
 
-		public class UnitPositionEvent : EventArgs {
+		public class UnitEvent : EventArgs {
 			public CoreUnit unit;
+		}
+
+		public class UnitPositionEvent : UnitEvent {
 			public Vector3 position;
 		}
 
@@ -83,6 +87,11 @@ namespace OperationBlackwell.Core {
 			} else {
 				unitGridCombat_ = GetNextActiveUnit(Team.Red);
 			}
+
+			UnitEvent unitEvent = new UnitEvent() {
+				unit = unitGridCombat_
+			};
+			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 		}
 
 		private CoreUnit GetNextActiveUnit(Team team) {
@@ -208,6 +217,10 @@ namespace OperationBlackwell.Core {
 										});
 									}
 									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
+									UnitEvent unitEvent = new UnitEvent() {
+										unit = unitGridCombat_
+									};
+									OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 									UpdateValidMovePositions();
 									TestTurnOver();
 								});
@@ -226,6 +239,10 @@ namespace OperationBlackwell.Core {
 										// Attack Enemy
 										state_ = State.Waiting;
 										unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 3);
+										UnitEvent unitEvent = new UnitEvent() {
+											unit = unitGridCombat_
+										};
+										OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 										unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
 											state_ = State.Normal;
 											UpdateValidMovePositions();
