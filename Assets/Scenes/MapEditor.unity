@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridWorldSize_: {x: 11, y: 11, z: 0}
   cellSize_: 1
+  drawGridLines_: 1
   movementTilemapVisual_: {fileID: 1176652284}
   tilemapVisual_: {fileID: 2098585260}
 --- !u!4 &593590128

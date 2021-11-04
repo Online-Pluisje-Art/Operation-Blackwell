@@ -12,6 +12,8 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private Vector3 gridWorldSize_;
 		[SerializeField] private float cellSize_;
 
+		[SerializeField] private bool drawGridLines_;
+
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
 		private MovementTilemap movementTilemap_;
 
@@ -25,7 +27,7 @@ namespace OperationBlackwell.Core {
 
 		private void Awake() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
-				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, Tilemap.Node.floorHitChanceModifier, false));
+				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, true, Tilemap.Node.floorHitChanceModifier, false), drawGridLines_);
 			tilemap = new Tilemap(grid);
 			Instance = this;
 			Vector3 origin = new Vector3(0, 0);
