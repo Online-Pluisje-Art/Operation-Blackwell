@@ -23,7 +23,22 @@ namespace OperationBlackwell.Core {
 				nodeSprite_ = Tilemap.Node.NodeSprite.FLOOR;
 			}
 			if(Input.GetKeyDown(KeyCode.I)) {
-				nodeSprite_ = Tilemap.Node.NodeSprite.WALL;
+				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_FULL_TEXTURE;
+			}
+			if(Input.GetKeyDown(KeyCode.Z)) {
+				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_SIDE_LEFT_TEXTURE;
+			}
+			if(Input.GetKeyDown(KeyCode.X)) {
+				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_BACK_TEXTURE;
+			}
+			if(Input.GetKeyDown(KeyCode.C)) {
+				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_FULL_MIDDLE_TEXTURE;
+			}
+			if(Input.GetKeyDown(KeyCode.V)) {
+				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_FULL_FRONT_TEXTURE;
+			}
+			if(Input.GetKeyDown(KeyCode.B)) {
+				nodeSprite_ = Tilemap.Node.NodeSprite.WALL_SIDE_RIGHT_TEXTURE;
 			}
 			if(Input.GetKeyDown(KeyCode.O)) {
 				nodeSprite_ = Tilemap.Node.NodeSprite.COVER;

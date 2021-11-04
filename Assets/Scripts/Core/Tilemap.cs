@@ -66,20 +66,31 @@ namespace OperationBlackwell.Core {
 		public class Node {
 			public static float floorHitChanceModifier = 5f;
 			public static float wallHitChanceModifier = 100f;
-			public static float pitChanceModifier = 5f;
+			public static float pitHitChanceModifier = 5f;
 			public static float coverHitChanceModifier = 30f;
 			public enum NodeSprite {
 				// Default sprite.
 				NONE,
 				PIT,
 				FLOOR,
-				WALL,
+				// This is the full visible wall.
+				WALL_FULL_TEXTURE,
+				// The middle
+				WALL_FULL_MIDDLE_TEXTURE,
+				// The front
+				WALL_FULL_FRONT_TEXTURE,
+				// This is the side visible wall.
+				WALL_SIDE_LEFT_TEXTURE,
+				// This is the side visible wall.
+				WALL_SIDE_RIGHT_TEXTURE,
+				// This is the not visible wall.
+				WALL_BACK_TEXTURE,
 				COVER,
 			}
 			// Holds the amount of cover this tile gives.
-			public bool cover { get; private set; }
+			public bool cover;
 			// Holds if the tile can be walked over.
-			public bool walkable { get; protected set; }
+			public bool walkable;
 			public float hitChanceModifier;
 			public Vector3 worldPosition { get; private set; }
 			public int gridX { get; private set; }
@@ -142,22 +153,15 @@ namespace OperationBlackwell.Core {
 
 			public void SetNodeSprite(NodeSprite nodeSprite) {
 				this.nodeSprite_ = nodeSprite;
-				if(nodeSprite == NodeSprite.NONE) {
-					// Should be error state!
-					Debug.Log("NodeSprite none will become an hard error in the future!");
-					this.walkable = true;
-					this.hitChanceModifier = floorHitChanceModifier;
-					this.cover = false;
-				} else if(nodeSprite == NodeSprite.PIT) {
+				if(nodeSprite == NodeSprite.PIT) {
 					this.walkable = false;
-					this.hitChanceModifier = pitChanceModifier;
+					this.hitChanceModifier = pitHitChanceModifier;
 					this.cover = false;
 				} else if(nodeSprite == NodeSprite.FLOOR) {
 					this.walkable = true;
 					this.hitChanceModifier = floorHitChanceModifier;
 					this.cover = false;
-				} else if(nodeSprite == NodeSprite.WALL) {
-					this.walkable = false;
+				} else if(nodeSprite == NodeSprite.WALL_FULL_TEXTURE || nodeSprite == NodeSprite.WALL_SIDE_LEFT_TEXTURE || nodeSprite == NodeSprite.WALL_SIDE_RIGHT_TEXTURE || nodeSprite == NodeSprite.WALL_BACK_TEXTURE || nodeSprite == NodeSprite.WALL_FULL_MIDDLE_TEXTURE || nodeSprite == NodeSprite.WALL_FULL_FRONT_TEXTURE || nodeSprite == NodeSprite.NONE) {					this.walkable = false;
 					this.hitChanceModifier = wallHitChanceModifier;
 					this.cover = false;
 				} else if(nodeSprite == NodeSprite.COVER) {
