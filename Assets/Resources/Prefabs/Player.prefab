@@ -205,10 +205,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2744210443336812488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ecc290a5429fd4e7865c27cdc39aa0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d2b241df624602f3b04ce4b866556df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed_: 50
 --- !u!114 &3295664497468958393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,9 +217,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2744210443336812488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d95793cfca8aa031b82252c526a5d338, type: 3}
+  m_Script: {fileID: 11500000, guid: e1c2eb4c577b6f9dea56607a8e5df76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed_: 5
 --- !u!114 &-4549131017487381479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,4 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0af036b690810680a9cceaaa13a91e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: 0
+  team_: 0
+  actionPoints_: 0
+  maxActionPoints_: 0
