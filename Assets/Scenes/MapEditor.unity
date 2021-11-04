@@ -658,8 +658,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeSpriteUVArray_:
   - nodeSprite: 8
-    uv00Pixels: {x: 384, y: 384}
-    uv11Pixels: {x: 512, y: 512}
+    uv00Pixels: {x: 384, y: 512}
+    uv11Pixels: {x: 512, y: 640}
   - nodeSprite: 3
     uv00Pixels: {x: 512, y: 512}
     uv11Pixels: {x: 640, y: 640}
@@ -670,8 +670,8 @@ MonoBehaviour:
     uv00Pixels: {x: 384, y: 0}
     uv11Pixels: {x: 512, y: 128}
   - nodeSprite: 9
-    uv00Pixels: {x: 256, y: 128}
-    uv11Pixels: {x: 384, y: 256}
+    uv00Pixels: {x: 0, y: 0}
+    uv11Pixels: {x: 128, y: 128}
   - nodeSprite: 6
     uv00Pixels: {x: 0, y: 512}
     uv11Pixels: {x: 128, y: 640}
@@ -679,8 +679,8 @@ MonoBehaviour:
     uv00Pixels: {x: 128, y: 512}
     uv11Pixels: {x: 256, y: 640}
   - nodeSprite: 5
-    uv00Pixels: {x: 384, y: 0}
-    uv11Pixels: {x: 512, y: 128}
+    uv00Pixels: {x: 256, y: 128}
+    uv11Pixels: {x: 384, y: 256}
 --- !u!4 &1279300370
 Transform:
   m_ObjectHideFlags: 0
