@@ -465,9 +465,17 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 2,
             "y": 10,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
+            "cover": false
+        },
+        {
+            "nodeSprite": 8,
+            "x": 2,
+            "y": 11,
             "walkable": false,
             "hitChanceModifier": 100.0,
             "cover": false
@@ -475,14 +483,6 @@
         {
             "nodeSprite": 6,
             "x": 2,
-            "y": 11,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
-            "cover": false
-        },
-        {
-            "nodeSprite": 6,
-            "x": 2,
             "y": 12,
             "walkable": false,
             "hitChanceModifier": 100.0,
@@ -657,7 +657,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 3,
             "y": 10,
             "walkable": false,
@@ -665,11 +665,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 3,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -849,7 +849,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 4,
             "y": 10,
             "walkable": false,
@@ -857,11 +857,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 4,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -1041,7 +1041,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 5,
             "y": 10,
             "walkable": false,
@@ -1049,11 +1049,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 5,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -1233,7 +1233,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 6,
             "y": 10,
             "walkable": false,
@@ -1241,11 +1241,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 6,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -1425,7 +1425,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 7,
             "y": 10,
             "walkable": false,
@@ -1433,11 +1433,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 7,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -1617,7 +1617,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 8,
             "y": 10,
             "walkable": false,
@@ -1625,11 +1625,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 8,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -1809,7 +1809,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 9,
             "y": 10,
             "walkable": false,
@@ -1817,11 +1817,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 9,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -2001,7 +2001,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 10,
             "y": 10,
             "walkable": false,
@@ -2009,11 +2009,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 10,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -2193,7 +2193,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 11,
             "y": 10,
             "walkable": false,
@@ -2201,11 +2201,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 11,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -2353,11 +2353,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 12,
             "y": 6,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -2385,7 +2385,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 12,
             "y": 10,
             "walkable": false,
@@ -2393,11 +2393,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 12,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -2545,11 +2545,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 13,
             "y": 6,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -2577,7 +2577,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 13,
             "y": 10,
             "walkable": false,
@@ -2585,11 +2585,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 13,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -2737,11 +2737,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 14,
             "y": 6,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -2769,7 +2769,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 14,
             "y": 10,
             "walkable": false,
@@ -2777,11 +2777,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 14,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -2929,11 +2929,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 15,
             "y": 6,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -2961,7 +2961,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 15,
             "y": 10,
             "walkable": false,
@@ -2969,11 +2969,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 15,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -3121,11 +3121,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 16,
             "y": 6,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -3153,7 +3153,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 16,
             "y": 10,
             "walkable": false,
@@ -3161,11 +3161,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 16,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -3313,11 +3313,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 17,
             "y": 6,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -3345,7 +3345,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 17,
             "y": 10,
             "walkable": false,
@@ -3353,11 +3353,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 17,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -3505,11 +3505,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 18,
             "y": 6,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -3537,7 +3537,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 18,
             "y": 10,
             "walkable": false,
@@ -3545,11 +3545,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 18,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -3697,11 +3697,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 19,
             "y": 6,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -3729,7 +3729,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 19,
             "y": 10,
             "walkable": false,
@@ -3737,11 +3737,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 19,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -3921,7 +3921,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 20,
             "y": 10,
             "walkable": false,
@@ -3929,11 +3929,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 20,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -4108,12 +4108,12 @@
             "nodeSprite": 0,
             "x": 21,
             "y": 9,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 21,
             "y": 10,
             "walkable": false,
@@ -4121,11 +4121,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 21,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -4305,7 +4305,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 22,
             "y": 10,
             "walkable": false,
@@ -4313,11 +4313,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 22,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -4497,7 +4497,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 23,
             "y": 10,
             "walkable": false,
@@ -4505,11 +4505,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 23,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -4689,7 +4689,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 24,
             "y": 10,
             "walkable": false,
@@ -4697,11 +4697,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 24,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -4881,7 +4881,7 @@
             "cover": false
         },
         {
-            "nodeSprite": 8,
+            "nodeSprite": 0,
             "x": 25,
             "y": 10,
             "walkable": false,
@@ -4889,11 +4889,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 8,
             "x": 25,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -5081,11 +5081,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 2,
+            "nodeSprite": 6,
             "x": 26,
             "y": 11,
-            "walkable": true,
-            "hitChanceModifier": 5.0,
+            "walkable": false,
+            "hitChanceModifier": 100.0,
             "cover": false
         },
         {
@@ -6209,11 +6209,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 32,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -6401,11 +6401,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 33,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -6593,11 +6593,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 34,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -6785,11 +6785,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 35,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -6977,11 +6977,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 36,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -7169,11 +7169,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 37,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -7361,11 +7361,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 38,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -7553,11 +7553,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 39,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -7745,11 +7745,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 40,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -7937,11 +7937,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 41,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -8129,11 +8129,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 42,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -8321,11 +8321,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 43,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -8513,11 +8513,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 44,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -8705,11 +8705,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 45,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -8897,11 +8897,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 46,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -9089,11 +9089,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 47,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -9473,11 +9473,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 49,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
@@ -9665,11 +9665,11 @@
             "cover": false
         },
         {
-            "nodeSprite": 5,
+            "nodeSprite": 2,
             "x": 50,
             "y": 8,
-            "walkable": false,
-            "hitChanceModifier": 100.0,
+            "walkable": true,
+            "hitChanceModifier": 5.0,
             "cover": false
         },
         {
