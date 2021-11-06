@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage_: 100
   range_: 1
-  costs_: 0
+  costs_: 2

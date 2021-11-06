@@ -73,11 +73,18 @@ namespace OperationBlackwell.Player {
 
 		public override bool CanAttackUnit(CoreUnit unitGridCombat) {
 			/* 
-			 * TODO: Check if unit is in range
-			 * TODO: Check if unit is on the same team
-			 * The value of 1.5f is a placeholder for the range of the units attack.
+			 * If the unit is on the same team, return false.
+			 * Calculate the distance between the two units. 
+			 * The CalculatePoints method is used to calculate the distance between two points, 
+			 * when its the same node it returns 1 so we subtract one from the distance to get the actual distance.
+			 * If the distance is less or equal than the weapon range, return true.
 			 */
-			return Vector3.Distance(GetPosition(), unitGridCombat.GetPosition()) < 1.5f;
+			if(unitGridCombat.GetTeam() == team_) {
+				return false;
+			}
+
+			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
+			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}
 
 		public override void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
@@ -144,6 +151,10 @@ namespace OperationBlackwell.Player {
 
 		public override bool IsDead() {
 			return healthSystem_.IsDead();
+		}
+
+		public override int GetAttackCost() {
+			return currentWeapon_.GetActionPointsCost();
 		}
 	}
 }

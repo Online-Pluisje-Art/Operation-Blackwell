@@ -14,5 +14,6 @@ namespace OperationBlackwell.Core {
 		public abstract void AttackUnit(CoreUnit unitGridCombat, Action onAttackComplete);
 		public abstract bool IsDead();
 		public abstract void Damage(CoreUnit attacker, float damageAmount);
+		public abstract int GetAttackCost();
 	}
 }
