@@ -156,5 +156,25 @@ namespace OperationBlackwell.Player {
 		public override int GetAttackCost() {
 			return currentWeapon_.GetActionPointsCost();
 		}
+
+		/*	
+		 *	This method calculates and returns the hit chance between two Vector3's 
+		 *	It is possible to add another float variable WeaponModifierHitChance to this method, then adjust float hitChance accordingly.
+		 */
+		private float RangedHitChance(Vector3 player, Vector3 target) {
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			List<Vector3> points = GridCombatSystem.Instance.CalculatePoints(player, target);
+
+			float hitChance = currentWeapon_.GetBaseHitchance();
+
+			if(currentWeapon_.GetRange() >= points.Count - 1) {
+				// Target is in range
+				foreach(Vector3 v in points) {
+					// Calculates hitchance
+					hitChance -= grid.GetGridObject(v).hitChanceModifier;
+				}
+			}
+			return hitChance;
+		}
 	}
 }
