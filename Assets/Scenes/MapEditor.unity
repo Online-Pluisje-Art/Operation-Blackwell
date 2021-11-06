@@ -482,29 +482,25 @@ TextMesh:
 
     - I selects full wall tile
 
-    - Z selects left side
-    wall tile
-
-    - X selects back wall tile
+    - X selects back wall
+    tile
 
     - C selects full middle wall tile
 
-    -
-    B selects right side wall tile
-
     - O selects cover tile
 
-    - ''\'' saves
-    to the given filename
+    -
+    ''\'' saves to the given filename
 
     - ''|'' loads the specified save
 
-    - Esc goes back
-    to the main menu
+    -
+    Esc goes back to the main menu
 
     - Home opens github
 
-    - End opens the docs'
+    - End opens the
+    docs'
   m_OffsetZ: 0
   m_CharacterSize: 0.35
   m_LineSpacing: 1
@@ -654,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeSpriteUVArray_:
-  - nodeSprite: 8
+  - nodeSprite: 5
     uv00Pixels: {x: 384, y: 384}
     uv11Pixels: {x: 512, y: 512}
   - nodeSprite: 3
@@ -666,13 +662,13 @@ MonoBehaviour:
   - nodeSprite: 2
     uv00Pixels: {x: 384, y: 0}
     uv11Pixels: {x: 512, y: 128}
-  - nodeSprite: 6
+  - nodeSprite: 1
     uv00Pixels: {x: 0, y: 512}
     uv11Pixels: {x: 128, y: 640}
-  - nodeSprite: 7
+  - nodeSprite: 6
     uv00Pixels: {x: 128, y: 512}
     uv11Pixels: {x: 256, y: 640}
-  - nodeSprite: 9
+  - nodeSprite: 2
     uv00Pixels: {x: 384, y: 0}
     uv11Pixels: {x: 512, y: 128}
 --- !u!4 &2023860251
