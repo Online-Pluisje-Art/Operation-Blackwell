@@ -34,6 +34,15 @@ namespace OperationBlackwell.Core {
 			if(Input.GetKeyDown(KeyCode.O)) {
 				nodeSprite_ = Tilemap.Node.NodeSprite.COVER;
 			}
+			if(Input.GetKeyDown(KeyCode.Z)) {
+				nodeSprite_ = Tilemap.Node.NodeSprite.DOOR_TOP;
+			}
+			if(Input.GetKeyDown(KeyCode.V)) {
+				nodeSprite_ = Tilemap.Node.NodeSprite.DOOR_MIDDLE;
+			}
+			if(Input.GetKeyDown(KeyCode.B)) {
+				nodeSprite_ = Tilemap.Node.NodeSprite.DOOR_BOTTOM;
+			}
 			if(Input.GetMouseButtonDown(1)) {
 				Vector3 mouseWorldPosition = Utils.GetMouseWorldPosition();
 				Tilemap.Node node = GameController.Instance.grid.GetGridObject(mouseWorldPosition);
