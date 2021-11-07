@@ -159,7 +159,10 @@ namespace OperationBlackwell.Core {
 					this.walkable = true;
 					this.hitChanceModifier = floorHitChanceModifier;
 					this.cover = false;
-				} else if(nodeSprite == NodeSprite.WALL_FULL_TEXTURE || nodeSprite == NodeSprite.WALL_BACK_TEXTURE || nodeSprite == NodeSprite.WALL_FULL_MIDDLE_TEXTURE || nodeSprite == NodeSprite.NONE || nodeSprite == NodeSprite.DOOR_TOP || nodeSprite == NodeSprite.DOOR_MIDDLE || nodeSprite == NodeSprite.DOOR_BOTTOM) {
+				} else if(nodeSprite == NodeSprite.WALL_FULL_TEXTURE || nodeSprite == NodeSprite.WALL_BACK_TEXTURE ||
+						nodeSprite == NodeSprite.WALL_FULL_MIDDLE_TEXTURE || nodeSprite == NodeSprite.NONE ||
+						nodeSprite == NodeSprite.DOOR_TOP || nodeSprite == NodeSprite.DOOR_MIDDLE ||
+						nodeSprite == NodeSprite.DOOR_BOTTOM) {
 					this.walkable = false;
 					this.hitChanceModifier = wallHitChanceModifier;
 					this.cover = false;

@@ -7,6 +7,7 @@ namespace OperationBlackwell.Core {
         [SerializeField] private bool walkable_;
         [SerializeField] private bool cover_;
         [SerializeField] private float hitChanceModifier_;
+
         private void Start() {
             Tilemap.Node node = GameController.Instance.grid.GetGridObject(transform.position);
             node.walkable = walkable_;
