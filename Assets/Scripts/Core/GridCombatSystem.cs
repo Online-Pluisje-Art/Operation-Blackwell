@@ -189,7 +189,7 @@ namespace OperationBlackwell.Core {
 					if(Input.GetMouseButtonDown(0)) {
 						Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 						Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
-
+						
 						if(gridObject.GetIsValidMovePosition()) {
 							// Valid Move Position
 
@@ -259,6 +259,7 @@ namespace OperationBlackwell.Core {
 						} else {
 							// No unit here
 						}
+						CheckForInteractable(grid, gridObject);
 					}
 
 					if(Input.GetKeyDown(KeyCode.Space)) {
@@ -290,7 +291,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		/*	
-		 *	This method calculates and returns the hit chance between two Vector3's 
+		 *	This method calculates and returns the hit chance between two Vector3's.
 		 *	It is possible to add another float variable WeaponModifierHitChance to this method, then adjust float hitChance accordingly.
 		 */
 		private float RangedHitChance(Vector3 player, Vector3 target, float weaponMaxRange) {
@@ -320,6 +321,57 @@ namespace OperationBlackwell.Core {
 				points.Add(Vector3.Lerp(p0, p1, pointOnLine));
 			}
 			return points;
+		}
+
+		private void CheckForInteractable(Grid<Tilemap.Node> grid, Tilemap.Node gridObject) {
+			RaycastHit hit;
+			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit) && hit.collider.tag == "Interactable") {
+				var objectToInteractWith = hit.collider.gameObject.GetComponent<IInteractable>();
+				if(objectToInteractWith != null) {
+					/*
+					 *	Checks for distance between object and the player.
+					 *	The number 1.15 is because of rounding. It seems the player is not always being centered.
+					 *	If we want to interact diagonal, change the number to 1.5.
+					 */
+					if(Vector3.Distance(hit.collider.gameObject.transform.position, unitGridCombat_.GetPosition()) < 1.15) {
+						state_ = State.Waiting;
+						objectToInteractWith.Interact();
+						//unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 1);		
+						// UnitEvent unitEvent = new UnitEvent() {
+						// 	unit = unitGridCombat_
+						// };
+
+						GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+									MovementTilemap.TilemapObject.TilemapSprite.None
+								);
+
+								// Remove Unit from current Grid Object
+								grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
+								// Set Unit on target Grid Object
+								gridObject.SetUnitGridCombat(unitGridCombat_);
+
+						unitGridCombat_.MoveTo(unitGridCombat_.GetPosition(), () => {
+						state_ = State.Normal;
+						if(unitGridCombat_.GetActionPoints() >= 0) {
+							OnUnitMove?.Invoke(this, new UnitPositionEvent() {
+								unit = unitGridCombat_,
+								position = unitGridCombat_.GetPosition()
+							});
+						}
+						unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 1);
+						UnitEvent unitEvent = new UnitEvent() {
+							unit = unitGridCombat_
+						};
+						OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						UpdateValidMovePositions();
+						TestTurnOver();
+						});
+					}
+					// OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+					// UpdateValidMovePositions();
+					// TestTurnOver();
+				}
+			}
 		}
 	}
 }
