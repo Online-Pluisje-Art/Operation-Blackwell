@@ -5,8 +5,8 @@ using UnityEngine;
 namespace OperationBlackwell.UI {
 	public class OptionsMenu : MonoBehaviour {
 
-		public void Option1Clicked() {
-			Debug.Log("Option 1 clicked");
+		public void ToggleFullscreen() {
+			Screen.fullScreen = !Screen.fullScreen;
 		}
 
 		public void Option2Clicked() {
