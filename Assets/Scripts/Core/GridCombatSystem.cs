@@ -59,8 +59,6 @@ namespace OperationBlackwell.Core {
 				}
 			}
 
-			Debug.Log("Hit chance: " + RangedHitChance(blueTeamList_[0].GetPosition(), redTeamList_[0].GetPosition(), 100f));
-
 			SelectNextActiveUnit();
 			UpdateValidMovePositions();
 		}
@@ -230,33 +228,28 @@ namespace OperationBlackwell.Core {
 						// Check if clicking on a unit position
 						if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.GetActionPoints() > 0) {
 							// Clicked on top of a Unit
-							if(unitGridCombat_.IsEnemy(gridObject.GetUnitGridCombat())) {
-								// Clicked on an Enemy of the current unit
-								if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
-									// Can Attack Enemy
-									// 3 is chosen as a placeholder for the attack cost
-									if(unitGridCombat_.GetActionPoints() >= 3) {
-										// Attack Enemy
-										state_ = State.Waiting;
-										unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - 3);
-										UnitEvent unitEvent = new UnitEvent() {
-											unit = unitGridCombat_
-										};
-										OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-										unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
-											state_ = State.Normal;
-											UpdateValidMovePositions();
-											TestTurnOver();
-										});
-									}
-								} else {
-									// Cannot attack enemy
+							if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
+								// Can Attack Enemy
+								int attackCost = unitGridCombat_.GetAttackCost();
+								if(unitGridCombat_.GetActionPoints() >= attackCost) {
+									// Attack Enemy
+									state_ = State.Waiting;
+									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - attackCost);
+									UnitEvent unitEvent = new UnitEvent() {
+										unit = unitGridCombat_
+									};
+									OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+									unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
+										state_ = State.Normal;
+										UpdateValidMovePositions();
+										TestTurnOver();
+									});
 								}
-								break;
 							} else {
-								// Not an enemy
+								// Cannot attack enemy
 							}
-						} else {
+							break;
+					} else {
 							// No unit here
 						}
 					}
@@ -289,29 +282,10 @@ namespace OperationBlackwell.Core {
 			return unitGridCombat_;
 		}
 
-		/*	
-		 *	This method calculates and returns the hit chance between two Vector3's 
-		 *	It is possible to add another float variable WeaponModifierHitChance to this method, then adjust float hitChance accordingly.
-		 */
-		private float RangedHitChance(Vector3 player, Vector3 target, float weaponMaxRange) {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-			List<Vector3> points = CalculatePoints(player, target);
-			float hitChance = 100f;
-
-			if(weaponMaxRange >= Vector3.Distance(player, target)) {
-				// Target is in range
-				foreach(Vector3 v in points) {
-					// Calculates hitchance
-					hitChance -= grid.GetGridObject(v).hitChanceModifier;
-				}
-			}
-			return hitChance;
-		}
-
 		// The methods `CalculatePoints` is from https://www.redblobgames.com/grids/line-drawing.html and adjusted accordingly.
 
 		// Calculates the length between two Vector3's and returns N nodes between them.
-		private List<Vector3> CalculatePoints(Vector3 p0, Vector3 p1) {
+		public List<Vector3> CalculatePoints(Vector3 p0, Vector3 p1) {
 			List<Vector3> points = new List<Vector3>();
 			// A cast to int is used here to make sure the variable has a whole number
 			float diagonalLength = (int)Vector3.Distance(p0, p1);

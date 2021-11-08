@@ -10,13 +10,17 @@ namespace OperationBlackwell.Player {
 		[SerializeField] private Team team_;
 		[SerializeField] private int actionPoints_;
 		[SerializeField] private int maxActionPoints_;
+		[SerializeField] private List<Weapon> weapons_;
 		
 		private PlayerBase characterBase_;
 		private GameObject selectedGameObject_;
 		private MovePositionPathfinding movePosition_;
 		private State state_;
+
 		private HealthSystem healthSystem_;
 		private WorldBar healthBar_;
+
+		private Weapon currentWeapon_;
 
 		private enum State {
 			Normal,
@@ -33,6 +37,7 @@ namespace OperationBlackwell.Player {
 			healthSystem_ = new HealthSystem(100);
 			healthBar_ = new WorldBar(transform, new Vector3(0, 1), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
+			SetActiveWeapon(0);
 		}
 
 		private void Update() {
@@ -56,17 +61,30 @@ namespace OperationBlackwell.Player {
 			healthBar_.SetSize(healthSystem_.GetHealthNormalized());
 		}
 
+		private void SetActiveWeapon(int index) {
+			if(index >= 0 && index < weapons_.Count) {
+				currentWeapon_ = weapons_[index];
+			}
+		}
+
 		public void SetSelectedVisible(bool visible) {
 			selectedGameObject_.SetActive(visible);
 		}
 
 		public override bool CanAttackUnit(CoreUnit unitGridCombat) {
 			/* 
-			 * TODO: Check if unit is in range
-			 * TODO: Check if unit is on the same team
-			 * The value of 1.5f is a placeholder for the range of the units attack.
+			 * If the unit is on the same team, return false.
+			 * Calculate the distance between the two units. 
+			 * The CalculatePoints method is used to calculate the distance between two points, 
+			 * when its the same node it returns 1 so we subtract one from the distance to get the actual distance.
+			 * If the distance is less or equal than the weapon range, return true.
 			 */
-			return Vector3.Distance(GetPosition(), unitGridCombat.GetPosition()) < 1.5f;
+			if(unitGridCombat.GetTeam() == team_) {
+				return false;
+			}
+
+			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
+			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}
 
 		public override void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
@@ -114,14 +132,14 @@ namespace OperationBlackwell.Player {
 			GetComponent<IMoveVelocity>().Disable();
 
 			// The value of 50 is a placeholder for the damage of the units attack.
-			unitGridCombat.Damage(this, 50); //UnityEngine.Random.Range(4, 12));
+			unitGridCombat.Damage(this, currentWeapon_.GetDamage());
 
 			GetComponent<IMoveVelocity>().Enable();
 			onShootComplete();
 		}
 
-		public override void Damage(CoreUnit attacker, int damageAmount) {	
-			healthSystem_.Damage(damageAmount);
+		public override void Damage(CoreUnit attacker, float damageAmount) {	
+			healthSystem_.Damage((int)damageAmount);
 			if(healthSystem_.IsDead()) {
 				GridCombatSystem.Instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
 				Destroy(gameObject);
@@ -133,6 +151,30 @@ namespace OperationBlackwell.Player {
 
 		public override bool IsDead() {
 			return healthSystem_.IsDead();
+		}
+
+		public override int GetAttackCost() {
+			return currentWeapon_.GetActionPointsCost();
+		}
+
+		/*	
+		 *	This method calculates and returns the hit chance between two Vector3's 
+		 *	It is possible to add another float variable WeaponModifierHitChance to this method, then adjust float hitChance accordingly.
+		 */
+		private float RangedHitChance(Vector3 player, Vector3 target) {
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			List<Vector3> points = GridCombatSystem.Instance.CalculatePoints(player, target);
+
+			float hitChance = currentWeapon_.GetBaseHitchance();
+
+			if(currentWeapon_.GetRange() >= points.Count - 1) {
+				// Target is in range
+				foreach(Vector3 v in points) {
+					// Calculates hitchance
+					hitChance -= grid.GetGridObject(v).hitChanceModifier;
+				}
+			}
+			return hitChance;
 		}
 	}
 }
