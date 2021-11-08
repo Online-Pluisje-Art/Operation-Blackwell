@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 588966938}
   - component: {fileID: 588966937}
   m_Layer: 5
-  m_Name: Option 1
+  m_Name: FullscreenToggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,7 +14,8 @@ namespace OperationBlackwell.UI {
 		}
 
 		public override void ReturnOrExit() {
-			throw new System.NotImplementedException();
+			optionsMenu_.SetActive(false);
+			mainMenu_.SetActive(true);
 		}
 	}
 }
