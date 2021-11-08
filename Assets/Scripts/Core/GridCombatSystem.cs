@@ -15,6 +15,8 @@ namespace OperationBlackwell.Core {
 		private List<CoreUnit> redTeamList_;
 		private int blueTeamActiveUnitIndex_;
 		private int redTeamActiveUnitIndex_;
+
+		private List<PathNode> currentPathUnit_;
 		private int pathLength_;
 
 		public EventHandler<EventArgs> OnUnitDeath;

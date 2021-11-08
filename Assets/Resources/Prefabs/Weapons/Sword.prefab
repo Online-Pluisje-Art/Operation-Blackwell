@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage_: 100
-  range_: 6
+  range_: 1
   costs_: 0
   baseHitchance_: 0
