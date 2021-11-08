@@ -176,6 +176,8 @@ MonoBehaviour:
   team_: 0
   actionPoints_: 5
   maxActionPoints_: 5
+  weapons_:
+  - {fileID: -1085397881649897317, guid: 313cca6ff964ba3ebbf5359d33899667, type: 3}
 --- !u!114 &2343956742568336423
 MonoBehaviour:
   m_ObjectHideFlags: 0
