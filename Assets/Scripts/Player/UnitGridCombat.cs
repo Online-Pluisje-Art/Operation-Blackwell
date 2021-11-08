@@ -79,10 +79,10 @@ namespace OperationBlackwell.Player {
 			 * when its the same node it returns 1 so we subtract one from the distance to get the actual distance.
 			 * If the distance is less or equal than the weapon range, return true.
 			 */
-			if(unitGridCombat.GetTeam() == team_) {
+			if(unitGridCombat.GetTeam() == team_ || actionPoints_ < currentWeapon_.GetActionPointsCost()) {
 				return false;
 			}
-
+			
 			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
 			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}

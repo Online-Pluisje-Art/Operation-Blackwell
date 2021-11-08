@@ -187,7 +187,8 @@ namespace OperationBlackwell.Core {
 					Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 					Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 
-					if(gridObject.GetUnitGridCombat() != null && gridObject.GetUnitGridCombat() != unitGridCombat_ && gridObject.GetUnitGridCombat().GetTeam() != unitGridCombat_.GetTeam()) {
+					if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())
+						&& gridObject.GetUnitGridCombat() != unitGridCombat_ && gridObject.GetUnitGridCombat().GetTeam() != unitGridCombat_.GetTeam()) {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
 					} else if(gridObject.GetIsValidMovePosition()) {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
@@ -235,7 +236,7 @@ namespace OperationBlackwell.Core {
 						}
 
 						// Check if clicking on a unit position
-						if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.GetActionPoints() > 0) {
+						if(gridObject.GetUnitGridCombat() != null) {
 							// Clicked on top of a Unit
 							if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
 								// Can Attack Enemy
