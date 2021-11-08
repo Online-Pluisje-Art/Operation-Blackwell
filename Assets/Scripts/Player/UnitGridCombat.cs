@@ -35,7 +35,7 @@ namespace OperationBlackwell.Player {
 			//SetSelectedVisible(false);
 			state_ = State.Normal;
 			healthSystem_ = new HealthSystem(100);
-			healthBar_ = new WorldBar(transform, new Vector3(0, 1), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
+			healthBar_ = new WorldBar(transform, new Vector3(0, 1.3f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
 			SetActiveWeapon(0);
 		}
@@ -79,7 +79,7 @@ namespace OperationBlackwell.Player {
 			 * when its the same node it returns 1 so we subtract one from the distance to get the actual distance.
 			 * If the distance is less or equal than the weapon range, return true.
 			 */
-			if(unitGridCombat.GetTeam() == team_) {
+			if(unitGridCombat.GetTeam() == team_ || actionPoints_ < currentWeapon_.GetActionPointsCost()) {
 				return false;
 			}
 

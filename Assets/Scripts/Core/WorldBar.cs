@@ -42,12 +42,12 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void SetupOutline(Outline outline, Vector3 localScale, int sortingOrder) {
-			Sprite sprite = Resources.Load<Sprite>("Textures/White_1x1");
+			Sprite sprite = Resources.Load<Sprite>("Textures/HUD/White_1x1");
 			Utils.CreateWorldSprite(transform_, "Outline", sprite, new Vector3(0, 0), localScale + new Vector3(outline.size, outline.size), sortingOrder, outline.color);
 		}
 		
 		private void SetupBackground(Color backgroundColor, Vector3 localScale, int sortingOrder) {
-			Sprite sprite = Resources.Load<Sprite>("Textures/White_1x1");
+			Sprite sprite = Resources.Load<Sprite>("Textures/HUD/White_1x1");
 			background_ = Utils.CreateWorldSprite(transform_, "Background", sprite, new Vector3(0, 0), localScale, sortingOrder, backgroundColor).transform;
 		}
 
@@ -57,7 +57,7 @@ namespace OperationBlackwell.Core {
 			bar_.SetParent(transform_);
 			bar_.localPosition = new Vector3(-localScale.x / 2f, 0, 0);
 			bar_.localScale = new Vector3(1, 1, 1);
-			Sprite sprite = Resources.Load<Sprite>("Textures/White_1x1");
+			Sprite sprite = Resources.Load<Sprite>("Textures/HUD/White_1x1");
 			Transform barIn = Utils.CreateWorldSprite(bar_, "BarIn", sprite, new Vector3(localScale.x / 2f, 0), localScale, sortingOrder, barColor).transform;
 		}
 
