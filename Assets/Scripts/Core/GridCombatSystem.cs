@@ -184,9 +184,18 @@ namespace OperationBlackwell.Core {
 		private void Update() {
 			switch(state_) {
 				case State.Normal:
+					Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+					Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
+
+					if(gridObject.GetUnitGridCombat() != null && gridObject.GetUnitGridCombat() != unitGridCombat_ && gridObject.GetUnitGridCombat().GetTeam() != unitGridCombat_.GetTeam()) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+					} else if(gridObject.GetIsValidMovePosition()) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+					} else {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+					}
+
 					if(Input.GetMouseButtonDown(0)) {
-						Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-						Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 
 						if(gridObject.GetIsValidMovePosition()) {
 							// Valid Move Position
