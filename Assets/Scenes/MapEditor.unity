@@ -152,11 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02fd98aeac0a9aa4296083e84c3c90ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWorldSize_: {x: 11, y: 11, z: 0}
+  gridWorldSize_: {x: 51, y: 24, z: 0}
   cellSize_: 1
   drawGridLines_: 1
   movementTilemapVisual_: {fileID: 1176652284}
-  tilemapVisual_: {fileID: 2098585260}
+  tilemapVisual_: {fileID: 2023860250}
 --- !u!4 &593590128
 Transform:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -480,22 +480,34 @@ TextMesh:
     -
     U selects floor tile
 
-    - I selects wall tile
+    - I selects full wall tile
 
     - O selects cover tile
 
     -
-    ''\'' saves to the given filename
+    X selects back wall tile
 
-    - ''|'' loads the specified save
+    - C selects full middle wall tile
 
-    -
-    Esc goes back to the main menu
+    - Z selects
+    door top tile
+
+    - V selects door middle tile
+
+    - B selects door bottom
+    tile
+
+    - ''\'' saves to the given filename
+
+    - ''|'' loads the specified
+    save
+
+    - Esc goes back to the main menu
 
     - Home opens github
 
-    - End opens the
-    docs'
+    - End
+    opens the docs'
   m_OffsetZ: 0
   m_CharacterSize: 0.35
   m_LineSpacing: 1
@@ -564,6 +576,125 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2023860247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2023860251}
+  - component: {fileID: 2023860250}
+  - component: {fileID: 2023860249}
+  - component: {fileID: 2023860248}
+  m_Layer: 0
+  m_Name: TilemapVisual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &2023860248
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023860247}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: bbb0e15e0c8331f0582bbb3d391ff81b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2023860249
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023860247}
+  m_Mesh: {fileID: 0}
+--- !u!114 &2023860250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023860247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73e6ef86219694b368b91b5016232253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeSpriteUVArray_:
+  - nodeSprite: 5
+    uv00Pixels: {x: 384, y: 384}
+    uv11Pixels: {x: 512, y: 512}
+  - nodeSprite: 3
+    uv00Pixels: {x: 512, y: 512}
+    uv11Pixels: {x: 640, y: 640}
+  - nodeSprite: 4
+    uv00Pixels: {x: 256, y: 512}
+    uv11Pixels: {x: 384, y: 640}
+  - nodeSprite: 2
+    uv00Pixels: {x: 384, y: 0}
+    uv11Pixels: {x: 512, y: 128}
+  - nodeSprite: 1
+    uv00Pixels: {x: 0, y: 512}
+    uv11Pixels: {x: 128, y: 640}
+  - nodeSprite: 6
+    uv00Pixels: {x: 0, y: 256}
+    uv11Pixels: {x: 128, y: 384}
+  - nodeSprite: 7
+    uv00Pixels: {x: 0, y: 128}
+    uv11Pixels: {x: 128, y: 256}
+  - nodeSprite: 8
+    uv00Pixels: {x: 0, y: 0}
+    uv11Pixels: {x: 128, y: 128}
+--- !u!4 &2023860251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023860247}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2098585259
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,12 +708,12 @@ GameObject:
   - component: {fileID: 2098585263}
   - component: {fileID: 2098585262}
   m_Layer: 0
-  m_Name: TilemapVisual
+  m_Name: TilemapVisualBak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2098585260
 MonoBehaviour:
   m_ObjectHideFlags: 0
