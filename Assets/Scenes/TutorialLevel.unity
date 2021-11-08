@@ -2398,7 +2398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 860e7ae8cbfa7911e8bfa99b30471d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorAnimationList:
+  cursorAnimationList_:
   - cursorType: 0
     textureArray:
     - {fileID: 2800000, guid: afc2209df170e55458a8de37eeb5bc6e, type: 3}

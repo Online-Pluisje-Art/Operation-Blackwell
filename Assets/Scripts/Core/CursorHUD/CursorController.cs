@@ -13,13 +13,13 @@ namespace OperationBlackwell.Core {
 			public CursorType cursorType;
 		}
 
-		[SerializeField] private List<CursorAnimation> cursorAnimationList;
+		[SerializeField] private List<CursorAnimation> cursorAnimationList_;
 
-		private CursorAnimation cursorAnimation;
+		private CursorAnimation cursorAnimation_;
 
-		private int currentFrame;
-		private float frameTimer;
-		private int frameCount;
+		private int currentFrame_;
+		private float frameTimer_;
+		private int frameCount_;
 
 		public enum CursorType {
 			Arrow,
@@ -38,11 +38,11 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
-			frameTimer -= Time.deltaTime;
-			if (frameTimer <= 0f) {
-				frameTimer += cursorAnimation.frameRate;
-				currentFrame = (currentFrame + 1) % frameCount;
-				Cursor.SetCursor(cursorAnimation.textureArray[currentFrame], cursorAnimation.offset, CursorMode.Auto);
+			frameTimer_ -= Time.deltaTime;
+			if(frameTimer_ <= 0f) {
+				frameTimer_ += cursorAnimation_.frameRate;
+				currentFrame_ = (currentFrame_ + 1) % frameCount_;
+				Cursor.SetCursor(cursorAnimation_.textureArray[currentFrame_], cursorAnimation_.offset, CursorMode.Auto);
 			}
 		}
 
@@ -52,20 +52,20 @@ namespace OperationBlackwell.Core {
 		}
 
 		private CursorAnimation GetCursorAnimation(CursorType cursorType) {
-			foreach (CursorAnimation cursorAnimation in cursorAnimationList) {
-				if (cursorAnimation.cursorType == cursorType) {
-					return cursorAnimation;
+			foreach(CursorAnimation cursorAnimation_ in cursorAnimationList_) {
+				if(cursorAnimation_.cursorType == cursorType) {
+					return cursorAnimation_;
 				}
 			}
 			// Couldn't find this CursorType!
 			return null;
 		}
 
-		private void SetActiveCursorAnimation(CursorAnimation cursorAnimation) {
-			this.cursorAnimation = cursorAnimation;
-			currentFrame = 0;
-			frameTimer = 0f;
-			frameCount = cursorAnimation.textureArray.Length;
+		private void SetActiveCursorAnimation(CursorAnimation cursorAnimation_) {
+			this.cursorAnimation_ = cursorAnimation_;
+			currentFrame_ = 0;
+			frameTimer_ = 0f;
+			frameCount_ = cursorAnimation_.textureArray.Length;
 		}
 
 

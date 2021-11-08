@@ -82,7 +82,7 @@ namespace OperationBlackwell.Player {
 			if(unitGridCombat.GetTeam() == team_ || actionPoints_ < currentWeapon_.GetActionPointsCost()) {
 				return false;
 			}
-			
+
 			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
 			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}
