@@ -26,7 +26,7 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		private bool HandleCameraMovement() {
+		private bool HandleCameraMovement(float distance = 10f) {
 			Vector3 moveDir = new Vector3(0, 0);
 			if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
 				moveDir.y = +1;
@@ -44,17 +44,27 @@ namespace OperationBlackwell.Core {
 
 			float moveSpeed = 15f;
 
-			Vector3 activePlayerPosition = GridCombatSystem.Instance.GetActiveUnit().transform.position;
+			Vector3 activePlayerPosition = new Vector3(0, 0, 0);
+			if(GridCombatSystem.Instance.GetActiveUnit() != null) {
+				activePlayerPosition = GridCombatSystem.Instance.GetActiveUnit().transform.position;
+			}
 			//Lock the camera to the active player plus a range of 10
-			if(activePlayerPosition.x - 10f > camera_.transform.position.x || activePlayerPosition.x + 10f < camera_.transform.position.x) {
+			if(activePlayerPosition.x - distance > camera_.transform.position.x || activePlayerPosition.x + distance < camera_.transform.position.x) {
 				moveDir.x = 0;
 			}
-			if(activePlayerPosition.y - 10f > camera_.transform.position.y || activePlayerPosition.y + 10f < camera_.transform.position.y) {
+			if(activePlayerPosition.y - distance > camera_.transform.position.y || activePlayerPosition.y + distance < camera_.transform.position.y) {
 				moveDir.y = 0;
 			}
 			camera_.transform.position += moveDir * moveSpeed * Time.deltaTime;
 
 			if(moveDir.magnitude > 0) {
+				return true;
+			} else if(!Input.anyKey) {
+				return false;
+			} else if(camera_.transform.position.x <= activePlayerPosition.x - distance
+				|| camera_.transform.position.x >= activePlayerPosition.x + distance
+				|| camera_.transform.position.y <= activePlayerPosition.y - distance 
+				|| camera_.transform.position.y >= activePlayerPosition.y + distance) {
 				return true;
 			}
 			return false;

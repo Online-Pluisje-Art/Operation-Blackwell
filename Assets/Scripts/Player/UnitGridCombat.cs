@@ -120,6 +120,10 @@ namespace OperationBlackwell.Player {
 			return actionPoints_;
 		}
 
+		public override int GetMaxActionPoints() {
+			return maxActionPoints_;
+		}
+
 		public override void ResetActionPoints() {
 			actionPoints_ = maxActionPoints_;
 		}
