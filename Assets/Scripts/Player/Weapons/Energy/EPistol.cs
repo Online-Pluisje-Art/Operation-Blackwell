@@ -1,5 +1,5 @@
 namespace OperationBlackwell.Player {
-	public class EPistol: Weapon {
+	public class EPistol : Weapon {
 		
 	}
 }

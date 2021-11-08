@@ -62,7 +62,7 @@ namespace OperationBlackwell.Player {
 		}
 
 		private void SetActiveWeapon(int index) {
-			if (index >= 0 && index < weapons_.Count) {
+			if(index >= 0 && index < weapons_.Count) {
 				currentWeapon_ = weapons_[index];
 			}
 		}
@@ -132,7 +132,7 @@ namespace OperationBlackwell.Player {
 			GetComponent<IMoveVelocity>().Disable();
 
 			// The value of 50 is a placeholder for the damage of the units attack.
-			unitGridCombat.Damage(this, currentWeapon_.GetDamage()); //UnityEngine.Random.Range(4, 12));
+			unitGridCombat.Damage(this, currentWeapon_.GetDamage());
 
 			GetComponent<IMoveVelocity>().Enable();
 			onShootComplete();

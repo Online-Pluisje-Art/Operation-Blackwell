@@ -230,7 +230,6 @@ namespace OperationBlackwell.Core {
 							// Clicked on top of a Unit
 							if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
 								// Can Attack Enemy
-								// 3 is chosen as a placeholder for the attack cost
 								int attackCost = unitGridCombat_.GetAttackCost();
 								if(unitGridCombat_.GetActionPoints() >= attackCost) {
 									// Attack Enemy
