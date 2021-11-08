@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace OperationBlackwell.UI {
-	public class MainMenu : MonoBehaviour {
+	public class MainMenu : Menu {
 
 		public void PlayGame() {
 			SceneManager.LoadScene("TutorialLevel");
@@ -14,17 +14,11 @@ namespace OperationBlackwell.UI {
 			SceneManager.LoadScene("MapEditor");
 		}
 
-		public void ExitGame() {
+		public override void ReturnOrExit() {
 			if(!Application.isEditor) {
 				Application.Quit(0);
 			} else {
 				Debug.Log("Game asked to quit while in editor, call ignored.");
-			}
-		}
-
-		private void Update() {
-			if(Input.GetKeyDown(KeyCode.Escape)) {
-				ExitGame();
 			}
 		}
 	}
