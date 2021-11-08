@@ -18,6 +18,8 @@ namespace OperationBlackwell.Core {
 
 		private List<PathNode> currentPathUnit_;
 		private int pathLength_;
+		private int turn_;
+		private List<OrderObject> orderList_;
 
 		public EventHandler<EventArgs> OnUnitDeath;
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
@@ -35,7 +37,8 @@ namespace OperationBlackwell.Core {
 
 		private enum State {
 			Normal,
-			Waiting
+			UnitSelected,
+			EndingTurn,
 		}
 
 		private void Awake() {
@@ -45,6 +48,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Start() {
+			turn_ = 0;
 			blueTeamList_ = new List<CoreUnit>();
 			redTeamList_ = new List<CoreUnit>();
 			blueTeamActiveUnitIndex_ = -1;
@@ -62,8 +66,12 @@ namespace OperationBlackwell.Core {
 				}
 			}
 
-			SelectNextActiveUnit();
-			UpdateValidMovePositions();
+			OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+				unit = blueTeamList_[0],
+				position = blueTeamList_[0].GetPosition()
+			});
+			// SelectNextActiveUnit();
+			// UpdateValidMovePositions();
 		}
 
 		private void OnDestroy() {
@@ -207,10 +215,13 @@ namespace OperationBlackwell.Core {
 
 		private void Update() {
 			HandleWeaponSwitch();
+			Grid<Tilemap.Node> grid;
+			Tilemap.Node gridObject;
+			CoreUnit unit;
 			switch(state_) {
 				case State.Normal:
-					Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-					Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
+					grid = GameController.Instance.GetGrid();
+					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 
 					if(gridObject == null) {
 						return;
@@ -221,91 +232,67 @@ namespace OperationBlackwell.Core {
 					if(gridObject.GetIsValidMovePosition()) {
 						SetArrowWithPath();
 					}
-
-					if(Input.GetMouseButtonDown(0)) {
-						if(gridObject.GetIsValidMovePosition()) {
-							// Valid Move Position
-							if(unitGridCombat_.GetActionPoints() > 0) {
-								state_ = State.Waiting;
-								ResetArrowVisual();
-
-								// Set entire Tilemap to Invisible
-								GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
-									MovementTilemap.TilemapObject.TilemapSprite.None
-								);
-
-								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
-
-								Vector3 oldPlayerPos = unitGridCombat_.GetPosition();
-								
-								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
-									state_ = State.Normal;
-									if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
-										OnUnitMove?.Invoke(this, new UnitPositionEvent() {
-											unit = unitGridCombat_,
-											position = Utils.GetMouseWorldPosition()
-										});
-									}
-									// Remove Unit from current Grid Object
-									grid.GetGridObject(oldPlayerPos).ClearUnitGridCombat();
-									// Set Unit on target Grid Object
-									gridObject.SetUnitGridCombat(unitGridCombat_);
-									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
-									UnitEvent unitEvent = new UnitEvent() {
-										unit = unitGridCombat_
-									};
-									OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-									UpdateValidMovePositions();
-									TestTurnOver();
+					
+					unit = gridObject.GetUnitGridCombat();
+					if(unit != null && unit.GetTeam() == Team.Blue) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+						if(Input.GetMouseButtonDown(0)) {
+							if(unit != null && unit.GetTeam() == Team.Blue) {
+								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+									unit = unit,
+									position = unit.GetPosition()
 								});
+								unitGridCombat_ = gridObject.GetUnitGridCombat();
+								state_ = State.UnitSelected;
 							}
 						}
-
-						// Check if clicking on a unit position
-						if(gridObject.GetUnitGridCombat() != null) {
-							// Clicked on top of a Unit
-							if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
-								// Can Attack Enemy
-								int attackCost = unitGridCombat_.GetAttackCost();
-								if(unitGridCombat_.GetActionPoints() >= attackCost) {
-									// Attack Enemy
-									state_ = State.Waiting;
-									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - attackCost);
-									UnitEvent unitEvent = new UnitEvent() {
-										unit = unitGridCombat_
-									};
-									OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-									unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
-										state_ = State.Normal;
-										UpdateValidMovePositions();
-										TestTurnOver();
-									});
-								}
-							} else {
-								// Cannot attack enemy
-							}
-							break;
-						} else {
-								// No unit here
-						}
-
-						IInteractable interactable = gridObject.GetInteractable();
-						if(interactable != null) {
-							// Clicked on top of an Interactable
-							if(unitGridCombat_.GetActionPoints() >= interactable.GetCost()) {
-								if(interactable.IsInRange(unitGridCombat_)) {
-									interactable.Interact();
-									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - interactable.GetCost());
-								}
-							}
-						}
+					} else {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
-
-					if(Input.GetKeyDown(KeyCode.Space)) {
-						ForceTurnOver();
-					}
+					// Save the actions for the unit
+					// Update the unit's action points
+					// Wait until user selects new unit
+					// OldUnitStuff();
 					break;
-				case State.Waiting:
+				case State.UnitSelected:
+					UnitEvent unitEvent = new UnitEvent() {
+						unit = unitGridCombat_
+					};
+					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+					
+					//load the units actions
+
+					UpdateValidMovePositions();
+					
+					grid = GameController.Instance.GetGrid();
+					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
+					
+					if(gridObject == null) {
+						return;
+					}
+
+					unit = gridObject.GetUnitGridCombat();
+					if(unit != null && unit.GetTeam() == Team.Blue && unit != unitGridCombat_) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+						if(Input.GetMouseButtonDown(0)) {
+							if(unit != null && unit.GetTeam() == Team.Blue) {
+								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+									unit = unit,
+									position = unit.GetPosition()
+								});
+								unitGridCombat_ = gridObject.GetUnitGridCombat();
+								state_ = State.UnitSelected;
+							}
+						}
+					} else if(gridObject.GetIsValidMovePosition()) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+						// Draw arrow acording to pathfinding path
+						if(Input.GetMouseButtonDown(0)) {
+							// Save the actions for the unit
+						}
+					} else {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+					}
 					break;
 				default:
 					break;
@@ -331,9 +318,16 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void ForceTurnOver() {
-			unitGridCombat_.ResetActionPoints();
+			turn_++;
+			ResetAllActionPoints();
 			SelectNextActiveUnit();
 			UpdateValidMovePositions();
+		}
+
+		private void ResetAllActionPoints() {
+			foreach(CoreUnit unit in unitGridCombatArray_) {
+				unit.ResetActionPoints();
+			}
 		}
 
 		public CoreUnit GetActiveUnit() {
@@ -422,6 +416,91 @@ namespace OperationBlackwell.Core {
 
 		private void ResetArrowVisual() {
 			GameController.Instance.GetArrowTilemap().SetAllTilemapSprite(MovementTilemap.TilemapObject.TilemapSprite.None);
+		}
+		
+		private void OldUnitStuff() {
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
+
+			if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())
+				&& gridObject.GetUnitGridCombat() != unitGridCombat_ && gridObject.GetUnitGridCombat().GetTeam() != unitGridCombat_.GetTeam()) {
+				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+			} else if(gridObject.GetIsValidMovePosition()) {
+				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+			} else {
+				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+			}
+
+			if(Input.GetMouseButtonDown(0)) {
+
+				if(gridObject.GetIsValidMovePosition()) {
+					// Valid Move Position
+
+					if(unitGridCombat_.GetActionPoints() > 0) {
+						// state_ = State.Waiting;
+
+						// Set entire Tilemap to Invisible
+						GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+							MovementTilemap.TilemapObject.TilemapSprite.None
+						);
+
+						// Remove Unit from current Grid Object
+						grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
+						// Set Unit on target Grid Object
+						gridObject.SetUnitGridCombat(unitGridCombat_);
+
+						pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
+
+						unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
+							state_ = State.Normal;
+							if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
+								OnUnitMove?.Invoke(this, new UnitPositionEvent() {
+									unit = unitGridCombat_,
+									position = Utils.GetMouseWorldPosition()
+								});
+							}
+							unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
+							UnitEvent unitEvent = new UnitEvent() {
+								unit = unitGridCombat_
+							};
+							OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+							UpdateValidMovePositions();
+							TestTurnOver();
+						});
+					}
+				}
+
+				// Check if clicking on a unit position
+				if(gridObject.GetUnitGridCombat() != null) {
+					// Clicked on top of a Unit
+					if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
+						// Can Attack Enemy
+						int attackCost = unitGridCombat_.GetAttackCost();
+						if(unitGridCombat_.GetActionPoints() >= attackCost) {
+							// Attack Enemy
+							// state_ = State.Waiting;
+							unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - attackCost);
+							UnitEvent unitEvent = new UnitEvent() {
+								unit = unitGridCombat_
+							};
+							OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+							unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
+								state_ = State.Normal;
+								UpdateValidMovePositions();
+								TestTurnOver();
+							});
+						}
+					} else {
+						// Cannot attack enemy
+					}
+			} else {
+					// No unit here
+				}
+			}
+
+			if(Input.GetKeyDown(KeyCode.Space)) {
+				ForceTurnOver();
+			}
 		}
 	}
 }
