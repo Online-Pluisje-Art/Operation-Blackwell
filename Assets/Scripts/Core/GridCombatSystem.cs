@@ -40,6 +40,7 @@ namespace OperationBlackwell.Core {
 			Normal,
 			UnitSelected,
 			EndingTurn,
+			Waiting
 		}
 
 		private void Awake() {
@@ -218,6 +219,9 @@ namespace OperationBlackwell.Core {
 
 		private void Update() {
 			HandleWeaponSwitch();
+			GameController.Instance.GetSelectorTilemap().SetAllTilemapSprite(
+				MovementTilemap.TilemapObject.TilemapSprite.None
+			);
 			Grid<Tilemap.Node> grid;
 			Tilemap.Node gridObject;
 			CoreUnit unit;
@@ -239,6 +243,9 @@ namespace OperationBlackwell.Core {
 					unit = gridObject.GetUnitGridCombat();
 					if(unit != null && unit.GetTeam() == Team.Blue) {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+						GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+							gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
+						);
 						if(Input.GetMouseButtonDown(0)) {
 							if(unit != null && unit.GetTeam() == Team.Blue) {
 								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
@@ -251,6 +258,9 @@ namespace OperationBlackwell.Core {
 						}
 					} else {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+						GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+							gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
+						);
 					}
 					// Save the actions for the unit
 					// Update the unit's action points
@@ -274,6 +284,10 @@ namespace OperationBlackwell.Core {
 						return;
 					}
 
+					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+						gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
+					);
+
 					unit = gridObject.GetUnitGridCombat();
 					if(unit != null && unit.GetTeam() == Team.Blue && unit != unitGridCombat_) {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
@@ -292,10 +306,50 @@ namespace OperationBlackwell.Core {
 						// Draw arrow acording to pathfinding path
 						if(Input.GetMouseButtonDown(0)) {
 							// Save the actions for the unit
+							if(gridObject.GetIsValidMovePosition()) {
+								// Valid Move Position
+								if(unitGridCombat_.GetActionPoints() > 0) {
+									state_ = State.Waiting;
+
+									// Set entire Tilemap to Invisible
+									GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+										MovementTilemap.TilemapObject.TilemapSprite.None
+									);
+
+									// Remove Unit from current Grid Object
+									grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
+									// Set Unit on target Grid Object
+									gridObject.SetUnitGridCombat(unitGridCombat_);
+
+									pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
+
+									unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
+										if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
+											OnUnitMove?.Invoke(this, new UnitPositionEvent() {
+												unit = unitGridCombat_,
+												position = Utils.GetMouseWorldPosition()
+											});
+										}
+										if(unitGridCombat_.GetActionPoints() - pathLength_ == 0){
+											state_ = State.EndingTurn;
+										} else {
+											state_ = State.UnitSelected;
+										}
+										unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
+										UnitEvent unitEvent = new UnitEvent() {
+											unit = unitGridCombat_
+										};
+										OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+									});
+								}
+							}
 						}
 					} else {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
+					break;
+				case State.EndingTurn:
+					ForceTurnOver();
 					break;
 				default:
 					break;
@@ -303,7 +357,7 @@ namespace OperationBlackwell.Core {
 
 			if(Input.GetKeyDown(KeyCode.Return)) {
 				// End Turn
-				ForceTurnOver();
+				state_ = State.EndingTurn;
 			}
 		}
 
@@ -326,11 +380,15 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void ForceTurnOver() {
+			// Execute all unit actions and end turn
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
+			UnitEvent unitEvent = new UnitEvent() {
+				unit = null
+			};
+			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 			ResetAllActionPoints();
-			// SelectNextActiveUnit();
-			// UpdateValidMovePositions();
+			state_ = State.Normal;
 		}
 
 		private void ResetAllActionPoints() {

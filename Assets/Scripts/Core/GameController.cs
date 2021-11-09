@@ -16,9 +16,11 @@ namespace OperationBlackwell.Core {
 
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
 		[SerializeField] private MovementTilemapVisual arrowTilemapVisual_;
+		[SerializeField] private MovementTilemapVisual seletorTilemapVisual_;
 
 		private MovementTilemap movementTilemap_;
 		private MovementTilemap arrowTilemap_;
+		private MovementTilemap selectorTilemap_;
 
 		public Grid<Tilemap.Node> grid { get; private set; }
 
@@ -38,12 +40,14 @@ namespace OperationBlackwell.Core {
 			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * cellSize_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * cellSize_, cellSize_);
 			movementTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
 			arrowTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+			selectorTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
 		}
 
 		private void Start() {
 			tilemap.SetTilemapVisual(tilemapVisual_);
 			movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
 			arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
+			selectorTilemap_.SetTilemapVisual(seletorTilemapVisual_);
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
 				tilemap.Load("tutoriallevel");
 			} else {
@@ -65,6 +69,10 @@ namespace OperationBlackwell.Core {
 
 		public MovementTilemap GetArrowTilemap() {
 			return arrowTilemap_;
+		}
+		
+		public MovementTilemap GetSelectorTilemap() {
+			return selectorTilemap_;
 		}
 
 		private void HandleMisc() {
