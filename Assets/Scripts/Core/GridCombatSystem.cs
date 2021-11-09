@@ -21,6 +21,7 @@ namespace OperationBlackwell.Core {
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
 		public EventHandler<UnitPositionEvent> OnUnitMove;
 		public EventHandler<UnitEvent> OnUnitActionPointsChanged;
+		public EventHandler<int> OnWeaponChanged;
 
 		public class UnitEvent : EventArgs {
 			public CoreUnit unit;

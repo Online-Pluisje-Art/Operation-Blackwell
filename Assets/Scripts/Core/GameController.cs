@@ -48,6 +48,7 @@ namespace OperationBlackwell.Core {
 
 		private void Update() {
 			HandleMisc();
+			HandleWeaponSwitch();
 		}
 
 		public Grid<Tilemap.Node> GetGrid() {
@@ -67,6 +68,17 @@ namespace OperationBlackwell.Core {
 			}
 			if(Input.GetKeyDown(KeyCode.End)) {
 				Application.OpenURL("https://docs.opa.rip/");
+			}
+		}
+
+		private void HandleWeaponSwitch() {
+			if(Input.GetKeyDown(KeyCode.Alpha1)) {
+				GridCombatSystem.Instance.GetActiveUnit().SetActiveWeapon(0);
+				GridCombatSystem.Instance.OnWeaponChanged?.Invoke(this, 0);
+			}
+			if(Input.GetKeyDown(KeyCode.Alpha2)) {
+				GridCombatSystem.Instance.GetActiveUnit().SetActiveWeapon(1);
+				GridCombatSystem.Instance.OnWeaponChanged?.Invoke(this, 1);
 			}
 		}
 	}
