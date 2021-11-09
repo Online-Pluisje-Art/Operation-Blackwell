@@ -388,6 +388,7 @@ namespace OperationBlackwell.Core {
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 			ResetAllActionPoints();
+			ResetMoveTiles();
 			state_ = State.Normal;
 		}
 
@@ -395,6 +396,12 @@ namespace OperationBlackwell.Core {
 			foreach(CoreUnit unit in unitGridCombatArray_) {
 				unit.ResetActionPoints();
 			}
+		}
+
+		private void ResetMoveTiles() {
+			GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+				MovementTilemap.TilemapObject.TilemapSprite.None
+			);
 		}
 
 		public CoreUnit GetActiveUnit() {
