@@ -344,6 +344,8 @@ namespace OperationBlackwell.Core {
 								}
 							}
 						}
+					} else if(unitGridCombat_.CanAttackUnit(unit)) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
 					} else {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
