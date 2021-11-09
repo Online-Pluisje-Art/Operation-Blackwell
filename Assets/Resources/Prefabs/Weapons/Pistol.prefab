@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3114cdaa94eadd96881112c65369dc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage_: 50
-  range_: 3
-  costs_: 2
+  damage_: 30
+  range_: 7
+  costs_: 3
+  baseHitchance_: 85
+  name_: Pistol

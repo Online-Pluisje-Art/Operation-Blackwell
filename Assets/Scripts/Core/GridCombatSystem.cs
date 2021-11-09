@@ -21,6 +21,7 @@ namespace OperationBlackwell.Core {
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
 		public EventHandler<UnitPositionEvent> OnUnitMove;
 		public EventHandler<UnitEvent> OnUnitActionPointsChanged;
+		public EventHandler<string> OnWeaponChanged;
 
 		public class UnitEvent : EventArgs {
 			public CoreUnit unit;
@@ -90,6 +91,8 @@ namespace OperationBlackwell.Core {
 				unit = unitGridCombat_
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+			GetActiveUnit().GetActiveWeapon();
+			OnWeaponChanged?.Invoke(this, GetActiveUnit().GetActiveWeapon());
 		}
 
 		private CoreUnit GetNextActiveUnit(Team team) {
@@ -194,6 +197,15 @@ namespace OperationBlackwell.Core {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
 					} else {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+					}
+
+					if(Input.GetKeyDown(KeyCode.Alpha1)) {
+						GetActiveUnit().SetActiveWeapon(0);
+						OnWeaponChanged?.Invoke(this, GetActiveUnit().GetActiveWeapon());
+					}
+					if(Input.GetKeyDown(KeyCode.Alpha2)) {
+						GetActiveUnit().SetActiveWeapon(1);
+						OnWeaponChanged?.Invoke(this, GetActiveUnit().GetActiveWeapon());
 					}
 
 					if(Input.GetMouseButtonDown(0)) {
