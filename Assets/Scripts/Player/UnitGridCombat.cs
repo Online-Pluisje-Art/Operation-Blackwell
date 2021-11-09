@@ -35,7 +35,7 @@ namespace OperationBlackwell.Player {
 			//SetSelectedVisible(false);
 			state_ = State.Normal;
 			healthSystem_ = new HealthSystem(100);
-			healthBar_ = new WorldBar(transform, new Vector3(0, 1.3f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
+			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
 			SetActiveWeapon(0);
 		}
