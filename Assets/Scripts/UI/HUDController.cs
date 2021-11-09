@@ -22,5 +22,9 @@ namespace OperationBlackwell.UI {
 		private void UpdateWeapon(object sender, string name) {
 			weaponText_.text = "Current Weapon: " + name;
 		}
+
+		private void UpdateTurnCounter(object sender, int turn) {
+			TurnCounterText_.text = "Turn: " + turn.ToString();
+		}
 	}
 }

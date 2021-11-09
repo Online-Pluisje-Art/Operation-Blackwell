@@ -26,6 +26,7 @@ namespace OperationBlackwell.Core {
 		public EventHandler<UnitPositionEvent> OnUnitMove;
 		public EventHandler<UnitEvent> OnUnitActionPointsChanged;
 		public EventHandler<string> OnWeaponChanged;
+		public EventHandler<int> OnTurnEnded;
 
 		public class UnitEvent : EventArgs {
 			public CoreUnit unit;
@@ -48,7 +49,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Start() {
-			turn_ = 0;
+			turn_ = 1;
 			blueTeamList_ = new List<CoreUnit>();
 			redTeamList_ = new List<CoreUnit>();
 			blueTeamActiveUnitIndex_ = -1;
@@ -70,6 +71,8 @@ namespace OperationBlackwell.Core {
 				unit = blueTeamList_[0],
 				position = blueTeamList_[0].GetPosition()
 			});
+
+			OnTurnEnded?.Invoke(this, turn_);
 			// SelectNextActiveUnit();
 			// UpdateValidMovePositions();
 		}
@@ -297,6 +300,11 @@ namespace OperationBlackwell.Core {
 				default:
 					break;
 			}
+
+			if(Input.GetKeyDown(KeyCode.Return)) {
+				// End Turn
+				ForceTurnOver();
+			}
 		}
 
 		private void HandleWeaponSwitch() {
@@ -319,9 +327,10 @@ namespace OperationBlackwell.Core {
 
 		private void ForceTurnOver() {
 			turn_++;
+			OnTurnEnded?.Invoke(this, turn_);
 			ResetAllActionPoints();
-			SelectNextActiveUnit();
-			UpdateValidMovePositions();
+			// SelectNextActiveUnit();
+			// UpdateValidMovePositions();
 		}
 
 		private void ResetAllActionPoints() {
