@@ -395,10 +395,10 @@ RectTransform:
   m_Father: {fileID: 216185301}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.6641, y: 26.5631}
-  m_SizeDelta: {x: 760.0939, y: 572.8239}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.66412354, y: 26.56311}
+  m_SizeDelta: {x: -639.9061, y: 8.823914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365240354
 MonoBehaviour:
@@ -446,11 +446,11 @@ RectTransform:
   m_Father: {fileID: 365240353}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000005722, y: -34}
-  m_SizeDelta: {x: 363.9059, y: 110}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -223.2, y: 48.982}
+  m_SizeDelta: {x: 168.3208, y: 52.375}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &503578109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,10 +858,10 @@ RectTransform:
   m_Father: {fileID: 365240353}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 101.53693}
-  m_SizeDelta: {x: 200, y: 110}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 75.171936}
+  m_SizeDelta: {x: 247.08722, y: 69.83594}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &794862657
 MonoBehaviour:
@@ -1007,14 +1007,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9a8a2585f5615f402a4677fb3e933562, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f33d81d5c5db3cd9bb51aac9c789a991, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1049,7 +1049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &831099880
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1384,8 +1384,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2069,10 +2069,10 @@ RectTransform:
   m_Father: {fileID: 216185301}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.6641846, y: 26.56311}
-  m_SizeDelta: {x: 760.0939, y: 572.8239}
+  m_SizeDelta: {x: -639.9061, y: 8.823914}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768734739
 MonoBehaviour:
@@ -2304,8 +2304,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2611,11 +2611,11 @@ RectTransform:
   m_Father: {fileID: 365240353}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -162}
-  m_SizeDelta: {x: 190, y: 110}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 226.2, y: 48.982}
+  m_SizeDelta: {x: 152.89453, y: 52.37097}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &2046758640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2661,8 +2661,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 365240354}
-        m_TargetAssemblyTypeName: OperationBlackwell.UI.MainMenu, Main
-        m_MethodName: ExitGame
+        m_TargetAssemblyTypeName: OperationBlackwell.UI.MainMenu, OperationBlackwell.Main
+        m_MethodName: ReturnOrExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
