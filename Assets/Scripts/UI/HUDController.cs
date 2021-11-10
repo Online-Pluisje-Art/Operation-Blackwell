@@ -7,8 +7,8 @@ using OperationBlackwell.Core;
 namespace OperationBlackwell.UI {
 	public class HUDController : MonoBehaviour {
 
-		[SerializeField] private Text ActionPointsText_;
-		[SerializeField] private Text WeaponText_;
+		[SerializeField] private Text actionPointsText_;
+		[SerializeField] private Text weaponText_;
 
 		private void Awake() {
 			GridCombatSystem.Instance.OnUnitActionPointsChanged += UpdateActionPoints;
@@ -16,11 +16,11 @@ namespace OperationBlackwell.UI {
 		}
 
 		private void UpdateActionPoints(object sender, GridCombatSystem.UnitEvent args) {
-			ActionPointsText_.text = "Action Points: " + args.unit.GetActionPoints().ToString();
+			actionPointsText_.text = "Action Points: " + args.unit.GetActionPoints().ToString();
 		}
 
 		private void UpdateWeapon(object sender, string name) {
-			WeaponText_.text = "Current Weapon: " + name;
+			weaponText_.text = "Current Weapon: " + name;
 		}
 	}
 }
