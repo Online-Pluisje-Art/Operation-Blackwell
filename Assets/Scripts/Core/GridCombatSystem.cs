@@ -91,8 +91,7 @@ namespace OperationBlackwell.Core {
 				unit = unitGridCombat_
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-			GetActiveUnit().GetActiveWeapon();
-			OnWeaponChanged?.Invoke(this, GetActiveUnit().GetActiveWeapon());
+			OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 		}
 
 		private CoreUnit GetNextActiveUnit(Team team) {
@@ -200,12 +199,12 @@ namespace OperationBlackwell.Core {
 					}
 
 					if(Input.GetKeyDown(KeyCode.Alpha1)) {
-						GetActiveUnit().SetActiveWeapon(0);
-						OnWeaponChanged?.Invoke(this, GetActiveUnit().GetActiveWeapon());
+						unitGridCombat_.SetActiveWeapon(0);
+						OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 					}
 					if(Input.GetKeyDown(KeyCode.Alpha2)) {
-						GetActiveUnit().SetActiveWeapon(1);
-						OnWeaponChanged?.Invoke(this, GetActiveUnit().GetActiveWeapon());
+						unitGridCombat_.SetActiveWeapon(1);
+						OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 					}
 
 					if(Input.GetMouseButtonDown(0)) {
