@@ -34,7 +34,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Start() {
-			SetActiveCursorType(CursorType.Arrow);
+			SetIntialCursorAnimation(CursorType.Arrow);
 		}
 
 		private void Update() {
@@ -47,6 +47,18 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void SetActiveCursorType(CursorType cursorType) {
+			if(cursorAnimation_.cursorType == cursorType) {
+				return;
+			}
+			SetActiveCursorAnimation(GetCursorAnimation(cursorType));
+			OnCursorChanged?.Invoke(this, new OnCursorChangedEventArgs { cursorType = cursorType });
+		}
+
+		public CursorType GetActiveCursorType() {
+			return cursorAnimation_.cursorType;
+		}
+
+		private void SetIntialCursorAnimation(CursorType cursorType) {
 			SetActiveCursorAnimation(GetCursorAnimation(cursorType));
 			OnCursorChanged?.Invoke(this, new OnCursorChangedEventArgs { cursorType = cursorType });
 		}

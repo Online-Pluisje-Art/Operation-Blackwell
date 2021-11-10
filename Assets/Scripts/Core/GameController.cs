@@ -15,6 +15,7 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private bool drawGridLines_;
 
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
+
 		private MovementTilemap movementTilemap_;
 
 		public Grid<Tilemap.Node> grid { get; private set; }
@@ -60,6 +61,7 @@ namespace OperationBlackwell.Core {
 
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
+				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 				SceneManager.LoadScene("MainMenu");
 			}
 			if(Input.GetKeyDown(KeyCode.Home)) {

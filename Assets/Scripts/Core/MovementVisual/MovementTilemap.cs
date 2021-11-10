@@ -47,6 +47,9 @@ namespace OperationBlackwell.Core {
 			public enum TilemapSprite {
 				None,
 				Move,
+				ArrowEnd,
+				ArrowCorner,
+				ArrowStraight,
 			}
 
 			private Grid<TilemapObject> grid_;
