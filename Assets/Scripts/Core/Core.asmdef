@@ -1,5 +1,5 @@
 {
-    "name": "Core",
+    "name": "OperationBlackwell.Core",
     "rootNamespace": "OperationBlackwell.Core",
     "references": [
         "GUID:c685d05731421f64287ad6d13be5af0e"

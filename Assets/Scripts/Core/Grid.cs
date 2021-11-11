@@ -5,6 +5,7 @@ using System;
 
 namespace OperationBlackwell.Core {
 	public class Grid<TGridObject> {
+		private readonly bool debugGrid_ = false;
 		public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
 		public class OnGridObjectChangedEventArgs : EventArgs {
 			public int x;
@@ -17,7 +18,7 @@ namespace OperationBlackwell.Core {
 		private Vector3 originPosition_;
 		private TGridObject[,] gridArray_;
 
-		public Grid(int gridSizeX, int gridSizeY, float cellSize, Vector3 originPosition, Func<Grid<TGridObject>, Vector3, int, int, TGridObject> createGridObject) {
+		public Grid(int gridSizeX, int gridSizeY, float cellSize, Vector3 originPosition, Func<Grid<TGridObject>, Vector3, int, int, TGridObject> createGridObject, bool drawLines = false) {
 			this.gridSizeX = gridSizeX;
 			this.gridSizeY = gridSizeY;
 			this.cellSize = cellSize;
@@ -29,14 +30,18 @@ namespace OperationBlackwell.Core {
 				for(int y = 0; y < gridArray_.GetLength(1); y++) {
 					gridArray_[x, y] = createGridObject(this, new Vector3(x, y), x, y);
 					// Draw me some boxes.
-					Utils.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1));
-					Utils.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y));
+					if(drawLines) {
+						Utils.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), 0.2f, 0.1f, 0.1f);
+						Utils.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), 0.2f, 0.1f, 0.1f);
+					}
 				}
 			}	
 
 			// Draw the outer lines too please.
-			Utils.DrawLine(GetWorldPosition(0, gridSizeY), GetWorldPosition(gridSizeX, gridSizeY));
-			Utils.DrawLine(GetWorldPosition(gridSizeX, 0), GetWorldPosition(gridSizeX, gridSizeY));
+			if(drawLines) {
+				Utils.DrawLine(GetWorldPosition(0, gridSizeY), GetWorldPosition(gridSizeX, gridSizeY), 0.2f, 0.1f, 0.1f);
+				Utils.DrawLine(GetWorldPosition(gridSizeX, 0), GetWorldPosition(gridSizeX, gridSizeY), 0.2f, 0.1f, 0.1f);
+			}
 		}
 
 		public int GetWidth() {
