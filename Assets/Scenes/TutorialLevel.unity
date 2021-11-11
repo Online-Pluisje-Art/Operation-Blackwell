@@ -2797,6 +2797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe9a12e8b29f2cb5ba644d961fd951ce, type: 3}
+--- !u!95 &284624025 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 988325546402099751, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
+  m_PrefabInstance: {fileID: 456570232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &290566635 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7930691839557344146, guid: fe9a12e8b29f2cb5ba644d961fd951ce, type: 3}
@@ -4036,6 +4041,10 @@ PrefabInstance:
       propertyPath: maxActionPoints_
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2343956742568336423, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
+      propertyPath: animator_
+      value: 
+      objectReference: {fileID: 284624025}
     - target: {fileID: 8822194322506780188, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
       propertyPath: weapons_.Array.data[0]
       value: 
