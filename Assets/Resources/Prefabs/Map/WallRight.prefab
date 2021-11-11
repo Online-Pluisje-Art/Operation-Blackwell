@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1558689519738691911}
   - component: {fileID: 7374287929335663862}
   - component: {fileID: 5457171430027995943}
+  - component: {fileID: 1487147000452246680}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -98,6 +99,21 @@ MonoBehaviour:
   walkable_: 0
   cover_: 1
   hitChanceModifier_: 100
+--- !u!114 &1487147000452246680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120656518072930345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6d9cc8d34245c02bbdfb88a2dabf31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBase_: 5000
+  offset_: 0
+  runOnlyOnce_: 1
 --- !u!1 &4406309019178508021
 GameObject:
   m_ObjectHideFlags: 0

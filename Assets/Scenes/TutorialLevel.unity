@@ -3980,14 +3980,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 957489676}
     m_Modifications:
-    - target: {fileID: 329447583944750126, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 329447583944750126, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1378278090585045583, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -8687,6 +8679,10 @@ PrefabInstance:
     - target: {fileID: 2632073151736459971, guid: 2ee20f943e9fdb2d99041d1b0dfd527e, type: 3}
       propertyPath: m_Name
       value: Crate
+      objectReference: {fileID: 0}
+    - target: {fileID: 2632073151736459971, guid: 2ee20f943e9fdb2d99041d1b0dfd527e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ee20f943e9fdb2d99041d1b0dfd527e, type: 3}
@@ -16687,7 +16683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6238058716552792254, guid: 0f35d99036394798ba8689ba84f9f3ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6238058716552792254, guid: 0f35d99036394798ba8689ba84f9f3ca, type: 3}
       propertyPath: m_LocalRotation.w
