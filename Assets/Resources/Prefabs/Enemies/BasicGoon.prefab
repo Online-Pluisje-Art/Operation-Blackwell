@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4fc8e558c13affccd87a7061beefc347, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 916711509772243815}
   - component: {fileID: 429031290739266175}
   m_Layer: 0
-  m_Name: Player
+  m_Name: BasicGoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0af036b690810680a9cceaaa13a91e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team_: 0
+  team_: 1
   actionPoints_: 10
   maxActionPoints_: 10
   weapons_:
