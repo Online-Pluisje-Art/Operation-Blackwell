@@ -123,6 +123,55 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &283388075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 283388077}
+  - component: {fileID: 283388076}
+  m_Layer: 0
+  m_Name: CursorController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &283388076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283388075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860e7ae8cbfa7911e8bfa99b30471d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorAnimationList_:
+  - cursorType: 0
+    textureArray:
+    - {fileID: 2800000, guid: afc2209df170e55458a8de37eeb5bc6e, type: 3}
+    frameRate: 1
+    offset: {x: 16, y: 16}
+--- !u!4 &283388077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283388075}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &593590126
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,13 +417,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 823906766}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd97d535864f44338ba0d0ded1874f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dc0076f2048ea865ba08d5e77fe6b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapSpriteUVArray_:
-  - tilemapSprite: 1
-    uv00Pixels: {x: 0, y: 0}
-    uv11Pixels: {x: 1000, y: 1000}
+  tilemapSpriteUVArray_: []
 --- !u!23 &1176652285
 MeshRenderer:
   m_ObjectHideFlags: 0
