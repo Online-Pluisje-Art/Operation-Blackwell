@@ -84,7 +84,7 @@ namespace OperationBlackwell.Core {
 						gridUV00 = uvCoords.uv00;
 						gridUV11 = uvCoords.uv11;
 					}
-					Utils.AddToMeshArrays(vertices, uv, triangles, index, grid_.GetWorldPosition(x, y) + quadSize * .5f, 0f, quadSize, gridUV00, gridUV11);
+					Utils.AddToMeshArrays(vertices, uv, triangles, index, grid_.GetWorldPosition(x, y) + quadSize * .5f, gridObject.GetRotation(), quadSize, gridUV00, gridUV11);
 				}
 			}
 
