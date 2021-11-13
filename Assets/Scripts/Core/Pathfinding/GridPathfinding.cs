@@ -531,6 +531,8 @@ namespace OperationBlackwell.Core {
 			PathNode currentNode = mapNodes_[startX][startY];
 			PathNode targetNode = mapNodes_[endX][endY];
 
+			currentNode.SetWalkable(true);
+
 			if(currentNode == targetNode) {
 				return new List<PathNode> { currentNode };
 			}
@@ -558,7 +560,6 @@ namespace OperationBlackwell.Core {
 				// No path possible
 			}
 			ret.Reverse();
-
 			return ret;
 		}
 
@@ -702,7 +703,7 @@ namespace OperationBlackwell.Core {
 			if(x < 0 || x >= widthMax_ || y < 0 || y >= heightMax_) {
 				return false;
 			}
-			return mapNodes_[x][y].weight != WALL_WEIGHT;
+			return mapNodes_[x][y].IsWalkable();
 		}
 
 		public bool IsWall(int x, int y) {
