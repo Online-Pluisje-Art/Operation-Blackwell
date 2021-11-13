@@ -327,7 +327,7 @@ namespace OperationBlackwell.Core {
 										if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
 											OnUnitMove?.Invoke(this, new UnitPositionEvent() {
 												unit = unitGridCombat_,
-												position = Utils.GetMouseWorldPosition()
+												position = unitGridCombat_.GetPosition()
 											});
 										}
 										if(unitGridCombat_.GetActionPoints() - pathLength_ == 0){
@@ -343,6 +343,10 @@ namespace OperationBlackwell.Core {
 									});
 								}
 							}
+						}
+					} else if(!gridObject.GetIsValidMovePosition()) {
+						if(Input.GetMouseButtonDown(0)) {
+							DeselectUnit();
 						}
 					}
 					break;
@@ -377,18 +381,23 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		private void ForceTurnOver() {
-			// Execute all unit actions and end turn
-			turn_++;
-			OnTurnEnded?.Invoke(this, turn_);
+		private void DeselectUnit() {
 			unitGridCombat_ = null;
 			UnitEvent unitEvent = new UnitEvent() {
 				unit = unitGridCombat_
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-			ResetAllActionPoints();
 			ResetMoveTiles();
 			state_ = State.Normal;
+		}
+
+		private void ForceTurnOver() {
+			// Execute all unit actions and end turn
+			turn_++;
+			OnTurnEnded?.Invoke(this, turn_);
+			DeselectUnit();
+			ResetAllActionPoints();
+			ResetMoveTiles();
 		}
 
 		private void ResetAllActionPoints() {

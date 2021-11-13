@@ -18,5 +18,7 @@ namespace OperationBlackwell.Core {
 		public abstract int GetAttackCost();
 		public abstract void SetActiveWeapon(int index);
 		public abstract string GetActiveWeapon();
+		public abstract void SaveAction(Actions action);
+		public abstract void ExecuteActions();
 	}
 }

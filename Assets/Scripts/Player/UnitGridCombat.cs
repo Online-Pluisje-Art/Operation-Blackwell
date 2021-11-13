@@ -185,5 +185,14 @@ namespace OperationBlackwell.Player {
 			}
 			return hitChance;
 		}
+
+		public override void SaveAction(Actions action) {
+			// OrderObject order = new OrderObject();
+			// GridCombatSystem.Instance.AddOrderElement();
+		}
+
+		public override void ExecuteActions() {
+			Debug.Log("Executing actions");
+		}
 	}
 }
