@@ -303,7 +303,7 @@ namespace OperationBlackwell.Core {
 						}
 					} else if(gridObject.GetIsValidMovePosition()) {
 						// Draw arrow acording to pathfinding path
-						if(Input.GetMouseButtonDown(0)) {
+						if(Input.GetMouseButtonDown(1)) {
 							// Save the actions for the unit
 							if(gridObject.GetIsValidMovePosition()) {
 								// Valid Move Position
@@ -343,6 +343,8 @@ namespace OperationBlackwell.Core {
 									});
 								}
 							}
+						} else if(Input.GetMouseButtonDown(0)) {
+							DeselectUnit();
 						}
 					} else if(unitGridCombat_.CanAttackUnit(unit)) {
 						if(Input.GetMouseButtonDown(0)) {
