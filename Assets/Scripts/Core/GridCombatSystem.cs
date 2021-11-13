@@ -155,11 +155,8 @@ namespace OperationBlackwell.Core {
 					if(x < 0 || x >= grid.GetWidth() || y < 0 || y >= grid.GetHeight()) {
 						continue;
 					}
-					if(GameController.Instance.grid.GetGridObject(x, y).GetUnitGridCombat() != null) {
-						continue;
-					}
 
-					if(gridPathfinding.IsWalkable(x, y)) {
+					if(gridPathfinding.IsWalkable(x, y) && x != unitX || y != unitY) {
 						// Position is Walkable
 						if(gridPathfinding.HasPath(unitX, unitY, x, y)) {
 							// There is a Path
@@ -183,6 +180,18 @@ namespace OperationBlackwell.Core {
 					}
 				}
 			}
+			// Update the nodes with players in it to nonwalkable
+			// foreach(Tilemap.Node node in grid.GetAllGridObjects()) {
+			// 	if(node.GetUnitGridCombat() != null) {
+			// 		gridPathfinding.SetWalkable(node.gridX, node.gridY, false);
+			// 		// Set Tilemap Tile to Move
+			// 		GameController.Instance.GetMovementTilemap().SetTilemapSprite(
+			// 			node.gridX, node.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
+			// 		);
+
+			// 		grid.GetGridObject(node.gridX, node.gridY).SetIsValidMovePosition(false);
+			// 	}
+			// }
 		}
 
 		private void LateUpdate() {
@@ -229,13 +238,10 @@ namespace OperationBlackwell.Core {
 									MovementTilemap.TilemapObject.TilemapSprite.None
 								);
 
-								// Remove Unit from current Grid Object
-								grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
-								// Set Unit on target Grid Object
-								gridObject.SetUnitGridCombat(unitGridCombat_);
-
 								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
 
+								Vector3 oldPlayerPos = unitGridCombat_.GetPosition();
+								
 								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
 									state_ = State.Normal;
 									if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
@@ -244,6 +250,10 @@ namespace OperationBlackwell.Core {
 											position = Utils.GetMouseWorldPosition()
 										});
 									}
+									// Remove Unit from current Grid Object
+									grid.GetGridObject(oldPlayerPos).ClearUnitGridCombat();
+									// Set Unit on target Grid Object
+									gridObject.SetUnitGridCombat(unitGridCombat_);
 									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
 									UnitEvent unitEvent = new UnitEvent() {
 										unit = unitGridCombat_

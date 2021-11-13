@@ -185,10 +185,14 @@ namespace OperationBlackwell.Core {
 
 			public void SetUnitGridCombat(CoreUnit unitGridCombat) {
 				this.unitGridCombat_ = unitGridCombat;
+				walkable = false;
+				grid_.TriggerGridObjectChanged(gridX, gridY);
 			}
 
 			public void ClearUnitGridCombat() {
 				SetUnitGridCombat(null);
+				walkable = true;
+				grid_.TriggerGridObjectChanged(gridX, gridY);
 			}
 
 			public CoreUnit GetUnitGridCombat() {
