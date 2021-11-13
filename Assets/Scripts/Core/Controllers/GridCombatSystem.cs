@@ -206,11 +206,14 @@ namespace OperationBlackwell.Core {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			if(gridObject != null) {
-				if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())
-					&& gridObject.GetUnitGridCombat() != unitGridCombat_ && gridObject.GetUnitGridCombat().GetTeam() != unitGridCombat_.GetTeam()) {
+				CoreUnit unit = gridObject.GetUnitGridCombat();
+				if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit)
+					&& unit != unitGridCombat_ && unit.GetTeam() != unitGridCombat_.GetTeam()) {
 					CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
-				} else if(gridObject.GetIsValidMovePosition()) {
+				} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && state_ == State.UnitSelected) {
 					CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+				} else if(unit != null && unit.GetTeam() == Team.Blue && (state_ == State.Normal || state_ == State.UnitSelected)) {
+					CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
 				} else {
 					CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 				}
@@ -242,7 +245,6 @@ namespace OperationBlackwell.Core {
 					
 					unit = gridObject.GetUnitGridCombat();
 					if(unit != null && unit.GetTeam() == Team.Blue) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
 						GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
 							gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
 						);
@@ -257,7 +259,6 @@ namespace OperationBlackwell.Core {
 							}
 						}
 					} else {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 						GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
 							gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
 						);
@@ -290,7 +291,6 @@ namespace OperationBlackwell.Core {
 
 					unit = gridObject.GetUnitGridCombat();
 					if(unit != null && unit.GetTeam() == Team.Blue && unit != unitGridCombat_) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
 						if(Input.GetMouseButtonDown(0)) {
 							if(unit != null && unit.GetTeam() == Team.Blue) {
 								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
@@ -302,7 +302,6 @@ namespace OperationBlackwell.Core {
 							}
 						}
 					} else if(gridObject.GetIsValidMovePosition()) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
 						// Draw arrow acording to pathfinding path
 						if(Input.GetMouseButtonDown(0)) {
 							// Save the actions for the unit
@@ -315,6 +314,7 @@ namespace OperationBlackwell.Core {
 									GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
 										MovementTilemap.TilemapObject.TilemapSprite.None
 									);
+									CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 
 									// Remove Unit from current Grid Object
 									grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
@@ -344,10 +344,6 @@ namespace OperationBlackwell.Core {
 								}
 							}
 						}
-					} else if(unitGridCombat_.CanAttackUnit(unit)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
-					} else {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
 					break;
 				case State.EndingTurn:
@@ -385,8 +381,9 @@ namespace OperationBlackwell.Core {
 			// Execute all unit actions and end turn
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
+			unitGridCombat_ = null;
 			UnitEvent unitEvent = new UnitEvent() {
-				unit = null
+				unit = unitGridCombat_
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 			ResetAllActionPoints();
@@ -401,6 +398,13 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void ResetMoveTiles() {
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			// Reset Entire Grid ValidMovePositions
+			for(int x = 0; x < grid.GetWidth(); x++) {
+				for(int y = 0; y < grid.GetHeight(); y++) {
+					grid.GetGridObject(x, y).SetIsValidMovePosition(false);
+				}
+			}
 			GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
 				MovementTilemap.TilemapObject.TilemapSprite.None
 			);

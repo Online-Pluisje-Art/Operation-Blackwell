@@ -968,6 +968,7 @@ Transform:
   - {fileID: 1176652287}
   - {fileID: 776276070}
   - {fileID: 387270666}
+  - {fileID: 155744544}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1426,7 +1427,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 112292080}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &155744545
 MonoBehaviour:
@@ -1437,13 +1438,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 155744543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd97d535864f44338ba0d0ded1874f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dc0076f2048ea865ba08d5e77fe6b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tilemapSpriteUVArray_:
   - tilemapSprite: 1
     uv00Pixels: {x: 0, y: 0}
-    uv11Pixels: {x: 1000, y: 1000}
+    uv11Pixels: {x: 32, y: 32}
 --- !u!23 &155744546
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2761,6 +2762,11 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 45145a31ccae2ea4181663417b686be7, type: 3}
     frameRate: 0.2
     offset: {x: 4, y: 4}
+  - cursorType: 2
+    textureArray:
+    - {fileID: 2800000, guid: 67c56fac1043f614d92ae10680a7ce94, type: 3}
+    frameRate: 1
+    offset: {x: 16, y: 16}
 --- !u!1001 &279345577
 PrefabInstance:
   m_ObjectHideFlags: 0
