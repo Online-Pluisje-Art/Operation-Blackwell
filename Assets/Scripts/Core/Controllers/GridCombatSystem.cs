@@ -344,6 +344,10 @@ namespace OperationBlackwell.Core {
 								}
 							}
 						}
+					} else if(unitGridCombat_.CanAttackUnit(unit)) {
+						if(Input.GetMouseButtonDown(0)) {
+							Debug.Log("Attack");
+						}
 					} else if(!gridObject.GetIsValidMovePosition()) {
 						if(Input.GetMouseButtonDown(0)) {
 							DeselectUnit();
