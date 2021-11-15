@@ -386,7 +386,7 @@ namespace OperationBlackwell.Core {
 					break;
 			}
 
-			if(Input.GetKeyDown(KeyCode.Return)) {
+			if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) {
 				// End Turn
 				state_ = State.EndingTurn;
 			}
