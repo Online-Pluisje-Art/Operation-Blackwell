@@ -193,6 +193,7 @@ namespace OperationBlackwell.Player {
 		}
 
 		public override void SaveAction(Actions action) {
+			actionPoints_ -= action.cost;
 			actions_.Add(action);
 		}
 

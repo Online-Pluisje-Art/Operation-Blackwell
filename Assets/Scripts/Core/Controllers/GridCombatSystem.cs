@@ -326,8 +326,8 @@ namespace OperationBlackwell.Core {
 
 									pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
 
-									Actions unitAction = new Actions(Actions.ActionType.Move, gridObject.worldPosition, 
-										unitGridCombat_.GetPosition(), unitGridCombat_, null, pathLength_);
+									Actions unitAction = new Actions(Actions.ActionType.Move, gridObject, 
+										grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_, null, pathLength_);
 									unitGridCombat_.SaveAction(unitAction);
 
 									OrderObject unitOrder = GetOrderObject(unitGridCombat_);
@@ -443,7 +443,10 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void ResetAllActionPoints() {
-			foreach(CoreUnit unit in unitGridCombatArray_) {
+			foreach(CoreUnit unit in blueTeamList_) {
+				unit.ResetActionPoints();
+			}
+			foreach(CoreUnit unit in redTeamList_) {
 				unit.ResetActionPoints();
 			}
 		}
