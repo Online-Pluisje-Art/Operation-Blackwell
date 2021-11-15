@@ -23,5 +23,6 @@ namespace OperationBlackwell.Core {
 		public abstract void SaveAction(Actions action);
 		public abstract List<Actions> LoadActions();
 		public abstract void ExecuteActions();
+		public abstract void ClearActions();
 	}
 }

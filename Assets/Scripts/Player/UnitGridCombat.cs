@@ -203,8 +203,15 @@ namespace OperationBlackwell.Player {
 
 		public override void ExecuteActions() {
 			foreach(Actions action in actions_) {
-				action.Execute();
+				// action.Execute();
+				if(action.Execute())
+					Debug.Log("Execute action: " + action.type);
 			}
+			ClearActions();
+		}
+
+		public override void ClearActions() {
+			actions_.Clear();
 		}
 	}
 }
