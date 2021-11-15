@@ -191,6 +191,10 @@ namespace OperationBlackwell.Player {
 			// GridCombatSystem.Instance.AddOrderElement();
 		}
 
+		public override List<Actions> LoadActions() {
+			return new List<Actions>();
+		}
+
 		public override void ExecuteActions() {
 			Debug.Log("Executing actions");
 		}
