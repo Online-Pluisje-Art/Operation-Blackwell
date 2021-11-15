@@ -9,6 +9,7 @@ namespace OperationBlackwell.Core {
 		public abstract Team GetTeam();
 		public abstract bool IsEnemy(CoreUnit unitGridCombat);
 		public abstract int GetActionPoints();
+		public abstract bool HasActionPoints();
 		public abstract int GetMaxActionPoints();
 		public abstract void SetActionPoints(int actionPoints);
 		public abstract void ResetActionPoints();

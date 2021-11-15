@@ -74,6 +74,8 @@ namespace OperationBlackwell.Core {
 				}
 			}
 
+			orderList_ = new List<OrderObject>();
+
 			OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
 				unit = blueTeamList_[0],
 				position = blueTeamList_[0].GetPosition()
@@ -280,7 +282,7 @@ namespace OperationBlackwell.Core {
 					};
 					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 					
-					//load the units actions
+					//load the units actions and the visuals
 
 					UpdateValidMovePositions();
 					
@@ -303,7 +305,7 @@ namespace OperationBlackwell.Core {
 									unit = unit,
 									position = unit.GetPosition()
 								});
-								unitGridCombat_ = gridObject.GetUnitGridCombat();
+								unitGridCombat_ = unit;
 								state_ = State.UnitSelected;
 							}
 						}
@@ -322,31 +324,29 @@ namespace OperationBlackwell.Core {
 									);
 									CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 
-									// Remove Unit from current Grid Object
-									grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
-									// Set Unit on target Grid Object
-									gridObject.SetUnitGridCombat(unitGridCombat_);
-
 									pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
 
-									unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
-										if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
-											OnUnitMove?.Invoke(this, new UnitPositionEvent() {
-												unit = unitGridCombat_,
-												position = unitGridCombat_.GetPosition()
-											});
-										}
-										if(unitGridCombat_.GetActionPoints() - pathLength_ == 0){
-											state_ = State.EndingTurn;
-										} else {
-											state_ = State.UnitSelected;
-										}
-										unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
-										UnitEvent unitEvent = new UnitEvent() {
-											unit = unitGridCombat_
-										};
-										OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-									});
+									Actions unitAction = new Actions(Actions.ActionType.Move, gridObject.worldPosition, 
+										unitGridCombat_.GetPosition(), unitGridCombat_, null, pathLength_);
+									unitGridCombat_.SaveAction(unitAction);
+
+									OrderObject unitOrder = GetOrderObject(unitGridCombat_);
+									if(unitOrder == null) {
+										int cost = GenerateTotalCost(0, pathLength_, 0);
+										int initiative = GenerateInitiative(cost, pathLength_, 0);
+										unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
+										orderList_.Add(unitOrder);
+									} else {
+										int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), pathLength_, 0);
+										int newInitiative = GenerateInitiative(newCost, pathLength_, 0);
+										unitOrder.SetTotalCost(newCost);
+										unitOrder.SetInitiative(newInitiative);
+									}
+									if(UnitsHaveActionsPoints()) {
+										state_ = State.UnitSelected;
+									} else {
+										state_ = State.EndingTurn;
+									}
 								}
 							}
 						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
@@ -358,7 +358,7 @@ namespace OperationBlackwell.Core {
 							int attackCost = unitGridCombat_.GetAttackCost();
 							if(unitGridCombat_.GetActionPoints() >= attackCost) {
 								// Attack Enemy
-								// state_ = State.Waiting;
+								state_ = State.Waiting;
 								unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - attackCost);
 								unitGridCombat_.AttackUnit(unit, () => {
 									if(unitGridCombat_.GetActionPoints() == 0){
@@ -425,8 +425,21 @@ namespace OperationBlackwell.Core {
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
 			DeselectUnit();
+			ExecuteAllActions();
 			ResetAllActionPoints();
 			ResetMoveTiles();
+		}
+
+		private void ExecuteAllActions() {
+			if(orderList_ == null || orderList_.Count == 0) {
+				return;
+			}
+
+			orderList_.Sort((x, y) => x.GetInitiative().CompareTo(y.GetInitiative()));
+
+			foreach(OrderObject order in orderList_) {
+				order.GetUnit().ExecuteActions();
+			}
 		}
 
 		private void ResetAllActionPoints() {
@@ -446,6 +459,44 @@ namespace OperationBlackwell.Core {
 			GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
 				MovementTilemap.TilemapObject.TilemapSprite.None
 			);
+		}
+
+		/*
+		 * This function generates the totalcost of the units actions.
+		 * As params the function needs the current cost, the pathlength and the range of the attack.
+		 * The function has the ability to add modifiers to the totalcost calculation.
+		 */
+		private int GenerateTotalCost(int cost, int pathLength, int attackRange) {
+			int totalCost = cost + pathLength + attackRange;
+			return totalCost;
+		}
+
+		private int GenerateInitiative(int cost, int pathLength, int attackRange) {
+			int initiative = UnityEngine.Random.Range(1, 10);
+			return initiative;
+		}
+
+		private OrderObject GetOrderObject(CoreUnit unit) {
+			if(orderList_ == null || orderList_.Count == 0) {
+				return null;
+			}
+
+			foreach(OrderObject order in orderList_) {
+				if(order.GetUnit() == unit) {
+					return order;
+				}
+			}
+
+			return null;
+		}
+
+		private bool UnitsHaveActionsPoints() {
+			foreach(CoreUnit unit in blueTeamList_) {
+				if(unit.HasActionPoints()) {
+					return true;
+				}
+			}
+			return false;
 		}
 
 		public CoreUnit GetActiveUnit() {
