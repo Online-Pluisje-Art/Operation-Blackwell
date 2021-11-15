@@ -24,19 +24,20 @@ namespace OperationBlackwell.Core {
 			this.cost = cost;
 		}
 
-		public void Execute() {
+		public bool Execute() {
+			bool actionSucces = false;
 			switch (type) {
 				case ActionType.Move:
-					// Remove Unit from current Grid Object
-					origin.ClearUnitGridCombat();
-					// Set Unit on target Grid Object
-					destination.SetUnitGridCombat(invoker);
 					invoker.MoveTo(destination.worldPosition, () => {
-						invoker.SetActionPoints(invoker.GetActionPoints() - cost);
+						// Remove Unit from current Grid Object
+						origin.ClearUnitGridCombat();
+						// Set Unit on target Grid Object
+						destination.SetUnitGridCombat(invoker);
 						GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {
 							unit = invoker
 						};
 						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						actionSucces = true;
 					});
 					break;
 				case ActionType.Attack:
@@ -44,6 +45,7 @@ namespace OperationBlackwell.Core {
 				default:
 					break;
 			}
+			return actionSucces;
 		}
 	}
 }

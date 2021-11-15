@@ -31,5 +31,9 @@ namespace OperationBlackwell.Core {
 		public void SetTotalCost(int totalCost) {
 			totalCost_ = totalCost;
 		}
+
+		public void ExecuteActions() {
+			unit_.ExecuteActions();
+		}
 	}
 }

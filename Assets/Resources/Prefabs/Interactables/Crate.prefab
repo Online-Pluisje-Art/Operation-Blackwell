@@ -56,7 +56,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2423043026379704518}
   - component: {fileID: 1876707010659409880}
-  - component: {fileID: 2440310444239288113}
   - component: {fileID: 8970418019791922502}
   m_Layer: 0
   m_Name: Square
@@ -130,21 +129,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2440310444239288113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8142689323015223645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70959477dc1fa5c24a320471a31243c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkable_: 0
-  cover_: 1
-  hitChanceModifier_: 30
 --- !u!114 &8970418019791922502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,9 +138,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8142689323015223645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b6d9cc8d34245c02bbdfb88a2dabf31, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e1e7caf4fde067daa6b3852ef768541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase_: 5000
   offset_: 0
-  runOnlyOnce_: 0
+  runOnlyOnce_: 1
