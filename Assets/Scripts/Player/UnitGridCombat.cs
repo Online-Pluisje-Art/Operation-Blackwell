@@ -21,6 +21,7 @@ namespace OperationBlackwell.Player {
 		private WorldBar healthBar_;
 
 		private Weapon currentWeapon_;
+		private List<Actions> actions_;
 
 		private enum State {
 			Normal,
@@ -37,6 +38,7 @@ namespace OperationBlackwell.Player {
 			healthSystem_ = new HealthSystem(100);
 			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
+			actions_ = new List<Actions>();
 			SetActiveWeapon(0);
 		}
 
@@ -120,6 +122,10 @@ namespace OperationBlackwell.Player {
 			return actionPoints_;
 		}
 
+		public override bool HasActionPoints() {
+			return actionPoints_ > 0;
+		}
+
 		public override int GetMaxActionPoints() {
 			return maxActionPoints_;
 		}
@@ -187,16 +193,17 @@ namespace OperationBlackwell.Player {
 		}
 
 		public override void SaveAction(Actions action) {
-			// OrderObject order = new OrderObject();
-			// GridCombatSystem.Instance.AddOrderElement();
+			actions_.Add(action);
 		}
 
 		public override List<Actions> LoadActions() {
-			return new List<Actions>();
+			return actions_;
 		}
 
 		public override void ExecuteActions() {
-			Debug.Log("Executing actions");
+			foreach(Actions action in actions_) {
+				action.Execute();
+			}
 		}
 	}
 }
