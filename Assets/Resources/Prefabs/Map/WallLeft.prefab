@@ -41,11 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1295413102915407016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70959477dc1fa5c24a320471a31243c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 47c4551d7e41a810a92c2893305323ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkable_: 0
-  cover_: 1
+  cover_: 0
   hitChanceModifier_: 100
 --- !u!1 &6862443747704020193
 GameObject:
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6862443747704020193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b6d9cc8d34245c02bbdfb88a2dabf31, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e1e7caf4fde067daa6b3852ef768541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase_: 5000
