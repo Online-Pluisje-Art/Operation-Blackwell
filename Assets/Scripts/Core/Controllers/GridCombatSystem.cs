@@ -43,6 +43,12 @@ namespace OperationBlackwell.Core {
 			Waiting
 		}
 
+		private enum MouseButtons {
+			Leftclick,
+			Rightclick,
+			Middlemouseclick
+		}
+
 		private void Awake() {
 			Instance = this;
 			state_ = State.Normal;
@@ -248,7 +254,7 @@ namespace OperationBlackwell.Core {
 						GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
 							gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
 						);
-						if(Input.GetMouseButtonDown(0)) {
+						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							if(unit != null && unit.GetTeam() == Team.Blue) {
 								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
 									unit = unit,
@@ -291,7 +297,7 @@ namespace OperationBlackwell.Core {
 
 					unit = gridObject.GetUnitGridCombat();
 					if(unit != null && unit.GetTeam() == Team.Blue && unit != unitGridCombat_) {
-						if(Input.GetMouseButtonDown(0)) {
+						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							if(unit != null && unit.GetTeam() == Team.Blue) {
 								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
 									unit = unit,
@@ -303,7 +309,7 @@ namespace OperationBlackwell.Core {
 						}
 					} else if(gridObject.GetIsValidMovePosition()) {
 						// Draw arrow acording to pathfinding path
-						if(Input.GetMouseButtonDown(1)) {
+						if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick)) {
 							// Save the actions for the unit
 							if(gridObject.GetIsValidMovePosition()) {
 								// Valid Move Position
@@ -343,15 +349,32 @@ namespace OperationBlackwell.Core {
 									});
 								}
 							}
-						} else if(Input.GetMouseButtonDown(0)) {
+						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							DeselectUnit();
 						}
 					} else if(unitGridCombat_.CanAttackUnit(unit)) {
-						if(Input.GetMouseButtonDown(0)) {
-							Debug.Log("Attack");
+						if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick)) {
+							// Can Attack Enemy
+							int attackCost = unitGridCombat_.GetAttackCost();
+							if(unitGridCombat_.GetActionPoints() >= attackCost) {
+								// Attack Enemy
+								// state_ = State.Waiting;
+								unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - attackCost);
+								unitGridCombat_.AttackUnit(unit, () => {
+									if(unitGridCombat_.GetActionPoints() == 0){
+										state_ = State.EndingTurn;
+									} else {
+										state_ = State.UnitSelected;
+									}
+									UnitEvent unitEvent = new UnitEvent() {
+										unit = unitGridCombat_
+									};
+									OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+								});
+							}
 						}
 					} else if(!gridObject.GetIsValidMovePosition()) {
-						if(Input.GetMouseButtonDown(0)) {
+						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							DeselectUnit();
 						}
 					}
@@ -526,7 +549,7 @@ namespace OperationBlackwell.Core {
 				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 			}
 
-			if(Input.GetMouseButtonDown(0)) {
+			if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 
 				if(gridObject.GetIsValidMovePosition()) {
 					// Valid Move Position
