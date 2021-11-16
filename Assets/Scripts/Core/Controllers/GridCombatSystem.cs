@@ -268,8 +268,6 @@ namespace OperationBlackwell.Core {
 						unit = unitGridCombat_
 					};
 					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-					
-					//load the units actions and the visuals
 
 					UpdateValidMovePositions();
 
@@ -287,7 +285,14 @@ namespace OperationBlackwell.Core {
 					ResetArrowVisual();
 					// Set arrow to target position
 					if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null) {
-						SetArrowWithPath();
+						SetArrowWithPath(Vector3.zero, Vector3.zero);
+					}
+
+					List<Actions> actions = unitGridCombat_.LoadActions();
+					foreach(Actions action in actions) {
+						if(action.type == Actions.ActionType.Move) {
+							SetArrowWithPath(action.originPos, action.destinationPos);
+						}
 					}
 
 					unit = gridObject.GetUnitGridCombat();
@@ -520,8 +525,12 @@ namespace OperationBlackwell.Core {
 			return points;
 		}
 
-		private void SetArrowWithPath() {
-			currentPathUnit_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition());
+		private void SetArrowWithPath(Vector3 start, Vector3 end) {
+			if(start == Vector3.zero && end == Vector3.zero) {
+				start = unitGridCombat_.GetPosition();
+				end = Utils.GetMouseWorldPosition();
+			}
+			currentPathUnit_ = GameController.Instance.gridPathfinding.GetPath(start, end);
 			MovementTilemap arrowMap = GameController.Instance.GetArrowTilemap();
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			int x = 0, y = 0;
@@ -530,7 +539,7 @@ namespace OperationBlackwell.Core {
 				y = node.yPos;
 
 				if(grid.GetGridObject(x, y).GetUnitGridCombat() != unitGridCombat_) {
-					if(grid.GetGridObject(x, y) != grid.GetGridObject(Utils.GetMouseWorldPosition())) {
+					if(grid.GetGridObject(x, y) != grid.GetGridObject(end)) {
 						if((node.parent.xPos > x || node.parent.xPos < x) && node.parent.yPos == y) {
 							arrowMap.SetRotation(x, y, 90f);
 							arrowMap.SetTilemapSprite(x, y, MovementTilemap.TilemapObject.TilemapSprite.ArrowStraight);
