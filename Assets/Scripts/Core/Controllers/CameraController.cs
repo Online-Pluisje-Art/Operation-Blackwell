@@ -21,7 +21,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void FixedUpdate() {
-			if(targetPosition_ != camera_.transform.position && !HandleCameraMovement()) {
+			if(!HandleCameraMovement() && targetPosition_ != camera_.transform.position) {
 				camera_.transform.position = Vector3.Lerp(camera_.transform.position, targetPosition_, Time.deltaTime * cameraSpeed_);
 			}
 		}
@@ -47,14 +47,15 @@ namespace OperationBlackwell.Core {
 			Vector3 activePlayerPosition = new Vector3(0, 0, 0);
 			if(GridCombatSystem.Instance.GetActiveUnit() != null) {
 				activePlayerPosition = GridCombatSystem.Instance.GetActiveUnit().transform.position;
+				//Lock the camera to the active player plus a range of 10
+				if(activePlayerPosition.x - distance > camera_.transform.position.x || activePlayerPosition.x + distance < camera_.transform.position.x) {
+					moveDir.x = 0;
+				}
+				if(activePlayerPosition.y - distance > camera_.transform.position.y || activePlayerPosition.y + distance < camera_.transform.position.y) {
+					moveDir.y = 0;
+				}
 			}
-			//Lock the camera to the active player plus a range of 10
-			if(activePlayerPosition.x - distance > camera_.transform.position.x || activePlayerPosition.x + distance < camera_.transform.position.x) {
-				moveDir.x = 0;
-			}
-			if(activePlayerPosition.y - distance > camera_.transform.position.y || activePlayerPosition.y + distance < camera_.transform.position.y) {
-				moveDir.y = 0;
-			}
+			
 			camera_.transform.position += moveDir * moveSpeed * Time.deltaTime;
 
 			if(moveDir.magnitude > 0) {

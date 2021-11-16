@@ -1,7 +1,8 @@
 using UnityEngine;
+using System.Collections;
 
 namespace OperationBlackwell.Core {
-	public class Utils {
+	public class Utils : MonoBehaviour {
 		private static readonly Vector3 Vector3zero = Vector3.zero;
 		private static readonly Vector3 Vector3one = Vector3.one;
 		private static readonly Vector3 Vector3yDown = new Vector3(0, -1);
@@ -213,6 +214,10 @@ namespace OperationBlackwell.Core {
 			spriteRenderer.sortingOrder = sortingOrder;
 			spriteRenderer.color = color;
 			return gameObject;
+		}
+
+		public static IEnumerator WaitSeconds(float seconds) {
+			yield return new WaitForSeconds(seconds);
 		}
 	}
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using OperationBlackwell.Core;
@@ -15,10 +13,6 @@ namespace OperationBlackwell.UI {
 			GridCombatSystem.Instance.OnUnitActionPointsChanged += UpdateActionPoints;
 			GridCombatSystem.Instance.OnWeaponChanged += UpdateWeapon;
 			GridCombatSystem.Instance.OnTurnEnded += UpdateTurnCounter;
-		}
-
-		private void UpdateActionPoints(object sender, GridCombatSystem.UnitEvent args) {
-			actionPointsText_.text = "Action Points: " + args.unit.GetActionPoints().ToString();
 		}
 
 		private void UpdateWeapon(object sender, string name) {

@@ -245,12 +245,6 @@ namespace OperationBlackwell.Core {
 					if(gridObject == null) {
 						return;
 					}
-
-					ResetArrowVisual();
-					// Set arrow to target position
-					if(gridObject.GetIsValidMovePosition()) {
-						SetArrowWithPath();
-					}
 					
 					unit = gridObject.GetUnitGridCombat();
 					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
@@ -268,9 +262,6 @@ namespace OperationBlackwell.Core {
 							}
 						}
 					}
-					// Save the actions for the unit
-					// Update the unit's action points
-					// Wait until user selects new unit
 					break;
 				case State.UnitSelected:
 					UnitEvent unitEvent = new UnitEvent() {
@@ -295,7 +286,7 @@ namespace OperationBlackwell.Core {
 
 					ResetArrowVisual();
 					// Set arrow to target position
-					if(gridObject.GetIsValidMovePosition()) {
+					if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null) {
 						SetArrowWithPath();
 					}
 
@@ -328,8 +319,8 @@ namespace OperationBlackwell.Core {
 
 									pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
 
-									Actions unitAction = new Actions(Actions.ActionType.Move, gridObject, 
-										grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_, null, pathLength_);
+									Actions unitAction = new Actions(Actions.ActionType.Move, gridObject, Utils.GetMouseWorldPosition(),
+										grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, null, pathLength_);
 									unitGridCombat_.SaveAction(unitAction);
 
 									OrderObject unitOrder = GetOrderObject(unitGridCombat_);
@@ -420,11 +411,13 @@ namespace OperationBlackwell.Core {
 
 		private void DeselectUnit() {
 			unitGridCombat_ = null;
+			ResetMoveTiles();
+			ResetArrowVisual();
 			UnitEvent unitEvent = new UnitEvent() {
 				unit = unitGridCombat_
 			};
+			Debug.Log("Deselect Unit");
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-			ResetMoveTiles();
 			state_ = State.Normal;
 		}
 
@@ -435,7 +428,6 @@ namespace OperationBlackwell.Core {
 			DeselectUnit();
 			ExecuteAllActions();
 			ResetAllActionPoints();
-			ResetMoveTiles();
 		}
 
 		private void ExecuteAllActions() {
@@ -631,22 +623,22 @@ namespace OperationBlackwell.Core {
 
 						pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
 
-						unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
-							state_ = State.Normal;
-							if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
-								OnUnitMove?.Invoke(this, new UnitPositionEvent() {
-									unit = unitGridCombat_,
-									position = Utils.GetMouseWorldPosition()
-								});
-							}
-							unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
-							UnitEvent unitEvent = new UnitEvent() {
-								unit = unitGridCombat_
-							};
-							OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-							UpdateValidMovePositions();
-							TestTurnOver();
-						});
+						// unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
+						// 	state_ = State.Normal;
+						// 	if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
+						// 		OnUnitMove?.Invoke(this, new UnitPositionEvent() {
+						// 			unit = unitGridCombat_,
+						// 			position = Utils.GetMouseWorldPosition()
+						// 		});
+						// 	}
+						// 	unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
+						// 	UnitEvent unitEvent = new UnitEvent() {
+						// 		unit = unitGridCombat_
+						// 	};
+						// 	OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						// 	UpdateValidMovePositions();
+						// 	TestTurnOver();
+						// });
 					}
 				}
 
