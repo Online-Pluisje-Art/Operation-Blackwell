@@ -64,12 +64,6 @@ namespace OperationBlackwell.Core {
 				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 				SceneManager.LoadScene("MainMenu");
 			}
-			if(Input.GetKeyDown(KeyCode.Home)) {
-				Application.OpenURL("https://github.com/Online-Pluisje-Art/Operation-Blackwell/tree/development");
-			}
-			if(Input.GetKeyDown(KeyCode.End)) {
-				Application.OpenURL("https://docs.opa.rip/");
-			}
 		}
 	}
 }
