@@ -8,6 +8,7 @@ namespace OperationBlackwell.Player {
 		[SerializeField] protected float range_;
 		[SerializeField] protected int costs_;
 		[SerializeField] protected float baseHitchance_;
+		[SerializeField] protected string name_;
 
 		public virtual float GetDamage() {
 			return damage_;
@@ -23,6 +24,10 @@ namespace OperationBlackwell.Player {
 
 		public virtual float GetBaseHitchance() {
 			return baseHitchance_;
+		}
+
+		public virtual string GetName() {
+			return name_;
 		}
 	}
 }

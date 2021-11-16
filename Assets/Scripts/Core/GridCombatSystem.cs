@@ -23,6 +23,7 @@ namespace OperationBlackwell.Core {
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
 		public EventHandler<UnitPositionEvent> OnUnitMove;
 		public EventHandler<UnitEvent> OnUnitActionPointsChanged;
+		public EventHandler<string> OnWeaponChanged;
 
 		public class UnitEvent : EventArgs {
 			public CoreUnit unit;
@@ -92,6 +93,7 @@ namespace OperationBlackwell.Core {
 				unit = unitGridCombat_
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+			OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 		}
 
 		private CoreUnit GetNextActiveUnit(Team team) {
@@ -199,6 +201,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
+			HandleWeaponSwitch();
 			switch(state_) {
 				case State.Normal:
 					Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
@@ -289,6 +292,17 @@ namespace OperationBlackwell.Core {
 					break;
 				default:
 					break;
+			}
+		}
+
+		private void HandleWeaponSwitch() {
+			if(Input.GetKeyDown(KeyCode.Alpha1)) {
+				unitGridCombat_.SetActiveWeapon(0);
+				OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
+			}
+			if(Input.GetKeyDown(KeyCode.Alpha2)) {
+				unitGridCombat_.SetActiveWeapon(1);
+				OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 			}
 		}
 
