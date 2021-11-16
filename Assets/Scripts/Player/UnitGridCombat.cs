@@ -61,10 +61,14 @@ namespace OperationBlackwell.Player {
 			healthBar_.SetSize(healthSystem_.GetHealthNormalized());
 		}
 
-		private void SetActiveWeapon(int index) {
+		public override void SetActiveWeapon(int index) {
 			if(index >= 0 && index < weapons_.Count) {
 				currentWeapon_ = weapons_[index];
 			}
+		}
+
+		public override string GetActiveWeapon() {
+			return currentWeapon_.GetName();
 		}
 
 		public void SetSelectedVisible(bool visible) {
