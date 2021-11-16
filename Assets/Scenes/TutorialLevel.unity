@@ -3284,6 +3284,7 @@ GameObject:
   - component: {fileID: 387270666}
   - component: {fileID: 387270668}
   - component: {fileID: 387270667}
+  - component: {fileID: 387270669}
   m_Layer: 0
   m_Name: ArrowTilemapVisual
   m_TagString: Untagged
@@ -3324,9 +3325,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 91b93b4bb3aa93edb85505bd1d697e86, type: 2}
-  - {fileID: 2100000, guid: 783a4a04ad1bfd357ac4c7a0762097e5, type: 2}
-  - {fileID: 2100000, guid: 4ba24ab3b7d1b55938068ad7baf345be, type: 2}
+  - {fileID: 2100000, guid: 636ced2e1b9aa3cc885859b648f337f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3356,6 +3355,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387270665}
   m_Mesh: {fileID: 0}
+--- !u!114 &387270669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387270665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc0076f2048ea865ba08d5e77fe6b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemapSpriteUVArray_:
+  - tilemapSprite: 4
+    uv00Pixels: {x: 0, y: 0}
+    uv11Pixels: {x: 32, y: 32}
+  - tilemapSprite: 3
+    uv00Pixels: {x: 32, y: 0}
+    uv11Pixels: {x: 64, y: 32}
+  - tilemapSprite: 2
+    uv00Pixels: {x: 64, y: 0}
+    uv11Pixels: {x: 96, y: 32}
 --- !u!4 &391561360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6238058716552792254, guid: 0f35d99036394798ba8689ba84f9f3ca, type: 3}
@@ -5331,6 +5352,7 @@ MonoBehaviour:
   cellSize_: 1
   drawGridLines_: 0
   movementTilemapVisual_: {fileID: 1176652284}
+  arrowTilemapVisual_: {fileID: 387270669}
   tilemapVisual_: {fileID: 776276069}
 --- !u!4 &593590128
 Transform:

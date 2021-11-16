@@ -27,6 +27,13 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
+		public void SetRotation(int x, int y, float rotation) {
+			TilemapObject tilemapObject = grid_.GetGridObject(x, y);
+			if(tilemapObject != null) {
+				tilemapObject.SetRotation(rotation);
+			}
+		}
+
 		public void SetAllTilemapSprite(TilemapObject.TilemapSprite tilemapSprite) {
 			for(int x = 0; x < grid_.GetWidth(); x++) {
 				for(int y = 0; y < grid_.GetHeight(); y++) {
@@ -56,6 +63,7 @@ namespace OperationBlackwell.Core {
 			private int x_;
 			private int y_;
 			private TilemapSprite tilemapSprite_;
+			private float rotation_;
 
 			public TilemapObject(Grid<TilemapObject> grid_, int x, int y) {
 				this.grid_ = grid_;
@@ -70,6 +78,15 @@ namespace OperationBlackwell.Core {
 
 			public TilemapSprite GetTilemapSprite() {
 				return tilemapSprite_;
+			}
+
+			public float GetRotation() {
+				return rotation_;
+			}
+
+			public void SetRotation(float rotation) {
+				this.rotation_ = rotation;
+				grid_.TriggerGridObjectChanged(x_, y_);
 			}
 
 			public override string ToString() {
