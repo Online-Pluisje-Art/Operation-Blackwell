@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
 	public class MovePositionPathfinding : MonoBehaviour {
-		private Action onReachedTargetPosition_;
+		private Func<bool> onReachedTargetPosition_;
 		private List<Vector3> pathVectorList_;
 		private int pathIndex_ = -1;
 
-		public void SetMovePosition(Vector3 movePosition, Action onReachedTargetPosition) {
+		public async Task<bool> SetMovePosition(Vector3 movePosition, Func<bool> onReachedTargetPosition) {
 			this.onReachedTargetPosition_ = onReachedTargetPosition;
 			pathVectorList_ = GridPathfinding.Instance.GetPathRouteWithShortcuts(transform.position, movePosition).pathVectorList;
 			/*Debug.Log("##########");
@@ -26,6 +27,7 @@ namespace OperationBlackwell.Player {
 			} else {
 				pathIndex_ = -1;
 			}
+			return onReachedTargetPosition_();
 		}
 
 		private void Update() {

@@ -15900,7 +15900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionPointsText_: {fileID: 1888716945}
   weaponText_: {fileID: 238835087}
-  TurnCounterText_: {fileID: 2101535934}
+  turnCounterText_: {fileID: 2101535934}
 --- !u!4 &1865685703
 Transform:
   m_ObjectHideFlags: 0

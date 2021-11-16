@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using OperationBlackwell.Core;
 
@@ -94,12 +94,15 @@ namespace OperationBlackwell.Player {
 			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}
 
-		public override void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
+		public override async Task<bool> MoveTo(Vector3 targetPosition, Func<bool> onReachedPosition) {
 			state_ = State.Moving;
-			movePosition_.SetMovePosition(targetPosition, () => {
+			bool succes = false;
+			float totalwait = 0f;
+			succes = await movePosition_.SetMovePosition(targetPosition, () => {
 				state_ = State.Normal;
-				onReachedPosition();
+				return onReachedPosition();
 			});
+			return succes;
 		}
 
 		public override Vector3 GetPosition() {
@@ -201,17 +204,16 @@ namespace OperationBlackwell.Player {
 			return actions_;
 		}
 
-		public override void ExecuteActions() {
+		public async override void ExecuteActions() {
 			foreach(Actions action in actions_) {
-				// action.Execute();
-				if(action.Execute())
-					Debug.Log("Execute action: " + action.type);
+				await action.Execute();
 			}
 			ClearActions();
 		}
 
 		public override void ClearActions() {
 			actions_.Clear();
+			ResetActionPoints();
 		}
 	}
 }

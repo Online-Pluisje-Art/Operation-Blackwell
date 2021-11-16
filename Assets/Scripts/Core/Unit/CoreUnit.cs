@@ -1,10 +1,11 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OperationBlackwell.Core {
 	public abstract class CoreUnit : MonoBehaviour {
-		public abstract void MoveTo(Vector3 targetPosition, Action onReachedPosition);
+		public abstract Task<bool> MoveTo(Vector3 targetPosition, Func<bool> onReachedPosition);
 		public abstract Vector3 GetPosition();
 		public abstract Team GetTeam();
 		public abstract bool IsEnemy(CoreUnit unitGridCombat);
