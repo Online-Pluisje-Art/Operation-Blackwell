@@ -155,7 +155,7 @@ namespace OperationBlackwell.Core {
 			GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
 
 			// Get Unit Grid Position X, Y
-			grid.GetXY(unitGridCombat_.GetPosition(), out int unitX, out int unitY);
+			grid.GetXY(position, out int unitX, out int unitY);
 
 			// Set entire Tilemap to Invisible
 			GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
@@ -269,10 +269,10 @@ namespace OperationBlackwell.Core {
 					};
 					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 
-					UpdateValidMovePositions();
-
 					grid = GameController.Instance.GetGrid();
 					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
+
+					UpdateValidMovePositions(unitGridCombat_.GetPosition());
 					
 					if(gridObject == null) {
 						return;
@@ -284,14 +284,14 @@ namespace OperationBlackwell.Core {
 
 					ResetArrowVisual();
 					// Set arrow to target position
+					List<Actions> actions = unitGridCombat_.LoadActions();
 					if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null) {
 						SetArrowWithPath(Vector3.zero, Vector3.zero);
-					}
-
-					List<Actions> actions = unitGridCombat_.LoadActions();
-					foreach(Actions action in actions) {
-						if(action.type == Actions.ActionType.Move) {
-							SetArrowWithPath(action.originPos, action.destinationPos);
+					} else {
+						foreach(Actions action in actions) {
+							if(action.type == Actions.ActionType.Move) {
+								SetArrowWithPath(action.originPos, action.destinationPos);
+							}
 						}
 					}
 
@@ -599,89 +599,89 @@ namespace OperationBlackwell.Core {
 			GameController.Instance.GetArrowTilemap().SetAllTilemapSprite(MovementTilemap.TilemapObject.TilemapSprite.None);
 		}
 		
-		private void OldUnitStuff() {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
+		// private void OldUnitStuff() {
+		// 	Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+		// 	Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 
-			if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())
-				&& gridObject.GetUnitGridCombat() != unitGridCombat_ && gridObject.GetUnitGridCombat().GetTeam() != unitGridCombat_.GetTeam()) {
-				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
-			} else if(gridObject.GetIsValidMovePosition()) {
-				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
-			} else {
-				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
-			}
+		// 	if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())
+		// 		&& gridObject.GetUnitGridCombat() != unitGridCombat_ && gridObject.GetUnitGridCombat().GetTeam() != unitGridCombat_.GetTeam()) {
+		// 		CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+		// 	} else if(gridObject.GetIsValidMovePosition()) {
+		// 		CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+		// 	} else {
+		// 		CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+		// 	}
 
-			if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+		// 	if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 
-				if(gridObject.GetIsValidMovePosition()) {
-					// Valid Move Position
+		// 		if(gridObject.GetIsValidMovePosition()) {
+		// 			// Valid Move Position
 
-					if(unitGridCombat_.GetActionPoints() > 0) {
-						// state_ = State.Waiting;
+		// 			if(unitGridCombat_.GetActionPoints() > 0) {
+		// 				// state_ = State.Waiting;
 
-						// Set entire Tilemap to Invisible
-						GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
-							MovementTilemap.TilemapObject.TilemapSprite.None
-						);
+		// 				// Set entire Tilemap to Invisible
+		// 				GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+		// 					MovementTilemap.TilemapObject.TilemapSprite.None
+		// 				);
 
-						// Remove Unit from current Grid Object
-						grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
-						// Set Unit on target Grid Object
-						gridObject.SetUnitGridCombat(unitGridCombat_);
+		// 				// Remove Unit from current Grid Object
+		// 				grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
+		// 				// Set Unit on target Grid Object
+		// 				gridObject.SetUnitGridCombat(unitGridCombat_);
 
-						pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
+		// 				pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
 
-						// unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
-						// 	state_ = State.Normal;
-						// 	if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
-						// 		OnUnitMove?.Invoke(this, new UnitPositionEvent() {
-						// 			unit = unitGridCombat_,
-						// 			position = Utils.GetMouseWorldPosition()
-						// 		});
-						// 	}
-						// 	unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
-						// 	UnitEvent unitEvent = new UnitEvent() {
-						// 		unit = unitGridCombat_
-						// 	};
-						// 	OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-						// 	UpdateValidMovePositions();
-						// 	TestTurnOver();
-						// });
-					}
-				}
+		// 				// unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
+		// 				// 	state_ = State.Normal;
+		// 				// 	if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
+		// 				// 		OnUnitMove?.Invoke(this, new UnitPositionEvent() {
+		// 				// 			unit = unitGridCombat_,
+		// 				// 			position = Utils.GetMouseWorldPosition()
+		// 				// 		});
+		// 				// 	}
+		// 				// 	unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
+		// 				// 	UnitEvent unitEvent = new UnitEvent() {
+		// 				// 		unit = unitGridCombat_
+		// 				// 	};
+		// 				// 	OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+		// 				// 	UpdateValidMovePositions();
+		// 				// 	TestTurnOver();
+		// 				// });
+		// 			}
+		// 		}
 
-				// Check if clicking on a unit position
-				if(gridObject.GetUnitGridCombat() != null) {
-					// Clicked on top of a Unit
-					if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
-						// Can Attack Enemy
-						int attackCost = unitGridCombat_.GetAttackCost();
-						if(unitGridCombat_.GetActionPoints() >= attackCost) {
-							// Attack Enemy
-							// state_ = State.Waiting;
-							unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - attackCost);
-							UnitEvent unitEvent = new UnitEvent() {
-								unit = unitGridCombat_
-							};
-							OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-							unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
-								state_ = State.Normal;
-								UpdateValidMovePositions();
-								TestTurnOver();
-							});
-						}
-					} else {
-						// Cannot attack enemy
-					}
-			} else {
-					// No unit here
-				}
-			}
+		// 		// Check if clicking on a unit position
+		// 		if(gridObject.GetUnitGridCombat() != null) {
+		// 			// Clicked on top of a Unit
+		// 			if(unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())) {
+		// 				// Can Attack Enemy
+		// 				int attackCost = unitGridCombat_.GetAttackCost();
+		// 				if(unitGridCombat_.GetActionPoints() >= attackCost) {
+		// 					// Attack Enemy
+		// 					// state_ = State.Waiting;
+		// 					unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - attackCost);
+		// 					UnitEvent unitEvent = new UnitEvent() {
+		// 						unit = unitGridCombat_
+		// 					};
+		// 					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+		// 					unitGridCombat_.AttackUnit(gridObject.GetUnitGridCombat(), () => {
+		// 						state_ = State.Normal;
+		// 						UpdateValidMovePositions();
+		// 						TestTurnOver();
+		// 					});
+		// 				}
+		// 			} else {
+		// 				// Cannot attack enemy
+		// 			}
+		// 	} else {
+		// 			// No unit here
+		// 		}
+		// 	}
 
-			if(Input.GetKeyDown(KeyCode.Space)) {
-				ForceTurnOver();
-			}
-		}
+		// 	if(Input.GetKeyDown(KeyCode.Space)) {
+		// 		ForceTurnOver();
+		// 	}
+		// }
 	}
 }
