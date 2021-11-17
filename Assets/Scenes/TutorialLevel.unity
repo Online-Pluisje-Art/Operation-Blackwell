@@ -2371,7 +2371,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1911180824}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5937,7 +5937,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 626258690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 658439b97bab598698a1366056b043cc, type: 3}
+  m_Script: {fileID: 11500000, guid: e37b43bb7b1f13fca87ba91fdc2119de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &626258695
@@ -5953,8 +5953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 32
-  m_RefResolutionX: 853
-  m_RefResolutionY: 480
+  m_RefResolutionX: 652
+  m_RefResolutionY: 367
   m_UpscaleRT: 1
   m_PixelSnapping: 0
   m_CropFrameX: 0
@@ -16494,6 +16494,7 @@ RectTransform:
   m_Children:
   - {fileID: 1888716944}
   - {fileID: 2101535933}
+  - {fileID: 238835086}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

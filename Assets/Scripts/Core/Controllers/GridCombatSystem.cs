@@ -537,6 +537,7 @@ namespace OperationBlackwell.Core {
 			return points;
 		}
 
+		// If the start and end are not needed from the actionpath then it uses the selected player position and mouseposition for its calculation.
 		private void SetArrowWithPath(Vector3 start, Vector3 end) {
 			if(start == Vector3.zero && end == Vector3.zero) {
 				start = unitGridCombat_.GetPosition();
@@ -545,6 +546,7 @@ namespace OperationBlackwell.Core {
 			currentPathUnit_ = GameController.Instance.gridPathfinding.GetPath(start, end);
 			MovementTilemap arrowMap = GameController.Instance.GetArrowTilemap();
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			List<Actions> actions = unitGridCombat_.LoadActions();
 			int x = 0, y = 0;
 			foreach(PathNode node in currentPathUnit_) {
 				x = node.xPos;
@@ -572,9 +574,11 @@ namespace OperationBlackwell.Core {
 						}
 						arrowMap.SetTilemapSprite(x, y, MovementTilemap.TilemapObject.TilemapSprite.ArrowEnd);
 					}
+
 					if(node.parent.parent == null) {
 						continue;
 					}
+
 					if((node.parent.parent.xPos == node.parent.xPos && node.parent.xPos < x 
 						&& node.parent.parent.yPos > node.parent.yPos && node.parent.yPos == y)
 						|| (node.parent.parent.xPos > node.parent.xPos && node.parent.xPos == x 
@@ -603,6 +607,9 @@ namespace OperationBlackwell.Core {
 						arrowMap.SetRotation(node.parent.xPos, node.parent.yPos, -90f);
 						arrowMap.SetTilemapSprite(node.parent.xPos, node.parent.yPos, MovementTilemap.TilemapObject.TilemapSprite.ArrowCorner);
 					}
+				}
+				if(actions.Count != 0 && node.parent != null) {
+					
 				}
 			}
 		}
