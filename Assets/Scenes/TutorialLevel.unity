@@ -3641,6 +3641,24 @@ MonoBehaviour:
   - tilemapSprite: 2
     uv00Pixels: {x: 64, y: 0}
     uv11Pixels: {x: 96, y: 32}
+  - tilemapSprite: 7
+    uv00Pixels: {x: 96, y: 0}
+    uv11Pixels: {x: 128, y: 32}
+  - tilemapSprite: 10
+    uv00Pixels: {x: 128, y: 0}
+    uv11Pixels: {x: 160, y: 32}
+  - tilemapSprite: 9
+    uv00Pixels: {x: 160, y: 0}
+    uv11Pixels: {x: 192, y: 32}
+  - tilemapSprite: 8
+    uv00Pixels: {x: 192, y: 0}
+    uv11Pixels: {x: 224, y: 32}
+  - tilemapSprite: 5
+    uv00Pixels: {x: 224, y: 0}
+    uv11Pixels: {x: 256, y: 32}
+  - tilemapSprite: 6
+    uv00Pixels: {x: 256, y: 0}
+    uv11Pixels: {x: 288, y: 32}
 --- !u!4 &391561360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6238058716552792254, guid: 0f35d99036394798ba8689ba84f9f3ca, type: 3}
