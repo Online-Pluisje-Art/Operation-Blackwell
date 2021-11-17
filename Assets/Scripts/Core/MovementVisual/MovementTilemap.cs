@@ -57,6 +57,12 @@ namespace OperationBlackwell.Core {
 				ArrowEnd,
 				ArrowCorner,
 				ArrowStraight,
+				ArrowEndStr,
+				ArrowEndCorner,
+				ArrowStraightStr,
+				ArrowStraightCorner,
+				ArrowCornerStr,
+				ArrowCornerCorner,
 			}
 
 			private Grid<TilemapObject> grid_;
