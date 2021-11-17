@@ -7,11 +7,11 @@ using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
 	public class MovePositionPathfinding : MonoBehaviour {
-		private Func<bool> onReachedTargetPosition_;
+		private Action onReachedTargetPosition_;
 		private List<Vector3> pathVectorList_;
 		private int pathIndex_ = -1;
 
-		public async Task<bool> SetMovePosition(Vector3 movePosition, Func<bool> onReachedTargetPosition) {
+		public void SetMovePosition(Vector3 movePosition, Action onReachedTargetPosition) {
 			this.onReachedTargetPosition_ = onReachedTargetPosition;
 			pathVectorList_ = GridPathfinding.Instance.GetPathRouteWithShortcuts(transform.position, movePosition).pathVectorList;
 			/*Debug.Log("##########");
@@ -27,7 +27,6 @@ namespace OperationBlackwell.Player {
 			} else {
 				pathIndex_ = -1;
 			}
-			return onReachedTargetPosition_();
 		}
 
 		private void Update() {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace OperationBlackwell.Core {
 	public abstract class CoreUnit : MonoBehaviour {
-		public abstract Task<bool> MoveTo(Vector3 targetPosition, Func<bool> onReachedPosition);
+		public abstract bool MoveTo(Vector3 targetPosition, Action onReachedPosition);
 		public abstract Vector3 GetPosition();
 		public abstract Team GetTeam();
 		public abstract bool IsEnemy(CoreUnit unitGridCombat);

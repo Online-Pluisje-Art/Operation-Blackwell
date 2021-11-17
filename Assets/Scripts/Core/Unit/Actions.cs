@@ -32,11 +32,11 @@ namespace OperationBlackwell.Core {
 			this.cost = cost;
 		}
 
-		public async Task<bool> Execute() {
+		public bool Execute() {
 			success_ = false;
 			switch (type) {
 				case ActionType.Move:
-					success_ = await invoker.MoveTo(destinationPos, () => {
+					invoker.MoveTo(destinationPos, () => {
 						// Remove Unit from current Grid Object
 						origin.ClearUnitGridCombat();
 						// Set Unit on target Grid Object
@@ -45,7 +45,6 @@ namespace OperationBlackwell.Core {
 							unit = invoker
 						};
 						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-						return true;
 					});
 					if(success_) {
 						Debug.Log("Movement Successful");
