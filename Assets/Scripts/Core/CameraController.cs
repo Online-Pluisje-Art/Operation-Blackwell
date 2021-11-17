@@ -67,13 +67,13 @@ namespace OperationBlackwell.Core {
 
 		private void OnNewPlayerSelect(object player, GridCombatSystem.UnitPositionEvent args) {
 			if(args.unit != null) {
-				targetPosition_ = new Vector3(args.position.x, args.position.y, camera_.transform.position.z);
+				targetPosition_ = new Vector3((int)args.position.x, (int)args.position.y, camera_.transform.position.z);
 			}
 		}
 
 		private void OnPlayerMove(object player, GridCombatSystem.UnitPositionEvent args) {
 			if(args.unit != null) {
-				targetPosition_ = new Vector3(args.position.x, args.position.y, camera_.transform.position.z);
+				targetPosition_ = new Vector3((int)args.position.x, (int)args.position.y, camera_.transform.position.z);
 			}
 		}
 	}
