@@ -330,9 +330,14 @@ namespace OperationBlackwell.Core {
 									CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 
 									pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
-
-									Actions unitAction = new Actions(Actions.ActionType.Move, gridObject, Utils.GetMouseWorldPosition(),
-										grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, null, pathLength_);
+									Actions unitAction = null;
+									if(actions.Count == 0) {
+										unitAction = new Actions(Actions.ActionType.Move, gridObject, Utils.GetMouseWorldPosition(),
+											grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, null, pathLength_);
+									} else {
+										unitAction = new Actions(Actions.ActionType.Move, gridObject, Utils.GetMouseWorldPosition(),
+											grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unitGridCombat_, null, pathLength_);
+									}
 									unitGridCombat_.SaveAction(unitAction);
 
 									OrderObject unitOrder = GetOrderObject(unitGridCombat_);
