@@ -5,18 +5,13 @@ using UnityEngine;
 namespace OperationBlackwell.UI {
 	public class Menu : MonoBehaviour {
 
-		protected GameObject canvas_;
-		protected GameObject mainMenu_;
-		protected GameObject optionsMenu_;
-
-		private void Awake() {
-			this.canvas_ = GameObject.Find("Canvas");
-			this.mainMenu_ = canvas_.transform.Find("MainMenu").gameObject;
-			this.optionsMenu_ = canvas_.transform.Find("OptionsMenu").gameObject;
-		}
+		[SerializeField] protected GameObject canvas_;
+		[SerializeField] protected GameObject mainMenu_;
+		[SerializeField] protected GameObject optionsMenu_;
+		[SerializeField] protected GameObject graphicsOptionsMenu_;
 
 		public virtual void ReturnOrExit() {
-			throw new System.NotImplementedException();
+			Debug.Log("Please implement ReturnOrExit for this menu!");
 		}
 
 		private void Update() {

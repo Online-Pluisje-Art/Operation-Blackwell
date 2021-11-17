@@ -2,7 +2,8 @@
     "name": "OperationBlackwell.Main",
     "rootNamespace": "OperationBlackwell",
     "references": [
-        "GUID:f039f22f2b49b14ccbd1ae39fcf00fdb"
+        "GUID:f039f22f2b49b14ccbd1ae39fcf00fdb",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
