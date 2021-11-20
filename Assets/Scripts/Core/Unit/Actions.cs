@@ -17,8 +17,8 @@ namespace OperationBlackwell.Core {
 		public CoreUnit invoker { get; private set; }
 		public CoreUnit target { get; private set; }
 		public int cost { get; private set; }
-
-		private bool success_;
+		private bool isComplete_;
+		private bool hasExecuted_;
 
 		public Actions(ActionType type, Tilemap.Node destination, Vector3 desitantionPos, Tilemap.Node origin, Vector3 originPos, 
 			CoreUnit invoker, CoreUnit target, int cost) {
@@ -30,10 +30,11 @@ namespace OperationBlackwell.Core {
 			this.invoker = invoker;
 			this.target = target;
 			this.cost = cost;
+			this.isComplete_ = false;
+			this.hasExecuted_ = false;
 		}
 
-		public bool Execute() {
-			success_ = false;
+		public void Execute() {
 			switch (type) {
 				case ActionType.Move:
 					// Remove Unit from current Grid Object
@@ -45,17 +46,23 @@ namespace OperationBlackwell.Core {
 							unit = invoker
 						};
 						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						isComplete_ = true;
 					});
-					if(success_) {
-						Debug.Log("Movement Successful");
-					}
 					break;
 				case ActionType.Attack:
 					break;
 				default:
 					break;
 			}
-			return success_;
+			hasExecuted_ = true;
+		}
+
+		public bool HasExecuted() {
+			return hasExecuted_;
+		}
+
+		public bool IsComplete() {
+			return isComplete_;
 		}
 	}
 }

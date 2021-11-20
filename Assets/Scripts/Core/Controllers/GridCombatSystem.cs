@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -283,7 +282,7 @@ namespace OperationBlackwell.Core {
 					ResetMoveTiles();
 					ResetArrowVisual();
 					// Set arrow to target position
-					List<Actions> actions = unitGridCombat_.LoadActions();
+					List<Actions> actions = unitGridCombat_.LoadActions().GetQueue();
 					if(unitGridCombat_ != null && actions.Count == 0) {
 						UpdateValidMovePositions(unitGridCombat_.GetPosition());
 						if(gridObject.GetIsValidMovePosition()) {
@@ -320,7 +319,7 @@ namespace OperationBlackwell.Core {
 							// Save the actions for the unit
 							if(gridObject.GetIsValidMovePosition()) {
 								// Valid Move Position
-								if(unitGridCombat_.GetActionPoints() > 0) {
+								if(unitGridCombat_.HasActionPoints()) {
 									state_ = State.Waiting;
 
 									// Set entire Tilemap to Invisible
@@ -352,11 +351,11 @@ namespace OperationBlackwell.Core {
 										unitOrder.SetTotalCost(newCost);
 										unitOrder.SetInitiative(newInitiative);
 									}
-									if(UnitsHaveActionsPoints()) {
+									// if(UnitsHaveActionsPoints()) {
 										state_ = State.UnitSelected;
-									} else {
-										state_ = State.EndingTurn;
-									}
+									// } else {
+									// 	state_ = State.EndingTurn;
+									// }
 								}
 							}
 						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
@@ -433,7 +432,6 @@ namespace OperationBlackwell.Core {
 			UnitEvent unitEvent = new UnitEvent() {
 				unit = unitGridCombat_
 			};
-			Debug.Log("Deselect Unit");
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 			state_ = State.Normal;
 		}
@@ -546,7 +544,7 @@ namespace OperationBlackwell.Core {
 			currentPathUnit_ = GameController.Instance.gridPathfinding.GetPath(start, end);
 			MovementTilemap arrowMap = GameController.Instance.GetArrowTilemap();
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-			List<Actions> actions = unitGridCombat_.LoadActions();
+			List<Actions> actions = unitGridCombat_.LoadActions().GetQueue();
 			int x = 0, y = 0;
 			foreach(PathNode node in currentPathUnit_) {
 				x = node.xPos;
