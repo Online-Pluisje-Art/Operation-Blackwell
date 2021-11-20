@@ -235,7 +235,7 @@ namespace OperationBlackwell.Core {
 								gridObject.SetUnitGridCombat(unitGridCombat_);
 
 								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
-								
+
 								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
 									state_ = State.Normal;
 									if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
@@ -279,8 +279,19 @@ namespace OperationBlackwell.Core {
 								// Cannot attack enemy
 							}
 							break;
-					} else {
-							// No unit here
+						} else {
+								// No unit here
+						}
+
+						IInteractable interactable = gridObject.GetInteractable();
+						if(interactable != null) {
+							// Clicked on top of an Interactable
+							if(unitGridCombat_.GetActionPoints() >= interactable.GetCost()) {
+								if(interactable.IsInRange(unitGridCombat_)) {
+									interactable.Interact();
+									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - interactable.GetCost());
+								}
+							}
 						}
 					}
 
