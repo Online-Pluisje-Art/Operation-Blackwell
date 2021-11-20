@@ -210,18 +210,14 @@ namespace OperationBlackwell.Player {
 		IEnumerator ExecuteActionsCoroutine() {
 			bool hasExecuted = false;
 			bool isComplete = false;
-			while(actions_.Count() > 0) {
+			while(!actions_.IsEmpty()) {
 				hasExecuted = actions_.Peek().HasExecuted();
 				isComplete = actions_.Peek().IsComplete();
 				if(!hasExecuted) {
 					actions_.Peek().Execute();
 				} 
 				if(isComplete) {
-					if(actions_.Count() > 1) {
-						actions_.Dequeue();
-					} else {
-						actions_.Clear();
-					}
+					actions_.Dequeue();
 				}
 				Debug.Log("Actions left: " + actions_.Count());
 				yield return null;

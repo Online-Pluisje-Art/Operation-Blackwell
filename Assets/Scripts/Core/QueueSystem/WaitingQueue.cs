@@ -17,11 +17,12 @@ namespace OperationBlackwell.Core {
 			tail++;
 		}
 
-		public T Dequeue() {
-			T item = queue_[head];
+		public void Dequeue() {
 			queue_.RemoveAt(head);
 			head++;
-			return item;
+			if(head >= queue_.Count) {
+				head = 0;
+			}
 		}
 
 		public T Peek() {
