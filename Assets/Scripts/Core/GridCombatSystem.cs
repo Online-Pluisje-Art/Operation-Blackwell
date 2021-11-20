@@ -149,6 +149,14 @@ namespace OperationBlackwell.Core {
 				}
 			}
 
+			foreach(Tilemap.Node node in grid.GetAllGridObjects()) {
+				if(node.walkable) {
+					gridPathfinding.SetWalkable(node.gridX, node.gridY, true);
+				} else {
+					gridPathfinding.SetWalkable(node.gridX, node.gridY, false);
+				}
+			}
+
 			int maxMoveDistance = unitGridCombat_.GetActionPoints() + 1;
 			for(int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
 				for(int y = unitY - maxMoveDistance; y <= unitY + maxMoveDistance; y++) {
@@ -180,18 +188,6 @@ namespace OperationBlackwell.Core {
 					}
 				}
 			}
-			// Update the nodes with players in it to nonwalkable
-			// foreach(Tilemap.Node node in grid.GetAllGridObjects()) {
-			// 	if(node.GetUnitGridCombat() != null) {
-			// 		gridPathfinding.SetWalkable(node.gridX, node.gridY, false);
-			// 		// Set Tilemap Tile to Move
-			// 		GameController.Instance.GetMovementTilemap().SetTilemapSprite(
-			// 			node.gridX, node.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
-			// 		);
-
-			// 		grid.GetGridObject(node.gridX, node.gridY).SetIsValidMovePosition(false);
-			// 	}
-			// }
 		}
 
 		private void LateUpdate() {
