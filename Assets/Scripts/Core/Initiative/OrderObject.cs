@@ -5,11 +5,13 @@ namespace OperationBlackwell.Core {
 		private int initiative_;
 		private CoreUnit unit_;
 		private int totalCost_;
+		private bool isComplete_;
 
 		public OrderObject(int initiative, CoreUnit unit, int totalCost) {
 			initiative_ = initiative;
 			unit_ = unit;
 			totalCost_ = totalCost;
+			isComplete_ = false;
 		}
 
 		public CoreUnit GetUnit() {

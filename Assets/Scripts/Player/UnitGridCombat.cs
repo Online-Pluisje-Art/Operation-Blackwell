@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 using OperationBlackwell.Core;
 
@@ -21,7 +21,7 @@ namespace OperationBlackwell.Player {
 		private WorldBar healthBar_;
 
 		private Weapon currentWeapon_;
-		private List<Actions> actions_;
+		private WaitingQueue<Actions> actions_;
 
 		private enum State {
 			Normal,
@@ -38,7 +38,7 @@ namespace OperationBlackwell.Player {
 			healthSystem_ = new HealthSystem(100);
 			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
-			actions_ = new List<Actions>();
+			actions_ = new WaitingQueue<Actions>();
 			SetActiveWeapon(0);
 		}
 
@@ -196,19 +196,35 @@ namespace OperationBlackwell.Player {
 
 		public override void SaveAction(Actions action) {
 			actionPoints_ -= action.cost;
-			actions_.Add(action);
+			actions_.Enqueue(action);
 		}
 
-		public override List<Actions> LoadActions() {
+		public override WaitingQueue<Actions> LoadActions() {
 			return actions_;
 		}
 
 		public override void ExecuteActions() {
-			bool executed = false;
-			foreach(Actions action in actions_) {
-				while(action.Execute() && !executed) {
-					executed = true;
+			StartCoroutine(ExecuteActionsCoroutine());
+		}
+
+		IEnumerator ExecuteActionsCoroutine() {
+			bool hasExecuted = false;
+			bool isComplete = false;
+			while(actions_.Count() > 0) {
+				hasExecuted = actions_.Peek().HasExecuted();
+				isComplete = actions_.Peek().IsComplete();
+				if(!hasExecuted) {
+					actions_.Peek().Execute();
+				} 
+				if(isComplete) {
+					if(actions_.Count() > 1) {
+						actions_.Dequeue();
+					} else {
+						actions_.Clear();
+					}
 				}
+				Debug.Log("Actions left: " + actions_.Count());
+				yield return null;
 			}
 			ClearActions();
 		}

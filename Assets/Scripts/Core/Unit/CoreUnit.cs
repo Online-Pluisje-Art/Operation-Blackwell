@@ -1,7 +1,5 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace OperationBlackwell.Core {
 	public abstract class CoreUnit : MonoBehaviour {
@@ -22,7 +20,7 @@ namespace OperationBlackwell.Core {
 		public abstract void SetActiveWeapon(int index);
 		public abstract string GetActiveWeapon();
 		public abstract void SaveAction(Actions action);
-		public abstract List<Actions> LoadActions();
+		public abstract WaitingQueue<Actions> LoadActions();
 		public abstract void ExecuteActions();
 		public abstract void ClearActions();
 	}
