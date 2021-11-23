@@ -130,7 +130,7 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		private void UpdateValidMovePositions() {
+		public void UpdateValidMovePositions() {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
 
@@ -317,7 +317,7 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		private void TestTurnOver() {
+		public void TestTurnOver() {
 			if(unitGridCombat_.GetActionPoints() <= 0) {
 				// Cannot move or attack, turn over
 				ForceTurnOver();
