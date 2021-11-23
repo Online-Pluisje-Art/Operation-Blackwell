@@ -149,7 +149,7 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		public void UpdateValidMovePositions() {
+		public void UpdateValidMovePositions(Vector3 position) {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
 
@@ -165,14 +165,6 @@ namespace OperationBlackwell.Core {
 			for(int x = 0; x < grid.GetWidth(); x++) {
 				for(int y = 0; y < grid.GetHeight(); y++) {
 					grid.GetGridObject(x, y).SetIsValidMovePosition(false);
-				}
-			}
-
-			foreach(Tilemap.Node node in grid.GetAllGridObjects()) {
-				if(node.walkable) {
-					gridPathfinding.SetWalkable(node.gridX, node.gridY, true);
-				} else {
-					gridPathfinding.SetWalkable(node.gridX, node.gridY, false);
 				}
 			}
 
