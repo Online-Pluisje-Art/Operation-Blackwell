@@ -32,7 +32,7 @@ namespace OperationBlackwell.Core {
 				unit = player
 			};
 			combatInstance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-			combatInstance.UpdateValidMovePositions();
+			combatInstance.UpdateValidMovePositions(targetPosition);
 			combatInstance.TestTurnOver();
 		}
 
