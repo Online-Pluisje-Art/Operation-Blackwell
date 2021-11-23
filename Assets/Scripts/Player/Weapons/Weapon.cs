@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace OperationBlackwell.Player {
-	public class Weapon : MonoBehaviour {
+	[CreateAssetMenu(fileName = "New Weapon", menuName = "Player/Weapon")]
+	public class Weapon : ScriptableObject {
 		[SerializeField] protected float damage_;
 		[SerializeField] protected float range_;
 		[SerializeField] protected int costs_;
