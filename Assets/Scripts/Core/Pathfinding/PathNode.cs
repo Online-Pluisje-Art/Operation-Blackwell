@@ -54,9 +54,7 @@ namespace OperationBlackwell.Core {
 		}
 		public void SetWalkable(bool walkable) {
 			weight = walkable ? 0 : GridPathfinding.WALL_WEIGHT;
-			if(OnWalkableChanged != null) {
-				OnWalkableChanged(this, EventArgs.Empty);
-			}
+			OnWalkableChanged?.Invoke(this, EventArgs.Empty);
 		}
 		public void SetWeight(int weight) {
 			this.weight = weight;
