@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace OperationBlackwell.UI {
-	public class OptionsMenu : MonoBehaviour {
-
-		public void Option1Clicked() {
-			Debug.Log("Option 1 clicked");
+	public class OptionsMenu : Menu {
+		public void AudioClicked() {
+			Debug.Log("Audio menu clicked");
 		}
 
-		public void Option2Clicked() {
-			Debug.Log("Option 2 clicked");
+		public override void ReturnOrExit() {
+			optionsMenu_.SetActive(false);
+			mainMenu_.SetActive(true);
 		}
 	}
 }

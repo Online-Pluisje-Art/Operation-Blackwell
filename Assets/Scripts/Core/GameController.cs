@@ -15,8 +15,10 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private bool drawGridLines_;
 
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
+		[SerializeField] private MovementTilemapVisual arrowTilemapVisual_;
 
 		private MovementTilemap movementTilemap_;
+		private MovementTilemap arrowTilemap_;
 
 		public Grid<Tilemap.Node> grid { get; private set; }
 
@@ -35,11 +37,13 @@ namespace OperationBlackwell.Core {
 
 			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * cellSize_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * cellSize_, cellSize_);
 			movementTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+			arrowTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
 		}
 
 		private void Start() {
 			tilemap.SetTilemapVisual(tilemapVisual_);
 			movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
+			arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
 				tilemap.Load("tutoriallevel");
 			} else {
@@ -59,16 +63,14 @@ namespace OperationBlackwell.Core {
 			return movementTilemap_;
 		}
 
+		public MovementTilemap GetArrowTilemap() {
+			return arrowTilemap_;
+		}
+
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
 				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 				SceneManager.LoadScene("MainMenu");
-			}
-			if(Input.GetKeyDown(KeyCode.Home)) {
-				Application.OpenURL("https://github.com/Online-Pluisje-Art/Operation-Blackwell/tree/development");
-			}
-			if(Input.GetKeyDown(KeyCode.End)) {
-				Application.OpenURL("https://docs.opa.rip/");
 			}
 		}
 	}

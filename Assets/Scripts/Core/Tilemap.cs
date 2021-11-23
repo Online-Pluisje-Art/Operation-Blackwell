@@ -97,6 +97,7 @@ namespace OperationBlackwell.Core {
 
 			private bool isValidMovePosition_;
 			private CoreUnit unitGridCombat_;
+			private IInteractable interactable_;
 
 			private Grid<Node> grid_;
 
@@ -184,14 +185,26 @@ namespace OperationBlackwell.Core {
 
 			public void SetUnitGridCombat(CoreUnit unitGridCombat) {
 				this.unitGridCombat_ = unitGridCombat;
+				walkable = false;
+				grid_.TriggerGridObjectChanged(gridX, gridY);
 			}
 
 			public void ClearUnitGridCombat() {
 				SetUnitGridCombat(null);
+				walkable = true;
+				grid_.TriggerGridObjectChanged(gridX, gridY);
 			}
 
 			public CoreUnit GetUnitGridCombat() {
 				return unitGridCombat_;
+			}
+
+			public void SetInteractable(IInteractable interactable) {
+				this.interactable_ = interactable;
+			}
+
+			public IInteractable GetInteractable() {
+				return interactable_;
 			}
 		}
 	}

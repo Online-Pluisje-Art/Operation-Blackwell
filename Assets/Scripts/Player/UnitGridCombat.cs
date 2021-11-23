@@ -61,10 +61,14 @@ namespace OperationBlackwell.Player {
 			healthBar_.SetSize(healthSystem_.GetHealthNormalized());
 		}
 
-		private void SetActiveWeapon(int index) {
+		public override void SetActiveWeapon(int index) {
 			if(index >= 0 && index < weapons_.Count) {
 				currentWeapon_ = weapons_[index];
 			}
+		}
+
+		public override string GetActiveWeapon() {
+			return currentWeapon_.GetName();
 		}
 
 		public void SetSelectedVisible(bool visible) {
@@ -83,6 +87,7 @@ namespace OperationBlackwell.Player {
 				return false;
 			}
 
+			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
 			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
 			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}

@@ -23,6 +23,7 @@ namespace OperationBlackwell.Core {
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
 		public EventHandler<UnitPositionEvent> OnUnitMove;
 		public EventHandler<UnitEvent> OnUnitActionPointsChanged;
+		public EventHandler<string> OnWeaponChanged;
 
 		public class UnitEvent : EventArgs {
 			public CoreUnit unit;
@@ -92,6 +93,7 @@ namespace OperationBlackwell.Core {
 				unit = unitGridCombat_
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+			OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 		}
 
 		private CoreUnit GetNextActiveUnit(Team team) {
@@ -147,17 +149,22 @@ namespace OperationBlackwell.Core {
 				}
 			}
 
+			foreach(Tilemap.Node node in grid.GetAllGridObjects()) {
+				if(node.walkable) {
+					gridPathfinding.SetWalkable(node.gridX, node.gridY, true);
+				} else {
+					gridPathfinding.SetWalkable(node.gridX, node.gridY, false);
+				}
+			}
+
 			int maxMoveDistance = unitGridCombat_.GetActionPoints() + 1;
 			for(int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
 				for(int y = unitY - maxMoveDistance; y <= unitY + maxMoveDistance; y++) {
 					if(x < 0 || x >= grid.GetWidth() || y < 0 || y >= grid.GetHeight()) {
 						continue;
 					}
-					if(GameController.Instance.grid.GetGridObject(x, y).GetUnitGridCombat() != null) {
-						continue;
-					}
 
-					if(gridPathfinding.IsWalkable(x, y)) {
+					if(gridPathfinding.IsWalkable(x, y) && x != unitX || y != unitY) {
 						// Position is Walkable
 						if(gridPathfinding.HasPath(unitX, unitY, x, y)) {
 							// There is a Path
@@ -199,6 +206,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
+			HandleWeaponSwitch();
 			switch(state_) {
 				case State.Normal:
 					Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
@@ -208,13 +216,10 @@ namespace OperationBlackwell.Core {
 						return;
 					}
 
-					if(gridObject.GetUnitGridCombat() != null && unitGridCombat_.CanAttackUnit(gridObject.GetUnitGridCombat())
-						&& gridObject.GetUnitGridCombat() != unitGridCombat_ && gridObject.GetUnitGridCombat().GetTeam() != unitGridCombat_.GetTeam()) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
-					} else if(gridObject.GetIsValidMovePosition()) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
-					} else {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+					ResetArrowVisual();
+					// Set arrow to target position
+					if(gridObject.GetIsValidMovePosition()) {
+						SetArrowWithPath();
 					}
 
 					if(Input.GetMouseButtonDown(0)) {
@@ -222,19 +227,17 @@ namespace OperationBlackwell.Core {
 							// Valid Move Position
 							if(unitGridCombat_.GetActionPoints() > 0) {
 								state_ = State.Waiting;
+								ResetArrowVisual();
 
 								// Set entire Tilemap to Invisible
 								GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
 									MovementTilemap.TilemapObject.TilemapSprite.None
 								);
 
-								// Remove Unit from current Grid Object
-								grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
-								// Set Unit on target Grid Object
-								gridObject.SetUnitGridCombat(unitGridCombat_);
-
 								pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
 
+								Vector3 oldPlayerPos = unitGridCombat_.GetPosition();
+								
 								unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), () => {
 									state_ = State.Normal;
 									if(unitGridCombat_.GetActionPoints() - pathLength_ > 0) {
@@ -243,6 +246,10 @@ namespace OperationBlackwell.Core {
 											position = Utils.GetMouseWorldPosition()
 										});
 									}
+									// Remove Unit from current Grid Object
+									grid.GetGridObject(oldPlayerPos).ClearUnitGridCombat();
+									// Set Unit on target Grid Object
+									gridObject.SetUnitGridCombat(unitGridCombat_);
 									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - pathLength_);
 									UnitEvent unitEvent = new UnitEvent() {
 										unit = unitGridCombat_
@@ -278,8 +285,19 @@ namespace OperationBlackwell.Core {
 								// Cannot attack enemy
 							}
 							break;
-					} else {
-							// No unit here
+						} else {
+								// No unit here
+						}
+
+						IInteractable interactable = gridObject.GetInteractable();
+						if(interactable != null) {
+							// Clicked on top of an Interactable
+							if(unitGridCombat_.GetActionPoints() >= interactable.GetCost()) {
+								if(interactable.IsInRange(unitGridCombat_)) {
+									interactable.Interact();
+									unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - interactable.GetCost());
+								}
+							}
 						}
 					}
 
@@ -291,6 +309,17 @@ namespace OperationBlackwell.Core {
 					break;
 				default:
 					break;
+			}
+		}
+
+		private void HandleWeaponSwitch() {
+			if(Input.GetKeyDown(KeyCode.Alpha1)) {
+				unitGridCombat_.SetActiveWeapon(0);
+				OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
+			}
+			if(Input.GetKeyDown(KeyCode.Alpha2)) {
+				unitGridCombat_.SetActiveWeapon(1);
+				OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 			}
 		}
 
@@ -323,6 +352,76 @@ namespace OperationBlackwell.Core {
 				points.Add(Vector3.Lerp(p0, p1, pointOnLine));
 			}
 			return points;
+		}
+
+		private void SetArrowWithPath() {
+			currentPathUnit_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition());
+			MovementTilemap arrowMap = GameController.Instance.GetArrowTilemap();
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			int x = 0, y = 0;
+			foreach(PathNode node in currentPathUnit_) {
+				x = node.xPos;
+				y = node.yPos;
+
+				if(grid.GetGridObject(x, y).GetUnitGridCombat() != unitGridCombat_) {
+					if(grid.GetGridObject(x, y) != grid.GetGridObject(Utils.GetMouseWorldPosition())) {
+						if((node.parent.xPos > x || node.parent.xPos < x) && node.parent.yPos == y) {
+							arrowMap.SetRotation(x, y, 90f);
+							arrowMap.SetTilemapSprite(x, y, MovementTilemap.TilemapObject.TilemapSprite.ArrowStraight);
+						} 
+						if((node.parent.yPos > y || node.parent.yPos < y) && node.parent.xPos == x) {
+							arrowMap.SetRotation(x, y, 0f);
+							arrowMap.SetTilemapSprite(x, y, MovementTilemap.TilemapObject.TilemapSprite.ArrowStraight);
+						}
+					} else {
+						if(node.parent.xPos > x && node.parent.yPos == y) {
+							arrowMap.SetRotation(x, y, 90f);
+						} else if(node.parent.xPos < x && node.parent.yPos == y) {
+							arrowMap.SetRotation(x, y, -90f);
+						} else if(node.parent.xPos == x && node.parent.yPos > y) {
+							arrowMap.SetRotation(x, y, 180f);
+						} else if(node.parent.xPos == x && node.parent.yPos < y) {
+							arrowMap.SetRotation(x, y, 0f);
+						}
+						arrowMap.SetTilemapSprite(x, y, MovementTilemap.TilemapObject.TilemapSprite.ArrowEnd);
+					}
+					if(node.parent.parent == null) {
+						continue;
+					}
+					if((node.parent.parent.xPos == node.parent.xPos && node.parent.xPos < x 
+						&& node.parent.parent.yPos > node.parent.yPos && node.parent.yPos == y)
+						|| (node.parent.parent.xPos > node.parent.xPos && node.parent.xPos == x 
+						&& node.parent.parent.yPos == node.parent.yPos && node.parent.yPos < y)) {
+						arrowMap.SetRotation(node.parent.xPos, node.parent.yPos, 90f);
+						arrowMap.SetTilemapSprite(node.parent.xPos, node.parent.yPos, MovementTilemap.TilemapObject.TilemapSprite.ArrowCorner);
+					}
+					if((node.parent.parent.xPos == node.parent.xPos && node.parent.xPos > x 
+						&& node.parent.parent.yPos > node.parent.yPos && node.parent.yPos == y)
+						|| (node.parent.parent.xPos < node.parent.xPos && node.parent.xPos == x 
+						&& node.parent.parent.yPos == node.parent.yPos && node.parent.yPos < y)) {
+						arrowMap.SetRotation(node.parent.xPos, node.parent.yPos, 180f);
+						arrowMap.SetTilemapSprite(node.parent.xPos, node.parent.yPos, MovementTilemap.TilemapObject.TilemapSprite.ArrowCorner);
+					}
+					if((node.parent.parent.xPos == node.parent.xPos && node.parent.xPos < x 
+						&& node.parent.parent.yPos < node.parent.yPos && node.parent.yPos == y)
+						|| (node.parent.parent.xPos > node.parent.xPos && node.parent.xPos == x 
+						&& node.parent.parent.yPos == node.parent.yPos && node.parent.yPos > y)) {
+						arrowMap.SetRotation(node.parent.xPos, node.parent.yPos, 0f);
+						arrowMap.SetTilemapSprite(node.parent.xPos, node.parent.yPos, MovementTilemap.TilemapObject.TilemapSprite.ArrowCorner);
+					}
+					if((node.parent.parent.xPos == node.parent.xPos && node.parent.xPos > x 
+						&& node.parent.parent.yPos < node.parent.yPos && node.parent.yPos == y)
+						|| (node.parent.parent.xPos < node.parent.xPos && node.parent.xPos == x 
+						&& node.parent.parent.yPos == node.parent.yPos && node.parent.yPos > y)) {
+						arrowMap.SetRotation(node.parent.xPos, node.parent.yPos, -90f);
+						arrowMap.SetTilemapSprite(node.parent.xPos, node.parent.yPos, MovementTilemap.TilemapObject.TilemapSprite.ArrowCorner);
+					}
+				}
+			}
+		}
+
+		private void ResetArrowVisual() {
+			GameController.Instance.GetArrowTilemap().SetAllTilemapSprite(MovementTilemap.TilemapObject.TilemapSprite.None);
 		}
 	}
 }
