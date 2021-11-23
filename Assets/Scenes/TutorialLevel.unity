@@ -4115,18 +4115,6 @@ PrefabInstance:
       propertyPath: maxActionPoints_
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 8822194322506780188, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
-      propertyPath: weapons_.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8822194322506780188, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
-      propertyPath: weapons_.Array.data[0]
-      value: 
-      objectReference: {fileID: -1085397881649897317, guid: 313cca6ff964ba3ebbf5359d33899667, type: 3}
-    - target: {fileID: 8822194322506780188, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
-      propertyPath: weapons_.Array.data[1]
-      value: 
-      objectReference: {fileID: -7250455290929878089, guid: 1389a77401d8877e9be11b838a97ba9c, type: 3}
     - target: {fileID: 8827876707810031362, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
       propertyPath: m_Name
       value: Player
