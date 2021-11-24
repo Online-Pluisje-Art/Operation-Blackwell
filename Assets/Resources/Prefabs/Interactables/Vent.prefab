@@ -129,8 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range_: 1
   cost_: 0
-  targetPosX_: 0
-  targetPosY_: 0
+  offsetX_: 0
+  offsetY_: 0
+  targetVent_: {fileID: 0}
 --- !u!114 &5271676348697578055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8549803637667458092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70959477dc1fa5c24a320471a31243c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 47c4551d7e41a810a92c2893305323ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkable_: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 538016717737277370}
   - component: {fileID: 5475104673969640373}
+  - component: {fileID: 6157398308949391111}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Untagged
@@ -46,6 +47,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range_: 1
   cost_: 0
+--- !u!114 &6157398308949391111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632073151736459971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c4551d7e41a810a92c2893305323ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkable_: 0
+  cover_: 1
+  hitChanceModifier_: 30
 --- !u!1 &8142689323015223645
 GameObject:
   m_ObjectHideFlags: 0
