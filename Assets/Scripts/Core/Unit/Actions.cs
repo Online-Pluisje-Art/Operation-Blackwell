@@ -1,8 +1,7 @@
 using UnityEngine;
-using System.Threading.Tasks;
 
 namespace OperationBlackwell.Core {
-	public class Actions {
+	public class Actions : IQueueItem {
 		public enum ActionType {
 			None,
 			Move,
@@ -94,6 +93,14 @@ namespace OperationBlackwell.Core {
 
 		public bool IsComplete() {
 			return isComplete_;
+		}
+
+		public int GetTotalCost() {
+			return cost;
+		}
+
+		public int GetInitiative() {
+			return 0;
 		}
 	}
 }
