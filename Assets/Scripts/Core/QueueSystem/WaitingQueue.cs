@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace OperationBlackwell.Core {
 	public class WaitingQueue<T> {
@@ -19,10 +20,6 @@ namespace OperationBlackwell.Core {
 
 		public void Dequeue() {
 			queue_.RemoveAt(head);
-			head++;
-			if(head >= queue_.Count) {
-				head = 0;
-			}
 		}
 
 		public T Peek() {

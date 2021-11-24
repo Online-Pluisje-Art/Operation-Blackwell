@@ -11,17 +11,10 @@ namespace OperationBlackwell.Player {
 		private List<Vector3> pathVectorList_;
 		private int pathIndex_ = -1;
 
-		public void SetMovePosition(Vector3 movePosition, Action onReachedTargetPosition) {
+		public void SetMovePosition(Vector3 movePosition, Vector3 originPos, Action onReachedTargetPosition) {
 			this.onReachedTargetPosition_ = onReachedTargetPosition;
-			pathVectorList_ = GridPathfinding.Instance.GetPathRouteWithShortcuts(transform.position, movePosition).pathVectorList;
-			/*Debug.Log("##########");
-			foreach (Vector3 vec in pathVectorList_) {
-				Debug.Log(vec);
-			}*/
-			if(pathVectorList_.Count > 0) {
-				// Remove first position so he doesn't go backwards
-				//pathVectorList_.RemoveAt(0);
-			}
+			pathVectorList_ = GridPathfinding.Instance.GetPathRouteWithShortcuts(originPos, movePosition).pathVectorList;
+
 			if(pathVectorList_.Count > 0) {
 				pathIndex_ = 0;
 			} else {

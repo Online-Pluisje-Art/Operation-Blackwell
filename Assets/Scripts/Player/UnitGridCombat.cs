@@ -94,14 +94,12 @@ namespace OperationBlackwell.Player {
 			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}
 
-		public override bool MoveTo(Vector3 targetPosition, Action onReachedPosition) {
+		public override void MoveTo(Vector3 targetPosition, Vector3 originPosition, Action onReachedPosition) {
 			state_ = State.Moving;
-			bool succes = false;
-			movePosition_.SetMovePosition(targetPosition, () => {
+			movePosition_.SetMovePosition(targetPosition, originPosition, () => {
 				state_ = State.Normal;
 				onReachedPosition();
 			});
-			return succes;
 		}
 
 		public override Vector3 GetPosition() {
@@ -219,7 +217,6 @@ namespace OperationBlackwell.Player {
 				if(isComplete) {
 					actions_.Dequeue();
 				}
-				Debug.Log("Actions left: " + actions_.Count());
 				yield return null;
 			}
 			ClearActions();
