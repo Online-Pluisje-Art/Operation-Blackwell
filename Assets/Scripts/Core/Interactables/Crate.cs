@@ -9,7 +9,7 @@ namespace OperationBlackwell.Core {
 			GameController.Instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
 		}
 
-		public void Interact() {
+		public void Interact(CoreUnit unit) {
 			Debug.Log("Interacting with crate");
 		}
 
