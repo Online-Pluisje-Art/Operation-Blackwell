@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using System;
 
@@ -18,7 +19,8 @@ namespace OperationBlackwell.Core {
 		private List<PathNode> currentPathUnit_;
 		private int pathLength_;
 		private int turn_;
-		private List<OrderObject> orderList_;
+		private WaitingQueue<OrderObject> orderList_;
+		private IInteractable interactable_;
 
 		public EventHandler<EventArgs> OnUnitDeath;
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
@@ -73,7 +75,7 @@ namespace OperationBlackwell.Core {
 				}
 			}
 
-			orderList_ = new List<OrderObject>();
+			orderList_ = new WaitingQueue<OrderObject>();
 
 			OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
 				unit = blueTeamList_[0],
@@ -246,6 +248,7 @@ namespace OperationBlackwell.Core {
 			CoreUnit unit;
 			switch(state_) {
 				case State.Normal:
+					interactable_ = null;
 					grid = GameController.Instance.GetGrid();
 					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 
@@ -276,6 +279,7 @@ namespace OperationBlackwell.Core {
 					};
 					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 
+					interactable_ = null;
 					grid = GameController.Instance.GetGrid();
 					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 					
@@ -357,7 +361,7 @@ namespace OperationBlackwell.Core {
 										int cost = GenerateTotalCost(0, pathLength_, 0);
 										int initiative = GenerateInitiative(cost, pathLength_, 0);
 										unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
-										orderList_.Add(unitOrder);
+										orderList_.Enqueue(unitOrder);
 									} else {
 										int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), pathLength_, 0);
 										int newInitiative = GenerateInitiative(newCost, pathLength_, 0);
@@ -401,7 +405,7 @@ namespace OperationBlackwell.Core {
 										int cost = GenerateTotalCost(0, 0, 0);
 										int initiative = GenerateInitiative(cost, 0, 0);
 										unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
-										orderList_.Add(unitOrder);
+										orderList_.Enqueue(unitOrder);
 									} else {
 										int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), 0, 0);
 										int newInitiative = GenerateInitiative(newCost, 0, 0);
@@ -418,16 +422,15 @@ namespace OperationBlackwell.Core {
 							}
 						}
 					} else if(!gridObject.GetIsValidMovePosition()) {
-						IInteractable interactable = gridObject.GetInteractable();
-						if(interactable != null) {
+						interactable_ = gridObject.GetInteractable();
+						if(interactable_ != null) {
 							Vector3 interactablePosition;
 							if(actions.Count == 0) {
 								interactablePosition = unitGridCombat_.GetPosition();
 							} else {
 								interactablePosition = actions[actions.Count - 1].destinationPos;
 							}
-							if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick) && interactable.IsInRange(interactablePosition)) {
-								interactable.Interact();
+							if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick) && interactable_.IsInRange(interactablePosition)) {
 								state_ = State.EndingTurn;
 							}
 						}
@@ -495,14 +498,24 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void ExecuteAllActions() {
-			if(orderList_ == null || orderList_.Count == 0) {
-				return;
-			}
+			StartCoroutine(ExecuteAllActionsCoroutine());
+		}
 
-			orderList_.Sort((x, y) => x.GetInitiative().CompareTo(y.GetInitiative()));
-
-			foreach(OrderObject order in orderList_) {
-				order.ExecuteActions();
+		IEnumerator ExecuteAllActionsCoroutine() {
+			bool hasExecuted = false;
+			bool isComplete = false;
+			// Sort the orderlist queue by initiative
+			orderList_.Sort();
+			while(!orderList_.IsEmpty()) {
+				hasExecuted = orderList_.Peek().HasExecuted();
+				isComplete = orderList_.Peek().IsComplete();
+				if(!hasExecuted) {
+					orderList_.Peek().ExecuteActions();
+				} 
+				if(isComplete) {
+					orderList_.Dequeue();
+				}
+				yield return null;
 			}
 		}
 
@@ -544,11 +557,11 @@ namespace OperationBlackwell.Core {
 		}
 
 		private OrderObject GetOrderObject(CoreUnit unit) {
-			if(orderList_ == null || orderList_.Count == 0) {
+			if(orderList_ == null || orderList_.IsEmpty()) {
 				return null;
 			}
 
-			foreach(OrderObject order in orderList_) {
+			foreach(OrderObject order in orderList_.GetQueue()) {
 				if(order.GetUnit() == unit) {
 					return order;
 				}

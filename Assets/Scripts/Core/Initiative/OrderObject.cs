@@ -1,17 +1,15 @@
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
-	public class OrderObject {
+	public class OrderObject : IQueueItem {
 		private int initiative_;
 		private CoreUnit unit_;
 		private int totalCost_;
-		private bool isComplete_;
 
 		public OrderObject(int initiative, CoreUnit unit, int totalCost) {
 			initiative_ = initiative;
 			unit_ = unit;
 			totalCost_ = totalCost;
-			isComplete_ = false;
 		}
 
 		public CoreUnit GetUnit() {
@@ -36,6 +34,14 @@ namespace OperationBlackwell.Core {
 
 		public void ExecuteActions() {
 			unit_.ExecuteActions();
+		}
+
+		public bool HasExecuted() {
+			return unit_.HasExecuted();
+		}
+
+		public bool IsComplete() {
+			return unit_.IsComplete();
 		}
 	}
 }

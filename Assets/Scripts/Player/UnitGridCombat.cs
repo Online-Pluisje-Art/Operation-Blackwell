@@ -224,7 +224,10 @@ namespace OperationBlackwell.Player {
 		}
 
 		public override void ExecuteActions() {
+			hasExecuted_ = false;
 			StartCoroutine(ExecuteActionsCoroutine());
+			hasExecuted_ = true;
+			isComplete_ = false;
 		}
 
 		IEnumerator ExecuteActionsCoroutine() {
@@ -242,6 +245,7 @@ namespace OperationBlackwell.Player {
 				yield return null;
 			}
 			ClearActions();
+			isComplete_ = true;
 		}
 
 		public override void ClearActions() {

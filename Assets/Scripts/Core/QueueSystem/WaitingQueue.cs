@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
-	public class WaitingQueue<T> {
+	public class WaitingQueue<T> where T : IQueueItem {
 		private List<T> queue_;
 		public int head { get; private set; }
 		public int tail { get; private set; }
@@ -44,6 +44,10 @@ namespace OperationBlackwell.Core {
 
 		public bool Contains(T item) {
 			return queue_.Contains(item);
+		}
+
+		public void Sort() {
+			queue_.Sort((x , y) => x.GetInitiative().CompareTo(y.GetInitiative()));
 		}
 	}
 }
