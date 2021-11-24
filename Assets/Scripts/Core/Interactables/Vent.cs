@@ -13,9 +13,9 @@ namespace OperationBlackwell.Core {
 			GameController.Instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
 		}
 
-		public void Interact() {
+		public void Interact(CoreUnit unit) {
 			GridCombatSystem combatInstance = GridCombatSystem.Instance;
-			CoreUnit player = combatInstance.GetActiveUnit();
+			CoreUnit player = unit;
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			Vector3 targetPosition = new Vector3(targetVent_.transform.position.x + targetVent_.offsetX_, targetVent_.transform.position.y + targetVent_.offsetY_, 0);
 			Tilemap.Node gridObject = grid.GetGridObject(targetPosition);
@@ -32,8 +32,6 @@ namespace OperationBlackwell.Core {
 				unit = player
 			};
 			combatInstance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-			combatInstance.UpdateValidMovePositions(targetPosition);
-			combatInstance.TestTurnOver();
 		}
 
 		public bool IsInRange(Vector3 unitPos) {
