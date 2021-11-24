@@ -12,7 +12,7 @@ namespace OperationBlackwell.Core {
 		public abstract int GetMaxActionPoints();
 		public abstract void SetActionPoints(int actionPoints);
 		public abstract void ResetActionPoints();
-		public abstract bool CanAttackUnit(CoreUnit unitGridCombat);
+		public abstract bool CanAttackUnit(CoreUnit unitGridCombat, Vector3 attackPos);
 		public abstract void AttackUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onAttackComplete);
 		public abstract bool IsDead();
 		public abstract void Damage(CoreUnit attacker, float damageAmount);
