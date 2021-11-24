@@ -21,7 +21,10 @@ namespace OperationBlackwell.Player {
 		private WorldBar healthBar_;
 
 		private Weapon currentWeapon_;
+
 		private WaitingQueue<Actions> actions_;
+		private bool hasExecuted_;
+		private bool isComplete_;
 
 		private enum State {
 			Normal,
@@ -71,6 +74,10 @@ namespace OperationBlackwell.Player {
 
 		public override string GetActiveWeapon() {
 			return currentWeapon_.GetName();
+		}
+
+		public override Actions.AttackType GetAttackType() {
+			return currentWeapon_.GetAttackType();
 		}
 
 		public void SetSelectedVisible(bool visible) {
@@ -134,20 +141,25 @@ namespace OperationBlackwell.Player {
 			actionPoints_ = maxActionPoints_;
 		}
 
-		public override void AttackUnit(CoreUnit unitGridCombat, Action onAttackComplete) {
+		public override void AttackUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onAttackComplete) {
 			state_ = State.Attacking;
 
-			ShootUnit(unitGridCombat, () => {
+			ShootUnit(unitGridCombat, type, () => {
 				state_ = State.Normal;
 				onAttackComplete(); 
 			});
 		}
 
-		private void ShootUnit(CoreUnit unitGridCombat, Action onShootComplete) {
+		private void ShootUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onShootComplete) {
 			GetComponent<IMoveVelocity>().Disable();
 
-			// The value of 50 is a placeholder for the damage of the units attack.
-			unitGridCombat.Damage(this, currentWeapon_.GetDamage());
+			Weapon weapon = weapons_.Find(weapon => weapon.GetAttackType() == type);
+			
+			if(unitGridCombat.IsDead()) {
+				onShootComplete();
+				return;
+			}
+			unitGridCombat.Damage(this, weapon.GetDamage());
 
 			GetComponent<IMoveVelocity>().Enable();
 			onShootComplete();
@@ -225,6 +237,14 @@ namespace OperationBlackwell.Player {
 		public override void ClearActions() {
 			actions_.Clear();
 			ResetActionPoints();
+		}
+
+		public override bool HasExecuted() {
+			return hasExecuted_;
+		}
+
+		public override bool IsComplete() {
+			return isComplete_;
 		}
 	}
 }

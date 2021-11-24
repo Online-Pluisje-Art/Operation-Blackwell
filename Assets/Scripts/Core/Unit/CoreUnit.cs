@@ -13,15 +13,18 @@ namespace OperationBlackwell.Core {
 		public abstract void SetActionPoints(int actionPoints);
 		public abstract void ResetActionPoints();
 		public abstract bool CanAttackUnit(CoreUnit unitGridCombat);
-		public abstract void AttackUnit(CoreUnit unitGridCombat, Action onAttackComplete);
+		public abstract void AttackUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onAttackComplete);
 		public abstract bool IsDead();
 		public abstract void Damage(CoreUnit attacker, float damageAmount);
 		public abstract int GetAttackCost();
 		public abstract void SetActiveWeapon(int index);
 		public abstract string GetActiveWeapon();
+		public abstract Actions.AttackType GetAttackType();
 		public abstract void SaveAction(Actions action);
 		public abstract WaitingQueue<Actions> LoadActions();
 		public abstract void ExecuteActions();
 		public abstract void ClearActions();
+		public abstract bool HasExecuted();
+		public abstract bool IsComplete();
 	}
 }
