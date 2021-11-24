@@ -81,8 +81,6 @@ namespace OperationBlackwell.Core {
 			});
 
 			OnTurnEnded?.Invoke(this, turn_);
-			// SelectNextActiveUnit();
-			// UpdateValidMovePositions();
 		}
 
 		private void OnDestroy() {
@@ -98,7 +96,7 @@ namespace OperationBlackwell.Core {
 			}
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(unit.GetPosition());
-			gridObject.SetUnitGridCombat(null);
+			gridObject.ClearUnitGridCombat();
 		}
 
 		private void SelectNextActiveUnit() {
@@ -344,11 +342,11 @@ namespace OperationBlackwell.Core {
 										unitOrder.SetTotalCost(newCost);
 										unitOrder.SetInitiative(newInitiative);
 									}
-									// if(UnitsHaveActionsPoints()) {
+									if(UnitsHaveActionsPoints()) {
 										state_ = State.UnitSelected;
-									// } else {
-									// 	state_ = State.EndingTurn;
-									// }
+									} else {
+										state_ = State.EndingTurn;
+									}
 								}
 							}
 						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
@@ -361,18 +359,34 @@ namespace OperationBlackwell.Core {
 							if(unitGridCombat_.GetActionPoints() >= attackCost) {
 								// Attack Enemy
 								state_ = State.Waiting;
-								unitGridCombat_.SetActionPoints(unitGridCombat_.GetActionPoints() - attackCost);
-								unitGridCombat_.AttackUnit(unit, () => {
-									if(unitGridCombat_.GetActionPoints() == 0){
-										state_ = State.EndingTurn;
-									} else {
-										state_ = State.UnitSelected;
-									}
-									UnitEvent unitEvent = new UnitEvent() {
-										unit = unitGridCombat_
-									};
-									OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-								});
+								Actions.AttackType attackType = unitGridCombat_.GetAttackType();
+								Actions unitAction = null;
+								if(actions.Count == 0) {
+									unitAction = new Actions(Actions.ActionType.Attack, attackType, gridObject, Utils.GetMouseWorldPosition(),
+										grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, unit, attackCost);
+								} else {
+									unitAction = new Actions(Actions.ActionType.Attack, attackType, gridObject, Utils.GetMouseWorldPosition(),
+										grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unitGridCombat_, unit, attackCost);
+								}
+								unitGridCombat_.SaveAction(unitAction);
+
+								OrderObject unitOrder = GetOrderObject(unitGridCombat_);
+								if(unitOrder == null) {
+									int cost = GenerateTotalCost(0, 0, 0);
+									int initiative = GenerateInitiative(cost, 0, 0);
+									unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
+									orderList_.Add(unitOrder);
+								} else {
+									int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), 0, 0);
+									int newInitiative = GenerateInitiative(newCost, 0, 0);
+									unitOrder.SetTotalCost(newCost);
+									unitOrder.SetInitiative(newInitiative);
+								}
+								if(UnitsHaveActionsPoints()) {
+									state_ = State.UnitSelected;
+								} else {
+									state_ = State.EndingTurn;
+								}
 							}
 						}
 					} else if(!gridObject.GetIsValidMovePosition()) {

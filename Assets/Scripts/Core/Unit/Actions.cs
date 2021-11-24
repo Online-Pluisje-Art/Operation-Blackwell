@@ -9,7 +9,16 @@ namespace OperationBlackwell.Core {
 			Attack,
 		}
 
+		public enum AttackType {
+			None,
+			Melee,
+			RangedEnergy,
+			RangedKinetic,
+			AOE,
+		}
+
 		public ActionType type { get; private set; }
+		public AttackType attackType { get; private set; }
 		public Tilemap.Node destination { get; private set; }
 		public Vector3 destinationPos { get; private set; }
 		public Tilemap.Node origin { get; private set; }
@@ -23,6 +32,21 @@ namespace OperationBlackwell.Core {
 		public Actions(ActionType type, Tilemap.Node destination, Vector3 desitantionPos, Tilemap.Node origin, Vector3 originPos, 
 			CoreUnit invoker, CoreUnit target, int cost) {
 			this.type = type;
+			this.destination = destination;
+			this.destinationPos = desitantionPos;
+			this.origin = origin;
+			this.originPos = originPos;
+			this.invoker = invoker;
+			this.target = target;
+			this.cost = cost;
+			this.isComplete_ = false;
+			this.hasExecuted_ = false;
+		}
+
+		public Actions(ActionType type, AttackType attatckType, Tilemap.Node destination, Vector3 desitantionPos, Tilemap.Node origin, Vector3 originPos, 
+			CoreUnit invoker, CoreUnit target, int cost) {
+			this.type = type;
+			this.attackType = attatckType;
 			this.destination = destination;
 			this.destinationPos = desitantionPos;
 			this.origin = origin;
@@ -50,6 +74,13 @@ namespace OperationBlackwell.Core {
 					});
 					break;
 				case ActionType.Attack:
+					invoker.AttackUnit(target, attackType, () => {
+						GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {
+							unit = invoker
+						};
+						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						isComplete_ = true;
+					});
 					break;
 				default:
 					break;
