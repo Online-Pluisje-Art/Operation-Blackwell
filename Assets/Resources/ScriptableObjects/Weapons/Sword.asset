@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3114cdaa94eadd96881112c65369dc8e, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  damage_: 100
+  damage_:
+  - 70
+  - 100
+  costs_: 0200000004000000
   range_: 1
-  costs_: 1
   baseHitchance_: 100
   name_: Sword
+  type_: 1
