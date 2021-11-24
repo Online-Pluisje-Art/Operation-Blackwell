@@ -202,17 +202,35 @@ namespace OperationBlackwell.Core {
 		private void LateUpdate() {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
+			List<Actions> actions = new List<Actions>();
+			if(unitGridCombat_ != null) {
+				actions = unitGridCombat_.LoadActions().GetQueue();
+			}
+			
 			if(gridObject != null) {
 				CoreUnit unit = gridObject.GetUnitGridCombat();
-				if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit)
-					&& unit != unitGridCombat_ && unit.GetTeam() != unitGridCombat_.GetTeam()) {
-					CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
-				} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && state_ == State.UnitSelected) {
-					CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
-				} else if(unit != null && unit.GetTeam() == Team.Blue && (state_ == State.Normal || state_ == State.UnitSelected)) {
-					CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
-				} else {
-					CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+				if(actions.Count == 0) {
+					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, Vector3.zero)
+						&& unit != unitGridCombat_ && unit.GetTeam() != unitGridCombat_.GetTeam()) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+					} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && state_ == State.UnitSelected) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+					} else if(unit != null && unit.GetTeam() == Team.Blue && (state_ == State.Normal || state_ == State.UnitSelected)) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+					} else {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+					}
+				} else if(actions.Count > 0) {
+					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos)
+						&& unit != unitGridCombat_ && unit.GetTeam() != unitGridCombat_.GetTeam()) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+					} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && state_ == State.UnitSelected) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+					} else if(unit != null && unit.GetTeam() == Team.Blue && (state_ == State.Normal || state_ == State.UnitSelected)) {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+					} else {
+						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+					}
 				}
 			}
 		}
@@ -352,7 +370,7 @@ namespace OperationBlackwell.Core {
 						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							DeselectUnit();
 						}
-					} else if(unitGridCombat_.CanAttackUnit(unit)) {
+					} else if(gridObject.GetUnitGridCombat() != null && gridObject.GetUnitGridCombat().GetTeam() != Team.Blue) {
 						if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick)) {
 							// Can Attack Enemy
 							int attackCost = unitGridCombat_.GetAttackCost();
@@ -362,11 +380,15 @@ namespace OperationBlackwell.Core {
 								Actions.AttackType attackType = unitGridCombat_.GetAttackType();
 								Actions unitAction = null;
 								if(actions.Count == 0) {
-									unitAction = new Actions(Actions.ActionType.Attack, attackType, gridObject, Utils.GetMouseWorldPosition(),
-										grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, unit, attackCost);
+									if(unitGridCombat_.CanAttackUnit(unit, Vector3.zero)) {
+										unitAction = new Actions(Actions.ActionType.Attack, attackType, gridObject, Utils.GetMouseWorldPosition(),
+											grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, unit, attackCost);
+									}
 								} else {
-									unitAction = new Actions(Actions.ActionType.Attack, attackType, gridObject, Utils.GetMouseWorldPosition(),
-										grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unitGridCombat_, unit, attackCost);
+									if(unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos)) {
+										unitAction = new Actions(Actions.ActionType.Attack, attackType, gridObject, Utils.GetMouseWorldPosition(),
+											grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unitGridCombat_, unit, attackCost);
+									}
 								}
 								unitGridCombat_.SaveAction(unitAction);
 

@@ -84,7 +84,7 @@ namespace OperationBlackwell.Player {
 			selectedGameObject_.SetActive(visible);
 		}
 
-		public override bool CanAttackUnit(CoreUnit unitGridCombat) {
+		public override bool CanAttackUnit(CoreUnit unitGridCombat, Vector3 attackPos) {
 			/* 
 			 * If the unit is on the same team, return false.
 			 * Calculate the distance between the two units. 
@@ -97,8 +97,14 @@ namespace OperationBlackwell.Player {
 			}
 
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
-			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
-			return nodesBetweenPlayers <= currentWeapon_.GetRange();
+			int nodesBetweenPlayers = 0;
+			if(attackPos == Vector3.zero) {
+				nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
+			} else {
+				nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
+			}
+
+			return nodesBetweenPlayers <= currentWeapon_.GetRange() && nodesBetweenPlayers > 0;
 		}
 
 		public override void MoveTo(Vector3 targetPosition, Vector3 originPosition, Action onReachedPosition) {
