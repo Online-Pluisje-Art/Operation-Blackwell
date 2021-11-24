@@ -14474,6 +14474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitGridCombatArray_:
   - {fileID: 2046354194}
+  - {fileID: 1820880696}
   - {fileID: 1146229032}
   - {fileID: 635400533}
   - {fileID: 1009430104}
@@ -15360,6 +15361,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7930691839557344146, guid: fe9a12e8b29f2cb5ba644d961fd951ce, type: 3}
   m_PrefabInstance: {fileID: 1621152295}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1820880696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8822194322506780188, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
+  m_PrefabInstance: {fileID: 1123240534}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0af036b690810680a9cceaaa13a91e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1825114026
 PrefabInstance:
   m_ObjectHideFlags: 0
