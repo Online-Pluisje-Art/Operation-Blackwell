@@ -418,6 +418,19 @@ namespace OperationBlackwell.Core {
 							}
 						}
 					} else if(!gridObject.GetIsValidMovePosition()) {
+						IInteractable interactable = gridObject.GetInteractable();
+						if(interactable != null) {
+							Vector3 interactablePosition;
+							if(actions.Count == 0) {
+								interactablePosition = unitGridCombat_.GetPosition();
+							} else {
+								interactablePosition = actions[actions.Count - 1].destinationPos;
+							}
+							if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick) && interactable.IsInRange(interactablePosition)) {
+								interactable.Interact();
+								state_ = State.EndingTurn;
+							}
+						}
 						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							DeselectUnit();
 						}
