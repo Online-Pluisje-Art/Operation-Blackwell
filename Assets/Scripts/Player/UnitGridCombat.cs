@@ -42,6 +42,9 @@ namespace OperationBlackwell.Player {
 			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
 			actions_ = new WaitingQueue<Actions>();
+		}
+
+		private void Start() {
 			SetActiveWeapon(0);
 		}
 
@@ -70,6 +73,7 @@ namespace OperationBlackwell.Player {
 			if(index >= 0 && index < weapons_.Count) {
 				currentWeapon_ = weapons_[index];
 			}
+			GridCombatSystem.Instance.OnWeaponChanged?.Invoke(this, currentWeapon_.GetName());
 		}
 
 		public override string GetActiveWeapon() {
