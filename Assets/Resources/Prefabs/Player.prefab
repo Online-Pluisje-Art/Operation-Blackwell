@@ -214,6 +214,7 @@ MonoBehaviour:
   maxActionPoints_: 10
   weapons_:
   - {fileID: 11400000, guid: 1867dd448d4d30f68b072219a42ff0ba, type: 2}
+  - {fileID: 11400000, guid: 721067833e1f9f0f09fd6f5cd1e0ed32, type: 2}
 --- !u!114 &2343956742568336423
 MonoBehaviour:
   m_ObjectHideFlags: 0

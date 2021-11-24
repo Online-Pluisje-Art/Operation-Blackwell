@@ -303,6 +303,10 @@ namespace OperationBlackwell.Core {
 								SetArrowWithPath(action.originPos, action.destinationPos);
 								UpdateValidMovePositions(action.destinationPos);
 							}
+							if(action.type == Actions.ActionType.Attack) {
+								ResetMoveTiles();
+								UpdateValidMovePositions(action.destinationPos);
+							}
 						}
 						if(gridObject.GetIsValidMovePosition() && actions.Count != 0) {
 							SetArrowWithPath(actions[actions.Count - 1].destinationPos, Utils.GetMouseWorldPosition());
@@ -381,29 +385,31 @@ namespace OperationBlackwell.Core {
 								Actions unitAction = null;
 								if(actions.Count == 0) {
 									if(unitGridCombat_.CanAttackUnit(unit, Vector3.zero)) {
-										unitAction = new Actions(Actions.ActionType.Attack, attackType, gridObject, Utils.GetMouseWorldPosition(),
+										unitAction = new Actions(Actions.ActionType.Attack, attackType, grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(),
 											grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, unit, attackCost);
 									}
 								} else {
 									if(unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos)) {
-										unitAction = new Actions(Actions.ActionType.Attack, attackType, gridObject, Utils.GetMouseWorldPosition(),
+										unitAction = new Actions(Actions.ActionType.Attack, attackType, actions[actions.Count - 1].destination, actions[actions.Count - 1].destinationPos,
 											grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unitGridCombat_, unit, attackCost);
 									}
 								}
-								unitGridCombat_.SaveAction(unitAction);
-
-								OrderObject unitOrder = GetOrderObject(unitGridCombat_);
-								if(unitOrder == null) {
-									int cost = GenerateTotalCost(0, 0, 0);
-									int initiative = GenerateInitiative(cost, 0, 0);
-									unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
-									orderList_.Add(unitOrder);
-								} else {
-									int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), 0, 0);
-									int newInitiative = GenerateInitiative(newCost, 0, 0);
-									unitOrder.SetTotalCost(newCost);
-									unitOrder.SetInitiative(newInitiative);
+								if(unitAction != null) {
+									unitGridCombat_.SaveAction(unitAction);
+									OrderObject unitOrder = GetOrderObject(unitGridCombat_);
+									if(unitOrder == null) {
+										int cost = GenerateTotalCost(0, 0, 0);
+										int initiative = GenerateInitiative(cost, 0, 0);
+										unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
+										orderList_.Add(unitOrder);
+									} else {
+										int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), 0, 0);
+										int newInitiative = GenerateInitiative(newCost, 0, 0);
+										unitOrder.SetTotalCost(newCost);
+										unitOrder.SetInitiative(newInitiative);
+									}
 								}
+								
 								if(UnitsHaveActionsPoints()) {
 									state_ = State.UnitSelected;
 								} else {
@@ -437,13 +443,14 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void HandleWeaponSwitch() {
+			if(unitGridCombat_ == null) {
+				return;
+			}
 			if(Input.GetKeyDown(KeyCode.Alpha1)) {
 				unitGridCombat_.SetActiveWeapon(0);
-				OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 			}
 			if(Input.GetKeyDown(KeyCode.Alpha2)) {
 				unitGridCombat_.SetActiveWeapon(1);
-				OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
 			}
 		}
 
