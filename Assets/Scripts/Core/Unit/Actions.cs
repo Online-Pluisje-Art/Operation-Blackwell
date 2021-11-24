@@ -39,7 +39,7 @@ namespace OperationBlackwell.Core {
 				case ActionType.Move:
 					// Remove Unit from current Grid Object
 					origin.ClearUnitGridCombat();
-					invoker.MoveTo(destinationPos, () => {
+					invoker.MoveTo(destinationPos, originPos, () => {
 						// Set Unit on target Grid Object
 						destination.SetUnitGridCombat(invoker);
 						GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {

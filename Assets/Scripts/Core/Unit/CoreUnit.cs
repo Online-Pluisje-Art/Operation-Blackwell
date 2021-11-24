@@ -3,7 +3,7 @@ using System;
 
 namespace OperationBlackwell.Core {
 	public abstract class CoreUnit : MonoBehaviour {
-		public abstract bool MoveTo(Vector3 targetPosition, Action onReachedPosition);
+		public abstract void MoveTo(Vector3 targetPosition, Vector3 originPosition, Action onReachedPosition);
 		public abstract Vector3 GetPosition();
 		public abstract Team GetTeam();
 		public abstract bool IsEnemy(CoreUnit unitGridCombat);
