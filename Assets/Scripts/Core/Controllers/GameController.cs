@@ -38,16 +38,28 @@ namespace OperationBlackwell.Core {
 			Vector3 origin = new Vector3(0, 0);
 
 			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * cellSize_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * cellSize_, cellSize_);
-			movementTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
-			arrowTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
-			selectorTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+			if(movementTilemapVisual_ != null) {
+				movementTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+			}
+			if(arrowTilemapVisual_ != null) {
+				arrowTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+			}
+			if(selectorTilemapVisual_ != null) {
+				selectorTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+			}
 		}
 
 		private void Start() {
 			tilemap.SetTilemapVisual(tilemapVisual_);
-			movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
-			arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
-			selectorTilemap_.SetTilemapVisual(selectorTilemapVisual_);
+			if(movementTilemap_ != null) {
+				movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
+			}
+			if(arrowTilemap_ != null) {
+				arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
+			}
+			if(selectorTilemap_ != null) {
+				selectorTilemap_.SetTilemapVisual(selectorTilemapVisual_);
+			}
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
 				tilemap.Load("tutoriallevel");
 			} else {
