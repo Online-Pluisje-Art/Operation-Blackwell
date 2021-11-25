@@ -26,5 +26,6 @@ namespace OperationBlackwell.Core {
 		public abstract void ClearActions();
 		public abstract bool HasExecuted();
 		public abstract bool IsComplete();
+		public abstract void ResetComplete();
 	}
 }
