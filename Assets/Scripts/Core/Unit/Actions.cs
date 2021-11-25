@@ -58,7 +58,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void Execute() {
-			switch (type) {
+			switch(type) {
 				case ActionType.Move:
 					// Remove Unit from current Grid Object
 					origin.ClearUnitGridCombat();
