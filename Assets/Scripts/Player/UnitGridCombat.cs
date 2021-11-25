@@ -220,7 +220,6 @@ namespace OperationBlackwell.Player {
 		}
 
 		public override void ExecuteActions() {
-			hasExecuted_ = false;
 			StartCoroutine(ExecuteActionsCoroutine());
 			hasExecuted_ = true;
 			isComplete_ = false;
@@ -240,8 +239,8 @@ namespace OperationBlackwell.Player {
 				}
 				yield return null;
 			}
-			ClearActions();
 			isComplete_ = true;
+			ClearActions();
 		}
 
 		public override void ClearActions() {
@@ -255,6 +254,11 @@ namespace OperationBlackwell.Player {
 
 		public override bool IsComplete() {
 			return isComplete_;
+		}
+
+		public override void ResetComplete() {
+			hasExecuted_ = false;
+			isComplete_ = false;
 		}
 	}
 }

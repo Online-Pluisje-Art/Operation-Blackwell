@@ -9543,6 +9543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Adam (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8827876707810031362, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
 --- !u!4 &1123240535 stripped

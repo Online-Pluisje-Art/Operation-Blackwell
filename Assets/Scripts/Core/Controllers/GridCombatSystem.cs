@@ -490,11 +490,8 @@ namespace OperationBlackwell.Core {
 
 		private void ForceTurnOver() {
 			// Execute all unit actions and end turn
-			turn_++;
-			OnTurnEnded?.Invoke(this, turn_);
 			DeselectUnit();
 			ExecuteAllActions();
-			ResetAllActionPoints();
 		}
 
 		private void ExecuteAllActions() {
@@ -517,6 +514,16 @@ namespace OperationBlackwell.Core {
 				}
 				yield return null;
 			}
+			orderList_.Clear();
+			foreach(CoreUnit unit in blueTeamList_) {
+				unit.ResetComplete();
+			}
+			foreach(CoreUnit unit in redTeamList_) {
+				unit.ResetComplete();
+			}
+			ResetAllActionPoints();
+			turn_++;
+			OnTurnEnded?.Invoke(this, turn_);
 		}
 
 		private void ResetAllActionPoints() {
