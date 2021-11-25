@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace OperationBlackwell.Core {
 	public class PositionSortingOrder : MonoBehaviour {
@@ -19,7 +20,7 @@ namespace OperationBlackwell.Core {
 			timer_ -= Time.deltaTime;
 			if(timer_ <= 0f) {
 				timer_ = timerMax_;
-				renderer_.sortingOrder = (int)(sortingOrderBase_ - transform.position.y - offset_);
+				renderer_.sortingOrder = (int)(sortingOrderBase_ - Math.Round(transform.position.y, MidpointRounding.AwayFromZero) - offset_);
 				if(runOnlyOnce_) {
 					Destroy(this);
 				}
