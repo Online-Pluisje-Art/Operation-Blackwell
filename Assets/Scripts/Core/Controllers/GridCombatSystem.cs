@@ -388,7 +388,7 @@ namespace OperationBlackwell.Core {
 								Actions.AttackType attackType = unitGridCombat_.GetAttackType();
 								Actions unitAction = null;
 								if(actions.Count == 0) {
-									if(unitGridCombat_.CanAttackUnit(unit, Vector3.zero)) {
+									if(unitGridCombat_.CanAttackUnit(unit, unitGridCombat_.GetPosition())) {
 										unitAction = new Actions(Actions.ActionType.Attack, attackType, grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(),
 											grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, unit, attackCost);
 									}

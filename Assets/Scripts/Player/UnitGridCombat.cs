@@ -101,13 +101,7 @@ namespace OperationBlackwell.Player {
 			}
 
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
-			int nodesBetweenPlayers = 0;
-			if(attackPos == Vector3.zero) {
-				nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
-			} else {
-				nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
-			}
-
+			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
 			return nodesBetweenPlayers <= currentWeapon_.GetRange() && nodesBetweenPlayers > 0;
 		}
 
@@ -155,7 +149,6 @@ namespace OperationBlackwell.Player {
 			state_ = State.Attacking;
 
 			ShootUnit(unitGridCombat, type, () => {
-				state_ = State.Normal;
 				onAttackComplete(); 
 			});
 		}
@@ -166,13 +159,16 @@ namespace OperationBlackwell.Player {
 			Weapon weapon = weapons_.Find(weapon => weapon.GetAttackType() == type);
 			
 			if(unitGridCombat.IsDead()) {
+				state_ = State.Normal;
 				onShootComplete();
+				GetComponent<IMoveVelocity>().Enable();
 				return;
 			}
 			unitGridCombat.Damage(this, weapon.GetDamage());
+			state_ = State.Normal;
+			onShootComplete();
 
 			GetComponent<IMoveVelocity>().Enable();
-			onShootComplete();
 		}
 
 		public override void Damage(CoreUnit attacker, float damageAmount) {	
