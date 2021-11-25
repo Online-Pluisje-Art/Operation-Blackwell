@@ -38,7 +38,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
-			if (cursorAnimation_ == null) {
+			if(cursorAnimation_ == null) {
 				return;
 			}
 			frameTimer_ -= Time.deltaTime;
@@ -50,7 +50,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void SetActiveCursorType(CursorType cursorType) {
-			if (cursorAnimation_ == null) {
+			if(cursorAnimation_ == null) {
 				return;
 			}
 			if(cursorAnimation_.cursorType == cursorType) {
