@@ -21,7 +21,7 @@ namespace OperationBlackwell.Player {
 
 		private void FixedUpdate() {
 			rigidbody2D_.velocity = velocityVector_ * moveSpeed_;
-			if(this.name == "Adam") {
+			if(this.name == "Adam" || this.name == "Adam (1)") {
 				updateAnimation();
 			}
 		}
