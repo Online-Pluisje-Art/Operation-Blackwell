@@ -5636,7 +5636,7 @@ MonoBehaviour:
   drawGridLines_: 0
   movementTilemapVisual_: {fileID: 1176652284}
   arrowTilemapVisual_: {fileID: 387270669}
-  seletorTilemapVisual_: {fileID: 155744545}
+  selectorTilemapVisual_: {fileID: 155744545}
   tilemapVisual_: {fileID: 776276069}
 --- !u!4 &593590128
 Transform:

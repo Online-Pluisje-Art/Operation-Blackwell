@@ -16,7 +16,7 @@ namespace OperationBlackwell.Core {
 
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
 		[SerializeField] private MovementTilemapVisual arrowTilemapVisual_;
-		[SerializeField] private MovementTilemapVisual seletorTilemapVisual_;
+		[SerializeField] private MovementTilemapVisual selectorTilemapVisual_;
 
 		private MovementTilemap movementTilemap_;
 		private MovementTilemap arrowTilemap_;
@@ -47,7 +47,7 @@ namespace OperationBlackwell.Core {
 			tilemap.SetTilemapVisual(tilemapVisual_);
 			movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
 			arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
-			selectorTilemap_.SetTilemapVisual(seletorTilemapVisual_);
+			selectorTilemap_.SetTilemapVisual(selectorTilemapVisual_);
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
 				tilemap.Load("tutoriallevel");
 			} else {
