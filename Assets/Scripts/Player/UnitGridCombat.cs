@@ -11,6 +11,7 @@ namespace OperationBlackwell.Player {
 		[SerializeField] private int actionPoints_;
 		[SerializeField] private int maxActionPoints_;
 		[SerializeField] private List<Weapon> weapons_;
+		[SerializeField] private Animator animator_;
 		
 		private PlayerBase characterBase_;
 		private GameObject selectedGameObject_;
@@ -25,11 +26,21 @@ namespace OperationBlackwell.Player {
 		private WaitingQueue<Actions> actions_;
 		private bool hasExecuted_;
 		private bool isComplete_;
+		private bool shouldPlayAttackAnimation_ = false;
+		private Direction direction_ = Direction.Null;
 
 		private enum State {
 			Normal,
 			Moving,
 			Attacking
+		}
+
+		private enum Direction {
+			Up,
+			Down,
+			Left,
+			Right,
+			Null
 		}
 
 		private void Awake() {
@@ -59,6 +70,8 @@ namespace OperationBlackwell.Player {
 				default: 
 					break;
 			}
+			updateAnimation();
+			shouldPlayAttackAnimation_ = false;
 		}
 
 		private void OnDestroy() {
@@ -149,7 +162,7 @@ namespace OperationBlackwell.Player {
 			state_ = State.Attacking;
 
 			ShootUnit(unitGridCombat, type, () => {
-				onAttackComplete(); 
+				onAttackComplete();
 			});
 		}
 
@@ -157,18 +170,82 @@ namespace OperationBlackwell.Player {
 			GetComponent<IMoveVelocity>().Disable();
 
 			Weapon weapon = weapons_.Find(weapon => weapon.GetAttackType() == type);
-			
+
 			if(unitGridCombat.IsDead()) {
 				state_ = State.Normal;
 				onShootComplete();
 				GetComponent<IMoveVelocity>().Enable();
 				return;
 			}
+			DetermineAttackAnimation(unitGridCombat);
 			unitGridCombat.Damage(this, weapon.GetDamage());
 			state_ = State.Normal;
 			onShootComplete();
 
 			GetComponent<IMoveVelocity>().Enable();
+		}
+
+		private void DetermineAttackAnimation(CoreUnit unitGridCombat) {
+			shouldPlayAttackAnimation_ = true;
+			Vector3 attackerPosition = this.GetPosition();
+			Vector3 enemyPosition = unitGridCombat.GetPosition();
+			direction_ = Direction.Null;
+			int diffX = 0;
+			int diffY = 0;
+			// 0 is neither, 1 is yes, 2 is false.
+			int isBelow = 0;
+			int isLeft = 0;
+			if(attackerPosition.x == enemyPosition.x) {
+				// Either above or below us.
+			} else if(attackerPosition.x > enemyPosition.x) {
+				// Left of us.
+				diffX = (int)(attackerPosition.x - enemyPosition.x);
+				isLeft = 1;
+			} else {
+				// Right of us.
+				diffX = (int)(enemyPosition.x - attackerPosition.x);
+				isLeft = 2;
+			}
+			if(attackerPosition.y == enemyPosition.y) {
+				// Either left or right of us.
+			} else if(attackerPosition.y > enemyPosition.y) {
+				// Below us.
+				diffY = (int)(attackerPosition.y - enemyPosition.y);
+				isBelow = 1;
+			} else {
+				// Above us.
+				diffY = (int)(enemyPosition.y - attackerPosition.y);
+				isBelow = 2;
+			}
+			// Depending on which diff is bigger, trigger the right direction.
+			if(diffX > diffY) {
+				// Left/Right is bigger than up/down, use left/right.
+				if(isLeft == 1) {
+					// Left it is!
+					direction_ = Direction.Left;
+				} else if(isLeft == 2) {
+					// Right it is!
+					direction_ = Direction.Right;
+				} else {
+					// Should never happen, signal an error.
+					direction_ = Direction.Null;
+				}
+			} else if(diffX <= diffY) {
+				// Up/down is bigger or equal to left/right, use up/down.
+				if(isBelow == 1) {
+					// Below it is!
+					direction_ = Direction.Down;
+				} else if(isBelow == 2) {
+					// Up it is!
+					direction_ = Direction.Up;
+				} else {
+					// Should never happen, signal an error.
+					direction_ = Direction.Null;
+				}
+			} else {
+				// Should never happen, signal an error.
+				direction_ = Direction.Null;
+			}
 		}
 
 		public override void Damage(CoreUnit attacker, float damageAmount) {	
@@ -259,6 +336,68 @@ namespace OperationBlackwell.Player {
 		public override void ResetComplete() {
 			hasExecuted_ = false;
 			isComplete_ = false;
+		}
+
+		private void updateAnimation() {
+			if(animator_ == null) {
+				return;
+			}
+
+			if(shouldPlayAttackAnimation_) {
+				ResetAllAttackAnimations();
+				if(currentWeapon_.GetRange() > 1) {
+					switch(direction_) {
+						case Direction.Up:
+							animator_.SetBool("isShootingUp", true);
+							break;
+						case Direction.Down:
+							animator_.SetBool("isShootingDown", true);
+							break;
+						case Direction.Left:
+							animator_.SetBool("isShootingLeft", true);
+							break;
+						case Direction.Right:
+							animator_.SetBool("isShootingRight", true);
+							break;
+						default:
+							// Oops, something went wrong, just return.
+							return;
+					}
+				} else {
+					switch(direction_) {
+						case Direction.Up:
+							animator_.SetBool("isMeleeUp", true);
+							break;
+						case Direction.Down:
+							animator_.SetBool("isMeleeDown", true);
+							break;
+						case Direction.Left:
+							animator_.SetBool("isMeleeLeft", true);
+							break;
+						case Direction.Right:
+							animator_.SetBool("isMeleeRight", true);
+							break;
+						default:
+							// Oops, something went wrong, just return.
+							return;
+					}
+				}
+			} else {
+				// Reset all animation states, not attacking.
+				ResetAllAttackAnimations();
+				direction_ = Direction.Null;
+			}
+		}
+
+		private void ResetAllAttackAnimations() {
+			animator_.SetBool("isMeleeUp", false);
+			animator_.SetBool("isMeleeDown", false);
+			animator_.SetBool("isMeleeLeft", false);
+			animator_.SetBool("isMeleeRight", false);
+			animator_.SetBool("isShootingUp", false);
+			animator_.SetBool("isShootingDown", false);
+			animator_.SetBool("isShootingLeft", false);
+			animator_.SetBool("isShootingRight", false);
 		}
 	}
 }
