@@ -7,7 +7,7 @@ namespace OperationBlackwell.UI {
 		[System.Serializable]
 		public struct CharacterMessage {
 			public CutsceneCharacter character;
-			public string message;
+			[TextArea] public string message;
 		}
 		
 		[SerializeField] private CutsceneCharacter characterLeft_;
