@@ -64,7 +64,13 @@ namespace OperationBlackwell.Core {
 					origin.ClearUnitGridCombat();
 					invoker.MoveTo(destinationPos, originPos, () => {
 						// Set Unit on target Grid Object
-						destination.SetUnitGridCombat(invoker);
+						if(destination.GetUnitGridCombat() == null) {
+							destination.SetUnitGridCombat(invoker);
+						} else {
+							Tilemap.Node node = GameController.Instance.GetGrid().GetGridObject(invoker.GetPosition());
+							node.SetUnitGridCombat(invoker);
+						}
+						
 						GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {
 							unit = invoker
 						};
