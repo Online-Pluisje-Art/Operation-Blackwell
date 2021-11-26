@@ -14,11 +14,10 @@ namespace OperationBlackwell.UI {
 		}
 
 		public Sprite GetSprite() {
+			if(speaking_) {
+				return characterSpriteSpeaking_;
+			}
 			return characterSprite_;
-		}
-
-		public Sprite GetSpriteSpeaking() {
-			return characterSpriteSpeaking_;
 		}
 
 		public AudioClip GetVoice() {

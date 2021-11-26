@@ -17,5 +17,9 @@ namespace OperationBlackwell.UI {
 		public CharacterMessage GetMessageObject(int index) {
 			return messages_[index];
 		}
+
+		public void Show() {
+			
+		}
 	}
 }
