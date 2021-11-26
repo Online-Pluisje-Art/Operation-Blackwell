@@ -11372,17 +11372,24 @@ TextMesh:
   m_GameObject: {fileID: 1191800351}
   m_Text: 'Controls:
 
-    - left mouse moves
+    - left mouse selects units
+
+    - when selected, right
+    click to add:
+
+    - a move target
+
+    - an attack target
+
+    - enter to run
+    the actions
 
     - 1 switches to the sword
 
+    - 2 switches to the pistol
+
     -
-    2 switches to the pistol
-
-    - Spacebar ends the current turn
-
-    - Esc goes
-    back to the main menu'
+    Esc goes back to the main menu'
   m_OffsetZ: 0
   m_CharacterSize: 0.35
   m_LineSpacing: 1
