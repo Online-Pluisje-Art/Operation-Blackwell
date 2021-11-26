@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using OperationBlackwell.Core;
 
@@ -22,6 +22,10 @@ namespace OperationBlackwell.Player {
 
 		private Weapon currentWeapon_;
 
+		private WaitingQueue<Actions> actions_;
+		private bool hasExecuted_;
+		private bool isComplete_;
+
 		private enum State {
 			Normal,
 			Moving,
@@ -37,6 +41,10 @@ namespace OperationBlackwell.Player {
 			healthSystem_ = new HealthSystem(100);
 			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
+			actions_ = new WaitingQueue<Actions>();
+		}
+
+		private void Start() {
 			SetActiveWeapon(0);
 		}
 
@@ -65,17 +73,22 @@ namespace OperationBlackwell.Player {
 			if(index >= 0 && index < weapons_.Count) {
 				currentWeapon_ = weapons_[index];
 			}
+			GridCombatSystem.Instance.OnWeaponChanged?.Invoke(this, currentWeapon_.GetName());
 		}
 
 		public override string GetActiveWeapon() {
 			return currentWeapon_.GetName();
 		}
 
+		public override Actions.AttackType GetAttackType() {
+			return currentWeapon_.GetAttackType();
+		}
+
 		public void SetSelectedVisible(bool visible) {
 			selectedGameObject_.SetActive(visible);
 		}
 
-		public override bool CanAttackUnit(CoreUnit unitGridCombat) {
+		public override bool CanAttackUnit(CoreUnit unitGridCombat, Vector3 attackPos) {
 			/* 
 			 * If the unit is on the same team, return false.
 			 * Calculate the distance between the two units. 
@@ -83,18 +96,18 @@ namespace OperationBlackwell.Player {
 			 * when its the same node it returns 1 so we subtract one from the distance to get the actual distance.
 			 * If the distance is less or equal than the weapon range, return true.
 			 */
-			if(unitGridCombat.GetTeam() == team_ || actionPoints_ < currentWeapon_.GetActionPointsCost()) {
+			if(unitGridCombat == null || unitGridCombat.GetTeam() == team_ || actionPoints_ < currentWeapon_.GetActionPointsCost()) {
 				return false;
 			}
 
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
-			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(GetPosition(), unitGridCombat.GetPosition()).Count - 1;
-			return nodesBetweenPlayers <= currentWeapon_.GetRange();
+			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
+			return nodesBetweenPlayers <= currentWeapon_.GetRange() && nodesBetweenPlayers > 0;
 		}
 
-		public override void MoveTo(Vector3 targetPosition, Action onReachedPosition) {
+		public override void MoveTo(Vector3 targetPosition, Vector3 originPosition, Action onReachedPosition) {
 			state_ = State.Moving;
-			movePosition_.SetMovePosition(targetPosition, () => {
+			movePosition_.SetMovePosition(targetPosition, originPosition, () => {
 				state_ = State.Normal;
 				onReachedPosition();
 			});
@@ -120,27 +133,42 @@ namespace OperationBlackwell.Player {
 			return actionPoints_;
 		}
 
+		public override bool HasActionPoints() {
+			return actionPoints_ > 0;
+		}
+
+		public override int GetMaxActionPoints() {
+			return maxActionPoints_;
+		}
+
 		public override void ResetActionPoints() {
 			actionPoints_ = maxActionPoints_;
 		}
 
-		public override void AttackUnit(CoreUnit unitGridCombat, Action onAttackComplete) {
+		public override void AttackUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onAttackComplete) {
 			state_ = State.Attacking;
 
-			ShootUnit(unitGridCombat, () => {
-				state_ = State.Normal;
+			ShootUnit(unitGridCombat, type, () => {
 				onAttackComplete(); 
 			});
 		}
 
-		private void ShootUnit(CoreUnit unitGridCombat, Action onShootComplete) {
+		private void ShootUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onShootComplete) {
 			GetComponent<IMoveVelocity>().Disable();
 
-			// The value of 50 is a placeholder for the damage of the units attack.
-			unitGridCombat.Damage(this, currentWeapon_.GetDamage());
+			Weapon weapon = weapons_.Find(weapon => weapon.GetAttackType() == type);
+			
+			if(unitGridCombat.IsDead()) {
+				state_ = State.Normal;
+				onShootComplete();
+				GetComponent<IMoveVelocity>().Enable();
+				return;
+			}
+			unitGridCombat.Damage(this, weapon.GetDamage());
+			state_ = State.Normal;
+			onShootComplete();
 
 			GetComponent<IMoveVelocity>().Enable();
-			onShootComplete();
 		}
 
 		public override void Damage(CoreUnit attacker, float damageAmount) {	
@@ -180,6 +208,57 @@ namespace OperationBlackwell.Player {
 				}
 			}
 			return hitChance;
+		}
+
+		public override void SaveAction(Actions action) {
+			actionPoints_ -= action.cost;
+			actions_.Enqueue(action);
+		}
+
+		public override WaitingQueue<Actions> LoadActions() {
+			return actions_;
+		}
+
+		public override void ExecuteActions() {
+			StartCoroutine(ExecuteActionsCoroutine());
+			hasExecuted_ = true;
+			isComplete_ = false;
+		}
+
+		IEnumerator ExecuteActionsCoroutine() {
+			bool hasExecuted = false;
+			bool isComplete = false;
+			while(!actions_.IsEmpty()) {
+				hasExecuted = actions_.Peek().HasExecuted();
+				isComplete = actions_.Peek().IsComplete();
+				if(!hasExecuted) {
+					actions_.Peek().Execute();
+				} 
+				if(isComplete) {
+					actions_.Dequeue();
+				}
+				yield return null;
+			}
+			isComplete_ = true;
+			ClearActions();
+		}
+
+		public override void ClearActions() {
+			actions_.Clear();
+			ResetActionPoints();
+		}
+
+		public override bool HasExecuted() {
+			return hasExecuted_;
+		}
+
+		public override bool IsComplete() {
+			return isComplete_;
+		}
+
+		public override void ResetComplete() {
+			hasExecuted_ = false;
+			isComplete_ = false;
 		}
 	}
 }

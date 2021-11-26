@@ -142,7 +142,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7544449360146827313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b6d9cc8d34245c02bbdfb88a2dabf31, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e1e7caf4fde067daa6b3852ef768541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase_: 5000
@@ -214,6 +214,7 @@ MonoBehaviour:
   maxActionPoints_: 10
   weapons_:
   - {fileID: 11400000, guid: 1867dd448d4d30f68b072219a42ff0ba, type: 2}
+  - {fileID: 11400000, guid: 721067833e1f9f0f09fd6f5cd1e0ed32, type: 2}
 --- !u!114 &2343956742568336423
 MonoBehaviour:
   m_ObjectHideFlags: 0
