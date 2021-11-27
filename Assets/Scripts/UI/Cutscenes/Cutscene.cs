@@ -18,8 +18,12 @@ namespace OperationBlackwell.UI {
 			return messages_[index];
 		}
 
-		public void Show() {
-			
+		public CutsceneCharacter GetCharacterLeft() {
+			return characterLeft_;
+		}
+
+		public CutsceneCharacter GetCharacterRight() {
+			return characterRight_;
 		}
 	}
 }

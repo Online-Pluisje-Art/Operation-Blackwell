@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
   m_Name: Cutscene1
   m_EditorClassIdentifier: 
-  characterLeft_: {fileID: 0}
-  characterRight_: {fileID: 0}
+  characterLeft_: {fileID: 11400000, guid: d6b23adfc92fc230cb8d81ee2c421d70, type: 2}
+  characterRight_: {fileID: 11400000, guid: d6b23adfc92fc230cb8d81ee2c421d70, type: 2}
   messages_: []
