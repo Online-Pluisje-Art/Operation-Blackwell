@@ -26,7 +26,7 @@ namespace OperationBlackwell.UI {
 		private TextMeshProUGUI text_;
 
 		private void Awake() {
-			if (Instance == null) {
+			if(Instance == null) {
 				Instance = this;
 			} else {
 				Destroy(gameObject);
@@ -94,12 +94,12 @@ namespace OperationBlackwell.UI {
 		}
 
 		private void SelectNextText() {
-			if (currentCutscene_ == null) {
+			if(currentCutscene_ == null) {
 				return;
 			}
 			ResetSpeaking();
 			Cutscene.CharacterMessage messageObject = currentCutscene_.GetMessageObject(currentMessageIndex_);
-			if (messageObject == null) {
+			if(messageObject == null) {
 				return;
 			}
 			messageObject.character.SetSpeaking(true);
@@ -112,7 +112,7 @@ namespace OperationBlackwell.UI {
 		}
 
 		private void ResetSpeaking() {
-			if (currentCutscene_ == null) {
+			if(currentCutscene_ == null) {
 				return;
 			}
 			currentCutscene_.GetCharacterLeft().SetSpeaking(false);
