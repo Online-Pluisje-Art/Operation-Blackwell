@@ -44,7 +44,8 @@ namespace OperationBlackwell.Core {
 			UnitSelected,
 			EndingTurn,
 			Waiting,
-			Cutscene
+			Cutscene,
+			OutOfCombat,
 		}
 
 		private enum MouseButtons {
@@ -55,7 +56,7 @@ namespace OperationBlackwell.Core {
 
 		private void Awake() {
 			Instance = this;
-			state_ = State.Normal;
+			state_ = State.OutOfCombat;
 			OnUnitDeath += RemoveUnitOnDeath;
 		}
 
@@ -347,7 +348,7 @@ namespace OperationBlackwell.Core {
 									);
 									CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 
-									Actions unitAction = null;
+									Actions unitAction;
 									if(actions.Count == 0) {
 										pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count - 1;
 										unitAction = new Actions(Actions.ActionType.Move, gridObject, Utils.GetMouseWorldPosition(),
@@ -445,11 +446,56 @@ namespace OperationBlackwell.Core {
 				case State.EndingTurn:
 					ForceTurnOver();
 					break;
+				case State.OutOfCombat:
+					interactable_ = null;
+					grid = GameController.Instance.GetGrid();
+					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
+
+					if(gridObject == null) {
+						return;
+					}
+					
+					unit = gridObject.GetUnitGridCombat();
+					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+						gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
+					);
+					if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick)) {
+						unitGridCombat_ = null;
+					}
+					if(unit != null && unit.GetTeam() == Team.Blue) {
+						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+							if(unit != null && unit.GetTeam() == Team.Blue) {
+								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+									unit = unit,
+									position = unit.GetPosition()
+								});
+								unitGridCombat_ = unit;
+							}
+						}
+					}
+					if(unitGridCombat_ == null) {
+						return;
+					}
+					ResetMoveTiles();
+					ResetArrowVisual();
+					UpdateValidMovePositions(unitGridCombat_.GetPosition());
+					if(gridObject.GetIsValidMovePosition()) {
+						SetArrowWithPath(Vector3.zero, Vector3.zero);
+					}
+					if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+						if(gridObject.GetIsValidMovePosition()) {
+							grid.GetGridObject(unitGridCombat_.GetPosition()).ClearUnitGridCombat();
+							unitGridCombat_.MoveTo(Utils.GetMouseWorldPosition(), unitGridCombat_.GetPosition(), () => {
+								gridObject.SetUnitGridCombat(unitGridCombat_);
+							});
+						}
+					}
+					break;
 				default:
 					break;
 			}
 
-			if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) {
+			if(state_ != State.OutOfCombat && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))) {
 				// End Turn
 				state_ = State.EndingTurn;
 				return;
