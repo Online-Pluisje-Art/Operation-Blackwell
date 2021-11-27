@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 083fb7b87e2fe7db7b80251be55ce1d8, type: 3}
-  m_Name: Testing
+  m_Name: Testing2
   m_EditorClassIdentifier: 
-  characterName_: Adam
-  characterSprite_: {fileID: 21300000, guid: a778615beeaaf1046841a1229c4cad65, type: 3}
-  characterSpriteSpeaking_: {fileID: 21300000, guid: 77e0721f315db9540b3238291d45caf7, type: 3}
+  characterName_: Blackwell
+  characterSprite_: {fileID: 21300000, guid: e11cfbe1909d71147a00ccd9dac537d6, type: 3}
+  characterSpriteSpeaking_: {fileID: 21300000, guid: 9bb6130688500ed4e86c47ed6d0171be, type: 3}
   characterVoice_: {fileID: 0}
-  speaking_: 1
+  speaking_: 0

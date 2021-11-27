@@ -3369,7 +3369,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 984060224}
         m_TargetAssemblyTypeName: OperationBlackwell.UI.CutsceneController, OperationBlackwell.Main
-        m_MethodName: SelectPreviousText
+        m_MethodName: PrevButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13263,7 +13263,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 984060224}
         m_TargetAssemblyTypeName: OperationBlackwell.UI.CutsceneController, OperationBlackwell.Main
-        m_MethodName: SelectNextText
+        m_MethodName: NextButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
