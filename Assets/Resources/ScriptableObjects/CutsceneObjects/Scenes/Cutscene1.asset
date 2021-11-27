@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Cutscene1
   m_EditorClassIdentifier: 
   characterLeft_: {fileID: 11400000, guid: d6b23adfc92fc230cb8d81ee2c421d70, type: 2}
-  characterRight_: {fileID: 11400000, guid: d6b23adfc92fc230cb8d81ee2c421d70, type: 2}
-  messages_: []
+  characterRight_: {fileID: 11400000, guid: 3d1e91012dcddbf15acd8c4be3d1afc4, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: d6b23adfc92fc230cb8d81ee2c421d70, type: 2}
+    message: asasasdasdasdasdsadasddsa
+  - character: {fileID: 11400000, guid: 3d1e91012dcddbf15acd8c4be3d1afc4, type: 2}
+    message: asdddddasdsdasdasddd
