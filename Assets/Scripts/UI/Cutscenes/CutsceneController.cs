@@ -58,7 +58,7 @@ namespace OperationBlackwell.UI {
 			StartCutscene();
 		}
 
-		public void Show(int index) {
+		private void Show(int index) {
 			currentCutscene_ = cutscenes_[index];
 			currentMessageIndex_ = 0;
 			SelectNextText();
@@ -67,17 +67,19 @@ namespace OperationBlackwell.UI {
 			SetChildActive(endButton_, false);
 		}
 
-		public void Hide() {
+		private void Hide() {
 			currentCutscene_ = null;
 			SetActive(false);
 		}
 
 		public override void StartCutscene() {
+			GridCombatSystem.Instance.SetState(GridCombatSystem.State.Cutscene);
 			Show(currentCutsceneIndex_);
 		}
 
 		public override void EndCutscene() {
 			Hide();
+			GridCombatSystem.Instance.SetState(GridCombatSystem.State.Normal);
 			currentCutsceneIndex_++;
 		}
 

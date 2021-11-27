@@ -39,11 +39,12 @@ namespace OperationBlackwell.Core {
 			public Vector3 position;
 		}
 
-		private enum State {
+		public enum State {
 			Normal,
 			UnitSelected,
 			EndingTurn,
-			Waiting
+			Waiting,
+			Cutscene
 		}
 
 		private enum MouseButtons {
@@ -526,6 +527,10 @@ namespace OperationBlackwell.Core {
 			ResetAllActionPoints();
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
+		}
+
+		public void SetState(State state) {
+			state_ = state;
 		}
 
 		private void ResetAllActionPoints() {
