@@ -7,6 +7,8 @@ namespace OperationBlackwell.Core {
 	public class GridCombatSystem : MonoBehaviour {
 
 		public static GridCombatSystem Instance { get; private set; }
+		
+		[SerializeField] private BaseCutsceneController cutsceneController_;
 		[SerializeField] private CoreUnit[] unitGridCombatArray_;
 
 		private State state_;
