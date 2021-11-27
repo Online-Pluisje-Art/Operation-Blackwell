@@ -28,7 +28,6 @@ namespace OperationBlackwell.Core {
 		public Tilemap tilemap { get; private set; }
 
 		[SerializeField] private TilemapVisual tilemapVisual_;
-		private Tilemap.Node.NodeSprite nodeSprite_;
 
 		private void Awake() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
