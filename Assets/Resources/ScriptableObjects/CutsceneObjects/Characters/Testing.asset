@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 083fb7b87e2fe7db7b80251be55ce1d8, type: 3}
   m_Name: Testing
   m_EditorClassIdentifier: 
-  characterName_: 
-  characterSprite_: {fileID: 0}
+  characterName_: Adam
+  characterSprite_: {fileID: 21300000, guid: a778615beeaaf1046841a1229c4cad65, type: 3}
+  characterSpriteSpeaking_: {fileID: 0}
   characterVoice_: {fileID: 0}
   speaking_: 0
