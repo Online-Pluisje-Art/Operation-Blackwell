@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections.Generic;
 using OperationBlackwell.Core;
 
@@ -17,12 +18,12 @@ namespace OperationBlackwell.UI {
 		private GameObject leftButton_;
 		private GameObject rightButton_;
 		private GameObject endButton_;
-		private GameObject leftChar_;
-		private GameObject rightChar_;
-		private GameObject leftName_;
-		private GameObject rightName_;
-		private GameObject speakingName_;
-		private GameObject text_;
+		private Image leftChar_;
+		private Image rightChar_;
+		private TextMeshProUGUI leftName_;
+		private TextMeshProUGUI rightName_;
+		private TextMeshProUGUI speakingName_;
+		private TextMeshProUGUI text_;
 
 		private void Awake() {
 			if (Instance == null) {
@@ -36,6 +37,7 @@ namespace OperationBlackwell.UI {
 
 		private void Start() {
 			currentCutscene_ = null;
+			currentCutsceneIndex_ = 0;
 			foreach(Transform child in transform) {
 				children_.Add(child.gameObject);
 			}
@@ -43,22 +45,26 @@ namespace OperationBlackwell.UI {
 			leftButton_ = children_[1];
 			rightButton_ = children_[2];
 			endButton_ = children_[3];
-			leftChar_ = children_[4];
-			rightChar_ = children_[5];
-			leftName_ = children_[6];
-			rightName_ = children_[7];
-			speakingName_ = children_[8];
-			text_ = children_[9];
+			leftChar_ = children_[4].GetComponent<Image>();
+			rightChar_ = children_[5].GetComponent<Image>();
+			leftName_ = children_[6].GetComponent<TextMeshProUGUI>();
+			rightName_ = children_[7].GetComponent<TextMeshProUGUI>();
+			speakingName_ = children_[8].GetComponent<TextMeshProUGUI>();
+			text_ = children_[9].GetComponent<TextMeshProUGUI>();
 
-			// This is here for testing now, need to remove this later and change the true to false once done.
-			Show(0);
-			SetActive(true);
+			SetActive(false);
+
+			// This is here for testing now, need to remove this later.
+			StartCutscene();
 		}
 
 		public void Show(int index) {
 			currentCutscene_ = cutscenes_[index];
-			leftChar_.GetComponent<Image>().sprite = currentCutscene_.GetCharacterLeft().GetSprite();
+			currentMessageIndex_ = 0;
+			SelectNextText();
 			SetActive(true);
+			SetChildActive(leftButton_, false);
+			SetChildActive(endButton_, false);
 		}
 
 		public void Hide() {
@@ -85,12 +91,55 @@ namespace OperationBlackwell.UI {
 			child.SetActive(active);
 		}
 
-		public void SelectNextText() {
-
+		private void SelectNextText() {
+			if (currentCutscene_ == null) {
+				return;
+			}
+			ResetSpeaking();
+			Cutscene.CharacterMessage messageObject = currentCutscene_.GetMessageObject(currentMessageIndex_);
+			if (messageObject == null) {
+				return;
+			}
+			messageObject.character.SetSpeaking(true);
+			leftChar_.sprite = currentCutscene_.GetCharacterLeft().GetSprite();
+			leftName_.text = currentCutscene_.GetCharacterLeft().GetName();
+			rightChar_.sprite = currentCutscene_.GetCharacterRight().GetSprite();
+			rightName_.text = currentCutscene_.GetCharacterRight().GetName();
+			speakingName_.text = messageObject.character.GetName();
+			text_.text = messageObject.message;
 		}
 
-		public void SelectPreviousText() {
+		private void ResetSpeaking() {
+			if (currentCutscene_ == null) {
+				return;
+			}
+			currentCutscene_.GetCharacterLeft().SetSpeaking(false);
+			currentCutscene_.GetCharacterRight().SetSpeaking(false);
+		}
 
+		public void NextButtonPressed() {
+			currentMessageIndex_++;
+			SelectNextText();
+			if(currentMessageIndex_ >= currentCutscene_.GetMessageCount() - 1) {
+				SetChildActive(endButton_, true);
+			}
+			if(currentMessageIndex_ != 0) {
+				SetChildActive(leftButton_, true);
+			}
+		}
+
+		public void PrevButtonPressed() {
+			currentMessageIndex_--;
+			if(currentMessageIndex_ < 0) {
+				currentMessageIndex_ = 0;
+			}
+			if(currentMessageIndex_ < currentCutscene_.GetMessageCount() - 1) {
+				SetChildActive(endButton_, false);
+			}
+			if(currentMessageIndex_ == 0) {
+				SetChildActive(leftButton_, false);
+			}
+			SelectNextText();
 		}
 
 		public void EndButtonPressed() {
