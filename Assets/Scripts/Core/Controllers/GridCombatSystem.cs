@@ -381,6 +381,7 @@ namespace OperationBlackwell.Core {
 							}
 						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							DeselectUnit();
+							state_ = State.Normal;
 						}
 					} else if(gridObject.GetUnitGridCombat() != null && gridObject.GetUnitGridCombat().GetTeam() != Team.Blue) {
 						if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick)) {
