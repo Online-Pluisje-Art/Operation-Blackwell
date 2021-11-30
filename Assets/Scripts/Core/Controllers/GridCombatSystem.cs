@@ -241,7 +241,6 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
-			HandleWeaponSwitch();
 			GameController.Instance.GetSelectorTilemap().SetAllTilemapSprite(
 				MovementTilemap.TilemapObject.TilemapSprite.None
 			);
@@ -289,6 +288,7 @@ namespace OperationBlackwell.Core {
 					if(gridObject == null) {
 						return;
 					}
+					HandleWeaponSwitch();
 
 					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
 						gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
