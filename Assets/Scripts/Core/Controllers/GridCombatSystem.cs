@@ -534,7 +534,6 @@ namespace OperationBlackwell.Core {
 				unit = unitGridCombat_
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-			state_ = State.Normal;
 		}
 
 		private void ForceTurnOver() {
@@ -573,6 +572,7 @@ namespace OperationBlackwell.Core {
 			ResetAllActionPoints();
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
+			state_ = State.Normal;
 		}
 
 		public void SetState(State state) {
