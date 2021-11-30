@@ -18,6 +18,8 @@ namespace OperationBlackwell.Core {
 		private int blueTeamActiveUnitIndex_;
 		private int redTeamActiveUnitIndex_;
 
+		private List<int> playedCutsceneIndexes_;
+
 		private List<PathNode> currentPathUnit_;
 		private int pathLength_;
 		private int turn_;
@@ -66,6 +68,8 @@ namespace OperationBlackwell.Core {
 			redTeamList_ = new List<CoreUnit>();
 			blueTeamActiveUnitIndex_ = -1;
 			redTeamActiveUnitIndex_ = -1;
+
+			playedCutsceneIndexes_ = new List<int>();
 
 			// Set all UnitGridCombat on their GridPosition
 			foreach(CoreUnit unitGridCombat_ in unitGridCombatArray_) {
@@ -203,6 +207,10 @@ namespace OperationBlackwell.Core {
 					}
 				}
 			}
+		}
+
+		private void FixedUpdate() {
+			CheckTriggers();
 		}
 
 		private void LateUpdate() {
@@ -547,6 +555,10 @@ namespace OperationBlackwell.Core {
 			ExecuteAllActions();
 		}
 
+		public BaseCutsceneController GetCutsceneController() {
+			return cutsceneController_;
+		}
+
 		private void ExecuteAllActions() {
 			StartCoroutine(ExecuteAllActionsCoroutine());
 		}
@@ -582,6 +594,10 @@ namespace OperationBlackwell.Core {
 
 		public void SetState(State state) {
 			state_ = state;
+		}
+
+		public State GetState() {
+			return state_;
 		}
 
 		private void ResetAllActionPoints() {
@@ -660,6 +676,32 @@ namespace OperationBlackwell.Core {
 				points.Add(Vector3.Lerp(p0, p1, pointOnLine));
 			}
 			return points;
+		}
+
+		private void CheckTriggers() {
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Vector3 position;
+			Tilemap.Node node;
+			TriggerNode trigger;
+			foreach(CoreUnit unit in blueTeamList_) {
+				position = unit.GetPosition();
+				node = grid.GetGridObject(position);
+				trigger = node.GetTrigger();
+				if(trigger == null) {
+					continue;
+				}
+				if(trigger.GetTrigger() != TriggerNode.Trigger.None) {
+					// if(trigger.GetTrigger() == TriggerNode.Trigger.Combat && state_ == State.OutOfCombat) {
+					// 	state_ = State.Normal;
+					// } else 
+					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetCutsceneIndex())) {
+						cutsceneController_.StartCutscene(trigger.GetCutsceneIndex());
+						playedCutsceneIndexes_.Add(trigger.GetCutsceneIndex());
+					} else {
+						state_ = State.OutOfCombat;
+					}
+				}
+			}
 		}
 
 		// If the start and end are not needed from the actionpath then it uses the selected player position and mouseposition for its calculation.

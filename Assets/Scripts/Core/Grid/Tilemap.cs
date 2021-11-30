@@ -7,16 +7,6 @@ namespace OperationBlackwell.Core {
 		public event System.EventHandler OnLoaded;
 
 		private Grid<Node> grid_;
-		// public int gCost;
-		// public int hCost;
-
-		// public int fCost {
-		// 	get {
-		// 		return gCost + hCost;
-		// 	}
-		// }
-
-		// public Node parent;
 
 		public Tilemap(Grid<Node> grid) {
 			this.grid_ = grid;
@@ -101,6 +91,8 @@ namespace OperationBlackwell.Core {
 
 			private Grid<Node> grid_;
 
+			private TriggerNode trigger_;
+
 			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, float hitChanceModifier, bool cover) {
 				this.worldPosition = worldPosition;
 				this.gridX = gridX;
@@ -109,6 +101,7 @@ namespace OperationBlackwell.Core {
 				this.walkable = walkable;
 				this.hitChanceModifier = hitChanceModifier;
 				this.cover = cover;
+				this.trigger_ = null;
 			}
 
 			[System.Serializable]
@@ -205,6 +198,14 @@ namespace OperationBlackwell.Core {
 
 			public IInteractable GetInteractable() {
 				return interactable_;
+			}
+
+			public void SetTrigger(TriggerNode trigger) {
+				this.trigger_ = trigger;
+			}
+
+			public TriggerNode GetTrigger() {
+				return trigger_;
 			}
 		}
 	}
