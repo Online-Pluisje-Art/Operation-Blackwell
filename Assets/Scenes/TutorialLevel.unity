@@ -4953,7 +4953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8827876707810031362, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901e6b7f6ba08daf59f185b6868a2d12, type: 3}
@@ -7731,10 +7731,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1985715751}
     m_Modifications:
-    - target: {fileID: -3226802398520431640, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: cutsceneIndex_
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat

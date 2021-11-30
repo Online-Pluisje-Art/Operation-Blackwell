@@ -58,7 +58,7 @@ namespace OperationBlackwell.Core {
 
 		private void Awake() {
 			Instance = this;
-			state_ = State.OutOfCombat;
+			state_ = State.Normal;
 			OnUnitDeath += RemoveUnitOnDeath;
 		}
 
@@ -207,10 +207,6 @@ namespace OperationBlackwell.Core {
 					}
 				}
 			}
-		}
-
-		private void FixedUpdate() {
-			CheckTriggers();
 		}
 
 		private void LateUpdate() {
@@ -499,6 +495,7 @@ namespace OperationBlackwell.Core {
 							unitB.MoveTo(Utils.GetMouseWorldPosition(), moveFromPos, () => {
 								Tilemap.Node node = grid.GetGridObject(unitB.GetPosition());
 								node.SetUnitGridCombat(unitB);
+								CheckTriggers();
 							});
 							DeselectUnit();
 						}
@@ -590,6 +587,7 @@ namespace OperationBlackwell.Core {
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
 			state_ = State.Normal;
+			CheckTriggers();
 		}
 
 		public void SetState(State state) {
@@ -691,14 +689,11 @@ namespace OperationBlackwell.Core {
 					continue;
 				}
 				if(trigger.GetTrigger() != TriggerNode.Trigger.None) {
-					// if(trigger.GetTrigger() == TriggerNode.Trigger.Combat && state_ == State.OutOfCombat) {
-					// 	state_ = State.Normal;
-					// } else 
 					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetCutsceneIndex())) {
 						cutsceneController_.StartCutscene(trigger.GetCutsceneIndex());
 						playedCutsceneIndexes_.Add(trigger.GetCutsceneIndex());
-					} else {
-						state_ = State.OutOfCombat;
+					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
+						state_ = State.Normal;
 					}
 				}
 			}
