@@ -16210,7 +16210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puzzles:
   - {fileID: 11400000, guid: 9c193d2875108be1bbae3bd904ee0ea1, type: 2}
-  puzzleBlockSize_: 500
+  puzzleSize_: 400
   puzzleBlockPrefab_: {fileID: 3118340914006660170, guid: 36ded9a6fb9f5bc8ea248b845c938abf, type: 3}
 --- !u!114 &1729508018
 MonoBehaviour:

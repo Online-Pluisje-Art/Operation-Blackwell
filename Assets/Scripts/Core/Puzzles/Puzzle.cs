@@ -23,11 +23,11 @@ namespace OperationBlackwell.Core {
 		public int BlocksPerLine() {
 			switch (puzzleDifficulty_) {
 				case PuzzleDifficulty.Easy:
-					return 4;
+					return 3;
 				case PuzzleDifficulty.Medium:
-					return 5;
+					return 4;
 				case PuzzleDifficulty.Hard:
-					return 6;
+					return 5;
 				default:
 					return 0;
 			}
