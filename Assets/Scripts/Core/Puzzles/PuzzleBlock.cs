@@ -8,8 +8,10 @@ namespace OperationBlackwell.Core {
 		public EventHandler<PuzzleBlock> OnPuzzleBlockClicked;
 		public EventHandler<EventArgs> OnPuzzleBlockFinished;
 		public Vector2Int coord;
+		private Vector2Int startCoord_;
 
 		public void Init(Texture2D texture, Vector2Int coord) {
+			this.startCoord_ = coord;
 			this.coord = coord;
 			MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
 			meshRenderer.material.shader = Shader.Find("Unlit/Texture");
@@ -34,6 +36,10 @@ namespace OperationBlackwell.Core {
 			}
 			transform.position = target;
 			OnPuzzleBlockFinished?.Invoke(this, EventArgs.Empty);
+		}
+
+		public bool IsAtStartingCoord() {
+			return coord == startCoord_;
 		}
 
 

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c8047b3dca14eac97e14a790ec6599, type: 3}
   m_Name: Puzzle1
   m_EditorClassIdentifier: 
-  puzzleImage_: {fileID: 0}
+  puzzleImage_: {fileID: 21300000, guid: cde11674bf178f56cb15c9dfc08b148b, type: 3}
   puzzleID_: 1
   puzzleDifficulty_: 0
