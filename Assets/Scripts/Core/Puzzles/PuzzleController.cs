@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace OperationBlackwell.Core {
 	public class PuzzleController : MonoBehaviour {
@@ -8,6 +10,9 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private float puzzleSize_;
 		[SerializeField] private GameObject puzzleBlockPrefab_;
 		private Vector2 puzzleOffset_;
+
+		private Queue<PuzzleBlock> input_;
+		private bool blockIsMoving_;
 
 		private void Start() {
 			CreatePuzzle(0);
@@ -26,7 +31,7 @@ namespace OperationBlackwell.Core {
 			for(int x = 0; x < blocksPerLine; x++) {
 				for(int y = 0; y < blocksPerLine; y++) {
 					GameObject puzzleBlock = Instantiate(puzzleBlockPrefab_, new Vector3(0, 0, 0), Quaternion.identity);
-					puzzleBlock.transform.position = -Vector2.one * (blocksPerLine - 1) * .5f + 
+					puzzleBlock.transform.position = -Vector2.one * (blocksPerLine - 1) * .5f +
 						new Vector2(x * puzzleSize_ / (blocksPerLine - 1), y * puzzleSize_ / (blocksPerLine - 1)) - puzzleOffset_;
 					puzzleBlock.transform.position = new Vector3(puzzleBlock.transform.position.x, puzzleBlock.transform.position.y, -1);
 					puzzleBlock.transform.localScale = new Vector3(puzzleSize_ / (blocksPerLine - 1), puzzleSize_ / (blocksPerLine - 1), 1);
@@ -34,6 +39,7 @@ namespace OperationBlackwell.Core {
 
 					PuzzleBlock puzzleBlockScript = puzzleBlock.AddComponent<PuzzleBlock>();
 					puzzleBlockScript.OnPuzzleBlockClicked += OnPlayerMoveBlockInput;
+					puzzleBlockScript.OnPuzzleBlockFinished += OnPuzzleBlockFinished;
 					puzzleBlockScript.Init(puzzleSlices[x, y], new Vector2Int(x, y));
 
 					// This removes the bottom right block of the puzzle
@@ -43,6 +49,7 @@ namespace OperationBlackwell.Core {
 					}
 				}
 			}
+			input_ = new Queue<PuzzleBlock>();
 		}
 
 		public void DestroyPuzzle() {
@@ -52,22 +59,39 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void OnPlayerMoveBlockInput(object sender, PuzzleBlock block) {
+			input_.Enqueue(block);
+			MakeNextMove();
+		}
+
+		public void OnPuzzleBlockFinished(object sender, System.EventArgs e) {
+			blockIsMoving_ = false;
+			MakeNextMove();
+		}
+
+		private void MoveBlock(PuzzleBlock block) {
 			// Check if block is adjacent to empty block
-			if(Mathf.Abs(block.coord.x - emptyPuzzleBlock_.coord.x) + Mathf.Abs(block.coord.y - emptyPuzzleBlock_.coord.y) == 1) {
+			if((block.coord - emptyPuzzleBlock_.coord).sqrMagnitude == 1) {
 				// Swap blocks
 				Vector2Int emptyCoord = emptyPuzzleBlock_.coord;
 				emptyPuzzleBlock_.coord = block.coord;
 				block.coord = emptyCoord;
+
 				Vector3 targetPosition = emptyPuzzleBlock_.transform.position;
 				emptyPuzzleBlock_.transform.position = block.transform.position;
-				block.transform.position = targetPosition;
+				block.MoveToPostion(targetPosition, .5f);
+				blockIsMoving_ = true;
 
 				// Check if puzzle is solved
 				if(IsPuzzleSolved()) {
 					Debug.Log("Puzzle solved!");
 				}
 			}
-			
+		}
+
+		private void MakeNextMove() {
+			while(input_.Count > 0 && !blockIsMoving_) {
+				MoveBlock(input_.Dequeue());
+			}
 		}
 
 		public bool IsPuzzleSolved() {
