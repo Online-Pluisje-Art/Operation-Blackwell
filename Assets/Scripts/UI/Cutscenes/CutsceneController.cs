@@ -37,7 +37,6 @@ namespace OperationBlackwell.UI {
 
 		private void Start() {
 			currentCutscene_ = null;
-			currentCutsceneIndex_ = 0;
 			foreach(Transform child in transform) {
 				children_.Add(child.gameObject);
 			}
@@ -53,9 +52,6 @@ namespace OperationBlackwell.UI {
 			text_ = children_[9].GetComponent<TextMeshProUGUI>();
 
 			SetActive(false);
-
-			// This is here for testing now, need to remove this later.
-			StartCutscene();
 		}
 
 		private void Show(int index) {
@@ -72,15 +68,15 @@ namespace OperationBlackwell.UI {
 			SetActive(false);
 		}
 
-		public override void StartCutscene() {
+		public override void StartCutscene(int index) {
 			GridCombatSystem.Instance.SetState(GridCombatSystem.State.Cutscene);
-			Show(currentCutsceneIndex_);
+			currentCutsceneIndex_ = index;
+			Show(index);
 		}
 
 		public override void EndCutscene() {
+			GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
 			Hide();
-			GridCombatSystem.Instance.SetState(GridCombatSystem.State.Normal);
-			currentCutsceneIndex_++;
 		}
 
 		private void SetActive(bool active) {
