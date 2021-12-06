@@ -6,5 +6,14 @@ namespace OperationBlackwell.LevelTransitions {
 		[SerializeField] private Object startObject_;
 		[SerializeField] private Object destinationObject_;
 		[SerializeField] private Sprite plane_;
+		[SerializeField] private Sprite background_;
+
+		public Sprite GetPlane() {
+			return plane_;
+		}
+
+		public Sprite GetBackground() {
+			return background_;
+		}
 	}
 }
