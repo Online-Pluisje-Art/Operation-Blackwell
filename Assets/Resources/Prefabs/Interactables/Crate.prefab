@@ -158,5 +158,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortingOrderBase_: 5000
-  offset_: 0
+  offset_: -1
   runOnlyOnce_: 1

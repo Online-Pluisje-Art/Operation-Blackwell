@@ -20,3 +20,4 @@ MonoBehaviour:
   baseHitchance_: 80
   name_: Kinetic Pistol
   type_: 3
+  audioClip_: {fileID: 8300000, guid: dcfd991f7cf71d850937e95701fc9c59, type: 3}

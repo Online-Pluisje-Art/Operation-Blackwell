@@ -9,15 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3114cdaa94eadd96881112c65369dc8e, type: 3}
-  m_Name: Sword
+  m_Script: {fileID: 11500000, guid: 24c8047b3dca14eac97e14a790ec6599, type: 3}
+  m_Name: Puzzle1
   m_EditorClassIdentifier: 
-  damage_:
-  - 70
-  - 100
-  costs_: 0200000004000000
-  range_: 1
-  baseHitchance_: 100
-  name_: Sword
-  type_: 1
-  audioClip_: {fileID: 8300000, guid: 3dd019aa1007d697f8c8beffdad61842, type: 3}
+  puzzleImage_: {fileID: 21300000, guid: cde11674bf178f56cb15c9dfc08b148b, type: 3}
+  puzzleID_: 1
+  puzzleDifficulty_: 0
