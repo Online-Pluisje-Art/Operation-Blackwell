@@ -12,6 +12,7 @@ namespace OperationBlackwell.Player {
 		[SerializeField] protected float baseHitchance_;
 		[SerializeField] protected string name_;
 		[SerializeField] protected Actions.AttackType type_;
+		[SerializeField] protected AudioClip audioClip_;
 
 		public virtual float GetDamage() {
 			return Random.Range(damage_[0], damage_[1]);
@@ -35,6 +36,10 @@ namespace OperationBlackwell.Player {
 
 		public virtual Actions.AttackType GetAttackType() {
 			return type_;
+		}
+
+		public virtual AudioClip GetAttackSound() {
+			return audioClip_;
 		}
 	}
 }
