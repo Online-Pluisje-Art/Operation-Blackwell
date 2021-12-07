@@ -31,6 +31,7 @@ namespace OperationBlackwell.Player {
 		private Direction direction_ = Direction.Null;
 
 		private AudioSource audioSource_;
+		private string animatorClipName_ = "";
 
 		private enum State {
 			Normal,
@@ -165,12 +166,12 @@ namespace OperationBlackwell.Player {
 		public override void AttackUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onAttackComplete) {
 			state_ = State.Attacking;
 
-			ShootUnit(unitGridCombat, type, () => {
+			StartCoroutine(ShootUnit(unitGridCombat, type, () => {
 				onAttackComplete();
-			});
+			}));
 		}
 
-		private void ShootUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onShootComplete) {
+		IEnumerator ShootUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onShootComplete) {
 			GetComponent<IMoveVelocity>().Disable();
 
 			Weapon weapon = weapons_.Find(weapon => weapon.GetAttackType() == type);
@@ -179,13 +180,25 @@ namespace OperationBlackwell.Player {
 				state_ = State.Normal;
 				onShootComplete();
 				GetComponent<IMoveVelocity>().Enable();
-				return;
+				yield break;
 			}
 			DetermineAttackAnimation(unitGridCombat);
 			audioSource_.clip = weapon.GetAttackSound();
+			// Get active animation duration unity
 			if(audioSource_.clip != null) {
 				audioSource_.Play();
 			}
+			yield return null;
+			float time = 0.0f;
+			RuntimeAnimatorController ac = animator_.runtimeAnimatorController;
+			for(int i = 0; i < ac.animationClips.Length; i++) {
+				if(ac.animationClips[i].name == animatorClipName_) {
+					time = ac.animationClips[i].length;
+					break;
+				}
+			}
+			// The 0.15f has been found through meticulous testing.
+			yield return new WaitForSeconds(time + 0.15f);
 			unitGridCombat.Damage(this, weapon.GetDamage());
 			state_ = State.Normal;
 			onShootComplete();
@@ -353,19 +366,24 @@ namespace OperationBlackwell.Player {
 
 			if(shouldPlayAttackAnimation_) {
 				ResetAllAttackAnimations();
+				animatorClipName_ = "";
 				if(currentWeapon_.GetRange() > 1) {
 					switch(direction_) {
 						case Direction.Up:
 							animator_.SetBool("isShootingUp", true);
+							animatorClipName_ = "ShootingUpAnimation";
 							break;
 						case Direction.Down:
 							animator_.SetBool("isShootingDown", true);
+							animatorClipName_ = "ShootingDownAnimation";
 							break;
 						case Direction.Left:
 							animator_.SetBool("isShootingLeft", true);
+							animatorClipName_ = "ShootingLeftAnimation";
 							break;
 						case Direction.Right:
 							animator_.SetBool("isShootingRight", true);
+							animatorClipName_ = "ShootingRightAnimation";
 							break;
 						default:
 							// Oops, something went wrong, just return.
@@ -375,15 +393,19 @@ namespace OperationBlackwell.Player {
 					switch(direction_) {
 						case Direction.Up:
 							animator_.SetBool("isMeleeUp", true);
+							animatorClipName_ = "MeleeUpAnimation";
 							break;
 						case Direction.Down:
 							animator_.SetBool("isMeleeDown", true);
+							animatorClipName_ = "MeleeDownAnimation";
 							break;
 						case Direction.Left:
 							animator_.SetBool("isMeleeLeft", true);
+							animatorClipName_ = "MeleeLeftAnimation";
 							break;
 						case Direction.Right:
 							animator_.SetBool("isMeleeRight", true);
+							animatorClipName_ = "MeleeRightAnimation";
 							break;
 						default:
 							// Oops, something went wrong, just return.
