@@ -20,3 +20,4 @@ MonoBehaviour:
   baseHitchance_: 100
   name_: Sword
   type_: 1
+  audioClip_: {fileID: 8300000, guid: 3dd019aa1007d697f8c8beffdad61842, type: 3}

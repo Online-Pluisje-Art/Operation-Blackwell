@@ -5,6 +5,7 @@ using UnityEngine;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
+	[RequireComponent(typeof(AudioSource))]
 	public class UnitGridCombat : CoreUnit {
 
 		[SerializeField] private Team team_;
@@ -29,6 +30,8 @@ namespace OperationBlackwell.Player {
 		private bool shouldPlayAttackAnimation_ = false;
 		private Direction direction_ = Direction.Null;
 
+		private AudioSource audioSource_;
+
 		private enum State {
 			Normal,
 			Moving,
@@ -47,6 +50,7 @@ namespace OperationBlackwell.Player {
 			characterBase_ = GetComponent<PlayerBase>();
 			selectedGameObject_ = transform.Find("Selected").gameObject;
 			movePosition_ = GetComponent<MovePositionPathfinding>();
+			audioSource_ = GetComponent<AudioSource>();
 			//SetSelectedVisible(false);
 			state_ = State.Normal;
 			healthSystem_ = new HealthSystem(100);
@@ -178,6 +182,10 @@ namespace OperationBlackwell.Player {
 				return;
 			}
 			DetermineAttackAnimation(unitGridCombat);
+			audioSource_.clip = weapon.GetAttackSound();
+			if(audioSource_.clip != null) {
+				audioSource_.Play();
+			}
 			unitGridCombat.Damage(this, weapon.GetDamage());
 			state_ = State.Normal;
 			onShootComplete();
