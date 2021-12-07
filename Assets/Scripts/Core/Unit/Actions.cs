@@ -6,6 +6,7 @@ namespace OperationBlackwell.Core {
 			None,
 			Move,
 			Attack,
+			Interact,
 		}
 
 		public enum AttackType {
@@ -86,6 +87,10 @@ namespace OperationBlackwell.Core {
 						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 						isComplete_ = true;
 					});
+					break;
+				case ActionType.Interact:
+					IInteractable interactable = destination.GetInteractable();
+					interactable.Interact(invoker);
 					break;
 				default:
 					break;

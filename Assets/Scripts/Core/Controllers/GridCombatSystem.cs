@@ -58,7 +58,7 @@ namespace OperationBlackwell.Core {
 
 		private void Awake() {
 			Instance = this;
-			state_ = State.Normal;
+			state_ = State.OutOfCombat;
 			OnUnitDeath += RemoveUnitOnDeath;
 		}
 
@@ -230,6 +230,12 @@ namespace OperationBlackwell.Core {
 					} else {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
+					if(unitGridCombat_ != null) {
+						OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+							unit = unitGridCombat_,
+							position = unitGridCombat_.GetPosition()
+						});
+					}
 				} else if(actions.Count > 0) {
 					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos)
 						&& unit != unitGridCombat_ && unit.GetTeam() != unitGridCombat_.GetTeam()) {
@@ -240,6 +246,12 @@ namespace OperationBlackwell.Core {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
 					} else {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+					}
+					if(unitGridCombat_ != null) {
+						OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+							unit = unitGridCombat_,
+							position = actions[actions.Count - 1].destinationPos
+						});
 					}
 				}
 			}
@@ -440,11 +452,34 @@ namespace OperationBlackwell.Core {
 								interactablePosition = actions[actions.Count - 1].destinationPos;
 							}
 							if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick) && interactable_.IsInRange(interactablePosition)) {
+								Actions unitAction;
+								int interactCost = interactable_.GetCost();
+								if(actions.Count == 0) {
+									unitAction = new Actions(Actions.ActionType.Interact, gridObject, Utils.GetMouseWorldPosition(),
+										grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, null, interactCost);
+								} else {
+									unitAction = new Actions(Actions.ActionType.Interact, gridObject, Utils.GetMouseWorldPosition(),
+										grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unitGridCombat_, null, interactCost);
+								}
+								unitGridCombat_.SaveAction(unitAction);
+								OrderObject unitOrder = GetOrderObject(unitGridCombat_);
+								if(unitOrder == null) {
+									int cost = GenerateTotalCost(0, pathLength_, 0);
+									int initiative = GenerateInitiative(cost, pathLength_, 0);
+									unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
+									orderList_.Enqueue(unitOrder);
+								} else {
+									int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), pathLength_, 0);
+									int newInitiative = GenerateInitiative(newCost, pathLength_, 0);
+									unitOrder.SetTotalCost(newCost);
+									unitOrder.SetInitiative(newInitiative);
+								}
 								state_ = State.EndingTurn;
 							}
 						}
 						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							DeselectUnit();
+							state_ = State.Normal;
 						}
 					}
 					break;
@@ -498,6 +533,12 @@ namespace OperationBlackwell.Core {
 								CheckTriggers();
 							});
 							DeselectUnit();
+						} else if(gridObject.GetInteractable() != null) {
+							interactable_ = gridObject.GetInteractable();
+							if(interactable_.IsInRange(unitGridCombat_.GetPosition())) {
+								interactable_.Interact(unitGridCombat_);
+								CheckTriggers();
+							}
 						}
 					}
 					break;
