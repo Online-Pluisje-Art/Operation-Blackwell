@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.LevelTransitions {
@@ -6,7 +8,10 @@ namespace OperationBlackwell.LevelTransitions {
 		public static LevelTranstionController instance { get; private set; }
 		
 		[SerializeField] private BaseCutsceneController cutsceneController_;
-		[SerializeField] private Plane plane_;
+		[SerializeField] private string[] levels_;
+		[SerializeField][Range(0, 1)] private float fadeTime_;
+
+		private int currentLevelIndex_;
 
 		bool test = false;
 
@@ -16,6 +21,8 @@ namespace OperationBlackwell.LevelTransitions {
 			} else {
 				Destroy(gameObject);
 			}
+
+			currentLevelIndex_ = 0;
 		}
 
 		private void Update() {
@@ -23,6 +30,16 @@ namespace OperationBlackwell.LevelTransitions {
 				test = true;
 				cutsceneController_.StartCutscene(0);
 			}
+		}
+
+		public void EndTransition() {
+			StartCoroutine(EndTransitionCoroutine());
+		}
+
+		private IEnumerator EndTransitionCoroutine() {
+			yield return new WaitForSeconds(fadeTime_);
+			SceneManager.LoadScene(levels_[currentLevelIndex_]);
+			currentLevelIndex_++;
 		}
 	}
 }
