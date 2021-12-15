@@ -750,9 +750,9 @@ namespace OperationBlackwell.Core {
 					continue;
 				}
 				if(trigger.GetTrigger() != TriggerNode.Trigger.None) {
-					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetCutsceneIndex())) {
-						cutsceneController_.StartCutscene(trigger.GetCutsceneIndex());
-						playedCutsceneIndexes_.Add(trigger.GetCutsceneIndex());
+					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex())) {
+						cutsceneController_.StartCutscene(trigger.GetIndex());
+						playedCutsceneIndexes_.Add(trigger.GetIndex());
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
 						state_ = State.Normal;
 					}
