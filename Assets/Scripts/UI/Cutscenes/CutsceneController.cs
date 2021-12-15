@@ -99,6 +99,14 @@ namespace OperationBlackwell.UI {
 				return;
 			}
 			messageObject.character.SetSpeaking(true);
+			CutsceneCharacter character = messageObject.character;
+			if(character != currentCutscene_.GetCharacterLeft() && character != currentCutscene_.GetCharacterRight()) {
+				if(messageObject.direction == Cutscene.CharacterMessage.Direction.Left) {
+					currentCutscene_.SetCharacterLeft(character);
+				} else {
+					currentCutscene_.SetCharacterRight(character);
+				}
+			}
 			leftChar_.sprite = currentCutscene_.GetCharacterLeft().GetSprite();
 			leftName_.text = currentCutscene_.GetCharacterLeft().GetName();
 			rightChar_.sprite = currentCutscene_.GetCharacterRight().GetSprite();
