@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 namespace OperationBlackwell.Core {
 	public class PuzzleController : MonoBehaviour {
+		public static PuzzleController Instance { get; private set; }
+
+		private Image background_;
+
 		[Header("Puzzles")]
 		[SerializeField] private Puzzle[] puzzles;
 
@@ -36,12 +40,22 @@ namespace OperationBlackwell.Core {
 		[SerializeField][Range(0, 1)] private float shuffleMoveTime_;
 		[SerializeField][Range(0, 1)] private float defaultMoveTime_;
 
+		private void Awake() {
+			if(Instance == null) {
+				Instance = this;
+			} else {
+				Destroy(gameObject);
+				return;
+			}
+		}
+
 		private void Start() {
 			foreach(Transform child in transform) {
 				puzzleVictory_ = child;
 			}
 			puzzleVictory_.gameObject.SetActive(false);
-			CreatePuzzle(0);
+			background_ = GetComponent<Image>();
+			background_.enabled = false;
 		}
 
 		public void CreatePuzzle(int puzzleIndex) {
@@ -79,7 +93,7 @@ namespace OperationBlackwell.Core {
 				}
 			}
 			input_ = new Queue<PuzzleBlock>();
-			GetComponent<Image>().enabled = true;
+			background_.enabled = true;
 			StartShuffle();
 		}
 
@@ -87,7 +101,8 @@ namespace OperationBlackwell.Core {
 			foreach(Transform child in transform) {
 				Destroy(child.gameObject);
 			}
-			GetComponent<Image>().enabled = false;
+			background_.enabled = false;
+			GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
 		}
 
 		public void OnPlayerMoveBlockInput(object sender, PuzzleBlock block) {
