@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26751571ef139955ea2a9d5219807f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWorldSize_: {x: 51, y: 24, z: 0}
+  gridWorldSize_: {x: 100, y: 100, z: 0}
   cellSize_: 1
   drawGridLines_: 1
   movementTilemapVisual_: {fileID: 0}
