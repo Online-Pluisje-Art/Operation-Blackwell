@@ -60,7 +60,7 @@ namespace OperationBlackwell.Core {
 				selectorTilemap_.SetTilemapVisual(selectorTilemapVisual_);
 			}
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
-				tilemap.Load("tutoriallevel_V3.6_2");
+				tilemap.Load("tutorial_V4.2_2");
 			} else {
 				Debug.Log(SceneManager.GetActiveScene().name + " has no level to load!");
 			}
