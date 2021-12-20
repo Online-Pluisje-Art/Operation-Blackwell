@@ -28,6 +28,7 @@ namespace OperationBlackwell.Core {
 
 		public EventHandler<EventArgs> OnUnitDeath;
 		public EventHandler<UnitPositionEvent> OnUnitSelect;
+		public EventHandler<EventArgs> OnUnitDeselect;
 		public EventHandler<UnitPositionEvent> OnUnitMove;
 		public EventHandler<UnitEvent> OnUnitActionPointsChanged;
 		public EventHandler<string> OnWeaponChanged;
@@ -84,13 +85,6 @@ namespace OperationBlackwell.Core {
 			}
 
 			orderList_ = new WaitingQueue<OrderObject>();
-
-			OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
-				unit = blueTeamList_[0],
-				position = blueTeamList_[0].GetPosition()
-			});
-
-			OnTurnEnded?.Invoke(this, turn_);
 		}
 
 		private void OnDestroy() {
@@ -508,6 +502,9 @@ namespace OperationBlackwell.Core {
 									position = unit.GetPosition()
 								});
 								unitGridCombat_ = unit;
+								OnUnitActionPointsChanged?.Invoke(this, new UnitEvent() {
+									unit = unit,
+								});
 							}
 						}
 					}
@@ -583,6 +580,7 @@ namespace OperationBlackwell.Core {
 				unit = unitGridCombat_
 			};
 			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+			OnUnitDeselect?.Invoke(this, System.EventArgs.Empty);
 		}
 
 		private void ForceTurnOver() {
