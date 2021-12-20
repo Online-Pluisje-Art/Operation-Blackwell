@@ -164,6 +164,10 @@ namespace OperationBlackwell.Core {
 					this.walkable = false;
 					this.hitChanceModifier = coverHitChanceModifier;
 					this.cover = true;
+				} else {
+					this.walkable = false;
+					this.hitChanceModifier = wallHitChanceModifier;
+					this.cover = false;
 				}
 				grid_.TriggerGridObjectChanged(gridX, gridY);
 			}

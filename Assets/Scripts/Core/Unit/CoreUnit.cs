@@ -22,6 +22,7 @@ namespace OperationBlackwell.Core {
 		public abstract Actions.AttackType GetAttackType();
 		public abstract void SaveAction(Actions action);
 		public abstract WaitingQueue<Actions> LoadActions();
+		public abstract int GetActionCount();
 		public abstract void ExecuteActions();
 		public abstract void ClearActions();
 		public abstract bool HasExecuted();
