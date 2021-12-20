@@ -303,8 +303,7 @@ namespace OperationBlackwell.Core {
 						return;
 					}
 					HandleWeaponSwitch();
-					
-					ResetArrowVisual();
+
 					// Set arrow to target position
 					List<Actions> actions = unitGridCombat_.LoadActions().GetQueue();
 					if(unitGridCombat_ != null && actions.Count == 0) {
@@ -312,8 +311,11 @@ namespace OperationBlackwell.Core {
 							ResetMoveTiles();
 							UpdateValidMovePositions(unitGridCombat_.GetPosition());
 						}
-						if(gridObject.GetIsValidMovePosition()) {
-							SetArrowWithPath(Vector3.zero, Vector3.zero);
+						if(prevNode_ != null && prevNode_ != gridObject) {
+							ResetArrowVisual();
+							if(gridObject.GetIsValidMovePosition()) {
+								SetArrowWithPath(Vector3.zero, Vector3.zero);
+							}
 						}
 					} else {
 						if(prevActionCount_ != actions.Count) {
@@ -325,8 +327,11 @@ namespace OperationBlackwell.Core {
 							ResetMoveTiles();
 							UpdateValidMovePositions(actions[actions.Count - 1].destinationPos);
 						}
-						if(gridObject.GetIsValidMovePosition() && actions.Count != 0) {
-							SetArrowWithPath(actions[actions.Count - 1].destinationPos, Utils.GetMouseWorldPosition());
+						if(prevNode_ != null && prevNode_ != gridObject) {
+							ResetArrowVisual();
+							if(gridObject.GetIsValidMovePosition() && actions.Count != 0) {
+								SetArrowWithPath(actions[actions.Count - 1].destinationPos, Utils.GetMouseWorldPosition());
+							}
 						}
 					}
 
@@ -512,9 +517,11 @@ namespace OperationBlackwell.Core {
 						ResetMoveTiles();
 						UpdateValidMovePositions(unitGridCombat_.GetPosition());
 					}
-					ResetArrowVisual();
-					if(gridObject.GetIsValidMovePosition()) {
-						SetArrowWithPath(Vector3.zero, Vector3.zero);
+					if(prevNode_ != null && prevNode_ != gridObject) {
+						ResetArrowVisual();
+						if(gridObject.GetIsValidMovePosition()) {
+							SetArrowWithPath(Vector3.zero, Vector3.zero);
+						}
 					}
 					if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 						if(gridObject.GetIsValidMovePosition()) {
