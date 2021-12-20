@@ -6,7 +6,11 @@ namespace OperationBlackwell.UI {
 	public class Cutscene : ScriptableObject {
 		[System.Serializable]
 		public class CharacterMessage {
+			public enum Direction {
+				Left, Right
+			}
 			public CutsceneCharacter character;
+			public Direction direction;
 			[TextArea] public string message;
 		}
 		
@@ -31,6 +35,14 @@ namespace OperationBlackwell.UI {
 
 		public CutsceneCharacter GetCharacterRight() {
 			return characterRight_;
+		}
+
+		public void SetCharacterLeft(CutsceneCharacter character) {
+			characterLeft_ = character;
+		}
+
+		public void SetCharacterRight(CutsceneCharacter character) {
+			characterRight_ = character;
 		}
 	}
 }

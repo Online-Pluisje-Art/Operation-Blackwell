@@ -29,6 +29,9 @@ namespace OperationBlackwell.Player {
 		public void Disable() {
 			this.enabled = false;
 			rigidbody2D_.velocity = Vector3.zero;
+			if(this.name == "Adam" || this.name == "Adam (1)") {
+				updateAnimation();
+			}
 		}
 
 		public void Enable() {
