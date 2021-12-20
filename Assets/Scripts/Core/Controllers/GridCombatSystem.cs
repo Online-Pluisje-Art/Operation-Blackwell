@@ -42,6 +42,12 @@ namespace OperationBlackwell.Core {
 			public Vector3 position;
 		}
 
+		// All variables below are for optimization purposes. NEVER use them directly.
+		private CoreUnit prevUnit_;
+		private Tilemap.Node prevNode_;
+		private Vector3 prevPosition_;
+		private int prevActionCount_;
+
 		public enum State {
 			Normal,
 			UnitSelected,
@@ -85,6 +91,10 @@ namespace OperationBlackwell.Core {
 			}
 
 			orderList_ = new WaitingQueue<OrderObject>();
+
+			prevUnit_ = null;
+			prevNode_ = null;
+			prevPosition_ = Vector3.zero;
 		}
 
 		private void OnDestroy() {
@@ -157,18 +167,6 @@ namespace OperationBlackwell.Core {
 
 			// Get Unit Grid Position X, Y
 			grid.GetXY(position, out int unitX, out int unitY);
-
-			// Set entire Tilemap to Invisible
-			GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
-				MovementTilemap.TilemapObject.TilemapSprite.None
-			);
-
-			// Reset Entire Grid ValidMovePositions
-			for(int x = 0; x < grid.GetWidth(); x++) {
-				for(int y = 0; y < grid.GetHeight(); y++) {
-					grid.GetGridObject(x, y).SetIsValidMovePosition(false);
-				}
-			}
 
 			int maxMoveDistance = unitGridCombat_.GetActionPoints() + 1;
 			for(int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
@@ -252,27 +250,33 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
-			GameController.Instance.GetSelectorTilemap().SetAllTilemapSprite(
-				MovementTilemap.TilemapObject.TilemapSprite.None
-			);
-
-			Grid<Tilemap.Node> grid;
-			Tilemap.Node gridObject;
+			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			CoreUnit unit;
+
+			if(gridObject == null) {
+				if(prevNode_ != null) {
+					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+						prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
+					);
+				}
+				prevNode_ = gridObject;
+				return;
+			}
+
+			if(prevNode_ != null && prevNode_ != gridObject) {
+				GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+					prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
+				);
+				GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+					gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
+				);
+			}
 			switch(state_) {
 				case State.Normal:
 					interactable_ = null;
-					grid = GameController.Instance.GetGrid();
-					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
-
-					if(gridObject == null) {
-						return;
-					}
 					
 					unit = gridObject.GetUnitGridCombat();
-					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
-						gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
-					);
 					if(unit != null && unit.GetTeam() == Team.Blue) {
 						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
 							if(unit != null && unit.GetTeam() == Team.Blue) {
@@ -293,38 +297,33 @@ namespace OperationBlackwell.Core {
 					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 
 					interactable_ = null;
-					grid = GameController.Instance.GetGrid();
-					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 					
 					if(gridObject == null) {
+						prevNode_ = gridObject;
 						return;
 					}
 					HandleWeaponSwitch();
-
-					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
-						gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
-					);
-
-					ResetMoveTiles();
+					
 					ResetArrowVisual();
 					// Set arrow to target position
 					List<Actions> actions = unitGridCombat_.LoadActions().GetQueue();
 					if(unitGridCombat_ != null && actions.Count == 0) {
-						UpdateValidMovePositions(unitGridCombat_.GetPosition());
+						if(prevPosition_ != unitGridCombat_.GetPosition() || (prevUnit_ != unitGridCombat_ && prevUnit_ != null)) {
+							ResetMoveTiles();
+							UpdateValidMovePositions(unitGridCombat_.GetPosition());
+						}
 						if(gridObject.GetIsValidMovePosition()) {
 							SetArrowWithPath(Vector3.zero, Vector3.zero);
 						}
 					} else {
-						foreach(Actions action in actions) {
-							if(action.type == Actions.ActionType.Move) {
-								ResetMoveTiles();
-								SetArrowWithPath(action.originPos, action.destinationPos);
-								UpdateValidMovePositions(action.destinationPos);
+						if(prevActionCount_ != actions.Count) {
+							foreach(Actions action in actions) {
+								if(action.type == Actions.ActionType.Move) {
+									SetArrowWithPath(action.originPos, action.destinationPos);
+								}
 							}
-							if(action.type == Actions.ActionType.Attack) {
-								ResetMoveTiles();
-								UpdateValidMovePositions(action.destinationPos);
-							}
+							ResetMoveTiles();
+							UpdateValidMovePositions(actions[actions.Count - 1].destinationPos);
 						}
 						if(gridObject.GetIsValidMovePosition() && actions.Count != 0) {
 							SetArrowWithPath(actions[actions.Count - 1].destinationPos, Utils.GetMouseWorldPosition());
@@ -413,6 +412,7 @@ namespace OperationBlackwell.Core {
 								}
 								if(unitAction != null) {
 									unitGridCombat_.SaveAction(unitAction);
+									prevActionCount_++;
 									OrderObject unitOrder = GetOrderObject(unitGridCombat_);
 									if(unitOrder == null) {
 										int cost = GenerateTotalCost(0, 0, 0);
@@ -480,17 +480,13 @@ namespace OperationBlackwell.Core {
 					break;
 				case State.OutOfCombat:
 					interactable_ = null;
-					grid = GameController.Instance.GetGrid();
-					gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 
 					if(gridObject == null) {
+						prevNode_ = gridObject;
 						return;
 					}
 					
 					unit = gridObject.GetUnitGridCombat();
-					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
-						gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
-					);
 					if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick)) {
 						DeselectUnit();
 					}
@@ -509,11 +505,14 @@ namespace OperationBlackwell.Core {
 						}
 					}
 					if(unitGridCombat_ == null) {
+						prevNode_ = gridObject;
 						return;
 					}
-					ResetMoveTiles();
+					if(prevPosition_ != unitGridCombat_.GetPosition() || (prevUnit_ != unitGridCombat_ && prevUnit_ != null)) {
+						ResetMoveTiles();
+						UpdateValidMovePositions(unitGridCombat_.GetPosition());
+					}
 					ResetArrowVisual();
-					UpdateValidMovePositions(unitGridCombat_.GetPosition());
 					if(gridObject.GetIsValidMovePosition()) {
 						SetArrowWithPath(Vector3.zero, Vector3.zero);
 					}
@@ -522,6 +521,7 @@ namespace OperationBlackwell.Core {
 							CoreUnit unitB = unitGridCombat_;
 							Vector3 moveFromPos = unitB.GetPosition();
 							grid.GetGridObject(unitB.GetPosition()).ClearUnitGridCombat();
+							prevPosition_ = unitGridCombat_.GetPosition();
 							unitB.MoveTo(Utils.GetMouseWorldPosition(), moveFromPos, () => {
 								Tilemap.Node node = grid.GetGridObject(unitB.GetPosition());
 								node.SetUnitGridCombat(unitB);
@@ -530,15 +530,25 @@ namespace OperationBlackwell.Core {
 							DeselectUnit();
 						} else if(gridObject.GetInteractable() != null) {
 							interactable_ = gridObject.GetInteractable();
+							prevPosition_ = unitGridCombat_.GetPosition();
 							if(interactable_.IsInRange(unitGridCombat_.GetPosition())) {
 								interactable_.Interact(unitGridCombat_);
 								CheckTriggers();
 							}
+							DeselectUnit();
 						}
 					}
 					break;
 				default:
 					break;
+			}
+
+			prevNode_ = gridObject;
+			prevUnit_ = unitGridCombat_;
+			if(unitGridCombat_ != null) {
+				prevActionCount_ = unitGridCombat_.GetActionCount() - 1;
+			} else {
+				prevActionCount_ = 0;
 			}
 
 			if(state_ != State.OutOfCombat && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))) {
@@ -549,6 +559,7 @@ namespace OperationBlackwell.Core {
 			if(Input.GetKeyDown(KeyCode.R)) {
 				if(unitGridCombat_ != null) {
 					unitGridCombat_.ClearActions();
+					prevActionCount_ = unitGridCombat_.GetActionCount();
 				}
 			}
 		}
@@ -650,11 +661,9 @@ namespace OperationBlackwell.Core {
 			for(int x = 0; x < grid.GetWidth(); x++) {
 				for(int y = 0; y < grid.GetHeight(); y++) {
 					grid.GetGridObject(x, y).SetIsValidMovePosition(false);
+					GameController.Instance.GetMovementTilemap().SetTilemapSprite(x, y, MovementTilemap.TilemapObject.TilemapSprite.None);
 				}
 			}
-			GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
-				MovementTilemap.TilemapObject.TilemapSprite.None
-			);
 		}
 
 		/*
