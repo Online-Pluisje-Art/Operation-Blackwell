@@ -13,6 +13,7 @@ namespace OperationBlackwell.Core {
 		*/
 		private void Awake() {
 			camera_ = Camera.main;
+			targetPosition_ = camera_.transform.position;
 		}
 
 		private void Start() {

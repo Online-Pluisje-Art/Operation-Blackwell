@@ -13,6 +13,7 @@ namespace OperationBlackwell.Player {
 		[SerializeField] private int maxActionPoints_;
 		[SerializeField] private List<Weapon> weapons_;
 		[SerializeField] private Animator animator_;
+		[SerializeField] private String name_;
 		
 		private PlayerBase characterBase_;
 		private GameObject selectedGameObject_;
@@ -428,6 +429,10 @@ namespace OperationBlackwell.Player {
 			animator_.SetBool("isShootingDown", false);
 			animator_.SetBool("isShootingLeft", false);
 			animator_.SetBool("isShootingRight", false);
+		}
+
+		public override String GetName() {
+			return name_;
 		}
 	}
 }

@@ -27,5 +27,6 @@ namespace OperationBlackwell.Core {
 		public abstract bool HasExecuted();
 		public abstract bool IsComplete();
 		public abstract void ResetComplete();
+		public abstract String GetName();
 	}
 }
