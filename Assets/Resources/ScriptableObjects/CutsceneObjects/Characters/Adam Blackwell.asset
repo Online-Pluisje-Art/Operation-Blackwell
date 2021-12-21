@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083fb7b87e2fe7db7b80251be55ce1d8, type: 3}
+  m_Name: Adam Blackwell
+  m_EditorClassIdentifier: 
+  characterName_: Adam Blackwell
+  characterSprite_: {fileID: 21300000, guid: a35312a94213d9249abc53e804c2b2a2, type: 3}
+  characterSpriteSpeaking_: {fileID: 21300000, guid: c29ad490a0833684dadcc212dd99f75f, type: 3}
+  characterVoice_: {fileID: 0}
+  speaking_: 0

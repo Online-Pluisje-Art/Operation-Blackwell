@@ -17,7 +17,7 @@ namespace OperationBlackwell.Core {
 			if(Input.GetKeyDown(KeyCode.Backslash)) {
 				StartCoroutine(getSaveNameForSaving());
 			}
-			if(Input.GetKeyDown(KeyCode.Pipe)) {
+			if(Input.GetKeyDown(KeyCode.Equals)) {
 				StartCoroutine(getSaveNameForLoading());
 			}
 		}
