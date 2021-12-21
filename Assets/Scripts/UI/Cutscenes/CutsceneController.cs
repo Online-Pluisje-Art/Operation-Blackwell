@@ -24,6 +24,8 @@ namespace OperationBlackwell.UI {
 		private TextMeshProUGUI rightName_;
 		private TextMeshProUGUI speakingName_;
 		private TextMeshProUGUI text_;
+		public System.EventHandler<System.EventArgs> OnCutsceneStart;
+		public System.EventHandler<System.EventArgs> OnCutsceneEnd;
 
 		private void Awake() {
 			if(Instance == null) {
@@ -73,6 +75,7 @@ namespace OperationBlackwell.UI {
 				GridCombatSystem.Instance.SetState(GridCombatSystem.State.Cutscene);
 			}
 			currentCutsceneIndex_ = index;
+			OnCutsceneStart?.Invoke(this, System.EventArgs.Empty);
 			Show(index);
 		}
 
@@ -80,6 +83,7 @@ namespace OperationBlackwell.UI {
 			if(GridCombatSystem.Instance != null) {
 				GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
 			}
+			OnCutsceneEnd?.Invoke(this, System.EventArgs.Empty);
 			Hide();
 		}
 
