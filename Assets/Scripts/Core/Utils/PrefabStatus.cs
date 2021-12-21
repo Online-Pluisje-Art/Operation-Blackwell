@@ -16,6 +16,7 @@ namespace OperationBlackwell.Core {
             int x, y;
             GameController.Instance.grid.GetXY(transform.position, out x, out y);
             GameController.Instance.grid.TriggerGridObjectChanged(x, y);
+            GridPathfinding.Instance.SetWalkable(x, y, walkable_);
         }
     }
 }

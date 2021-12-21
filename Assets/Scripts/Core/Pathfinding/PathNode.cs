@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace OperationBlackwell.Core {
 
-	public class PathNode {
+	public class PathNode : IHeapItem<PathNode> {
 
 		public event EventHandler OnWalkableChanged;
 
@@ -24,9 +24,23 @@ namespace OperationBlackwell.Core {
 		public bool isOnClosedList = false;
 
 		public int weight = 0;
-		public int gValue = 0;
+		public int gValue = int.MaxValue;
 		public int hValue;
-		public int fValue;
+		public int fValue {
+			get {
+				return gValue + hValue;
+			}
+		}
+
+		private int heapIndex_;
+		public int heapIndex {
+			get {
+				return heapIndex_;
+			}
+			set {
+				heapIndex_ = value;
+			}
+		}
 
 		//public Transform trans;
 		//public int layerMask = 1 << 9;
@@ -39,6 +53,8 @@ namespace OperationBlackwell.Core {
 			moveSouth = true;
 			moveWest = true;
 			moveEast = true;
+
+			parent = null;
 
 			//trans = ((GameObject) Object.Instantiate(Resources.Load("pfPathNode"), new Vector3(xPos*10, 0, zPos*10), Quaternion.identity)).transform;
 			TestHitbox();
@@ -68,11 +84,19 @@ namespace OperationBlackwell.Core {
 		public MapPos GetMapPos() {
 			return new MapPos(xPos, yPos);
 		}
-		public void CalculateFValue() {
-			fValue = gValue + hValue;
-		}
+
 		public Vector3 GetWorldVector(Vector3 worldOrigin, float nodeSize) {
 			return worldOrigin + new Vector3(xPos * nodeSize, yPos * nodeSize);
+		}
+
+		public int CompareTo(PathNode other) {
+			if(other.fValue < fValue) {
+				return 1;
+			}
+			if(other.hValue < hValue) {
+				return 1;
+			}
+			return -1;
 		}
 	}
 }
