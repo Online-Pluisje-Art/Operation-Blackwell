@@ -202,6 +202,10 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void LateUpdate() {
+			if(state_ == State.Cutscene) {
+				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+				return;
+			}
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			List<Actions> actions = new List<Actions>();
@@ -253,6 +257,13 @@ namespace OperationBlackwell.Core {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			CoreUnit unit;
+
+			if(state_ == State.Cutscene) {
+				GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+					prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
+				);
+				return;
+			}
 
 			if(gridObject == null) {
 				if(prevNode_ != null) {

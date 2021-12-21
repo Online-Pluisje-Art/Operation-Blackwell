@@ -7,6 +7,9 @@ namespace OperationBlackwell.Core {
 	public class PuzzleController : MonoBehaviour {
 		public static PuzzleController Instance { get; private set; }
 
+		public System.EventHandler<System.EventArgs> PuzzleStarted;
+		public System.EventHandler<System.EventArgs> PuzzleEnded;
+
 		private Image background_;
 
 		[Header("Puzzles")]
@@ -94,6 +97,7 @@ namespace OperationBlackwell.Core {
 			}
 			input_ = new Queue<PuzzleBlock>();
 			background_.enabled = true;
+			PuzzleStarted?.Invoke(this, System.EventArgs.Empty);
 			StartShuffle();
 		}
 
@@ -102,6 +106,7 @@ namespace OperationBlackwell.Core {
 				Destroy(child.gameObject);
 			}
 			background_.enabled = false;
+			PuzzleEnded?.Invoke(this, System.EventArgs.Empty);
 			GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
 		}
 

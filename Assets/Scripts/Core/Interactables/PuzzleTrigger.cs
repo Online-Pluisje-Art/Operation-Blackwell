@@ -15,7 +15,7 @@ namespace OperationBlackwell.Core {
 			if(GridCombatSystem.Instance.GetState() != GridCombatSystem.State.OutOfCombat) {
 				return;
 			}
-			GridCombatSystem.Instance.SetState(GridCombatSystem.State.Waiting);
+			GridCombatSystem.Instance.SetState(GridCombatSystem.State.Cutscene);
 			PuzzleController.Instance.CreatePuzzle(puzzleIndex_);
 		}
 

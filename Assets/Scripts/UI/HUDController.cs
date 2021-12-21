@@ -16,6 +16,8 @@ namespace OperationBlackwell.UI {
 			GridCombatSystem.Instance.OnTurnEnded += UpdateTurnCounter;
 			CutsceneController.Instance.OnCutsceneStart += HideHUD;
 			CutsceneController.Instance.OnCutsceneEnd += ShowHUD;
+			PuzzleController.Instance.PuzzleStarted += HideHUD;
+			PuzzleController.Instance.PuzzleEnded += ShowHUD;
 		}
 
 		private void OnDestroy() {
@@ -24,6 +26,8 @@ namespace OperationBlackwell.UI {
 			GridCombatSystem.Instance.OnTurnEnded -= UpdateTurnCounter;
 			CutsceneController.Instance.OnCutsceneStart -= HideHUD;
 			CutsceneController.Instance.OnCutsceneEnd -= ShowHUD;
+			PuzzleController.Instance.PuzzleStarted -= HideHUD;
+			PuzzleController.Instance.PuzzleEnded -= ShowHUD;
 		}
 
 		private void UpdateWeapon(object sender, string name) {
