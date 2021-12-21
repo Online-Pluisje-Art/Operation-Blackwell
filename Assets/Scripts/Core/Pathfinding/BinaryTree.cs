@@ -271,5 +271,9 @@ namespace OperationBlackwell.Core {
 				return node.pathNode;
 			}
 		}
+
+		public void Clear() {
+			root_ = null;
+		}
 	}
 }
