@@ -550,7 +550,12 @@ namespace OperationBlackwell.Core {
 							interactable_ = gridObject.GetInteractable();
 							prevPosition_ = unitGridCombat_.GetPosition();
 							if(interactable_.IsInRange(unitGridCombat_.GetPosition())) {
-								interactable_.Interact(unitGridCombat_);
+								if(interactable_ is PuzzleTrigger puzzleTrigger) {
+									puzzleTrigger.Interact(unitGridCombat_);
+									prevPosition_ = Vector3.zero;
+								} else {
+									interactable_.Interact(unitGridCombat_);
+								}
 								CheckTriggers();
 							}
 							DeselectUnit();
