@@ -9,11 +9,10 @@ namespace OperationBlackwell.Core {
 		public static GridCombatSystem Instance { get; private set; }
 		
 		[SerializeField] private BaseCutsceneController cutsceneController_;
-		[SerializeField] private CoreUnit[] unitGridCombatArray_;
+		[SerializeField] private List<CoreUnit> blueTeamList_;
 
 		private State state_;
 		private CoreUnit unitGridCombat_;
-		private List<CoreUnit> blueTeamList_;
 		private List<CoreUnit> redTeamList_;
 		private int blueTeamActiveUnitIndex_;
 		private int redTeamActiveUnitIndex_;
@@ -71,7 +70,6 @@ namespace OperationBlackwell.Core {
 
 		private void Start() {
 			turn_ = 1;
-			blueTeamList_ = new List<CoreUnit>();
 			redTeamList_ = new List<CoreUnit>();
 			blueTeamActiveUnitIndex_ = -1;
 			redTeamActiveUnitIndex_ = -1;
@@ -79,15 +77,9 @@ namespace OperationBlackwell.Core {
 			playedCutsceneIndexes_ = new List<int>();
 
 			// Set all UnitGridCombat on their GridPosition
-			foreach(CoreUnit unitGridCombat_ in unitGridCombatArray_) {
-				GameController.Instance.GetGrid().GetGridObject(unitGridCombat_.GetPosition())
-					.SetUnitGridCombat(unitGridCombat_);
-
-				if(unitGridCombat_.GetTeam() == Team.Blue) {
-					blueTeamList_.Add(unitGridCombat_);
-				} else {
-					redTeamList_.Add(unitGridCombat_);
-				}
+			foreach(CoreUnit unitGridCombat in blueTeamList_) {
+				GameController.Instance.GetGrid().GetGridObject(unitGridCombat.GetPosition())
+					.SetUnitGridCombat(unitGridCombat);
 			}
 
 			orderList_ = new WaitingQueue<OrderObject>();
@@ -99,6 +91,18 @@ namespace OperationBlackwell.Core {
 
 		private void OnDestroy() {
 			OnUnitDeath -= RemoveUnitOnDeath;
+		}
+
+		public void LoadAllEnemies(List<CoreUnit> enemies) {
+			foreach(CoreUnit enemy in enemies) {
+				if(enemy.GetTeam() == Team.Red) {
+					redTeamList_.Add(enemy);
+				}
+			}
+		}
+
+		public List<CoreUnit> GetBlueTeam() {
+			return blueTeamList_;
 		}
 
 		private void RemoveUnitOnDeath(object sender, EventArgs e) {

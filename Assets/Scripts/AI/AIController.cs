@@ -47,7 +47,7 @@ namespace OperationBlackwell.AI {
 
 		public void SetUnitActionsTurn() {
 			GridCombatSystem combatSystem = GridCombatSystem.Instance;
-			// List<CoreUnit> enemies = combatSystem.GetBlueTeam();
+			List<CoreUnit> enemies = combatSystem.GetBlueTeam();
 			/**
 			 * Loop through all units.
 			 * If the unit is not dead, decide the best actions for the unit. 
@@ -58,18 +58,18 @@ namespace OperationBlackwell.AI {
 			 * After all the actions of a unit are set, make a orderobject for the unit.
 			 * Add the orderObject to the list in gridcombatsystem.
 			 */
-			// foreach(AIUnit unit in activeUnits_) {
-			// 	if(unit.IsDead()) {
-			// 		continue;
-			// 	}
+			foreach(AIUnit unit in activeUnits_) {
+				if(unit.IsDead()) {
+					continue;
+				}
 
-			// 	// TODO: Decide the best actions for the unit.
-			// 	// For now we will just have the unit move to the nearest enemy. Or attack the nearest enemy.
-			// 	// (This depends if the unit has enough action points and if the unit is in range of the enemy)
-			// 	while(unit.HasActionPoints()) {
+				// TODO: Decide the best actions for the unit.
+				// For now we will just have the unit move to the nearest enemy. Or attack the nearest enemy.
+				// (This depends if the unit has enough action points and if the unit is in range of the enemy)
+				while(unit.HasActionPoints()) {
 					
-			// 	}
-			// }
+				}
+			}
 		}
 
 		private OrderObject CreateOrderObject(AIUnit unit) {
