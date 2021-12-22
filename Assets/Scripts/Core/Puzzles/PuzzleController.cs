@@ -14,6 +14,7 @@ namespace OperationBlackwell.Core {
 
 		[Header("Puzzles")]
 		[SerializeField] private Puzzle[] puzzles;
+		[SerializeField] private GameObject puzzleVictory_;
 
 		private PuzzleBlock emptyPuzzleBlock_;
 		private PuzzleBlock[,] puzzleBlocks_;
@@ -24,7 +25,6 @@ namespace OperationBlackwell.Core {
 			Solved
 		}
 		private PuzzleState currentState_;
-		private Transform puzzleVictory_;
 
 		[Header("Sizes")]
 		[SerializeField] private float puzzleSize_;
@@ -53,10 +53,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Start() {
-			foreach(Transform child in transform) {
-				puzzleVictory_ = child;
-			}
-			puzzleVictory_.gameObject.SetActive(false);
+			puzzleVictory_.SetActive(false);
 			background_ = GetComponent<Image>();
 			background_.enabled = false;
 		}
@@ -103,8 +100,12 @@ namespace OperationBlackwell.Core {
 
 		public void DestroyPuzzle() {
 			foreach(Transform child in transform) {
+				if(child.gameObject == puzzleVictory_) {
+					continue;
+				}
 				Destroy(child.gameObject);
 			}
+			puzzleVictory_.SetActive(false);
 			background_.enabled = false;
 			PuzzleEnded?.Invoke(this, System.EventArgs.Empty);
 			GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
@@ -125,7 +126,7 @@ namespace OperationBlackwell.Core {
 				if(IsPuzzleSolved()) {
 					currentState_ = PuzzleState.Solved;
 					emptyPuzzleBlock_.gameObject.SetActive(true);
-					puzzleVictory_.gameObject.SetActive(true);
+					puzzleVictory_.SetActive(true);
 				} else {
 					MakeNextMove();
 				}
