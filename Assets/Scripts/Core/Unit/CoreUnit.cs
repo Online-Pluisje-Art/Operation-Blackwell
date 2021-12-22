@@ -24,6 +24,7 @@ namespace OperationBlackwell.Core {
 		
 
 		protected void Start() {
+			ResetActionPoints();
 			SetActiveWeapon(0);
 		}
 
