@@ -17,10 +17,12 @@ MonoBehaviour:
   messages_:
   - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
     direction: 0
-    message: It should have been a simple mission like usual, the only difference
-      was I did it on my own accord so I didn't have my gear. Looking back at it
+    message: 'It should have been a simple mission like usual, the only difference
+      was I did it on my own accord so I didn''t have my gear. Looking back at it
       now, going there was a big mistake. I got a tip from my old friend and colleague
-      Jonah Spade about rebel activity on this far out jungle planet. This could
-      have given us the edge in the ongoing conflict. If only I'd known then what
-      I know now I would have never wasted my life on this lie. But I'm getting ahead
-      of myself. Let's start at the beginning of the mission.
+      Jonah Spade about rebel activity on this far out jungle planet. '
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: This could have given us the edge in the ongoing conflict. If only I'd
+      known then what I know now I would have never wasted my life on this lie. But
+      I'm getting ahead of myself. Let's start at the beginning of the mission.

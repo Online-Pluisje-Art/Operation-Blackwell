@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
   m_Name: Mid
   m_EditorClassIdentifier: 
-  characterLeft_: {fileID: 11400000, guid: 0fd17ba51d470934896424b3274a5d9c, type: 2}
-  characterRight_: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+  characterLeft_: {fileID: 11400000, guid: 8da3411dceeb5df46b9a0e548b907008, type: 2}
+  characterRight_: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
   messages_:
   - character: {fileID: 11400000, guid: 0fd17ba51d470934896424b3274a5d9c, type: 2}
     direction: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
     direction: 0
     message: Ah, I see the leader of our little puppet rebellion is always up to
       speed. I have to warn you though, if you dig too deep we might have to classify
-      you as an actual rebellion
+      you as an actual rebellion.
   - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
     direction: 1
     message: Yes sir!
