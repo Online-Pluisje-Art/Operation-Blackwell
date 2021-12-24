@@ -34,7 +34,7 @@ namespace OperationBlackwell.AI {
 			}
 
 			currentStage_ = stages_[index];
-			foreach(AIUnit unit in currentStage_.GetAIUnits()) {
+			foreach(AIUnit unit in currentStage_.units) {
 				unit.LoadUnit();
 				activeUnits_.Add(unit);
 			}
@@ -88,4 +88,10 @@ namespace OperationBlackwell.AI {
 			return initiative;
 		}
 	}
+}
+
+[System.Serializable]
+public class CombatStage {
+	public int ID;
+	public List<AIUnit> units;
 }
