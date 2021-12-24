@@ -9,25 +9,25 @@ namespace OperationBlackwell.Core {
 
 		public static GameController Instance { get; private set; }
 
+		[Header("World data")]
 		[SerializeField] private Vector3 gridWorldSize_;
 		[SerializeField] private float cellSize_;
-
 		[SerializeField] private bool drawGridLines_;
 
+		[Header("Map visuals")]
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
 		[SerializeField] private MovementTilemapVisual arrowTilemapVisual_;
 		[SerializeField] private MovementTilemapVisual selectorTilemapVisual_;
-
 		private MovementTilemap movementTilemap_;
 		private MovementTilemap arrowTilemap_;
 		private MovementTilemap selectorTilemap_;
-
 		public Grid<Tilemap.Node> grid { get; private set; }
-
 		public GridPathfinding gridPathfinding { get; private set; }
 		public Tilemap tilemap { get; private set; }
-
 		[SerializeField] private TilemapVisual tilemapVisual_;
+
+		[Header("Puzzles")]
+		[SerializeField] private List<PuzzleComplete> puzzleDestroyableObjects_;
 
 		private void Awake() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
@@ -66,6 +66,8 @@ namespace OperationBlackwell.Core {
 			} else {
 				Debug.Log(SceneManager.GetActiveScene().name + " has no level to load!");
 			}
+
+			PuzzleController.Instance.PuzzleEnded += OnPuzzleComplete;
 		}
 
 		private void Update() {
@@ -94,5 +96,28 @@ namespace OperationBlackwell.Core {
 				SceneManager.LoadScene("MainMenu");
 			}
 		}
+
+		private void OnPuzzleComplete(object sender, PuzzleController.PuzzleEndedArgs args) {
+			PuzzleComplete? puzzleCompleted = null;
+			foreach(PuzzleComplete puzzle in puzzleDestroyableObjects_) {
+				if(puzzle.puzzleID == args.id) {
+					puzzleCompleted = puzzle;
+					break;
+				}
+			}
+			if(puzzleCompleted != null) {
+				if(puzzleCompleted.Value.destroyableObjects != null) {
+					foreach(GameObject destroyableObject in puzzleCompleted.Value.destroyableObjects) {
+						Destroy(destroyableObject);
+					}
+				}
+			}
+		}
 	}
+}
+
+[System.Serializable]
+public struct PuzzleComplete {
+	public int puzzleID;
+	public List<GameObject> destroyableObjects;
 }

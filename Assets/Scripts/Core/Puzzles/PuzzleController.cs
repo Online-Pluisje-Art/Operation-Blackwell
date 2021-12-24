@@ -7,8 +7,12 @@ namespace OperationBlackwell.Core {
 	public class PuzzleController : MonoBehaviour {
 		public static PuzzleController Instance { get; private set; }
 
+		public class PuzzleEndedArgs : System.EventArgs {
+			public int id;
+		}
+
 		public System.EventHandler<System.EventArgs> PuzzleStarted;
-		public System.EventHandler<System.EventArgs> PuzzleEnded;
+		public System.EventHandler<PuzzleEndedArgs> PuzzleEnded;
 
 		private Image background_;
 
@@ -25,6 +29,7 @@ namespace OperationBlackwell.Core {
 			Solved
 		}
 		private PuzzleState currentState_;
+		private Puzzle currentPuzzle_;
 
 		[Header("Sizes")]
 		[SerializeField] private float puzzleSize_;
@@ -59,14 +64,15 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void CreatePuzzle(int puzzleIndex) {
-			blocksPerLine_ = puzzles[puzzleIndex].BlocksPerLine();
+			currentPuzzle_ = puzzles[puzzleIndex];
+			blocksPerLine_ = currentPuzzle_.BlocksPerLine();
 			puzzleOffset_ = new Vector2(
 				puzzleSize_ / 2,
 				puzzleSize_ / 2
 			);
 			puzzleBlocks_ = new PuzzleBlock[blocksPerLine_, blocksPerLine_];
 			Texture2D[,] puzzleSlices = ImageSplicer.SplitImage(
-				Utils.TextureFromSprite(puzzles[puzzleIndex].GetSprite()),
+				Utils.TextureFromSprite(currentPuzzle_.GetSprite()),
 				blocksPerLine_
 			);
 			for(int x = 0; x < blocksPerLine_; x++) {
@@ -107,7 +113,9 @@ namespace OperationBlackwell.Core {
 			}
 			puzzleVictory_.SetActive(false);
 			background_.enabled = false;
-			PuzzleEnded?.Invoke(this, System.EventArgs.Empty);
+			PuzzleEnded?.Invoke(this, new PuzzleEndedArgs {
+				id = currentPuzzle_.GetID()
+			});
 			GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
 		}
 
@@ -131,7 +139,6 @@ namespace OperationBlackwell.Core {
 					MakeNextMove();
 				}
 			}
-			
 
 			if(shuffleCountRemaining_ > 0) {
 				MakeNextShuffleMove();
