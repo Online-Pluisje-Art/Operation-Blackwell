@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
@@ -47,7 +48,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void Sort() {
-			queue_.Sort((x, y) => x.GetInitiative() <= y.GetInitiative() ? 1 : -1);
+			queue_ = queue_.OrderBy(x => x.GetInitiative()).ToList();
 		}
 	}
 }
