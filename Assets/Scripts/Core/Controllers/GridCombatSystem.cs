@@ -721,20 +721,6 @@ namespace OperationBlackwell.Core {
 			return unitGridCombat_;
 		}
 
-		// The methods `CalculatePoints` is from https://www.redblobgames.com/grids/line-drawing.html and adjusted accordingly.
-
-		// Calculates the length between two Vector3's and returns N nodes between them.
-		public List<Vector3> CalculatePoints(Vector3 p0, Vector3 p1) {
-			List<Vector3> points = new List<Vector3>();
-			// A cast to int is used here to make sure the variable has a whole number
-			float diagonalLength = (int)Vector3.Distance(p0, p1);
-			for(int step = 0; step <= diagonalLength; step++) {
-				float pointOnLine = diagonalLength == 0 ? 0.0f : step / diagonalLength;
-				points.Add(Vector3.Lerp(p0, p1, pointOnLine));
-			}
-			return points;
-		}
-
 		private void CheckTriggers() {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			Vector3 position;

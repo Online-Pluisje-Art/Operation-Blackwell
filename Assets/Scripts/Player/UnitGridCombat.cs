@@ -91,7 +91,7 @@ namespace OperationBlackwell.Player {
 			}
 
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
-			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
+			int nodesBetweenPlayers = Utils.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
 			return nodesBetweenPlayers <= currentWeapon_.GetRange() && nodesBetweenPlayers > 0;
 		}
 
@@ -219,7 +219,7 @@ namespace OperationBlackwell.Player {
 		 */
 		private float RangedHitChance(Vector3 player, Vector3 target) {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-			List<Vector3> points = GridCombatSystem.Instance.CalculatePoints(player, target);
+			List<Vector3> points = Utils.CalculatePoints(player, target);
 
 			float hitChance = currentWeapon_.GetBaseHitchance();
 
