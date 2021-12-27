@@ -212,8 +212,7 @@ namespace OperationBlackwell.Core {
 			if(gridObject != null) {
 				CoreUnit unit = gridObject.GetUnitGridCombat();
 				if(actions.Count == 0) {
-					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, Vector3.zero)
-						&& unit != unitGridCombat_ && unit.GetTeam() != unitGridCombat_.GetTeam()) {
+					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, unitGridCombat_.GetPosition()) && state_ == State.UnitSelected) {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
 					} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && (state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
@@ -229,8 +228,7 @@ namespace OperationBlackwell.Core {
 						});
 					}
 				} else if(actions.Count > 0) {
-					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos)
-						&& unit != unitGridCombat_ && unit.GetTeam() != unitGridCombat_.GetTeam()) {
+					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos) && state_ == State.UnitSelected) {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
 					} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && (state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
 						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
@@ -419,7 +417,7 @@ namespace OperationBlackwell.Core {
 								} else {
 									if(unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos)) {
 										unitAction = new Actions(Actions.ActionType.Attack, attackType, actions[actions.Count - 1].destination, actions[actions.Count - 1].destinationPos,
-											grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unitGridCombat_, unit, attackCost);
+											actions[actions.Count - 1].destination, actions[actions.Count - 1].destinationPos, unitGridCombat_, unit, attackCost);
 									}
 								}
 								if(unitAction != null) {
