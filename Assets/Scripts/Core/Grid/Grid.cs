@@ -59,6 +59,10 @@ namespace OperationBlackwell.Core {
 			return new Vector3(x, y) * cellSize + originPosition_;
 		}
 
+		public Vector3 GetPosition(Vector3 worldPosition) {
+			return (worldPosition - originPosition_) / cellSize;
+		}
+
 		public void GetXY(Vector3 worldPosition, out int x, out int y) {
 			x = Mathf.FloorToInt((worldPosition - originPosition_).x / cellSize);
 			y = Mathf.FloorToInt((worldPosition - originPosition_).y / cellSize);

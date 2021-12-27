@@ -29,6 +29,9 @@ namespace OperationBlackwell.AI {
 		}
 
 		public override void LoadStage(int index) {
+			if(currentStage_.ID == index) {
+				return;
+			}
 			bool found = false;
 			for(int i = 0; i < stages_.Count; i++) {
 				if(stages_[i].ID == index) {
@@ -42,11 +45,14 @@ namespace OperationBlackwell.AI {
 				currentStage_ = new CombatStage();
 				return;
 			}
-
+			
+			List<CoreUnit> unitsToLoad = new List<CoreUnit>();
 			foreach(AIUnit unit in currentStage_.units) {
 				unit.LoadUnit();
 				activeUnits_.Add(unit);
+				unitsToLoad.Add(unit);
 			}
+			GridCombatSystem.Instance.LoadAllEnemies(unitsToLoad);
 		}
 
 		public void UnloadStage() {
@@ -60,6 +66,7 @@ namespace OperationBlackwell.AI {
 			List<CoreUnit> enemies = combatSystem.GetBlueTeam();
 			bool walk;
 			CoreUnit enemyToAttack = null;
+			OrderObject obj = null;
 			/**
 			 * Loop through all units.
 			 * If the unit is not dead, decide the best actions for the unit. 
@@ -73,6 +80,7 @@ namespace OperationBlackwell.AI {
 			foreach(AIUnit unit in activeUnits_) {
 				walk = true;
 				enemyToAttack = null;
+				obj = null;
 				if(unit.IsDead()) {
 					continue;
 				}
@@ -81,9 +89,9 @@ namespace OperationBlackwell.AI {
 				// For now we will just have the unit move to the nearest enemy. Or attack the nearest enemy.
 				// (This depends if the unit has enough action points and if the unit is in range of the enemy)
 				// The == 1 is because each tile to move has a cost of 2 and otherwise we would end up in a deadlock.
-				while(unit.HasActionPoints() || unit.GetActionPoints() == 1) {
+				while(unit.HasActionPoints() && unit.GetActionPoints() > 1) {
 					foreach(CoreUnit enemy in enemies) {
-						if(IsUnitInRange(unit, enemy) && unit.CanAttackUnit(enemy, unit.GetPosition())) {
+						if(IsUnitInRange(unit, enemy)) {
 							walk = false;
 							enemyToAttack = enemy;
 							break;
@@ -93,12 +101,9 @@ namespace OperationBlackwell.AI {
 					if(walk) {
 						UpdateValidMovePositions(unit);
 						Tilemap.Node node = SelectEndPoint();
-						if(node == null) {
-							break;
-						}
 						Actions unitAction;
-						int pathLength = GameController.Instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetWorldPosition(node.gridX, node.gridY)).Count * 2;
-						unitAction = new Actions(Actions.ActionType.Move, node, Utils.GetMouseWorldPosition(),
+						int pathLength = GameController.Instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(new Vector3(node.gridX, node.gridY))).Count * 2;
+						unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(new Vector3(node.gridX, node.gridY)),
 							grid.GetGridObject(unit.GetPosition()), unit.GetPosition(), unit, null, pathLength);
 						unit.SaveAction(unitAction);
 					} else {
@@ -110,7 +115,7 @@ namespace OperationBlackwell.AI {
 						unit.SaveAction(unitAction);
 					}
 				}
-				OrderObject obj = CreateOrderObject(unit);
+				obj = CreateOrderObject(unit);
 				combatSystem.AddOrderObject(obj);
 			}
 		}
@@ -184,8 +189,11 @@ namespace OperationBlackwell.AI {
 			Tilemap.Node endPoint = null;
 			//Select random end point from list
 			if(endPoints_.Count > 0) {
-				int randomIndex = UnityEngine.Random.Range(0, endPoints_.Count);
-				endPoint = endPoints_[randomIndex];
+				do {
+					int randomIndex = UnityEngine.Random.Range(0, endPoints_.Count);
+					endPoint = endPoints_[0];
+					endPoints_.RemoveAt(0);
+				} while(endPoint.GetIsValidMovePosition() == false);
 			}
 			return endPoint;
 		}
