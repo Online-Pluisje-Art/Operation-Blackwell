@@ -49,6 +49,7 @@ namespace OperationBlackwell.Core {
 		private Tilemap.Node prevNode_;
 		private Vector3 prevPosition_;
 		private int prevActionCount_;
+		private bool setAiTurn_;
 
 		public enum State {
 			Normal,
@@ -90,6 +91,7 @@ namespace OperationBlackwell.Core {
 			prevUnit_ = null;
 			prevNode_ = null;
 			prevPosition_ = Vector3.zero;
+			setAiTurn_ = true;
 		}
 
 		private void OnDestroy() {
@@ -610,7 +612,10 @@ namespace OperationBlackwell.Core {
 		private void ForceTurnOver() {
 			// Execute all unit actions and end turn
 			DeselectUnit();
-			aiController_.SetUnitActionsTurn();
+			if(setAiTurn_) {
+				setAiTurn_ = false;
+				aiController_.SetUnitActionsTurn();
+			}
 			ExecuteAllActions();
 		}
 
@@ -649,6 +654,7 @@ namespace OperationBlackwell.Core {
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
 			state_ = State.Normal;
+			setAiTurn_ = true;
 			CheckTriggers();
 		}
 

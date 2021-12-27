@@ -59,8 +59,8 @@ namespace OperationBlackwell.Core {
 			return new Vector3(x, y) * cellSize + originPosition_;
 		}
 
-		public Vector3 GetPosition(Vector3 worldPosition) {
-			return (worldPosition - originPosition_) / cellSize;
+		public Vector3 GetPosition(int x, int y) {
+			return new Vector3(x + cellSize / 2, y + cellSize / 2) * cellSize + originPosition_;
 		}
 
 		public void GetXY(Vector3 worldPosition, out int x, out int y) {

@@ -102,8 +102,8 @@ namespace OperationBlackwell.AI {
 						UpdateValidMovePositions(unit);
 						Tilemap.Node node = SelectEndPoint();
 						Actions unitAction;
-						int pathLength = GameController.Instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(new Vector3(node.gridX, node.gridY))).Count * 2;
-						unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(new Vector3(node.gridX, node.gridY)),
+						int pathLength = GameController.Instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(node.gridX, node.gridY)).Count * 2;
+						unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(node.gridX, node.gridY),
 							grid.GetGridObject(unit.GetPosition()), unit.GetPosition(), unit, null, pathLength);
 						unit.SaveAction(unitAction);
 					} else {
@@ -128,11 +128,12 @@ namespace OperationBlackwell.AI {
 				cost += action.GetTotalCost();
 			}
 			initiative = GenerateInitiative(cost, 0, 0);
+			initiative += activeUnits_.FindIndex(x => x == unit);
 			return new OrderObject(initiative, unit, cost);
 		}
 
 		private int GenerateInitiative(int cost, int pathLength, int attackRange) {
-			int initiative = UnityEngine.Random.Range(1, 10);
+			int initiative = cost + pathLength + attackRange;
 			return initiative;
 		}
 
