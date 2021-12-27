@@ -427,8 +427,8 @@ namespace OperationBlackwell.Core {
 									prevActionCount_++;
 									OrderObject unitOrder = GetOrderObject(unitGridCombat_);
 									if(unitOrder == null) {
-										int cost = GenerateTotalCost(0, 0, 0);
-										int initiative = GenerateInitiative(cost, 0, 0);
+										int cost = GenerateTotalCost(0, 0, attackCost);
+										int initiative = GenerateInitiative(cost, 0, attackCost);
 										unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
 										orderList_.Enqueue(unitOrder);
 									} else {
