@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
+	[System.Serializable]
 	public class OrderObject : IQueueItem {
 		private int initiative_;
 		private CoreUnit unit_;
