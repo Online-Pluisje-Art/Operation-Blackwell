@@ -35,6 +35,7 @@ namespace OperationBlackwell.Core {
 		public EventHandler<UnitEvent> OnUnitActionPointsChanged;
 		public EventHandler<string> OnWeaponChanged;
 		public EventHandler<int> OnTurnEnded;
+		public EventHandler<bool> GameEnded;
 
 		public class UnitEvent : EventArgs {
 			public CoreUnit unit;
@@ -114,6 +115,8 @@ namespace OperationBlackwell.Core {
 			CoreUnit unit = (CoreUnit)sender;
 			if(unit.GetTeam() == Team.Blue) {
 				blueTeamList_.Remove(unit);
+				state_ = State.Waiting;
+				GameEnded?.Invoke(this, false);
 			} else {
 				redTeamList_.Remove(unit);
 			}
