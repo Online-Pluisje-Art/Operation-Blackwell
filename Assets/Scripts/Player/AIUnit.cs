@@ -237,10 +237,6 @@ namespace OperationBlackwell.Player {
 			return hitChance;
 		}
 
-		public override int GetActionCount() {
-			return 0;
-		}
-
 		public override void ExecuteActions() {
 			StartCoroutine(ExecuteActionsCoroutine());
 			hasExecuted_ = true;

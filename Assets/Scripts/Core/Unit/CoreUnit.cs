@@ -24,6 +24,7 @@ namespace OperationBlackwell.Core {
 		
 
 		protected void Start() {
+			GameController.Instance.GetGrid().GetGridObject(transform.position).SetUnitGridCombat(this);
 			ResetActionPoints();
 			SetActiveWeapon(0);
 		}
@@ -68,6 +69,10 @@ namespace OperationBlackwell.Core {
 			return actions_;
 		}
 
+		public virtual int GetActionCount() {
+			return actions_.Count();
+		}
+
 		public virtual void ClearActions() {
 			actions_.Clear();
 			ResetActionPoints();
@@ -102,7 +107,6 @@ namespace OperationBlackwell.Core {
 		public abstract void SetActiveWeapon(int index);
 		public abstract string GetActiveWeapon();
 		public abstract Actions.AttackType GetAttackType();
-		public abstract int GetActionCount();
 		public abstract void ExecuteActions();
 		public abstract String GetName();
 	}
