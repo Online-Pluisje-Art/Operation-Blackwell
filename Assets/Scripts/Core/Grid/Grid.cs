@@ -5,7 +5,6 @@ using System;
 
 namespace OperationBlackwell.Core {
 	public class Grid<TGridObject> {
-		private readonly bool debugGrid_ = false;
 		public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
 		public class OnGridObjectChangedEventArgs : EventArgs {
 			public int x;
