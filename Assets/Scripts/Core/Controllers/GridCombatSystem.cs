@@ -8,7 +8,10 @@ namespace OperationBlackwell.Core {
 
 		public static GridCombatSystem Instance { get; private set; }
 		
+		[Header("External Controllers")]
 		[SerializeField] private BaseCutsceneController cutsceneController_;
+		[SerializeField] private BaseAIController aiController_;
+		[Header("Units")]
 		[SerializeField] private List<CoreUnit> blueTeamList_;
 
 		private State state_;
@@ -607,7 +610,7 @@ namespace OperationBlackwell.Core {
 		private void ForceTurnOver() {
 			// Execute all unit actions and end turn
 			DeselectUnit();
-			// TODO: Set all the AI actions here
+			aiController_.SetUnitActionsTurn();
 			ExecuteAllActions();
 		}
 
@@ -708,7 +711,7 @@ namespace OperationBlackwell.Core {
 
 		private bool UnitsHaveActionsPoints() {
 			foreach(CoreUnit unit in blueTeamList_) {
-				if(unit.HasActionPoints()) {
+				if(unit.HasActionPoints() && unit.GetActionPoints() > 1) {
 					return true;
 				}
 			}
@@ -737,6 +740,7 @@ namespace OperationBlackwell.Core {
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
 						state_ = State.Normal;
+						aiController_.LoadStage(trigger.GetIndex());
 					}
 				}
 			}
@@ -821,6 +825,10 @@ namespace OperationBlackwell.Core {
 
 		private void ResetArrowVisual() {
 			GameController.Instance.GetArrowTilemap().SetAllTilemapSprite(MovementTilemap.TilemapObject.TilemapSprite.None);
+		}
+
+		public void AddOrderObject(OrderObject orderObj) {
+			orderList_.Enqueue(orderObj);
 		}
 	}
 }
