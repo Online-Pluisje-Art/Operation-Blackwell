@@ -134,15 +134,17 @@ namespace OperationBlackwell.Player {
 			}
 			yield return null;
 			float time = 0.0f;
-			RuntimeAnimatorController ac = animator_.runtimeAnimatorController;
-			for(int i = 0; i < ac.animationClips.Length; i++) {
-				if(ac.animationClips[i].name == animatorClipName_) {
-					time = ac.animationClips[i].length;
-					break;
+			if(animator_ != null) {
+				RuntimeAnimatorController ac = animator_.runtimeAnimatorController;
+				for(int i = 0; i < ac.animationClips.Length; i++) {
+					if(ac.animationClips[i].name == animatorClipName_) {
+						time = ac.animationClips[i].length;
+						break;
+					}
 				}
+				// The 0.15f has been found through meticulous testing.
+				yield return new WaitForSeconds(time + 0.15f);
 			}
-			// The 0.15f has been found through meticulous testing.
-			yield return new WaitForSeconds(time + 0.15f);
 			unitGridCombat.Damage(this, weapon.GetDamage());
 			state_ = State.Normal;
 			onShootComplete();
