@@ -13,7 +13,7 @@ namespace OperationBlackwell.Player {
 
 		public void SetMovePosition(Vector3 movePosition, Vector3 originPos, Action onReachedTargetPosition) {
 			this.onReachedTargetPosition_ = onReachedTargetPosition;
-			pathVectorList_ = GridPathfinding.Instance.GetPathRouteWithShortcuts(originPos, movePosition).pathVectorList;
+			pathVectorList_ = GridPathfinding.Instance.GetPathRoute(originPos, movePosition).pathVectorList;
 
 			if(pathVectorList_.Count > 0) {
 				pathIndex_ = 0;
