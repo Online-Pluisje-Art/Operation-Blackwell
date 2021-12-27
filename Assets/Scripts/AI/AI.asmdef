@@ -1,6 +1,6 @@
 {
     "name": "OperationBlackwell.AI",
-    "rootNamespace": "",
+    "rootNamespace": "OperationBlackwell.AI",
     "references": [
         "GUID:f039f22f2b49b14ccbd1ae39fcf00fdb",
         "GUID:3993cb11d8b1b5dbc97da6b4d9c3cd81"
