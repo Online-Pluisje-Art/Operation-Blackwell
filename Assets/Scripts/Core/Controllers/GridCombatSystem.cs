@@ -595,13 +595,6 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		public void TestTurnOver() {
-			if(unitGridCombat_.GetActionPoints() <= 0) {
-				// Cannot move or attack, turn over
-				ForceTurnOver();
-			}
-		}
-
 		private void DeselectUnit() {
 			unitGridCombat_ = null;
 			ResetMoveTiles();
@@ -616,6 +609,7 @@ namespace OperationBlackwell.Core {
 		private void ForceTurnOver() {
 			// Execute all unit actions and end turn
 			DeselectUnit();
+			// TODO: Set all the AI actions here
 			ExecuteAllActions();
 		}
 
