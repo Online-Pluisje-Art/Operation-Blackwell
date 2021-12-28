@@ -55,7 +55,7 @@ namespace OperationBlackwell.AI {
 			GridCombatSystem.Instance.LoadAllEnemies(unitsToLoad);
 		}
 
-		public void UnloadStage() {
+		public override void UnloadStage() {
 			currentStage_ = new CombatStage();
 			activeUnits_.Clear();
 		}

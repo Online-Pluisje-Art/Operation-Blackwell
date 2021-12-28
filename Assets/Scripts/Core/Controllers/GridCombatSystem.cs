@@ -119,6 +119,9 @@ namespace OperationBlackwell.Core {
 				GameEnded?.Invoke(this, false);
 			} else {
 				redTeamList_.Remove(unit);
+				if(redTeamList_.Count <= 0)	{
+					aiController_.UnloadStage();
+				}
 			}
 			orderList_.GetQueue().RemoveAll(x => x.GetUnit() == unit);
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
