@@ -117,6 +117,7 @@ namespace OperationBlackwell.Core {
 			} else {
 				redTeamList_.Remove(unit);
 			}
+			orderList_.GetQueue().RemoveAll(x => x.GetUnit() == unit);
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(unit.GetPosition());
 			gridObject.ClearUnitGridCombat();

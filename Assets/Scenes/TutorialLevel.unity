@@ -6186,6 +6186,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1985715751}
     m_Modifications:
+    - target: {fileID: -3226802398520431640, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: index_
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (1)
@@ -11329,68 +11333,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6238058716552792254, guid: 0f35d99036394798ba8689ba84f9f3ca, type: 3}
   m_PrefabInstance: {fileID: 795877335}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &738709249
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1985715751}
-    m_Modifications:
-    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_Name
-      value: Combat
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 16.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
---- !u!4 &738709250 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
-  m_PrefabInstance: {fileID: 738709249}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &738877367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12835,6 +12777,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1985715751}
     m_Modifications:
+    - target: {fileID: -3226802398520431640, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: index_
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (2)
@@ -20698,6 +20644,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1985715751}
     m_Modifications:
+    - target: {fileID: -3226802398520431640, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: index_
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (3)
@@ -27854,7 +27804,6 @@ Transform:
   - {fileID: 1508523785}
   - {fileID: 2081902529}
   - {fileID: 2131169157}
-  - {fileID: 738709250}
   m_Father: {fileID: 463435885}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -29216,6 +29165,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1985715751}
     m_Modifications:
+    - target: {fileID: -3226802398520431640, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: index_
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (4)
@@ -30095,6 +30048,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1985715751}
     m_Modifications:
+    - target: {fileID: -3226802398520431640, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: index_
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (5)
