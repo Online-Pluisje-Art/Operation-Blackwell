@@ -209,6 +209,17 @@ namespace OperationBlackwell.Player {
 			}
 		}
 
+		[ContextMenu("Test")]
+		public void Die() {
+			healthSystem_.Damage(100);
+			GridCombatSystem.Instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
+			Destroy(gameObject);
+		}
+
+		public override bool IsDead() {
+			return healthSystem_.IsDead();
+		}
+
 		public override int GetAttackCost() {
 			return currentWeapon_.GetActionPointsCost();
 		}

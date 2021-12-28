@@ -68,6 +68,7 @@ namespace OperationBlackwell.Core {
 			}
 
 			PuzzleController.Instance.PuzzleEnded += OnPuzzleComplete;
+			GridCombatSystem.Instance.GameEnded += OnGameEnded;
 		}
 
 		private void Update() {
@@ -111,6 +112,14 @@ namespace OperationBlackwell.Core {
 						Destroy(destroyableObject);
 					}
 				}
+			}
+		}
+		
+		private void OnGameEnded(object sender, bool won) {
+			if(won) {
+				SceneManager.LoadScene("WinScreen");
+			} else {
+				SceneManager.LoadScene("LoseScreen");
 			}
 		}
 	}
