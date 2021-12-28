@@ -5,8 +5,6 @@ using UnityEngine;
 
 namespace OperationBlackwell.Core {
 	public class MovementTilemap {
-
-		public event EventHandler OnLoaded;
 		private Grid<TilemapObject> grid_;
 
 		public MovementTilemap(int width, int height, float cellSize, Vector3 originPosition) {
