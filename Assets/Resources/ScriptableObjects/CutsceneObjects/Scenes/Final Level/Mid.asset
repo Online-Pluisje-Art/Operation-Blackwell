@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
+  m_Name: Mid
+  m_EditorClassIdentifier: 
+  characterLeft_: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+  characterRight_: {fileID: 11400000, guid: 8da3411dceeb5df46b9a0e548b907008, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: 8da3411dceeb5df46b9a0e548b907008, type: 2}
+    direction: 1
+    message: "Well well well, if it isn\u2019t the great Adam Blackwell. Always committed
+      to be a giant thorn in my side."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Really man? This is about something bigger than us. You should get your
+      inferiority complex checked out. Now step aside and let me through.
+  - character: {fileID: 11400000, guid: 8da3411dceeb5df46b9a0e548b907008, type: 2}
+    direction: 1
+    message: "Don\u2019t you get it? I don\u2019t take orders from you. I am the
+      one giving the orders. I order you to die."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: 'Oh no....
+
+'
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Anyway...
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "I\u2019ll give you one more chance Jonah, step aside or die."
+  - character: {fileID: 11400000, guid: 8da3411dceeb5df46b9a0e548b907008, type: 2}
+    direction: 1
+    message: "I\u2019d rather die"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: So be it
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: "Are the two lovebirds done talking? Let\u2019s get this over with."
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 0
+    message: "Why does everything have to end in violence\u2026?"
+  - character: {fileID: 11400000, guid: 8da3411dceeb5df46b9a0e548b907008, type: 2}
+    direction: 1
+    message: Men, kill them!

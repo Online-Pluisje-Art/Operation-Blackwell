@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
+  m_Name: 3-5 Transition
+  m_EditorClassIdentifier: 
+  characterLeft_: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+  characterRight_: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: Ah, Adam, I see you assembled the necessary skill.
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: Adam, Who is this?!
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "My informant. He helped me escape the terrorist base. He is also the
+      reason I have these keys. But he isn\u2019t very keen on revealing his identity\u2026"
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: "No shit! I just tracked his signal, It\u2019s Aizen Rhodes! You know,
+      the terrorist leader!"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Fuck
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 0
+    message: You made me leave my home for a trap?!
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: WAIT! I can explain! Just give me a chance!
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: You better have a very believable reason!
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: Start talking.
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: "I know I\u2019m leading the terrorists but that is not a voluntairy
+      choice. Their talent scouts found me when I was younger and put me in this
+      position. If I don't obey them like a dog, my home town will get vaporised."
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: "Ever since then I have been waiting for an opportunity to fight back.
+      And wouldn\u2019t you believe it. On some random day Adam Blackwell just walks
+      into my base. Setup as a fall guy by the great general spade himself."
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: "I hid my identity to prevent this doubt. But I guess it didn\u2019t
+      work out so well in the end. Whether you trust me or not, I beg you, get that
+      message out to the masses. Please\u2026"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: What do you guys think?
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 0
+    message: He sounds genuinely scared. I think he is being honest.
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: "Sad story or not, what guarantee do we have that we are not walking
+      directly into a trap? I don\u2019t want your word, I want information."
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: That was why I actually contacted Adam. Jonah Spade himself recently
+      arrived at this base. I think he knows what you are trying to do with those
+      keys.
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: He is gathering a lot of forces in this base. I am stationing them as
+      far outside the base as possible but there is still a fair amount inside. Expect
+      heavy resistance including Spade himself.
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: "His story matches with the military intercom I\u2019ve been tracking\u2026"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Sigh, It couldn\u2019t just be a simple entry mission couldn\u2019t
+      it. Well, I guess I have a bone to pick with Jonah anyway. Why not do it all
+      at the same time."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Let\u2019s finish this. Set course for the terrorist base."
