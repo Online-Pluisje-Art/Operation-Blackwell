@@ -8,11 +8,9 @@ namespace OperationBlackwell.Player {
 
 		private Vector3 velocityVector_;
 		private Rigidbody2D rigidbody2D_;
-		private PlayerBase characterBase_;
 
 		private void Awake() {
 			rigidbody2D_ = GetComponent<Rigidbody2D>();
-			characterBase_ = GetComponent<PlayerBase>();
 		}
 
 		public void SetVelocity(Vector3 velocityVector) {

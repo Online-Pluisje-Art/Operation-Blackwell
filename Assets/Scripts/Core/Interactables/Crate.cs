@@ -15,7 +15,7 @@ namespace OperationBlackwell.Core {
 
 		public bool IsInRange(Vector3 unitPos) {
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
-			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(unitPos, transform.position).Count - 1;
+			int nodesBetweenPlayers = Utils.CalculatePoints(unitPos, transform.position).Count - 1;
 			return nodesBetweenPlayers <= range_;
 		}
 

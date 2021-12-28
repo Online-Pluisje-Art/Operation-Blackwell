@@ -26,6 +26,10 @@ namespace OperationBlackwell.Player {
 			return Random.Range(costs_[0], costs_[1]);
 		}
 
+		public virtual int GetMaxCost() {
+			return costs_[1];
+		}
+
 		public virtual float GetBaseHitchance() {
 			return baseHitchance_;
 		}

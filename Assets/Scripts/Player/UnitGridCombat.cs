@@ -7,38 +7,19 @@ using OperationBlackwell.Core;
 namespace OperationBlackwell.Player {
 	[RequireComponent(typeof(AudioSource))]
 	public class UnitGridCombat : CoreUnit {
-
-		[SerializeField] private Team team_;
-		[SerializeField] private int actionPoints_;
-		[SerializeField] private int maxActionPoints_;
 		[SerializeField] private List<Weapon> weapons_;
-		[SerializeField] private Animator animator_;
 		[SerializeField] private String name_;
-		
-		private PlayerBase characterBase_;
-		private GameObject selectedGameObject_;
 		private MovePositionPathfinding movePosition_;
-		private State state_;
-
-		private HealthSystem healthSystem_;
+		
 		private WorldBar healthBar_;
 
 		private Weapon currentWeapon_;
-
-		private WaitingQueue<Actions> actions_;
-		private bool hasExecuted_;
-		private bool isComplete_;
+		
 		private bool shouldPlayAttackAnimation_ = false;
 		private Direction direction_ = Direction.Null;
 
 		private AudioSource audioSource_;
 		private string animatorClipName_ = "";
-
-		private enum State {
-			Normal,
-			Moving,
-			Attacking
-		}
 
 		private enum Direction {
 			Up,
@@ -49,8 +30,6 @@ namespace OperationBlackwell.Player {
 		}
 
 		private void Awake() {
-			characterBase_ = GetComponent<PlayerBase>();
-			selectedGameObject_ = transform.Find("Selected").gameObject;
 			movePosition_ = GetComponent<MovePositionPathfinding>();
 			audioSource_ = GetComponent<AudioSource>();
 			//SetSelectedVisible(false);
@@ -59,10 +38,6 @@ namespace OperationBlackwell.Player {
 			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
 			actions_ = new WaitingQueue<Actions>();
-		}
-
-		private void Start() {
-			SetActiveWeapon(0);
 		}
 
 		private void Update() {
@@ -103,10 +78,6 @@ namespace OperationBlackwell.Player {
 			return currentWeapon_.GetAttackType();
 		}
 
-		public void SetSelectedVisible(bool visible) {
-			selectedGameObject_.SetActive(visible);
-		}
-
 		public override bool CanAttackUnit(CoreUnit unitGridCombat, Vector3 attackPos) {
 			/* 
 			 * If the unit is on the same team, return false.
@@ -115,12 +86,12 @@ namespace OperationBlackwell.Player {
 			 * when its the same node it returns 1 so we subtract one from the distance to get the actual distance.
 			 * If the distance is less or equal than the weapon range, return true.
 			 */
-			if(unitGridCombat == null || unitGridCombat.GetTeam() == team_ || actionPoints_ < currentWeapon_.GetActionPointsCost()) {
+			if(unitGridCombat == null || unitGridCombat.GetTeam() == team_ || actionPoints_ <= currentWeapon_.GetMaxCost()) {
 				return false;
 			}
 
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
-			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
+			int nodesBetweenPlayers = Utils.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
 			return nodesBetweenPlayers <= currentWeapon_.GetRange() && nodesBetweenPlayers > 0;
 		}
 
@@ -131,39 +102,7 @@ namespace OperationBlackwell.Player {
 				onReachedPosition();
 			});
 		}
-
-		public override Vector3 GetPosition() {
-			return transform.position;
-		}
-
-		public override Team GetTeam() {
-			return team_;
-		}
-
-		public override bool IsEnemy(CoreUnit unitGridCombat) {
-			return unitGridCombat.GetTeam() != team_;
-		}
-
-		public override void SetActionPoints(int actionPoints) {
-			actionPoints_ = actionPoints;
-		}
-
-		public override int GetActionPoints() {
-			return actionPoints_;
-		}
-
-		public override bool HasActionPoints() {
-			return actionPoints_ > 0;
-		}
-
-		public override int GetMaxActionPoints() {
-			return maxActionPoints_;
-		}
-
-		public override void ResetActionPoints() {
-			actionPoints_ = maxActionPoints_;
-		}
-
+		
 		public override void AttackUnit(CoreUnit unitGridCombat, Actions.AttackType type, Action onAttackComplete) {
 			state_ = State.Attacking;
 
@@ -270,21 +209,6 @@ namespace OperationBlackwell.Player {
 			}
 		}
 
-		public override void Damage(CoreUnit attacker, float damageAmount) {	
-			healthSystem_.Damage((int)damageAmount);
-			if(healthSystem_.IsDead()) {
-				GridCombatSystem.Instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
-				Destroy(gameObject);
-			} else {
-				// Knockback
-				//transform.position += bloodDir * 5f;
-			}
-		}
-
-		public override bool IsDead() {
-			return healthSystem_.IsDead();
-		}
-
 		public override int GetAttackCost() {
 			return currentWeapon_.GetActionPointsCost();
 		}
@@ -295,7 +219,7 @@ namespace OperationBlackwell.Player {
 		 */
 		private float RangedHitChance(Vector3 player, Vector3 target) {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-			List<Vector3> points = GridCombatSystem.Instance.CalculatePoints(player, target);
+			List<Vector3> points = Utils.CalculatePoints(player, target);
 
 			float hitChance = currentWeapon_.GetBaseHitchance();
 
@@ -307,19 +231,6 @@ namespace OperationBlackwell.Player {
 				}
 			}
 			return hitChance;
-		}
-
-		public override void SaveAction(Actions action) {
-			actionPoints_ -= action.cost;
-			actions_.Enqueue(action);
-		}
-
-		public override WaitingQueue<Actions> LoadActions() {
-			return actions_;
-		}
-
-		public override int GetActionCount() {
-			return actions_.Count();
 		}
 
 		public override void ExecuteActions() {
@@ -344,24 +255,6 @@ namespace OperationBlackwell.Player {
 			}
 			isComplete_ = true;
 			ClearActions();
-		}
-
-		public override void ClearActions() {
-			actions_.Clear();
-			ResetActionPoints();
-		}
-
-		public override bool HasExecuted() {
-			return hasExecuted_;
-		}
-
-		public override bool IsComplete() {
-			return isComplete_;
-		}
-
-		public override void ResetComplete() {
-			hasExecuted_ = false;
-			isComplete_ = false;
 		}
 
 		private void updateAnimation() {

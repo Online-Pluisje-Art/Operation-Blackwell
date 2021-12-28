@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
+	[System.Serializable]
 	public class Actions : IQueueItem {
 		public enum ActionType {
 			None,

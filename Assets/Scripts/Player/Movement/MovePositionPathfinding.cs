@@ -35,6 +35,7 @@ namespace OperationBlackwell.Player {
 					if(pathIndex_ >= pathVectorList_.Count) {
 						// End of path
 						pathIndex_ = -1;
+						pathVectorList_ = null;
 						onReachedTargetPosition_();
 					}
 				}
