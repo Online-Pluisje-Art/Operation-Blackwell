@@ -32,5 +32,18 @@ namespace OperationBlackwell.Puzzles {
 					return 0;
 			}
 		}
+
+		public float PuzzleDuration() {
+			switch (puzzleDifficulty_) {
+				case PuzzleDifficulty.Easy:
+					return 60f;
+				case PuzzleDifficulty.Medium:
+					return 120f;
+				case PuzzleDifficulty.Hard:
+					return 180f;
+				default:
+					return 0f;
+			}
+		}
 	}
 }

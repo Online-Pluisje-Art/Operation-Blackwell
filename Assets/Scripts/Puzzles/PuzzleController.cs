@@ -15,6 +15,8 @@ namespace OperationBlackwell.Puzzles {
 		[Header("Puzzles")]
 		[SerializeField] private Puzzle[] puzzles;
 		[SerializeField] private GameObject puzzleVictory_;
+		[SerializeField] private GameObject puzzleTimer_;
+		private CircularTimer timerScript_;
 
 		private PuzzleBlock emptyPuzzleBlock_;
 		private PuzzleBlock[,] puzzleBlocks_;
@@ -22,7 +24,8 @@ namespace OperationBlackwell.Puzzles {
 		private enum PuzzleState {
 			Inactive,
 			Active,
-			Solved
+			Solved,
+			Failed
 		}
 		private PuzzleState currentState_;
 		private Puzzle currentPuzzle_;
@@ -56,6 +59,8 @@ namespace OperationBlackwell.Puzzles {
 		private void Start() {
 			PuzzleTrigger.PuzzleLaunched += OnPuzzleStarted;
 			puzzleVictory_.SetActive(false);
+			puzzleTimer_.SetActive(false);
+			timerScript_ = puzzleTimer_.GetComponent<CircularTimer>();
 			background_ = GetComponent<Image>();
 			background_.enabled = false;
 		}
@@ -105,18 +110,20 @@ namespace OperationBlackwell.Puzzles {
 			}
 			input_ = new Queue<PuzzleBlock>();
 			background_.enabled = true;
+			puzzleTimer_.SetActive(true);
 			PuzzleStarted?.Invoke(this, System.EventArgs.Empty);
 			StartShuffle();
 		}
 
 		public void DestroyPuzzle() {
 			foreach(Transform child in transform) {
-				if(child.gameObject == puzzleVictory_) {
+				if(child.gameObject == puzzleVictory_ || child.gameObject == puzzleTimer_) {
 					continue;
 				}
 				Destroy(child.gameObject);
 			}
 			puzzleVictory_.SetActive(false);
+			puzzleTimer_.SetActive(false);
 			background_.enabled = false;
 			GameController.Instance.PuzzleEnded?.Invoke(this, currentPuzzle_.GetID());
 			GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
@@ -147,6 +154,8 @@ namespace OperationBlackwell.Puzzles {
 				MakeNextShuffleMove();
 			} else {
 				currentState_ = PuzzleState.Active;
+				timerScript_.duration = currentPuzzle_.PuzzleDuration();
+				timerScript_.StartTimer();
 			}
 		}
 
