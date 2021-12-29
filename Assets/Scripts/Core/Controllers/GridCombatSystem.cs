@@ -119,7 +119,7 @@ namespace OperationBlackwell.Core {
 				GameEnded?.Invoke(this, false);
 			} else {
 				redTeamList_.Remove(unit);
-				if(redTeamList_.Count <= 0)	{
+				if(redTeamList_.Count <= 0) {
 					aiController_.UnloadStage();
 				}
 			}

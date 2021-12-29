@@ -88,8 +88,11 @@ namespace OperationBlackwell.AI {
 				// TODO: Decide the best actions for the unit.
 				// For now we will just have the unit move to the nearest enemy. Or attack the nearest enemy.
 				// (This depends if the unit has enough action points and if the unit is in range of the enemy)
-				// The == 1 is because each tile to move has a cost of 2 and otherwise we would end up in a deadlock.
-				while(unit.HasActionPoints() && unit.GetActionPoints() > 1) {
+				while(unit.HasActionPoints()) {
+					// The == 1 is because each tile to move has a cost of 2 and otherwise we would end up in a deadlock.
+					if(unit.GetActionPoints() <= 1) {
+						break;
+					}
 					foreach(CoreUnit enemy in enemies) {
 						if(IsUnitInRange(unit, enemy)) {
 							walk = false;
@@ -98,20 +101,37 @@ namespace OperationBlackwell.AI {
 						}
 					}
 
+					List<Actions> actions = unit.LoadActions().GetQueue();
+
 					if(walk) {
-						UpdateValidMovePositions(unit);
-						Tilemap.Node node = SelectEndPoint();
+						Tilemap.Node node;
 						Actions unitAction;
-						int pathLength = GameController.Instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(node.gridX, node.gridY)).Count * 2;
-						unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(node.gridX, node.gridY),
-							grid.GetGridObject(unit.GetPosition()), unit.GetPosition(), unit, null, pathLength);
+						int pathLength;
+						if(actions.Count == 0) {
+							UpdateValidMovePositions(unit, unit.GetPosition());
+							node = SelectEndPoint();
+							pathLength = GameController.Instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(node.gridX, node.gridY)).Count * 2;
+							unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(node.gridX, node.gridY),
+								grid.GetGridObject(unit.GetPosition()), unit.GetPosition(), unit, null, pathLength);
+						} else {
+							UpdateValidMovePositions(unit, actions[actions.Count - 1].destinationPos);
+							node = SelectEndPoint();
+							pathLength = GameController.Instance.gridPathfinding.GetPath(actions[actions.Count - 1].destinationPos, grid.GetPosition(node.gridX, node.gridY)).Count * 2;
+							unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(node.gridX, node.gridY),
+								grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unit, null, pathLength);
+						}
 						unit.SaveAction(unitAction);
 					} else {
 						Actions.AttackType attackType = unit.GetAttackType();
 						Actions unitAction = null;
 						int attackCost = unit.GetAttackCost();
-						unitAction = new Actions(Actions.ActionType.Attack, attackType, grid.GetGridObject(unit.GetPosition()), unit.GetPosition(),
-							grid.GetGridObject(enemyToAttack.GetPosition()), enemyToAttack.GetPosition(), unit, enemyToAttack, attackCost);
+						if(actions.Count == 0) {
+							unitAction = new Actions(Actions.ActionType.Attack, attackType, grid.GetGridObject(unit.GetPosition()), unit.GetPosition(),
+								grid.GetGridObject(unit.GetPosition()), unit.GetPosition(), unit, enemyToAttack, attackCost);
+						} else {
+							unitAction = new Actions(Actions.ActionType.Attack, attackType, actions[actions.Count - 1].destination, actions[actions.Count - 1].destinationPos,
+								actions[actions.Count - 1].destination, actions[actions.Count - 1].destinationPos, unit, enemyToAttack, attackCost);
+						}
 						unit.SaveAction(unitAction);
 					}
 				}
@@ -144,17 +164,18 @@ namespace OperationBlackwell.AI {
 			return false;
 		}
 
-		private void UpdateValidMovePositions(AIUnit unit) {
+		private void UpdateValidMovePositions(AIUnit unit, Vector3 position) {
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
 			GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
 			Tilemap.Node node;
 
 			// Get Unit Grid Position X, Y
-			grid.GetXY(unit.GetPosition(), out int unitX, out int unitY);
+			grid.GetXY(position, out int unitX, out int unitY);
 
 			ResetMoveTiles();
 
 			int maxMoveDistance = unit.GetActionPoints() / 2;
+
 			for(int x = unitX - maxMoveDistance; x <= unitX + maxMoveDistance; x++) {
 				for(int y = unitY - maxMoveDistance; y <= unitY + maxMoveDistance; y++) {
 					if(x < 0 || x >= grid.GetWidth() || y < 0 || y >= grid.GetHeight()) {
@@ -192,8 +213,8 @@ namespace OperationBlackwell.AI {
 			if(endPoints_.Count > 0) {
 				do {
 					int randomIndex = UnityEngine.Random.Range(0, endPoints_.Count);
-					endPoint = endPoints_[0];
-					endPoints_.RemoveAt(0);
+					endPoint = endPoints_[randomIndex];
+					endPoints_.RemoveAt(randomIndex);
 				} while(endPoint.GetIsValidMovePosition() == false);
 			}
 			return endPoint;
