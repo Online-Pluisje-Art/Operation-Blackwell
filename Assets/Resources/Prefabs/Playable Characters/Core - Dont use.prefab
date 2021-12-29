@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 916711509772243815}
   - component: {fileID: 8599146273931584671}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Core - Dont use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,11 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team_: 0
-  maxActionPoints_: 10
-  animator_: {fileID: 988325546402099751}
-  weapons_:
-  - {fileID: 11400000, guid: 1867dd448d4d30f68b072219a42ff0ba, type: 2}
-  - {fileID: 11400000, guid: 721067833e1f9f0f09fd6f5cd1e0ed32, type: 2}
+  maxActionPoints_: 0
+  animator_: {fileID: 0}
+  weapons_: []
   name_: 
 --- !u!114 &2343956742568336423
 MonoBehaviour:
@@ -229,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed_: 5
-  animator_: {fileID: 988325546402099751}
+  animator_: {fileID: 0}
 --- !u!50 &916711509772243815
 Rigidbody2D:
   serializedVersion: 4
