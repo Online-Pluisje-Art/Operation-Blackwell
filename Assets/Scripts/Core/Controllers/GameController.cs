@@ -28,6 +28,7 @@ namespace OperationBlackwell.Core {
 
 		[Header("Puzzles")]
 		[SerializeField] private List<PuzzleComplete> puzzleDestroyableObjects_;
+		public System.EventHandler<int> PuzzleEnded;
 
 		private void Awake() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
@@ -67,7 +68,7 @@ namespace OperationBlackwell.Core {
 				Debug.Log(SceneManager.GetActiveScene().name + " has no level to load!");
 			}
 
-			PuzzleController.Instance.PuzzleEnded += OnPuzzleComplete;
+			PuzzleEnded += OnPuzzleComplete;
 			GridCombatSystem.Instance.GameEnded += OnGameEnded;
 		}
 
@@ -98,19 +99,13 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		private void OnPuzzleComplete(object sender, PuzzleController.PuzzleEndedArgs args) {
-			PuzzleComplete? puzzleCompleted = null;
+		private void OnPuzzleComplete(object sender, int id) {
 			foreach(PuzzleComplete puzzle in puzzleDestroyableObjects_) {
-				if(puzzle.puzzleID == args.id) {
-					puzzleCompleted = puzzle;
-					break;
-				}
-			}
-			if(puzzleCompleted != null) {
-				if(puzzleCompleted.Value.destroyableObjects != null) {
-					foreach(GameObject destroyableObject in puzzleCompleted.Value.destroyableObjects) {
+				if(puzzle.puzzleID == id) {
+					foreach(GameObject destroyableObject in puzzle.destroyableObjects) {
 						Destroy(destroyableObject);
 					}
+					break;
 				}
 			}
 		}

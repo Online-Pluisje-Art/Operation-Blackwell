@@ -2,17 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using OperationBlackwell.Core;
 
-namespace OperationBlackwell.Core {
+namespace OperationBlackwell.Puzzles {
 	public class PuzzleController : MonoBehaviour {
 		public static PuzzleController Instance { get; private set; }
 
-		public class PuzzleEndedArgs : System.EventArgs {
-			public int id;
-		}
-
 		public System.EventHandler<System.EventArgs> PuzzleStarted;
-		public System.EventHandler<PuzzleEndedArgs> PuzzleEnded;
 
 		private Image background_;
 
@@ -58,9 +54,18 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Start() {
+			PuzzleTrigger.PuzzleLaunched += OnPuzzleStarted;
 			puzzleVictory_.SetActive(false);
 			background_ = GetComponent<Image>();
 			background_.enabled = false;
+		}
+
+		private void OnDestroy() {
+			PuzzleTrigger.PuzzleLaunched -= OnPuzzleStarted;
+		}
+
+		private void OnPuzzleStarted(object sender, int id) {
+			CreatePuzzle(id);
 		}
 
 		public void CreatePuzzle(int puzzleIndex) {
@@ -113,9 +118,7 @@ namespace OperationBlackwell.Core {
 			}
 			puzzleVictory_.SetActive(false);
 			background_.enabled = false;
-			PuzzleEnded?.Invoke(this, new PuzzleEndedArgs {
-				id = currentPuzzle_.GetID()
-			});
+			GameController.Instance.PuzzleEnded?.Invoke(this, currentPuzzle_.GetID());
 			GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
 		}
 

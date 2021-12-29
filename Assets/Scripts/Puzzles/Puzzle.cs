@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OperationBlackwell.Core {
+namespace OperationBlackwell.Puzzles {
 	[CreateAssetMenu(fileName = "New Puzzle", menuName = "Puzzles/Puzzle")]
 	public class Puzzle : ScriptableObject {
 		public enum PuzzleDifficulty {

@@ -7,6 +7,8 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private int cost_;
 		[SerializeField] private int puzzleIndex_;
 
+		public static event System.EventHandler<int> PuzzleLaunched;
+
 		private void Start() {
 			GameController.Instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
 		}
@@ -16,7 +18,7 @@ namespace OperationBlackwell.Core {
 				return;
 			}
 			GridCombatSystem.Instance.SetState(GridCombatSystem.State.Cutscene);
-			PuzzleController.Instance.CreatePuzzle(puzzleIndex_);
+			PuzzleLaunched?.Invoke(this, puzzleIndex_);
 		}
 
 		public bool IsInRange(Vector3 unitPos) {
