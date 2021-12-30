@@ -94,7 +94,7 @@ namespace OperationBlackwell.Core {
 
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
-				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+				CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 				SceneManager.LoadScene("MainMenu");
 			}
 		}

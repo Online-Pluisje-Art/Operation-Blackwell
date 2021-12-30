@@ -211,7 +211,7 @@ namespace OperationBlackwell.Core {
 
 		private void LateUpdate() {
 			if(state_ == State.Cutscene) {
-				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+				CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 				return;
 			}
 			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
@@ -225,13 +225,13 @@ namespace OperationBlackwell.Core {
 				CoreUnit unit = gridObject.GetUnitGridCombat();
 				if(actions.Count == 0) {
 					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, unitGridCombat_.GetPosition()) && state_ == State.UnitSelected) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Attack);
 					} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && (state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Move);
 					} else if(unit != null && unit.GetTeam() == Team.Blue && (state_ == State.Normal || state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Select);
 					} else {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
 					if(unitGridCombat_ != null) {
 						OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
@@ -241,13 +241,13 @@ namespace OperationBlackwell.Core {
 					}
 				} else if(actions.Count > 0) {
 					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos) && state_ == State.UnitSelected) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Attack);
 					} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && (state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Move);
 					} else if(unit != null && unit.GetTeam() == Team.Blue && (state_ == State.Normal || state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Select);
 					} else {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
 					if(unitGridCombat_ != null) {
 						OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
@@ -375,7 +375,7 @@ namespace OperationBlackwell.Core {
 									GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
 										MovementTilemap.TilemapObject.TilemapSprite.None
 									);
-									CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+									CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 
 									Actions unitAction;
 									if(actions.Count == 0) {
