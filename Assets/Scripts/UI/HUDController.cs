@@ -15,8 +15,8 @@ namespace OperationBlackwell.UI {
 			GridCombatSystem.instance.OnUnitActionPointsChanged += UpdateActionPoints;
 			GridCombatSystem.instance.OnWeaponChanged += UpdateWeapon;
 			GridCombatSystem.instance.OnTurnEnded += UpdateTurnCounter;
-			CutsceneController.Instance.OnCutsceneStart += HideHUD;
-			CutsceneController.Instance.OnCutsceneEnd += ShowHUD;
+			CutsceneController.instance.OnCutsceneStart += HideHUD;
+			CutsceneController.instance.OnCutsceneEnd += ShowHUD;
 			PuzzleController.instance.PuzzleStarted += HideHUD;
 			GameController.instance.PuzzleEnded += ShowHUD;
 		}
@@ -25,8 +25,8 @@ namespace OperationBlackwell.UI {
 			GridCombatSystem.instance.OnUnitActionPointsChanged -= UpdateActionPoints;
 			GridCombatSystem.instance.OnWeaponChanged -= UpdateWeapon;
 			GridCombatSystem.instance.OnTurnEnded -= UpdateTurnCounter;
-			CutsceneController.Instance.OnCutsceneStart -= HideHUD;
-			CutsceneController.Instance.OnCutsceneEnd -= ShowHUD;
+			CutsceneController.instance.OnCutsceneStart -= HideHUD;
+			CutsceneController.instance.OnCutsceneEnd -= ShowHUD;
 			PuzzleController.instance.PuzzleStarted -= HideHUD;
 			GameController.instance.PuzzleEnded -= ShowHUD;
 		}

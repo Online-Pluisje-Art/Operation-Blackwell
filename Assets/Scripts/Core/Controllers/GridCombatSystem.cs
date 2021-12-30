@@ -7,8 +7,9 @@ namespace OperationBlackwell.Core {
 	public class GridCombatSystem : Singleton<GridCombatSystem> {
 		
 		[Header("External Controllers")]
-		[SerializeField] private BaseCutsceneController cutsceneController_;
 		[SerializeField] private BaseAIController aiController_;
+		public EventHandler<int> CutsceneTriggered;
+
 		[Header("Units")]
 		[SerializeField] private List<CoreUnit> blueTeamList_;
 
@@ -621,10 +622,6 @@ namespace OperationBlackwell.Core {
 			ExecuteAllActions();
 		}
 
-		public BaseCutsceneController GetCutsceneController() {
-			return cutsceneController_;
-		}
-
 		private void ExecuteAllActions() {
 			StartCoroutine(ExecuteAllActionsCoroutine());
 		}
@@ -744,7 +741,7 @@ namespace OperationBlackwell.Core {
 				}
 				if(trigger.GetTrigger() != TriggerNode.Trigger.None) {
 					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex())) {
-						cutsceneController_.StartCutscene(trigger.GetIndex());
+						CutsceneTriggered?.Invoke(this, trigger.GetIndex());
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
 						state_ = State.Normal;
