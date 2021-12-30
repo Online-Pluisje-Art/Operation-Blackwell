@@ -4,10 +4,7 @@ using System.Collections;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.LevelTransitions {
-	public class LevelTranstionController : MonoBehaviour {
-		public static LevelTranstionController instance { get; private set; }
-		
-		[SerializeField] private BaseCutsceneController cutsceneController_;
+	public class LevelTranstionController : Singleton<LevelTranstionController> {
 		[SerializeField] private string[] levels_;
 		[SerializeField][Range(0, 1)] private float fadeTime_;
 
@@ -15,17 +12,8 @@ namespace OperationBlackwell.LevelTransitions {
 
 		bool test = false;
 
-		private void Awake() {
-			if(instance == null) {
-				instance = this;
-			} else {
-				Destroy(gameObject);
-			}
-
-			currentLevelIndex_ = 0;
-		}
-
 		private void Update() {
+			currentLevelIndex_ = 0;
 			if(!test) {
 				test = true;
 				cutsceneController_.StartCutscene(0);
