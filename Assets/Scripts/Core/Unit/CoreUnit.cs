@@ -95,7 +95,7 @@ namespace OperationBlackwell.Core {
 		public virtual void Damage(CoreUnit attacker, float damageAmount) {	
 			healthSystem_.Damage((int)damageAmount);
 			if(healthSystem_.IsDead()) {
-				GridCombatSystem.Instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
+				GridCombatSystem.instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
 				Destroy(gameObject);
 			}
 		}

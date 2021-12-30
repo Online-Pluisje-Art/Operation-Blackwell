@@ -4,9 +4,7 @@ using UnityEngine;
 using System;
 
 namespace OperationBlackwell.Core {
-	public class GridCombatSystem : MonoBehaviour {
-
-		public static GridCombatSystem Instance { get; private set; }
+	public class GridCombatSystem : Singleton<GridCombatSystem> {
 		
 		[Header("External Controllers")]
 		[SerializeField] private BaseCutsceneController cutsceneController_;
@@ -67,12 +65,6 @@ namespace OperationBlackwell.Core {
 			Middlemouseclick
 		}
 
-		private void Awake() {
-			Instance = this;
-			state_ = State.OutOfCombat;
-			OnUnitDeath += RemoveUnitOnDeath;
-		}
-
 		private void Start() {
 			turn_ = 1;
 			redTeamList_ = new List<CoreUnit>();
@@ -93,6 +85,9 @@ namespace OperationBlackwell.Core {
 			prevNode_ = null;
 			prevPosition_ = Vector3.zero;
 			setAiTurn_ = true;
+
+			state_ = State.OutOfCombat;
+			OnUnitDeath += RemoveUnitOnDeath;
 		}
 
 		private void OnDestroy() {

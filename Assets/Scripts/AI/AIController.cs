@@ -52,7 +52,7 @@ namespace OperationBlackwell.AI {
 				activeUnits_.Add(unit);
 				unitsToLoad.Add(unit);
 			}
-			GridCombatSystem.Instance.LoadAllEnemies(unitsToLoad);
+			GridCombatSystem.instance.LoadAllEnemies(unitsToLoad);
 		}
 
 		public override void UnloadStage() {
@@ -61,7 +61,7 @@ namespace OperationBlackwell.AI {
 		}
 
 		public override void SetUnitActionsTurn() {
-			GridCombatSystem combatSystem = GridCombatSystem.Instance;
+			GridCombatSystem combatSystem = GridCombatSystem.instance;
 			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			List<CoreUnit> enemies = combatSystem.GetBlueTeam();
 			bool walk;

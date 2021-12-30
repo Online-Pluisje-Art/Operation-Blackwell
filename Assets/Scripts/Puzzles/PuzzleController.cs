@@ -125,8 +125,8 @@ namespace OperationBlackwell.Puzzles {
 			puzzleVictory_.SetActive(false);
 			puzzleTimer_.SetActive(false);
 			background_.enabled = false;
-			GameController.Instance.PuzzleEnded?.Invoke(this, currentPuzzle_.GetID());
-			GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
+			GameController.instance.PuzzleEnded?.Invoke(this, currentPuzzle_.GetID());
+			GridCombatSystem.instance.SetState(GridCombatSystem.State.OutOfCombat);
 		}
 
 		public void OnPlayerMoveBlockInput(object sender, PuzzleBlock block) {

@@ -76,7 +76,7 @@ namespace OperationBlackwell.Core {
 						GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {
 							unit = invoker
 						};
-						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						GridCombatSystem.instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 						isComplete_ = true;
 					});
 					break;
@@ -85,7 +85,7 @@ namespace OperationBlackwell.Core {
 						GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {
 							unit = invoker
 						};
-						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						GridCombatSystem.instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 						isComplete_ = true;
 					});
 					break;

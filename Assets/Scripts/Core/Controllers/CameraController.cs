@@ -17,8 +17,8 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Start() {
-			GridCombatSystem.Instance.OnUnitSelect += OnNewPlayerSelect;
-			GridCombatSystem.Instance.OnUnitMove += OnPlayerMove;
+			GridCombatSystem.instance.OnUnitSelect += OnNewPlayerSelect;
+			GridCombatSystem.instance.OnUnitMove += OnPlayerMove;
 		}
 
 		private void FixedUpdate() {
@@ -46,8 +46,8 @@ namespace OperationBlackwell.Core {
 			float moveSpeed = 15f;
 
 			Vector3 activePlayerPosition = new Vector3(0, 0, 0);
-			if(GridCombatSystem.Instance.GetActiveUnit() != null) {
-				activePlayerPosition = GridCombatSystem.Instance.GetActiveUnit().transform.position;
+			if(GridCombatSystem.instance.GetActiveUnit() != null) {
+				activePlayerPosition = GridCombatSystem.instance.GetActiveUnit().transform.position;
 				//Lock the camera to the active player plus a range of 10
 				if(activePlayerPosition.x - distance > camera_.transform.position.x || activePlayerPosition.x + distance < camera_.transform.position.x) {
 					moveDir.x = 0;
@@ -73,8 +73,8 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void OnDestroy() {
-			GridCombatSystem.Instance.OnUnitSelect -= OnNewPlayerSelect;
-			GridCombatSystem.Instance.OnUnitMove -= OnPlayerMove;
+			GridCombatSystem.instance.OnUnitSelect -= OnNewPlayerSelect;
+			GridCombatSystem.instance.OnUnitMove -= OnPlayerMove;
 		}
 
 		private void OnNewPlayerSelect(object player, GridCombatSystem.UnitPositionEvent args) {

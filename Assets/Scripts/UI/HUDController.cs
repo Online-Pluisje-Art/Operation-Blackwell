@@ -12,9 +12,9 @@ namespace OperationBlackwell.UI {
 		[SerializeField] private GameObject hud_;
 
 		private void Start() {
-			GridCombatSystem.Instance.OnUnitActionPointsChanged += UpdateActionPoints;
-			GridCombatSystem.Instance.OnWeaponChanged += UpdateWeapon;
-			GridCombatSystem.Instance.OnTurnEnded += UpdateTurnCounter;
+			GridCombatSystem.instance.OnUnitActionPointsChanged += UpdateActionPoints;
+			GridCombatSystem.instance.OnWeaponChanged += UpdateWeapon;
+			GridCombatSystem.instance.OnTurnEnded += UpdateTurnCounter;
 			CutsceneController.Instance.OnCutsceneStart += HideHUD;
 			CutsceneController.Instance.OnCutsceneEnd += ShowHUD;
 			PuzzleController.Instance.PuzzleStarted += HideHUD;
@@ -22,9 +22,9 @@ namespace OperationBlackwell.UI {
 		}
 
 		private void OnDestroy() {
-			GridCombatSystem.Instance.OnUnitActionPointsChanged -= UpdateActionPoints;
-			GridCombatSystem.Instance.OnWeaponChanged -= UpdateWeapon;
-			GridCombatSystem.Instance.OnTurnEnded -= UpdateTurnCounter;
+			GridCombatSystem.instance.OnUnitActionPointsChanged -= UpdateActionPoints;
+			GridCombatSystem.instance.OnWeaponChanged -= UpdateWeapon;
+			GridCombatSystem.instance.OnTurnEnded -= UpdateTurnCounter;
 			CutsceneController.Instance.OnCutsceneStart -= HideHUD;
 			CutsceneController.Instance.OnCutsceneEnd -= ShowHUD;
 			PuzzleController.Instance.PuzzleStarted -= HideHUD;

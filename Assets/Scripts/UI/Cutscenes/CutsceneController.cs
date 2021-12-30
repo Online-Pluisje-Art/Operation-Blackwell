@@ -71,8 +71,8 @@ namespace OperationBlackwell.UI {
 		}
 
 		public override void StartCutscene(int index) {
-			if(GridCombatSystem.Instance != null) {
-				GridCombatSystem.Instance.SetState(GridCombatSystem.State.Cutscene);
+			if(GridCombatSystem.instance != null) {
+				GridCombatSystem.instance.SetState(GridCombatSystem.State.Cutscene);
 			}
 			currentCutsceneIndex_ = index;
 			OnCutsceneStart?.Invoke(this, System.EventArgs.Empty);
@@ -80,8 +80,8 @@ namespace OperationBlackwell.UI {
 		}
 
 		public override void EndCutscene() {
-			if(GridCombatSystem.Instance != null) {
-				GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
+			if(GridCombatSystem.instance != null) {
+				GridCombatSystem.instance.SetState(GridCombatSystem.State.OutOfCombat);
 			}
 			OnCutsceneEnd?.Invoke(this, System.EventArgs.Empty);
 			Hide();

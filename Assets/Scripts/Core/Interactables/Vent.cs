@@ -14,7 +14,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void Interact(CoreUnit unit) {
-			GridCombatSystem combatInstance = GridCombatSystem.Instance;
+			GridCombatSystem combatInstance = GridCombatSystem.instance;
 			CoreUnit player = unit;
 			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Vector3 targetPosition = new Vector3(targetVent_.transform.position.x + targetVent_.offsetX_, targetVent_.transform.position.y + targetVent_.offsetY_, 0);
