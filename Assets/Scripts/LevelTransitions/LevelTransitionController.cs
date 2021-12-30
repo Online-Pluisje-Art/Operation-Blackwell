@@ -4,11 +4,13 @@ using System.Collections;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.LevelTransitions {
-	public class LevelTranstionController : Singleton<LevelTranstionController> {
+	public class LevelTransitionController : Singleton<LevelTransitionController> {
 		[SerializeField] private string[] levels_;
 		[SerializeField][Range(0, 1)] private float fadeTime_;
 
 		private int currentLevelIndex_;
+
+		public System.EventHandler<int> LeveltransitionCutsceneTriggered;
 
 		bool test = false;
 
@@ -16,7 +18,7 @@ namespace OperationBlackwell.LevelTransitions {
 			currentLevelIndex_ = 0;
 			if(!test) {
 				test = true;
-				cutsceneController_.StartCutscene(0);
+				LeveltransitionCutsceneTriggered?.Invoke(this, 0);
 			}
 		}
 
