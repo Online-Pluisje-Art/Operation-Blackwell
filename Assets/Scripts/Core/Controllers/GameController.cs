@@ -63,7 +63,7 @@ namespace OperationBlackwell.Core {
 			}
 
 			PuzzleEnded += OnPuzzleComplete;
-			GridCombatSystem.Instance.GameEnded += OnGameEnded;
+			GridCombatSystem.instance.GameEnded += OnGameEnded;
 		}
 
 		private void Update() {

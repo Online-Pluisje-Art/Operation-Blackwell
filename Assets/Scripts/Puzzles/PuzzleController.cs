@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Puzzles {
-	public class PuzzleController : MonoBehaviour {
-		public static PuzzleController Instance { get; private set; }
+	public class PuzzleController : Singleton<PuzzleController> {
+		public class PuzzleEndedArgs : System.EventArgs {
+			public int id;
+		}
 
 		public System.EventHandler<System.EventArgs> PuzzleStarted;
 
@@ -46,15 +48,6 @@ namespace OperationBlackwell.Puzzles {
 		[Header("Move Timings")]
 		[SerializeField][Range(0, 1)] private float shuffleMoveTime_;
 		[SerializeField][Range(0, 1)] private float defaultMoveTime_;
-
-		private void Awake() {
-			if(Instance == null) {
-				Instance = this;
-			} else {
-				Destroy(gameObject);
-				return;
-			}
-		}
 
 		private void Start() {
 			PuzzleTrigger.PuzzleLaunched += OnPuzzleStarted;
