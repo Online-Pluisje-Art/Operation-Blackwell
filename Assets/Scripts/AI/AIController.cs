@@ -62,7 +62,7 @@ namespace OperationBlackwell.AI {
 
 		public override void SetUnitActionsTurn() {
 			GridCombatSystem combatSystem = GridCombatSystem.Instance;
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			List<CoreUnit> enemies = combatSystem.GetBlueTeam();
 			bool walk;
 			CoreUnit enemyToAttack = null;
@@ -110,13 +110,13 @@ namespace OperationBlackwell.AI {
 						if(actions.Count == 0) {
 							UpdateValidMovePositions(unit, unit.GetPosition());
 							node = SelectEndPoint();
-							pathLength = GameController.Instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(node.gridX, node.gridY)).Count * 2;
+							pathLength = GameController.instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(node.gridX, node.gridY)).Count * 2;
 							unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(node.gridX, node.gridY),
 								grid.GetGridObject(unit.GetPosition()), unit.GetPosition(), unit, null, pathLength);
 						} else {
 							UpdateValidMovePositions(unit, actions[actions.Count - 1].destinationPos);
 							node = SelectEndPoint();
-							pathLength = GameController.Instance.gridPathfinding.GetPath(actions[actions.Count - 1].destinationPos, grid.GetPosition(node.gridX, node.gridY)).Count * 2;
+							pathLength = GameController.instance.gridPathfinding.GetPath(actions[actions.Count - 1].destinationPos, grid.GetPosition(node.gridX, node.gridY)).Count * 2;
 							unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(node.gridX, node.gridY),
 								grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unit, null, pathLength);
 						}
@@ -164,9 +164,9 @@ namespace OperationBlackwell.AI {
 			return false;
 		}
 
-		private void UpdateValidMovePositions(AIUnit unit, Vector3 position) {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-			GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
+		private void UpdateValidMovePositions(AIUnit unit) {
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
+			GridPathfinding gridPathfinding = GameController.instance.gridPathfinding;
 			Tilemap.Node node;
 
 			// Get Unit Grid Position X, Y
@@ -197,7 +197,7 @@ namespace OperationBlackwell.AI {
 		}
 
 		private void ResetMoveTiles() {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			// Reset Entire Grid ValidMovePositions
 			for(int x = 0; x < grid.GetWidth(); x++) {
 				for(int y = 0; y < grid.GetHeight(); y++) {

@@ -36,7 +36,7 @@ namespace OperationBlackwell.Core {
 				if(debugSaving_) {
 					Debug.Log("After: " + savePath_);
 				}
-				GameController.Instance.tilemap.Save(savePath_);
+				GameController.instance.tilemap.Save(savePath_);
 			} else {
 				Debug.Log("User cancelled the saving operation, not saving!");
 			}
@@ -56,7 +56,7 @@ namespace OperationBlackwell.Core {
 				if(debugSaving_) {
 					Debug.Log("After: " + savePath_);
 				}
-				GameController.Instance.tilemap.Load(savePath_);
+				GameController.instance.tilemap.Load(savePath_);
 			} else {
 				Debug.Log("User cancelled the loading operation, not loading!");
 			}

@@ -229,7 +229,7 @@ namespace OperationBlackwell.Player {
 		 *	It is possible to add another float variable WeaponModifierHitChance to this method, then adjust float hitChance accordingly.
 		 */
 		private float RangedHitChance(Vector3 player, Vector3 target) {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			List<Vector3> points = Utils.CalculatePoints(player, target);
 
 			float hitChance = currentWeapon_.GetBaseHitchance();

@@ -12,7 +12,7 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private int index_;
 
 		private void Start() {
-			GameController.Instance.GetGrid().GetGridObject(transform.position).SetTrigger(this);
+			GameController.instance.GetGrid().GetGridObject(transform.position).SetTrigger(this);
 		}
 
 		public int GetIndex() {

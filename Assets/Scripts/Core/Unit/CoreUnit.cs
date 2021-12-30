@@ -24,7 +24,7 @@ namespace OperationBlackwell.Core {
 		
 
 		protected void Start() {
-			GameController.Instance.GetGrid().GetGridObject(transform.position).SetUnitGridCombat(this);
+			GameController.instance.GetGrid().GetGridObject(transform.position).SetUnitGridCombat(this);
 			ResetActionPoints();
 			SetActiveWeapon(0);
 		}

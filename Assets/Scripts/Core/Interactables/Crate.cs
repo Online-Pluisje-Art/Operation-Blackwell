@@ -6,7 +6,7 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private int range_;
 		[SerializeField] private int cost_;
 		private void Start() {
-			GameController.Instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
+			GameController.instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
 		}
 
 		public void Interact(CoreUnit unit) {

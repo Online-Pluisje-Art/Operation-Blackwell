@@ -10,7 +10,7 @@ namespace OperationBlackwell.Core {
 		public static event System.EventHandler<int> PuzzleLaunched;
 
 		private void Start() {
-			GameController.Instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
+			GameController.instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
 		}
 
 		public void Interact(CoreUnit unit) {

@@ -69,7 +69,7 @@ namespace OperationBlackwell.Core {
 						if(destination.GetUnitGridCombat() == null) {
 							destination.SetUnitGridCombat(invoker);
 						} else {
-							Tilemap.Node node = GameController.Instance.GetGrid().GetGridObject(invoker.GetPosition());
+							Tilemap.Node node = GameController.instance.GetGrid().GetGridObject(invoker.GetPosition());
 							node.SetUnitGridCombat(invoker);
 						}
 						

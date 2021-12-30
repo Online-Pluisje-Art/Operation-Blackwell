@@ -10,13 +10,13 @@ namespace OperationBlackwell.Core {
 		[SerializeReference] private Vent targetVent_;
 
 		private void Start() {
-			GameController.Instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
+			GameController.instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
 		}
 
 		public void Interact(CoreUnit unit) {
 			GridCombatSystem combatInstance = GridCombatSystem.Instance;
 			CoreUnit player = unit;
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Vector3 targetPosition = new Vector3(targetVent_.transform.position.x + targetVent_.offsetX_, targetVent_.transform.position.y + targetVent_.offsetY_, 0);
 			Tilemap.Node gridObject = grid.GetGridObject(targetPosition);
 			// Remove player from current position
