@@ -5,9 +5,13 @@ using System;
 
 namespace OperationBlackwell.Core {
 	public class GridCombatSystem : Singleton<GridCombatSystem> {
-		
-		[Header("External Controllers")]
-		[SerializeField] private BaseAIController aiController_;
+		// AI events
+		public EventHandler<int> AIStageLoaded;
+		public EventHandler<int> AIStageUnloaded;
+		public EventHandler<EventArgs> AISetTurn;
+		public EventHandler<EventArgs> AITurnSet;
+
+		// Cutscene events
 		public EventHandler<int> CutsceneTriggered;
 
 		[Header("Units")]
@@ -89,10 +93,12 @@ namespace OperationBlackwell.Core {
 
 			state_ = State.OutOfCombat;
 			OnUnitDeath += RemoveUnitOnDeath;
+			AITurnSet += OnAITurnSet;
 		}
 
 		private void OnDestroy() {
 			OnUnitDeath -= RemoveUnitOnDeath;
+			AITurnSet -= OnAITurnSet;
 		}
 
 		public void LoadAllEnemies(List<CoreUnit> enemies) {
@@ -116,7 +122,7 @@ namespace OperationBlackwell.Core {
 			} else {
 				redTeamList_.Remove(unit);
 				if(redTeamList_.Count <= 0) {
-					aiController_.UnloadStage();
+					// aiController_.UnloadStage();
 				}
 			}
 			orderList_.GetQueue().RemoveAll(x => x.GetUnit() == unit);
@@ -617,9 +623,8 @@ namespace OperationBlackwell.Core {
 			DeselectUnit();
 			if(setAiTurn_) {
 				setAiTurn_ = false;
-				aiController_.SetUnitActionsTurn();
+				AISetTurn?.Invoke(this, System.EventArgs.Empty);
 			}
-			ExecuteAllActions();
 		}
 
 		private void ExecuteAllActions() {
@@ -745,7 +750,7 @@ namespace OperationBlackwell.Core {
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
 						state_ = State.Normal;
-						aiController_.LoadStage(trigger.GetIndex());
+						AIStageLoaded?.Invoke(this, trigger.GetIndex());
 					}
 				}
 			}
@@ -834,6 +839,10 @@ namespace OperationBlackwell.Core {
 
 		public void AddOrderObject(OrderObject orderObj) {
 			orderList_.Enqueue(orderObj);
+		}
+
+		private void OnAITurnSet(object sender, EventArgs e) {
+			ExecuteAllActions();
 		}
 	}
 }
