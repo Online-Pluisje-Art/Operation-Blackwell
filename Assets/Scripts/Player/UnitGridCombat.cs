@@ -67,7 +67,7 @@ namespace OperationBlackwell.Player {
 			if(index >= 0 && index < weapons_.Count) {
 				currentWeapon_ = weapons_[index];
 			}
-			GridCombatSystem.Instance.OnWeaponChanged?.Invoke(this, currentWeapon_.GetName());
+			GridCombatSystem.instance.OnWeaponChanged?.Invoke(this, currentWeapon_.GetName());
 		}
 
 		public override string GetActiveWeapon() {
@@ -212,7 +212,7 @@ namespace OperationBlackwell.Player {
 		[ContextMenu("Test")]
 		public void Die() {
 			healthSystem_.Damage(100);
-			GridCombatSystem.Instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
+			GridCombatSystem.instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
 			Destroy(gameObject);
 		}
 
@@ -229,7 +229,7 @@ namespace OperationBlackwell.Player {
 		 *	It is possible to add another float variable WeaponModifierHitChance to this method, then adjust float hitChance accordingly.
 		 */
 		private float RangedHitChance(Vector3 player, Vector3 target) {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			List<Vector3> points = Utils.CalculatePoints(player, target);
 
 			float hitChance = currentWeapon_.GetBaseHitchance();

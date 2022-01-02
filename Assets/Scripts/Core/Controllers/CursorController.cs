@@ -4,10 +4,7 @@ using UnityEngine;
 using System;
 
 namespace OperationBlackwell.Core {
-	public class CursorController : MonoBehaviour {
-
-		public static CursorController Instance { get; private set; }
-
+	public class CursorController : Singleton<CursorController> {
 		public event EventHandler<OnCursorChangedEventArgs> OnCursorChanged;
 		public class OnCursorChangedEventArgs : EventArgs {
 			public CursorType cursorType;
@@ -27,10 +24,6 @@ namespace OperationBlackwell.Core {
 			Select,
 			Attack,
 			Move
-		}
-
-		private void Awake() {
-			Instance = this;
 		}
 
 		private void Start() {

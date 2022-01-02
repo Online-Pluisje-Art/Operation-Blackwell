@@ -56,8 +56,8 @@ namespace OperationBlackwell.Core {
 			heightMax_ = mapHeight;
 
 			Initialize(mapWidth, mapHeight);
-			GameController.Instance.grid.OnGridObjectChanged += OnNodeChanged;
-			GameController.Instance.tilemap.OnLoaded += OnLevelChanged;
+			GameController.instance.grid.OnGridObjectChanged += OnNodeChanged;
+			GameController.instance.tilemap.OnLoaded += OnLevelChanged;
 		}
 
 		public GridPathfinding(int mapWidth, int mapHeight, float nodeSize_, Vector3 worldOrigin_) {//, Texture2D map) {
@@ -89,14 +89,14 @@ namespace OperationBlackwell.Core {
 		private void OnNodeChanged(object grid, Grid<Tilemap.Node>.OnGridObjectChangedEventArgs args) {
 			int x = args.x;
 			int y = args.y;
-			Tilemap.Node node = GameController.Instance.grid.GetGridObject(x, y);
+			Tilemap.Node node = GameController.instance.grid.GetGridObject(x, y);
 			if(node != null && x >= 0 && x < widthMax_ && y >= 0 && y < heightMax_) {
 				mapNodes_[x][y].SetWalkable(node.walkable);
 			}
 		}
 
 		private void OnLevelChanged(object grid, System.EventArgs args) {
-			Grid<Tilemap.Node> grid_ = GameController.Instance.grid;
+			Grid<Tilemap.Node> grid_ = GameController.instance.grid;
 			foreach(Tilemap.Node node in grid_.GetAllGridObjects()) {
 				if(node.walkable) {
 					SetWalkable(node.gridX, node.gridY, true);

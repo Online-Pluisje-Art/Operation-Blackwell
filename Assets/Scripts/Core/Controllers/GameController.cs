@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace OperationBlackwell.Core {
-	public class GameController : MonoBehaviour {
+	public class GameController : Singleton<GameController> {
 		private const bool DebugMovement = false;
-
-		public static GameController Instance { get; private set; }
 
 		[Header("World data")]
 		[SerializeField] private Vector3 gridWorldSize_;
@@ -30,11 +28,10 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private List<PuzzleComplete> puzzleDestroyableObjects_;
 		public System.EventHandler<int> PuzzleEnded;
 
-		private void Awake() {
+		private void Start() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
 				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, false, Tilemap.Node.wallHitChanceModifier, false), drawGridLines_);
 			tilemap = new Tilemap(grid);
-			Instance = this;
 			Vector3 origin = new Vector3(0, 0);
 
 			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * cellSize_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * cellSize_, cellSize_);
@@ -47,9 +44,6 @@ namespace OperationBlackwell.Core {
 			if(selectorTilemapVisual_ != null) {
 				selectorTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
 			}
-		}
-
-		private void Start() {
 			tilemap.SetTilemapVisual(tilemapVisual_);
 			if(movementTilemap_ != null) {
 				movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
@@ -69,7 +63,7 @@ namespace OperationBlackwell.Core {
 			}
 
 			PuzzleEnded += OnPuzzleComplete;
-			GridCombatSystem.Instance.GameEnded += OnGameEnded;
+			GridCombatSystem.instance.GameEnded += OnGameEnded;
 		}
 
 		private void Update() {
@@ -94,7 +88,7 @@ namespace OperationBlackwell.Core {
 
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
-				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+				CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 				SceneManager.LoadScene("MainMenu");
 			}
 		}

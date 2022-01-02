@@ -5,20 +5,13 @@ using OperationBlackwell.Core;
 using OperationBlackwell.Player;
 
 namespace OperationBlackwell.AI {
-	public class AIController : BaseAIController {
-		public static AIController instance { get; private set; }
+	public class AIController : Singleton<AIController> {
 		[SerializeField] private List<CombatStage> stages_;
 		private CombatStage currentStage_;
 		private List<AIUnit> activeUnits_;
 		private List<Tilemap.Node> endPoints_;
 
-		private void Awake() {
-			if(instance == null) {
-				instance = this;
-			} else {
-				Destroy(gameObject);
-			}
-
+		private void Start() {
 			if(stages_.Count == 0) {
 				Debug.LogError("No stages found in AIController");
 			}
@@ -26,9 +19,23 @@ namespace OperationBlackwell.AI {
 			currentStage_ = new CombatStage();
 			activeUnits_ = new List<AIUnit>();
 			endPoints_ = new List<Tilemap.Node>();
+
+			// Subscribe to events
+			if(GridCombatSystem.instance != null) {
+				GridCombatSystem.instance.AIStageLoaded += OnAIStageLoaded;
+				GridCombatSystem.instance.AISetTurn += OnAISetTurn;
+			}
 		}
 
-		public override void LoadStage(int index) {
+		private void OnAIStageLoaded(object sender, int stage) {
+			LoadStage(stage);
+		}
+
+		private void OnAISetTurn(object sender, System.EventArgs e) {
+			SetUnitActionsTurn();
+		}
+
+		public void LoadStage(int index) {
 			if(currentStage_.ID == index) {
 				return;
 			}
@@ -52,17 +59,17 @@ namespace OperationBlackwell.AI {
 				activeUnits_.Add(unit);
 				unitsToLoad.Add(unit);
 			}
-			GridCombatSystem.Instance.LoadAllEnemies(unitsToLoad);
+			GridCombatSystem.instance.LoadAllEnemies(unitsToLoad);
 		}
 
-		public override void UnloadStage() {
+		public void UnloadStage() {
 			currentStage_ = new CombatStage();
 			activeUnits_.Clear();
 		}
 
-		public override void SetUnitActionsTurn() {
-			GridCombatSystem combatSystem = GridCombatSystem.Instance;
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+		public void SetUnitActionsTurn() {
+			GridCombatSystem combatSystem = GridCombatSystem.instance;
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			List<CoreUnit> enemies = combatSystem.GetBlueTeam();
 			bool walk;
 			CoreUnit enemyToAttack = null;
@@ -110,13 +117,13 @@ namespace OperationBlackwell.AI {
 						if(actions.Count == 0) {
 							UpdateValidMovePositions(unit, unit.GetPosition());
 							node = SelectEndPoint();
-							pathLength = GameController.Instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(node.gridX, node.gridY)).Count * 2;
+							pathLength = GameController.instance.gridPathfinding.GetPath(unit.GetPosition(), grid.GetPosition(node.gridX, node.gridY)).Count * 2;
 							unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(node.gridX, node.gridY),
 								grid.GetGridObject(unit.GetPosition()), unit.GetPosition(), unit, null, pathLength);
 						} else {
 							UpdateValidMovePositions(unit, actions[actions.Count - 1].destinationPos);
 							node = SelectEndPoint();
-							pathLength = GameController.Instance.gridPathfinding.GetPath(actions[actions.Count - 1].destinationPos, grid.GetPosition(node.gridX, node.gridY)).Count * 2;
+							pathLength = GameController.instance.gridPathfinding.GetPath(actions[actions.Count - 1].destinationPos, grid.GetPosition(node.gridX, node.gridY)).Count * 2;
 							unitAction = new Actions(Actions.ActionType.Move, node, grid.GetPosition(node.gridX, node.gridY),
 								grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unit, null, pathLength);
 						}
@@ -138,6 +145,7 @@ namespace OperationBlackwell.AI {
 				obj = CreateOrderObject(unit);
 				combatSystem.AddOrderObject(obj);
 			}
+			GridCombatSystem.instance.AITurnSet?.Invoke(this, System.EventArgs.Empty);
 		}
 
 		private OrderObject CreateOrderObject(AIUnit unit) {
@@ -165,8 +173,8 @@ namespace OperationBlackwell.AI {
 		}
 
 		private void UpdateValidMovePositions(AIUnit unit, Vector3 position) {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-			GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
+			GridPathfinding gridPathfinding = GameController.instance.gridPathfinding;
 			Tilemap.Node node;
 
 			// Get Unit Grid Position X, Y
@@ -197,7 +205,7 @@ namespace OperationBlackwell.AI {
 		}
 
 		private void ResetMoveTiles() {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			// Reset Entire Grid ValidMovePositions
 			for(int x = 0; x < grid.GetWidth(); x++) {
 				for(int y = 0; y < grid.GetHeight(); y++) {

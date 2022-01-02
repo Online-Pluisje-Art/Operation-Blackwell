@@ -7,18 +7,18 @@ namespace OperationBlackwell.UI {
 		[SerializeField] private Image activePlayer_;
 
 		private void Start() {
-			GridCombatSystem.Instance.OnUnitDeselect += HidePlayer;
-			GridCombatSystem.Instance.OnUnitSelect += ShowPlayer;
+			GridCombatSystem.instance.OnUnitDeselect += HidePlayer;
+			GridCombatSystem.instance.OnUnitSelect += ShowPlayer;
 		}
 
 		private void OnDestroy() {
-			GridCombatSystem.Instance.OnUnitDeselect -= HidePlayer;
-			GridCombatSystem.Instance.OnUnitSelect -= ShowPlayer;
+			GridCombatSystem.instance.OnUnitDeselect -= HidePlayer;
+			GridCombatSystem.instance.OnUnitSelect -= ShowPlayer;
 		}
 
 		private void ShowPlayer(object sender, GridCombatSystem.UnitEvent args) {
-			if(GridCombatSystem.Instance.GetActiveUnit() != null) {
-				if(GridCombatSystem.Instance.GetActiveUnit().GetName() == "Adam") {
+			if(GridCombatSystem.instance.GetActiveUnit() != null) {
+				if(GridCombatSystem.instance.GetActiveUnit().GetName() == "Adam") {
 					activePlayer_.sprite = Resources.Load<Sprite>("Textures/Adam/AdamCutscene");
 					activePlayer_.gameObject.SetActive(true);
 				}

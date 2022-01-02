@@ -4,13 +4,16 @@ using UnityEngine;
 using System;
 
 namespace OperationBlackwell.Core {
-	public class GridCombatSystem : MonoBehaviour {
+	public class GridCombatSystem : Singleton<GridCombatSystem> {
+		// AI events
+		public EventHandler<int> AIStageLoaded;
+		public EventHandler<int> AIStageUnloaded;
+		public EventHandler<EventArgs> AISetTurn;
+		public EventHandler<EventArgs> AITurnSet;
 
-		public static GridCombatSystem Instance { get; private set; }
-		
-		[Header("External Controllers")]
-		[SerializeField] private BaseCutsceneController cutsceneController_;
-		[SerializeField] private BaseAIController aiController_;
+		// Cutscene events
+		public EventHandler<int> CutsceneTriggered;
+
 		[Header("Units")]
 		[SerializeField] private List<CoreUnit> blueTeamList_;
 
@@ -67,12 +70,6 @@ namespace OperationBlackwell.Core {
 			Middlemouseclick
 		}
 
-		private void Awake() {
-			Instance = this;
-			state_ = State.OutOfCombat;
-			OnUnitDeath += RemoveUnitOnDeath;
-		}
-
 		private void Start() {
 			turn_ = 1;
 			redTeamList_ = new List<CoreUnit>();
@@ -83,7 +80,7 @@ namespace OperationBlackwell.Core {
 
 			// Set all UnitGridCombat on their GridPosition
 			foreach(CoreUnit unitGridCombat in blueTeamList_) {
-				GameController.Instance.GetGrid().GetGridObject(unitGridCombat.GetPosition())
+				GameController.instance.GetGrid().GetGridObject(unitGridCombat.GetPosition())
 					.SetUnitGridCombat(unitGridCombat);
 			}
 
@@ -93,10 +90,15 @@ namespace OperationBlackwell.Core {
 			prevNode_ = null;
 			prevPosition_ = Vector3.zero;
 			setAiTurn_ = true;
+
+			state_ = State.OutOfCombat;
+			OnUnitDeath += RemoveUnitOnDeath;
+			AITurnSet += OnAITurnSet;
 		}
 
 		private void OnDestroy() {
 			OnUnitDeath -= RemoveUnitOnDeath;
+			AITurnSet -= OnAITurnSet;
 		}
 
 		public void LoadAllEnemies(List<CoreUnit> enemies) {
@@ -120,11 +122,11 @@ namespace OperationBlackwell.Core {
 			} else {
 				redTeamList_.Remove(unit);
 				if(redTeamList_.Count <= 0) {
-					aiController_.UnloadStage();
+					// aiController_.UnloadStage();
 				}
 			}
 			orderList_.GetQueue().RemoveAll(x => x.GetUnit() == unit);
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(unit.GetPosition());
 			gridObject.ClearUnitGridCombat();
 		}
@@ -178,8 +180,8 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void UpdateValidMovePositions(Vector3 position) {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
-			GridPathfinding gridPathfinding = GameController.Instance.gridPathfinding;
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
+			GridPathfinding gridPathfinding = GameController.instance.gridPathfinding;
 
 			// Get Unit Grid Position X, Y
 			grid.GetXY(position, out int unitX, out int unitY);
@@ -198,7 +200,7 @@ namespace OperationBlackwell.Core {
 							// There is a Path
 								
 							// Set Tilemap Tile to Move
-							GameController.Instance.GetMovementTilemap().SetTilemapSprite(
+							GameController.instance.GetMovementTilemap().SetTilemapSprite(
 								x, y, MovementTilemap.TilemapObject.TilemapSprite.Move
 							);
 
@@ -211,10 +213,10 @@ namespace OperationBlackwell.Core {
 
 		private void LateUpdate() {
 			if(state_ == State.Cutscene) {
-				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+				CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 				return;
 			}
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			List<Actions> actions = new List<Actions>();
 			if(unitGridCombat_ != null) {
@@ -225,13 +227,13 @@ namespace OperationBlackwell.Core {
 				CoreUnit unit = gridObject.GetUnitGridCombat();
 				if(actions.Count == 0) {
 					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, unitGridCombat_.GetPosition()) && state_ == State.UnitSelected) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Attack);
 					} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && (state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Move);
 					} else if(unit != null && unit.GetTeam() == Team.Blue && (state_ == State.Normal || state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Select);
 					} else {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
 					if(unitGridCombat_ != null) {
 						OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
@@ -241,13 +243,13 @@ namespace OperationBlackwell.Core {
 					}
 				} else if(actions.Count > 0) {
 					if(unit != null && unitGridCombat_ != null && unitGridCombat_.CanAttackUnit(unit, actions[actions.Count - 1].destinationPos) && state_ == State.UnitSelected) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Attack);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Attack);
 					} else if(gridObject.GetIsValidMovePosition() && unitGridCombat_ != null && (state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Move);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Move);
 					} else if(unit != null && unit.GetTeam() == Team.Blue && (state_ == State.Normal || state_ == State.UnitSelected || state_ == State.OutOfCombat)) {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Select);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Select);
 					} else {
-						CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+						CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 					}
 					if(unitGridCombat_ != null) {
 						OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
@@ -260,12 +262,12 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			CoreUnit unit;
 
 			if(state_ == State.Cutscene) {
-				GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+				GameController.instance.GetSelectorTilemap().SetTilemapSprite(
 					prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
 				);
 				return;
@@ -273,7 +275,7 @@ namespace OperationBlackwell.Core {
 
 			if(gridObject == null) {
 				if(prevNode_ != null) {
-					GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+					GameController.instance.GetSelectorTilemap().SetTilemapSprite(
 						prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
 					);
 				}
@@ -282,10 +284,10 @@ namespace OperationBlackwell.Core {
 			}
 
 			if(prevNode_ != null && prevNode_ != gridObject) {
-				GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+				GameController.instance.GetSelectorTilemap().SetTilemapSprite(
 					prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
 				);
-				GameController.Instance.GetSelectorTilemap().SetTilemapSprite(
+				GameController.instance.GetSelectorTilemap().SetTilemapSprite(
 					gridObject.gridX, gridObject.gridY, MovementTilemap.TilemapObject.TilemapSprite.Move
 				);
 			}
@@ -372,18 +374,18 @@ namespace OperationBlackwell.Core {
 									state_ = State.Waiting;
 
 									// Set entire Tilemap to Invisible
-									GameController.Instance.GetMovementTilemap().SetAllTilemapSprite(
+									GameController.instance.GetMovementTilemap().SetAllTilemapSprite(
 										MovementTilemap.TilemapObject.TilemapSprite.None
 									);
-									CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+									CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 
 									Actions unitAction;
 									if(actions.Count == 0) {
-										pathLength_ = GameController.Instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count * 2;
+										pathLength_ = GameController.instance.gridPathfinding.GetPath(unitGridCombat_.GetPosition(), Utils.GetMouseWorldPosition()).Count * 2;
 										unitAction = new Actions(Actions.ActionType.Move, gridObject, Utils.GetMouseWorldPosition(),
 											grid.GetGridObject(unitGridCombat_.GetPosition()), unitGridCombat_.GetPosition(), unitGridCombat_, null, pathLength_);
 									} else {
-										pathLength_ = GameController.Instance.gridPathfinding.GetPath(actions[actions.Count - 1].destinationPos, Utils.GetMouseWorldPosition()).Count * 2;
+										pathLength_ = GameController.instance.gridPathfinding.GetPath(actions[actions.Count - 1].destinationPos, Utils.GetMouseWorldPosition()).Count * 2;
 										unitAction = new Actions(Actions.ActionType.Move, gridObject, Utils.GetMouseWorldPosition(),
 											grid.GetGridObject(actions[actions.Count - 1].destinationPos), actions[actions.Count - 1].destinationPos, unitGridCombat_, null, pathLength_);
 									}
@@ -621,13 +623,8 @@ namespace OperationBlackwell.Core {
 			DeselectUnit();
 			if(setAiTurn_) {
 				setAiTurn_ = false;
-				aiController_.SetUnitActionsTurn();
+				AISetTurn?.Invoke(this, System.EventArgs.Empty);
 			}
-			ExecuteAllActions();
-		}
-
-		public BaseCutsceneController GetCutsceneController() {
-			return cutsceneController_;
 		}
 
 		private void ExecuteAllActions() {
@@ -683,12 +680,12 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void ResetMoveTiles() {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			// Reset Entire Grid ValidMovePositions
 			for(int x = 0; x < grid.GetWidth(); x++) {
 				for(int y = 0; y < grid.GetHeight(); y++) {
 					grid.GetGridObject(x, y).SetIsValidMovePosition(false);
-					GameController.Instance.GetMovementTilemap().SetTilemapSprite(x, y, MovementTilemap.TilemapObject.TilemapSprite.None);
+					GameController.instance.GetMovementTilemap().SetTilemapSprite(x, y, MovementTilemap.TilemapObject.TilemapSprite.None);
 				}
 			}
 		}
@@ -736,7 +733,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void CheckTriggers() {
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Vector3 position;
 			Tilemap.Node node;
 			TriggerNode trigger;
@@ -749,11 +746,11 @@ namespace OperationBlackwell.Core {
 				}
 				if(trigger.GetTrigger() != TriggerNode.Trigger.None) {
 					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex())) {
-						cutsceneController_.StartCutscene(trigger.GetIndex());
+						CutsceneTriggered?.Invoke(this, trigger.GetIndex());
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
 						state_ = State.Normal;
-						aiController_.LoadStage(trigger.GetIndex());
+						AIStageLoaded?.Invoke(this, trigger.GetIndex());
 					}
 				}
 			}
@@ -765,9 +762,9 @@ namespace OperationBlackwell.Core {
 				start = unitGridCombat_.GetPosition();
 				end = Utils.GetMouseWorldPosition();
 			}
-			currentPathUnit_ = GameController.Instance.gridPathfinding.GetPath(start, end);
-			MovementTilemap arrowMap = GameController.Instance.GetArrowTilemap();
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			currentPathUnit_ = GameController.instance.gridPathfinding.GetPath(start, end);
+			MovementTilemap arrowMap = GameController.instance.GetArrowTilemap();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			List<Actions> actions = unitGridCombat_.LoadActions().GetQueue();
 			int x = 0, y = 0;
 			foreach(PathNode node in currentPathUnit_) {
@@ -837,11 +834,15 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void ResetArrowVisual() {
-			GameController.Instance.GetArrowTilemap().SetAllTilemapSprite(MovementTilemap.TilemapObject.TilemapSprite.None);
+			GameController.instance.GetArrowTilemap().SetAllTilemapSprite(MovementTilemap.TilemapObject.TilemapSprite.None);
 		}
 
 		public void AddOrderObject(OrderObject orderObj) {
 			orderList_.Enqueue(orderObj);
+		}
+
+		private void OnAITurnSet(object sender, EventArgs e) {
+			ExecuteAllActions();
 		}
 	}
 }

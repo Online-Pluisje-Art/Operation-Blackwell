@@ -8,11 +8,11 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private CursorController.CursorType cursorType_;
 
 		private void OnMouseEnter() {
-			CursorController.Instance.SetActiveCursorType(cursorType_);
+			CursorController.instance.SetActiveCursorType(cursorType_);
 		}
 
 		private void OnMouseExit() {
-			CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+			CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
 		}
 	}
 }

@@ -10,14 +10,14 @@ namespace OperationBlackwell.Core {
 		public static event System.EventHandler<int> PuzzleLaunched;
 
 		private void Start() {
-			GameController.Instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
+			GameController.instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
 		}
 
 		public void Interact(CoreUnit unit) {
-			if(GridCombatSystem.Instance.GetState() != GridCombatSystem.State.OutOfCombat) {
+			if(GridCombatSystem.instance.GetState() != GridCombatSystem.State.OutOfCombat) {
 				return;
 			}
-			GridCombatSystem.Instance.SetState(GridCombatSystem.State.Cutscene);
+			GridCombatSystem.instance.SetState(GridCombatSystem.State.Cutscene);
 			PuzzleLaunched?.Invoke(this, puzzleIndex_);
 		}
 
