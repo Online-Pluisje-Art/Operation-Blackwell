@@ -103,7 +103,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c3c3f89d764266e4c9682471af0bbf23, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &988325546402099751
@@ -124,7 +124,7 @@ Animator:
   m_GameObject: {fileID: 7544449360146827313}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 30157f9d5df8d204ba31380a13509414, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 916711509772243815}
   - component: {fileID: 8599146273931584671}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Core - Dont use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,11 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team_: 0
-  maxActionPoints_: 10
-  animator_: {fileID: 988325546402099751}
-  weapons_:
-  - {fileID: 11400000, guid: 1867dd448d4d30f68b072219a42ff0ba, type: 2}
-  - {fileID: 11400000, guid: 721067833e1f9f0f09fd6f5cd1e0ed32, type: 2}
+  maxActionPoints_: 0
+  animator_: {fileID: 0}
+  weapons_: []
   name_: 
 --- !u!114 &2343956742568336423
 MonoBehaviour:
@@ -229,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed_: 5
-  animator_: {fileID: 988325546402099751}
+  animator_: {fileID: 0}
 --- !u!50 &916711509772243815
 Rigidbody2D:
   serializedVersion: 4
