@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using OperationBlackwell.Core;
+using OperationBlackwell.Puzzles;
 
 namespace OperationBlackwell.UI {
 	public class HUDController : MonoBehaviour {
@@ -17,7 +18,7 @@ namespace OperationBlackwell.UI {
 			CutsceneController.Instance.OnCutsceneStart += HideHUD;
 			CutsceneController.Instance.OnCutsceneEnd += ShowHUD;
 			PuzzleController.Instance.PuzzleStarted += HideHUD;
-			PuzzleController.Instance.PuzzleEnded += ShowHUD;
+			GameController.Instance.PuzzleEnded += ShowHUD;
 		}
 
 		private void OnDestroy() {
@@ -27,7 +28,7 @@ namespace OperationBlackwell.UI {
 			CutsceneController.Instance.OnCutsceneStart -= HideHUD;
 			CutsceneController.Instance.OnCutsceneEnd -= ShowHUD;
 			PuzzleController.Instance.PuzzleStarted -= HideHUD;
-			PuzzleController.Instance.PuzzleEnded -= ShowHUD;
+			GameController.Instance.PuzzleEnded -= ShowHUD;
 		}
 
 		private void UpdateWeapon(object sender, string name) {
@@ -47,6 +48,10 @@ namespace OperationBlackwell.UI {
 		}
 
 		private void ShowHUD(object sender, System.EventArgs args) {
+			hud_.SetActive(true);
+		}
+
+		private void ShowHUD(object sender, int args) {
 			hud_.SetActive(true);
 		}
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OperationBlackwell.Core {
+namespace OperationBlackwell.Puzzles {
 	public static class ImageSplicer {
 		public static Texture2D[,] SplitImage(Texture2D image, int blocksPerLine) {
 			int imageSize = Mathf.Min(image.width, image.height);

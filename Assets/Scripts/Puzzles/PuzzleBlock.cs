@@ -2,8 +2,8 @@ using System;
 using UnityEngine;
 using System.Collections;
 
-namespace OperationBlackwell.Core {
-	public class PuzzleBlock : MonoBehaviour, IQueueItem {
+namespace OperationBlackwell.Puzzles {
+	public class PuzzleBlock : MonoBehaviour {
 
 		public EventHandler<PuzzleBlock> OnPuzzleBlockClicked;
 		public EventHandler<EventArgs> OnPuzzleBlockFinished;
@@ -40,16 +40,6 @@ namespace OperationBlackwell.Core {
 
 		public bool IsAtStartingCoord() {
 			return coord == startCoord_;
-		}
-
-
-		// These functions are required by the IQueueItem interface, but not used in this class.
-		public int GetInitiative() {
-			return coord.x + coord.y;
-		}
-
-		public int GetTotalCost() {
-			return coord.x + coord.y;
 		}
 	}
 }
