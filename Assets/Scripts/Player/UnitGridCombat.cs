@@ -92,7 +92,7 @@ namespace OperationBlackwell.Player {
 
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
 			int nodesBetweenPlayers = Utils.CalculatePoints(attackPos, unitGridCombat.GetPosition()).Count - 1;
-			return nodesBetweenPlayers <= currentWeapon_.GetRange() && nodesBetweenPlayers > 0;
+			return nodesBetweenPlayers <= currentWeapon_.GetRange();
 		}
 
 		public override void MoveTo(Vector3 targetPosition, Vector3 originPosition, Action onReachedPosition) {

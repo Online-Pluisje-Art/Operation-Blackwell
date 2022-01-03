@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace OperationBlackwell.Core {
 	public class GameController : Singleton<GameController> {
@@ -27,6 +28,9 @@ namespace OperationBlackwell.Core {
 		[Header("Puzzles")]
 		[SerializeField] private List<PuzzleComplete> puzzleDestroyableObjects_;
 		public System.EventHandler<int> PuzzleEnded;
+
+		[Header("Cursor")]
+		public EventHandler<string> CursorChanged;
 
 		private void Start() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
@@ -88,7 +92,7 @@ namespace OperationBlackwell.Core {
 
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
-				CursorController.instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+				CursorChanged?.Invoke(this, "Arrow");
 				SceneManager.LoadScene("MainMenu");
 			}
 		}
