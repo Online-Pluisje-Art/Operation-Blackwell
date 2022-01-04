@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
+  m_Name: Tutorial 1
+  m_EditorClassIdentifier: 
+  characterLeft_: {fileID: 11400000, guid: 771e3d34ed4b9134eb4cb8e7abcb4689, type: 2}
+  characterRight_: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: Use the mouse cursor to select the player. If you wish to continue to
+      the next dialogue press the arrow on the right.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: 'When the player is selected, move the mouse cursor to the tile you
+      wish to walk to. Keep the range of walking in mind.
+
+'
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: Try walking to the exclamation mark to your right. This will trigger
+      a cutscene much like this one.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: To continue press the X button to the right.
