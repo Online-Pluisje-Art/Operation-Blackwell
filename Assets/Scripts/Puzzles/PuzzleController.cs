@@ -120,6 +120,7 @@ namespace OperationBlackwell.Puzzles {
 			background_.enabled = false;
 			GameController.instance.PuzzleEnded?.Invoke(this, currentPuzzle_.GetID());
 			GridCombatSystem.instance.SetState(GridCombatSystem.State.OutOfCombat);
+			timerScript_.StopTimer();
 		}
 
 		public void OnPlayerMoveBlockInput(object sender, PuzzleBlock block) {
@@ -215,6 +216,7 @@ namespace OperationBlackwell.Puzzles {
 					return false;
 				}
 			}
+			timerScript_.PauseTimer();
 			return true;
 		}
 	}
