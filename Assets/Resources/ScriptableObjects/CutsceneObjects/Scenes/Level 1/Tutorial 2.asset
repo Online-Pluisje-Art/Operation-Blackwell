@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
+  m_Name: Tutorial 2
+  m_EditorClassIdentifier: 
+  characterLeft_: {fileID: 11400000, guid: 771e3d34ed4b9134eb4cb8e7abcb4689, type: 2}
+  characterRight_: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: 'Well done! You just triggered a cutscene. '
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: 'In the bottom right corner you will see grey square with some information.
+      When you select a player that corresponding players health, portret and action
+      points will be visible. On the bottom there is a bar that represents your health,
+      when this bar is empty you have been defeated. '
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: When you get close enough to an enemy you will enter a combat state.
+      In this state you select a player and plan out his actions ahead of time by
+      rightclicking on the tiles you wish to walk. By pressing 1 you will equip your
+      sword and 2 will equip your rifle. Every action you do like walking, shooting
+      and hitting with your sword will cost an action point. You only have a set
+      amount of action points per round. When the round is over the enemy will try
+      to defeat you.Try walking to an enemy, selecting the player and defeat your
+      enemy by equipping your rifle and shooting him! Keep your HP and Action Points
+      in mind!
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: In the game there is also a initiative system. [WIP Need HELP]
