@@ -103,6 +103,8 @@ namespace OperationBlackwell.Puzzles {
 			}
 			input_ = new Queue<PuzzleBlock>();
 			background_.enabled = true;
+			timerScript_.StopTimer();
+			timerScript_.duration = currentPuzzle_.PuzzleDuration();
 			puzzleTimer_.SetActive(true);
 			PuzzleStarted?.Invoke(this, System.EventArgs.Empty);
 			StartShuffle();
@@ -148,7 +150,6 @@ namespace OperationBlackwell.Puzzles {
 				MakeNextShuffleMove();
 			} else {
 				currentState_ = PuzzleState.Active;
-				timerScript_.duration = currentPuzzle_.PuzzleDuration();
 				timerScript_.StartTimer();
 			}
 		}
