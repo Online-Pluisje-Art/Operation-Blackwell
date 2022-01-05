@@ -33,7 +33,7 @@ namespace OperationBlackwell.UI {
 			foreach(CursorType cursorType in Enum.GetValues(typeof(CursorType))) {
 				cursorDictionary_.Add(cursorType.ToString(), cursorType);
 			}
-			SetIntialCursorAnimation(cursorDictionary_["Attack"]);
+			SetIntialCursorAnimation(cursorDictionary_["Arrow"]);
 			GameController.instance.CursorChanged += OnCursorChanged;
 		}
 
