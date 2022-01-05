@@ -36,11 +36,11 @@ namespace OperationBlackwell.Puzzles {
 		public float PuzzleDuration() {
 			switch (puzzleDifficulty_) {
 				case PuzzleDifficulty.Easy:
-					return 60f;
-				case PuzzleDifficulty.Medium:
 					return 120f;
-				case PuzzleDifficulty.Hard:
+				case PuzzleDifficulty.Medium:
 					return 180f;
+				case PuzzleDifficulty.Hard:
+					return 240f;
 				default:
 					return 0f;
 			}

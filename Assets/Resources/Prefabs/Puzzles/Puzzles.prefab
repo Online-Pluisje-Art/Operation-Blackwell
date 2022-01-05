@@ -419,7 +419,7 @@ PrefabInstance:
       objectReference: {fileID: 8207136792189107596}
     - target: {fileID: 114470921424214928, guid: 9459669678255204a8ded887d83f5ae1, type: 3}
       propertyPath: didFinishedTimerTime.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: DestroyPuzzle
+      value: OnPuzzleFailed
       objectReference: {fileID: 0}
     - target: {fileID: 114470921424214928, guid: 9459669678255204a8ded887d83f5ae1, type: 3}
       propertyPath: didFinishedTimerTime.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
