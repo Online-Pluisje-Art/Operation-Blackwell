@@ -110,6 +110,12 @@ namespace OperationBlackwell.Puzzles {
 			StartShuffle();
 		}
 
+		public void OnPuzzleFailed() {
+			currentState_ = PuzzleState.Failed;
+			puzzleVictory_.SetActive(true);
+			timerScript_.PauseTimer();
+		}
+
 		public void DestroyPuzzle() {
 			foreach(Transform child in transform) {
 				if(child.gameObject == puzzleVictory_ || child.gameObject == puzzleTimer_) {
@@ -141,6 +147,7 @@ namespace OperationBlackwell.Puzzles {
 					currentState_ = PuzzleState.Solved;
 					emptyPuzzleBlock_.gameObject.SetActive(true);
 					puzzleVictory_.SetActive(true);
+					timerScript_.PauseTimer();
 				} else {
 					MakeNextMove();
 				}
@@ -148,7 +155,7 @@ namespace OperationBlackwell.Puzzles {
 
 			if(shuffleCountRemaining_ > 0) {
 				MakeNextShuffleMove();
-			} else {
+			} else if(currentState_ == PuzzleState.Inactive) {
 				currentState_ = PuzzleState.Active;
 				timerScript_.StartTimer();
 			}
@@ -217,7 +224,6 @@ namespace OperationBlackwell.Puzzles {
 					return false;
 				}
 			}
-			timerScript_.PauseTimer();
 			return true;
 		}
 	}
