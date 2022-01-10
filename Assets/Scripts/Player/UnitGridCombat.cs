@@ -14,20 +14,9 @@ namespace OperationBlackwell.Player {
 		private WorldBar healthBar_;
 
 		private Weapon currentWeapon_;
-		
-		private bool shouldPlayAttackAnimation_ = false;
-		private Direction direction_ = Direction.Null;
 
 		private AudioSource audioSource_;
 		private string animatorClipName_ = "";
-
-		private enum Direction {
-			Up,
-			Down,
-			Left,
-			Right,
-			Null
-		}
 
 		private void Awake() {
 			movePosition_ = GetComponent<MovePositionPathfinding>();
@@ -144,69 +133,6 @@ namespace OperationBlackwell.Player {
 			onShootComplete();
 
 			GetComponent<IMoveVelocity>().Enable();
-		}
-
-		private void DetermineAttackAnimation(CoreUnit unitGridCombat) {
-			shouldPlayAttackAnimation_ = true;
-			Vector3 attackerPosition = this.GetPosition();
-			Vector3 enemyPosition = unitGridCombat.GetPosition();
-			direction_ = Direction.Null;
-			int diffX = 0;
-			int diffY = 0;
-			// 0 is neither, 1 is yes, 2 is false.
-			int isBelow = 0;
-			int isLeft = 0;
-			if(attackerPosition.x == enemyPosition.x) {
-				// Either above or below us.
-			} else if(attackerPosition.x > enemyPosition.x) {
-				// Left of us.
-				diffX = (int)(attackerPosition.x - enemyPosition.x);
-				isLeft = 1;
-			} else {
-				// Right of us.
-				diffX = (int)(enemyPosition.x - attackerPosition.x);
-				isLeft = 2;
-			}
-			if(attackerPosition.y == enemyPosition.y) {
-				// Either left or right of us.
-			} else if(attackerPosition.y > enemyPosition.y) {
-				// Below us.
-				diffY = (int)(attackerPosition.y - enemyPosition.y);
-				isBelow = 1;
-			} else {
-				// Above us.
-				diffY = (int)(enemyPosition.y - attackerPosition.y);
-				isBelow = 2;
-			}
-			// Depending on which diff is bigger, trigger the right direction.
-			if(diffX > diffY) {
-				// Left/Right is bigger than up/down, use left/right.
-				if(isLeft == 1) {
-					// Left it is!
-					direction_ = Direction.Left;
-				} else if(isLeft == 2) {
-					// Right it is!
-					direction_ = Direction.Right;
-				} else {
-					// Should never happen, signal an error.
-					direction_ = Direction.Null;
-				}
-			} else if(diffX <= diffY) {
-				// Up/down is bigger or equal to left/right, use up/down.
-				if(isBelow == 1) {
-					// Below it is!
-					direction_ = Direction.Down;
-				} else if(isBelow == 2) {
-					// Up it is!
-					direction_ = Direction.Up;
-				} else {
-					// Should never happen, signal an error.
-					direction_ = Direction.Null;
-				}
-			} else {
-				// Should never happen, signal an error.
-				direction_ = Direction.Null;
-			}
 		}
 
 		[ContextMenu("Test")]
