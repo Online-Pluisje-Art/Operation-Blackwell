@@ -54,6 +54,7 @@ namespace OperationBlackwell.Core {
 		private Vector3 prevPosition_;
 		private int prevActionCount_;
 		private bool setAiTurn_;
+		private bool firstUpdate_;
 
 		public enum State {
 			Normal,
@@ -94,6 +95,8 @@ namespace OperationBlackwell.Core {
 			state_ = State.OutOfCombat;
 			OnUnitDeath += RemoveUnitOnDeath;
 			AITurnSet += OnAITurnSet;
+
+			firstUpdate_ = true;
 		}
 
 		private void OnDestroy() {
@@ -217,11 +220,15 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
+			if(firstUpdate_) {
+				firstUpdate_ = false;
+				CheckTriggers();
+			}
 			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			CoreUnit unit;
 
-			if(state_ == State.Cutscene) {
+			if(state_ == State.Cutscene && prevNode_ != null) {
 				GameController.instance.GetSelectorTilemap().SetTilemapSprite(
 					prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
 				);
@@ -703,6 +710,7 @@ namespace OperationBlackwell.Core {
 					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex())) {
 						CutsceneTriggered?.Invoke(this, trigger.GetIndex());
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
+						state_ = State.Cutscene;
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
 						state_ = State.Normal;
 						AIStageLoaded?.Invoke(this, trigger.GetIndex());
