@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 
 namespace OperationBlackwell.Core {
+	[RequireComponent(typeof(AudioSource))]
 	public abstract class CoreUnit : MonoBehaviour {
 		[SerializeField] protected Team team_;
 		[SerializeField] protected int maxActionPoints_;
@@ -10,6 +11,8 @@ namespace OperationBlackwell.Core {
 		protected State state_;
 
 		protected HealthSystem healthSystem_;
+
+		protected AudioSource audioSource_;
 
 		protected enum State {
 			Normal,
@@ -32,7 +35,16 @@ namespace OperationBlackwell.Core {
 		protected bool hasExecuted_;
 		protected bool isComplete_;
 
-		
+		public static EventHandler<float> HealthChanged;
+
+		protected virtual void Awake() {
+			audioSource_ = GetComponent<AudioSource>();
+			//SetSelectedVisible(false);
+			state_ = State.Normal;
+			healthSystem_ = new HealthSystem(100);
+			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
+			actions_ = new WaitingQueue<Actions>();
+		}		
 
 		protected void Start() {
 			GameController.instance.GetGrid().GetGridObject(transform.position).SetUnitGridCombat(this);
@@ -40,6 +52,10 @@ namespace OperationBlackwell.Core {
 			shouldPlayAttackAnimation_ = false;
 			ResetActionPoints();
 			SetActiveWeapon(0);
+		}
+
+		protected void OnDestroy() {
+			healthSystem_.OnHealthChanged -= HealthSystem_OnHealthChanged;
 		}
 
 		public virtual bool IsDead() {
@@ -185,5 +201,6 @@ namespace OperationBlackwell.Core {
 		public abstract Actions.AttackType GetAttackType();
 		public abstract void ExecuteActions();
 		public abstract String GetName();
+		protected abstract void HealthSystem_OnHealthChanged(object sender, EventArgs e);
 	}
 }

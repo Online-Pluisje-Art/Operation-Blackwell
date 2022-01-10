@@ -14,21 +14,15 @@ namespace OperationBlackwell.Player {
 
 		private Weapon currentWeapon_;
 
-		private AudioSource audioSource_;
 		private string animatorClipName_ = "";
 
 		private bool enabled_;
 
-		private void Awake() {
+		protected override void Awake() {
 			movePosition_ = GetComponent<MovePositionPathfinding>();
-			audioSource_ = GetComponent<AudioSource>();
-			//SetSelectedVisible(false);
-			state_ = State.Normal;
-			healthSystem_ = new HealthSystem(100);
 			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
-			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
-			actions_ = new WaitingQueue<Actions>();
 			enabled_ = false;
+			base.Awake();
 		}
 
 		private void Update() {
@@ -49,11 +43,7 @@ namespace OperationBlackwell.Player {
 			shouldPlayAttackAnimation_ = false;
 		}
 
-		private void OnDestroy() {
-			healthSystem_.OnHealthChanged -= HealthSystem_OnHealthChanged;
-		}
-
-		private void HealthSystem_OnHealthChanged(object sender, EventArgs e) {
+		protected override void HealthSystem_OnHealthChanged(object sender, EventArgs e) {
 			healthBar_.SetSize(healthSystem_.GetHealthNormalized());
 		}
 

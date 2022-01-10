@@ -5,7 +5,6 @@ using UnityEngine;
 using OperationBlackwell.Core;
 
 namespace OperationBlackwell.Player {
-	[RequireComponent(typeof(AudioSource))]
 	public class UnitGridCombat : CoreUnit {
 		[SerializeField] private List<Weapon> weapons_;
 		[SerializeField] private String name_;
@@ -15,18 +14,12 @@ namespace OperationBlackwell.Player {
 
 		private Weapon currentWeapon_;
 
-		private AudioSource audioSource_;
 		private string animatorClipName_ = "";
 
-		private void Awake() {
+		protected override void Awake() {
 			movePosition_ = GetComponent<MovePositionPathfinding>();
-			audioSource_ = GetComponent<AudioSource>();
-			//SetSelectedVisible(false);
-			state_ = State.Normal;
-			healthSystem_ = new HealthSystem(100);
-			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
-			healthSystem_.OnHealthChanged += HealthSystem_OnHealthChanged;
-			actions_ = new WaitingQueue<Actions>();
+			// healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
+			base.Awake();
 		}
 
 		private void Update() {
@@ -44,12 +37,8 @@ namespace OperationBlackwell.Player {
 			shouldPlayAttackAnimation_ = false;
 		}
 
-		private void OnDestroy() {
-			healthSystem_.OnHealthChanged -= HealthSystem_OnHealthChanged;
-		}
-
-		private void HealthSystem_OnHealthChanged(object sender, EventArgs e) {
-			healthBar_.SetSize(healthSystem_.GetHealthNormalized());
+		protected override void HealthSystem_OnHealthChanged(object sender, EventArgs e) {
+			HealthChanged?.Invoke(this, healthSystem_.GetHealthNormalized());
 		}
 
 		public override void SetActiveWeapon(int index) {
