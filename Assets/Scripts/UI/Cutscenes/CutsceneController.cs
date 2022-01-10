@@ -74,6 +74,9 @@ namespace OperationBlackwell.UI {
 			}
 			currentCutsceneIndex_ = index;
 			OnCutsceneStart?.Invoke(this, System.EventArgs.Empty);
+			if(index < 0 || index >= cutscenes_.Length) {
+				EndCutscene();
+			}
 			Show(index);
 		}
 
