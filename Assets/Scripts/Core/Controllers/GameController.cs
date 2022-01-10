@@ -28,7 +28,7 @@ namespace OperationBlackwell.Core {
 		[Header("Puzzles")]
 		[SerializeField] private List<PuzzleComplete> puzzleDestroyableObjects_;
 		public System.EventHandler<PuzzleCompleteArgs> PuzzleEnded;
-		public System.EventHandler<System.EventArgs> PuzzleCompleted;
+		public System.EventHandler<int> PuzzleCompleted;
 
 		public class PuzzleCompleteArgs : System.EventArgs {
 			public int id;
@@ -109,7 +109,7 @@ namespace OperationBlackwell.Core {
 					foreach(GameObject destroyableObject in puzzle.destroyableObjects) {
 						Destroy(destroyableObject);
 					}
-					PuzzleCompleted?.Invoke(this, System.EventArgs.Empty);
+					PuzzleCompleted?.Invoke(this, args.id);
 					break;
 				}
 			}

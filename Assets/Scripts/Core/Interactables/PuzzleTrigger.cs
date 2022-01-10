@@ -45,7 +45,10 @@ namespace OperationBlackwell.Core {
 			return cost_;
 		}
 
-		private void OnPuzzleCompleted(object sender, System.EventArgs args) {
+		private void OnPuzzleCompleted(object sender, int id) {
+			if(puzzleIndex_ != id) {
+				return;
+			}
 			children_[0].gameObject.SetActive(false);
 			children_[1].gameObject.SetActive(true);
 			solved_ = true;
