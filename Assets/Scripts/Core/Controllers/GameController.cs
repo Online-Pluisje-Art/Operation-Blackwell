@@ -38,6 +38,14 @@ namespace OperationBlackwell.Core {
 		[Header("Cursor")]
 		public EventHandler<string> CursorChanged;
 
+		[Header("LevelTransitions")]
+		public EventHandler<LevelTransitionArgs> LevelTransitionStarted;
+		public class LevelTransitionArgs : System.EventArgs {
+			public string currentLevel;
+			public string nextLevel;
+			public int cutsceneIndex;
+		}
+
 		private void Start() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
 				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, false, Tilemap.Node.wallHitChanceModifier, false), drawGridLines_);

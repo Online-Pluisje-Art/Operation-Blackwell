@@ -92,6 +92,7 @@ namespace OperationBlackwell.Core {
 			private Grid<Node> grid_;
 
 			private TriggerNode trigger_;
+			private LevelTransitionTrigger levelTransitionTrigger_;
 
 			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, float hitChanceModifier, bool cover) {
 				this.worldPosition = worldPosition;
@@ -210,6 +211,14 @@ namespace OperationBlackwell.Core {
 
 			public TriggerNode GetTrigger() {
 				return trigger_;
+			}
+
+			public void SetLevelTransitionTrigger(LevelTransitionTrigger levelTransitionTrigger) {
+				this.levelTransitionTrigger_ = levelTransitionTrigger;
+			}
+
+			public LevelTransitionTrigger GetLevelTransitionTrigger() {
+				return levelTransitionTrigger_;
 			}
 		}
 	}

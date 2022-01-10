@@ -78,7 +78,10 @@ namespace OperationBlackwell.UI {
 		}
 
 		public void EndCutscene() {
-			if(GridCombatSystem.instance != null) {
+			if(LevelTransitionController.instance.IsTransitioning()) {
+				GridCombatSystem.instance.SetState(GridCombatSystem.State.Transition);
+				LevelTransitionController.instance.TransitionDone?.Invoke(this, System.EventArgs.Empty);
+			} else {
 				GridCombatSystem.instance.SetState(GridCombatSystem.State.OutOfCombat);
 			}
 			OnCutsceneEnd?.Invoke(this, System.EventArgs.Empty);
