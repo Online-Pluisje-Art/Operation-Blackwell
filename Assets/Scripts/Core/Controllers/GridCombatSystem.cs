@@ -54,6 +54,7 @@ namespace OperationBlackwell.Core {
 		private Vector3 prevPosition_;
 		private int prevActionCount_;
 		private bool setAiTurn_;
+		private bool firstUpdate_;
 
 		public enum State {
 			Normal,
@@ -94,6 +95,8 @@ namespace OperationBlackwell.Core {
 			state_ = State.OutOfCombat;
 			OnUnitDeath += RemoveUnitOnDeath;
 			AITurnSet += OnAITurnSet;
+
+			firstUpdate_ = true;
 		}
 
 		private void OnDestroy() {
@@ -122,61 +125,14 @@ namespace OperationBlackwell.Core {
 			} else {
 				redTeamList_.Remove(unit);
 				if(redTeamList_.Count <= 0) {
-					// aiController_.UnloadStage();
+					AIStageUnloaded?.Invoke(this, 0);
+					state_ = State.OutOfCombat;
 				}
 			}
 			orderList_.GetQueue().RemoveAll(x => x.GetUnit() == unit);
 			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(unit.GetPosition());
 			gridObject.ClearUnitGridCombat();
-		}
-
-		private void SelectNextActiveUnit() {
-			if(unitGridCombat_ == null || unitGridCombat_.GetTeam() == Team.Red) {
-				unitGridCombat_ = GetNextActiveUnit(Team.Blue);
-			} else {
-				unitGridCombat_ = GetNextActiveUnit(Team.Red);
-			}
-
-			UnitEvent unitEvent = new UnitEvent() {
-				unit = unitGridCombat_
-			};
-			OnUnitActionPointsChanged?.Invoke(this, unitEvent);
-			OnWeaponChanged?.Invoke(this, unitGridCombat_.GetActiveWeapon());
-		}
-
-		private CoreUnit GetNextActiveUnit(Team team) {
-			if(team == Team.Blue) {
-				if(blueTeamList_.Count == 0) {
-					return GetNextActiveUnit(Team.Red);
-				} else {
-					blueTeamActiveUnitIndex_ = (blueTeamActiveUnitIndex_ + 1) % blueTeamList_.Count;
-					return GetUnitTeam(blueTeamList_, blueTeamActiveUnitIndex_, team);
-				}
-			} else {
-				if(redTeamList_.Count == 0) {
-					return GetNextActiveUnit(Team.Blue);
-				} else {
-					redTeamActiveUnitIndex_ = (redTeamActiveUnitIndex_ + 1) % redTeamList_.Count;
-					return GetUnitTeam(redTeamList_, redTeamActiveUnitIndex_, team);
-				}
-			}
-		}
-
-		private CoreUnit GetUnitTeam(List<CoreUnit> teamList, int index, Team team) {
-			if(index < 0 || index >= teamList.Count) {
-				return null;
-			}
-			if(teamList[index] == null || teamList[index].IsDead()) {
-				// Unit is Dead, get next one
-				return GetNextActiveUnit(team);
-			} else {
-				OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
-					unit = teamList[index],
-					position = teamList[index].GetPosition()
-				});
-				return teamList[index];
-			}
 		}
 
 		public void UpdateValidMovePositions(Vector3 position) {
@@ -264,11 +220,15 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Update() {
+			if(firstUpdate_) {
+				firstUpdate_ = false;
+				CheckTriggers();
+			}
 			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			CoreUnit unit;
 
-			if(state_ == State.Cutscene) {
+			if(state_ == State.Cutscene && prevNode_ != null) {
 				GameController.instance.GetSelectorTilemap().SetTilemapSprite(
 					prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
 				);
@@ -750,6 +710,7 @@ namespace OperationBlackwell.Core {
 					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex())) {
 						CutsceneTriggered?.Invoke(this, trigger.GetIndex());
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
+						state_ = State.Cutscene;
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
 						state_ = State.Normal;
 						AIStageLoaded?.Invoke(this, trigger.GetIndex());

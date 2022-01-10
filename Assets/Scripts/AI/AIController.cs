@@ -23,12 +23,17 @@ namespace OperationBlackwell.AI {
 			// Subscribe to events
 			if(GridCombatSystem.instance != null) {
 				GridCombatSystem.instance.AIStageLoaded += OnAIStageLoaded;
+				GridCombatSystem.instance.AIStageUnloaded += OnAIStageUnloaded;
 				GridCombatSystem.instance.AISetTurn += OnAISetTurn;
 			}
 		}
 
 		private void OnAIStageLoaded(object sender, int stage) {
 			LoadStage(stage);
+		}
+
+		private void OnAIStageUnloaded(object sender, int stage) {
+			UnloadStage();
 		}
 
 		private void OnAISetTurn(object sender, System.EventArgs e) {
@@ -96,7 +101,7 @@ namespace OperationBlackwell.AI {
 				// For now we will just have the unit move to the nearest enemy. Or attack the nearest enemy.
 				// (This depends if the unit has enough action points and if the unit is in range of the enemy)
 				while(unit.HasActionPoints()) {
-					// The == 1 is because each tile to move has a cost of 2 and otherwise we would end up in a deadlock.
+					// The <= 1 is because each tile to move has a cost of 2 and otherwise we would end up in a deadlock.
 					if(unit.GetActionPoints() <= 1) {
 						break;
 					}

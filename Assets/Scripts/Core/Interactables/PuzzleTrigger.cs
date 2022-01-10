@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace OperationBlackwell.Core {
 	public class PuzzleTrigger : MonoBehaviour, IInteractable {
@@ -9,12 +10,25 @@ namespace OperationBlackwell.Core {
 
 		public static event System.EventHandler<int> PuzzleLaunched;
 
+		private List<Transform> children_;
+		private bool solved_;
+
 		private void Start() {
 			GameController.instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
+			children_ = new List<Transform>();
+			solved_ = false;
+			foreach(Transform child in transform) {
+				children_.Add(child);
+			}
+			GameController.instance.PuzzleCompleted += OnPuzzleCompleted;
+		}
+
+		private void OnDestroy() {
+			GameController.instance.PuzzleCompleted -= OnPuzzleCompleted;
 		}
 
 		public void Interact(CoreUnit unit) {
-			if(GridCombatSystem.instance.GetState() != GridCombatSystem.State.OutOfCombat) {
+			if(solved_ || GridCombatSystem.instance.GetState() != GridCombatSystem.State.OutOfCombat) {
 				return;
 			}
 			GridCombatSystem.instance.SetState(GridCombatSystem.State.Cutscene);
@@ -29,6 +43,15 @@ namespace OperationBlackwell.Core {
 
 		public int GetCost() {
 			return cost_;
+		}
+
+		private void OnPuzzleCompleted(object sender, int id) {
+			if(puzzleIndex_ != id) {
+				return;
+			}
+			children_[0].gameObject.SetActive(false);
+			children_[1].gameObject.SetActive(true);
+			solved_ = true;
 		}
 	}
 }

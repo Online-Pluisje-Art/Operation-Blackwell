@@ -27,7 +27,13 @@ namespace OperationBlackwell.Core {
 
 		[Header("Puzzles")]
 		[SerializeField] private List<PuzzleComplete> puzzleDestroyableObjects_;
-		public System.EventHandler<int> PuzzleEnded;
+		public System.EventHandler<PuzzleCompleteArgs> PuzzleEnded;
+		public System.EventHandler<int> PuzzleCompleted;
+
+		public class PuzzleCompleteArgs : System.EventArgs {
+			public int id;
+			public bool success;
+		}
 
 		[Header("Cursor")]
 		public EventHandler<string> CursorChanged;
@@ -97,12 +103,13 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		private void OnPuzzleComplete(object sender, int id) {
+		private void OnPuzzleComplete(object sender, PuzzleCompleteArgs args) {
 			foreach(PuzzleComplete puzzle in puzzleDestroyableObjects_) {
-				if(puzzle.puzzleID == id) {
+				if(puzzle.puzzleID == args.id && args.success) {
 					foreach(GameObject destroyableObject in puzzle.destroyableObjects) {
 						Destroy(destroyableObject);
 					}
+					PuzzleCompleted?.Invoke(this, args.id);
 					break;
 				}
 			}
