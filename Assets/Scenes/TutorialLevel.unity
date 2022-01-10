@@ -4597,7 +4597,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 087b9de55289c5d42a185e9a09cafe51, type: 2}
     - target: {fileID: 2649961574864912726, guid: 232a1537f78d2e27ea649faecefd494c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -759.22015
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4370431012621421263, guid: 232a1537f78d2e27ea649faecefd494c, type: 3}
       propertyPath: m_Name
@@ -24301,10 +24301,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1862699913}
     m_Modifications:
-    - target: {fileID: 2160969972717473138, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
-      propertyPath: puzzleIndex_
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3969538400539265792, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -24352,6 +24348,10 @@ PrefabInstance:
     - target: {fileID: 4194922723558346020, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
       propertyPath: m_Name
       value: Puzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465637022171116511, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36b4851cfb605083e9572307460da8d7, type: 3}

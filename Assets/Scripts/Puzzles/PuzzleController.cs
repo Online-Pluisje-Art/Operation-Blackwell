@@ -126,7 +126,10 @@ namespace OperationBlackwell.Puzzles {
 			puzzleVictory_.SetActive(false);
 			puzzleTimer_.SetActive(false);
 			background_.enabled = false;
-			GameController.instance.PuzzleEnded?.Invoke(this, currentPuzzle_.GetID());
+			GameController.instance.PuzzleEnded?.Invoke(this, new GameController.PuzzleCompleteArgs {
+				id = currentPuzzle_.GetID(),
+				success = (currentState_ == PuzzleState.Solved)
+			});
 			GridCombatSystem.instance.SetState(GridCombatSystem.State.OutOfCombat);
 			timerScript_.StopTimer();
 		}
