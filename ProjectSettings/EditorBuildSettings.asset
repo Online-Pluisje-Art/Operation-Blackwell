@@ -23,7 +23,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Level.unity
     guid: 8b6a99bb2ff3efc4ba1060efd893cc71
-  - enabled: 1
-    path: Assets/Scenes/LevelTransition.unity
-    guid: 77a795f583ea9b44c8503f0b7f2ce72d
   m_configObjects: {}
