@@ -15,7 +15,7 @@ namespace OperationBlackwell.Puzzles {
 		private Image background_;
 
 		[Header("Puzzles")]
-		[SerializeField] private Puzzle[] puzzles;
+		[SerializeField] private List<Puzzle> puzzles_;
 		[SerializeField] private GameObject puzzleVictory_;
 		[SerializeField] private GameObject puzzleTimer_;
 		private CircularTimer timerScript_;
@@ -63,11 +63,11 @@ namespace OperationBlackwell.Puzzles {
 		}
 
 		private void OnPuzzleStarted(object sender, int id) {
-			CreatePuzzle(id);
+			CreatePuzzle(puzzles_.FindIndex(x => x.GetID() == id));
 		}
 
 		public void CreatePuzzle(int puzzleIndex) {
-			currentPuzzle_ = puzzles[puzzleIndex];
+			currentPuzzle_ = puzzles_[puzzleIndex];
 			blocksPerLine_ = currentPuzzle_.BlocksPerLine();
 			puzzleOffset_ = new Vector2(
 				puzzleSize_ / 2,

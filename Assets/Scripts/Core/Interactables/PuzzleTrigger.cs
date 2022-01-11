@@ -6,7 +6,7 @@ namespace OperationBlackwell.Core {
 	public class PuzzleTrigger : MonoBehaviour, IInteractable {
 		[SerializeField] private int range_;
 		[SerializeField] private int cost_;
-		[SerializeField] private int puzzleIndex_;
+		[SerializeField] private int puzzleId_;
 
 		public static event System.EventHandler<int> PuzzleLaunched;
 
@@ -32,7 +32,7 @@ namespace OperationBlackwell.Core {
 				return;
 			}
 			GridCombatSystem.instance.SetState(GridCombatSystem.State.Cutscene);
-			PuzzleLaunched?.Invoke(this, puzzleIndex_);
+			PuzzleLaunched?.Invoke(this, puzzleId_);
 		}
 
 		public bool IsInRange(Vector3 unitPos) {
@@ -46,7 +46,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void OnPuzzleCompleted(object sender, int id) {
-			if(puzzleIndex_ != id) {
+			if(puzzleId_ != id) {
 				return;
 			}
 			children_[0].gameObject.SetActive(false);
