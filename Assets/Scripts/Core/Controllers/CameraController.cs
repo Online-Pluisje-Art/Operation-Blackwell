@@ -19,6 +19,13 @@ namespace OperationBlackwell.Core {
 		private void Start() {
 			GridCombatSystem.instance.OnUnitSelect += OnNewPlayerSelect;
 			GridCombatSystem.instance.OnUnitMove += OnPlayerMove;
+			GameController.instance.LevelTransitionStarted += OnLevelTransitionStarted;
+		}
+
+		private void OnDestroy() {
+			GridCombatSystem.instance.OnUnitSelect -= OnNewPlayerSelect;
+			GridCombatSystem.instance.OnUnitMove -= OnPlayerMove;
+			GameController.instance.LevelTransitionStarted -= OnLevelTransitionStarted;
 		}
 
 		private void FixedUpdate() {
@@ -72,11 +79,6 @@ namespace OperationBlackwell.Core {
 			return false;
 		}
 
-		private void OnDestroy() {
-			GridCombatSystem.instance.OnUnitSelect -= OnNewPlayerSelect;
-			GridCombatSystem.instance.OnUnitMove -= OnPlayerMove;
-		}
-
 		private void OnNewPlayerSelect(object player, GridCombatSystem.UnitPositionEvent args) {
 			if(args.unit != null) {
 				targetPosition_ = new Vector3((int)args.position.x, (int)args.position.y, camera_.transform.position.z);
@@ -87,6 +89,11 @@ namespace OperationBlackwell.Core {
 			if(args.unit != null) {
 				targetPosition_ = new Vector3((int)args.position.x, (int)args.position.y, camera_.transform.position.z);
 			}
+		}
+
+		private void OnLevelTransitionStarted(object sender, GameController.LevelTransitionArgs args) {
+			camera_.transform.position = new Vector3(5, 0, camera_.transform.position.z);
+			targetPosition_ = camera_.transform.position;
 		}
 	}
 }

@@ -74,11 +74,17 @@ namespace OperationBlackwell.UI {
 			}
 			currentCutsceneIndex_ = index;
 			OnCutsceneStart?.Invoke(this, System.EventArgs.Empty);
+			if(index < 0 || index >= cutscenes_.Length) {
+				EndCutscene();
+			}
 			Show(index);
 		}
 
 		public void EndCutscene() {
-			if(GridCombatSystem.instance != null) {
+			if(LevelTransitionController.instance.IsTransitioning()) {
+				GridCombatSystem.instance.SetState(GridCombatSystem.State.Transition);
+				LevelTransitionController.instance.TransitionDone?.Invoke(this, System.EventArgs.Empty);
+			} else {
 				GridCombatSystem.instance.SetState(GridCombatSystem.State.OutOfCombat);
 			}
 			OnCutsceneEnd?.Invoke(this, System.EventArgs.Empty);

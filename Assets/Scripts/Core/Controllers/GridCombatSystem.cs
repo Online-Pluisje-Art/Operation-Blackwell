@@ -62,6 +62,7 @@ namespace OperationBlackwell.Core {
 			EndingTurn,
 			Waiting,
 			Cutscene,
+			Transition,
 			OutOfCombat,
 		}
 
@@ -168,7 +169,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void LateUpdate() {
-			if(state_ == State.Cutscene) {
+			if(state_ == State.Cutscene || state_ == State.Transition) {
 				GameController.instance.CursorChanged?.Invoke(this, "Arrow");
 				return;
 			}
@@ -228,7 +229,7 @@ namespace OperationBlackwell.Core {
 			Tilemap.Node gridObject = grid.GetGridObject(Utils.GetMouseWorldPosition());
 			CoreUnit unit;
 
-			if(state_ == State.Cutscene && prevNode_ != null) {
+			if((state_ == State.Cutscene || state_ == State.Transition) && prevNode_ != null) {
 				GameController.instance.GetSelectorTilemap().SetTilemapSprite(
 					prevNode_.gridX, prevNode_.gridY, MovementTilemap.TilemapObject.TilemapSprite.None
 				);
@@ -514,6 +515,7 @@ namespace OperationBlackwell.Core {
 								Tilemap.Node node = grid.GetGridObject(unitB.GetPosition());
 								node.SetUnitGridCombat(unitB);
 								CheckTriggers();
+								CheckLevelTransition();
 							});
 							DeselectUnit();
 						} else if(gridObject.GetInteractable() != null) {
@@ -527,6 +529,7 @@ namespace OperationBlackwell.Core {
 									interactable_.Interact(unitGridCombat_);
 								}
 								CheckTriggers();
+								CheckLevelTransition();
 							}
 							DeselectUnit();
 						}
@@ -806,6 +809,31 @@ namespace OperationBlackwell.Core {
 
 		private void OnAITurnSet(object sender, EventArgs e) {
 			ExecuteAllActions();
+		}
+
+		private void CheckLevelTransition() {
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
+			Vector3 position;
+			Tilemap.Node node;
+			LevelTransitionTrigger trigger;
+			foreach(CoreUnit unit in blueTeamList_) {
+				position = unit.GetPosition();
+				node = grid.GetGridObject(position);
+				trigger = node.GetLevelTransitionTrigger();
+				if(trigger == null) {
+					continue;
+				}
+				GameController.instance.LevelTransitionStarted?.Invoke(this, new GameController.LevelTransitionArgs {
+					currentLevel = trigger.GetCurrentLevel(),
+					nextLevel = trigger.GetNextLevel(),
+					cutsceneIndex = trigger.GetCutsceneIndex()
+				});
+
+				DeselectUnit();
+
+				state_ = State.Transition;
+				break;
+			}
 		}
 	}
 }
