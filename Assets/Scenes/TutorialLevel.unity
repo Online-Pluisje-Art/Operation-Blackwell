@@ -20423,6 +20423,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4179359667530846209, guid: 581ad09f357c344789e9e25c157a2ca9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4828410392198790483, guid: 581ad09f357c344789e9e25c157a2ca9, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -20433,6 +20437,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172178515613558927, guid: 581ad09f357c344789e9e25c157a2ca9, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172178515613558927, guid: 581ad09f357c344789e9e25c157a2ca9, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8178737384670098106, guid: 581ad09f357c344789e9e25c157a2ca9, type: 3}
@@ -24396,6 +24404,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1862699913}
     m_Modifications:
+    - target: {fileID: 2160969972717473138, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
+      propertyPath: puzzleId_
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160969972717473138, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
+      propertyPath: puzzleIndex_
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3969538400539265792, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -38360,6 +38376,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8207136792189107596, guid: 0b436db71018af019af60aaf3add7b42, type: 3}
+      propertyPath: puzzles_.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207136792189107596, guid: 0b436db71018af019af60aaf3add7b42, type: 3}
+      propertyPath: puzzles_.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c193d2875108be1bbae3bd904ee0ea1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b436db71018af019af60aaf3add7b42, type: 3}
 --- !u!224 &2082241748 stripped

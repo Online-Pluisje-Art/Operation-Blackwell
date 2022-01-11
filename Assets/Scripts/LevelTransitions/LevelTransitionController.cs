@@ -45,7 +45,13 @@ namespace OperationBlackwell.LevelTransitions {
 
 		private IEnumerator EndTransitionCoroutine() {
 			yield return new WaitForSeconds(fadeTime_);
-			SceneManager.LoadScene(levelToLoadAfter_);
+			GlobalController.instance.LevelCompleted?.Invoke(this, new GlobalController.LevelDataArgs {
+				levelData = new GlobalController.LevelData {
+					id = SceneManager.GetActiveScene().name,
+					completed = true
+				},
+				newLevelId = levelToLoadAfter_
+			});
 		}
 
 		public bool IsTransitioning() {
