@@ -40,11 +40,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 4791807241054577925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f0e1646487a1abbae6ed81c24f2246, type: 3}
+  m_Script: {fileID: 11500000, guid: 605c203f89e2ef3ba89fcf792c69e92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cursorAnimationList_:
-  - {fileID: 11400000, guid: a1f440ea89340503499121769e49e1dc, type: 2}
-  - {fileID: 11400000, guid: 7a9d1ccad86b9a4b98a53497e86d11a6, type: 2}
-  - {fileID: 11400000, guid: 3d51cad3e0baad0f7b1f4202f6f4b7c1, type: 2}
-  - {fileID: 11400000, guid: 180d254a523759bbcbcdcde82d000940, type: 2}
+  - cursorType: 0
+    textureArray:
+    - {fileID: 2800000, guid: afc2209df170e55458a8de37eeb5bc6e, type: 3}
+    frameRate: 1
+    offset: {x: 10, y: 10}
+  - cursorType: 3
+    textureArray:
+    - {fileID: 2800000, guid: 0f178b5f3bab92049abef983243ba5e2, type: 3}
+    - {fileID: 2800000, guid: ede991f2c6b0ba04ebd7b9ab74bc4906, type: 3}
+    - {fileID: 2800000, guid: cba5b1a6a52361e43a0232977784bbba, type: 3}
+    - {fileID: 2800000, guid: 42a3165e6e538354bb7f566de921e752, type: 3}
+    - {fileID: 2800000, guid: e35073a314f89184c86cfa5f6d18e417, type: 3}
+    - {fileID: 2800000, guid: f2adeead9b357994db570d498fdaf864, type: 3}
+    - {fileID: 2800000, guid: 5080c098eae32124cbb612a4898ae6cc, type: 3}
+    - {fileID: 2800000, guid: 2e93533745b745f4783b76a51305205f, type: 3}
+    - {fileID: 2800000, guid: a27e57c8fe5115f48b1d19d71331c023, type: 3}
+    frameRate: 0.1
+    offset: {x: 16, y: 16}
+  - cursorType: 4
+    textureArray:
+    - {fileID: 2800000, guid: d5d626c7002f0704bae66091d92fcb46, type: 3}
+    - {fileID: 2800000, guid: 45145a31ccae2ea4181663417b686be7, type: 3}
+    frameRate: 0.2
+    offset: {x: 4, y: 4}
+  - cursorType: 2
+    textureArray:
+    - {fileID: 2800000, guid: 67c56fac1043f614d92ae10680a7ce94, type: 3}
+    frameRate: 1
+    offset: {x: 16, y: 16}
