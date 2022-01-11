@@ -20,6 +20,14 @@ namespace OperationBlackwell.Puzzles {
 			return puzzleID_;
 		}
 
+		public PuzzleDifficulty GetDifficulty() {
+			return puzzleDifficulty_;
+		}
+
+		public void SetDifficulty(PuzzleDifficulty difficulty) {
+			puzzleDifficulty_ = difficulty;
+		}
+
 		public int BlocksPerLine() {
 			switch (puzzleDifficulty_) {
 				case PuzzleDifficulty.Easy:
