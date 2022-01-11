@@ -31211,6 +31211,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 463435885}
     m_Modifications:
+    - target: {fileID: 1100748560876800028, guid: a69490719092a56109a601ebb9222a05, type: 3}
+      propertyPath: nextLevel_
+      value: PrisonLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 1410140857959488003, guid: a69490719092a56109a601ebb9222a05, type: 3}
       propertyPath: m_RootOrder
       value: 2

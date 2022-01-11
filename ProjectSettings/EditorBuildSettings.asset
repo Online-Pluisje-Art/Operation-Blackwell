@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Level.unity
     guid: 8b6a99bb2ff3efc4ba1060efd893cc71
+  - enabled: 1
+    path: Assets/Scenes/PrisonLevel.unity
+    guid: cfe547ec1c48b644fb091d6784600aa9
   m_configObjects: {}
