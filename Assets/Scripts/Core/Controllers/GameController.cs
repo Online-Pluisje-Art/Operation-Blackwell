@@ -55,27 +55,22 @@ namespace OperationBlackwell.Core {
 			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * cellSize_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * cellSize_, cellSize_);
 			if(movementTilemapVisual_ != null) {
 				movementTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+				movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
 			}
 			if(arrowTilemapVisual_ != null) {
 				arrowTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+				arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
 			}
 			if(selectorTilemapVisual_ != null) {
 				selectorTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
-			}
-			tilemap.SetTilemapVisual(tilemapVisual_);
-			if(movementTilemap_ != null) {
-				movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
-			}
-			if(arrowTilemap_ != null) {
-				arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
-			}
-			if(selectorTilemap_ != null) {
 				selectorTilemap_.SetTilemapVisual(selectorTilemapVisual_);
 			}
+			tilemap.SetTilemapVisual(tilemapVisual_);
+
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
-				tilemap.Load("tutorial_V4.5");
+				LoadTilemapData("tutorial_V4.5");
 			} else if(SceneManager.GetActiveScene().name == "Final Level") {
-				tilemap.Load("finallevel_V1.6");
+				LoadTilemapData("finallevel_V1.6");
 			} else {
 				Debug.Log(SceneManager.GetActiveScene().name + " has no level to load!");
 			}
@@ -129,6 +124,10 @@ namespace OperationBlackwell.Core {
 			} else {
 				SceneManager.LoadScene("LoseScreen");
 			}
+		}
+
+		public void LoadTilemapData(string jsonFilePath) {
+			tilemap.Load(jsonFilePath);
 		}
 	}
 }
