@@ -7,7 +7,6 @@ using OperationBlackwell.Core;
 namespace OperationBlackwell.Player {
 	public class UnitGridCombat : CoreUnit {
 		[SerializeField] private List<Weapon> weapons_;
-		[SerializeField] private String name_;
 		private MovePositionPathfinding movePosition_;
 		
 		private WorldBar healthBar_;
@@ -252,10 +251,6 @@ namespace OperationBlackwell.Player {
 			animator_.SetBool("isShootingDown", false);
 			animator_.SetBool("isShootingLeft", false);
 			animator_.SetBool("isShootingRight", false);
-		}
-
-		public override String GetName() {
-			return name_;
 		}
 	}
 }

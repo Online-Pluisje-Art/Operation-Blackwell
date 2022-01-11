@@ -62,12 +62,18 @@ namespace OperationBlackwell.Puzzles {
 			PuzzleTrigger.PuzzleLaunched -= OnPuzzleStarted;
 		}
 
-		private void OnPuzzleStarted(object sender, int id) {
-			CreatePuzzle(puzzles_.FindIndex(x => x.GetID() == id));
+		private void OnPuzzleStarted(object sender, PuzzleTrigger.PuzzleLaunchedArgs args) {
+			CreatePuzzle(puzzles_.FindIndex(x => x.GetID() == args.id), args.name);
 		}
 
-		public void CreatePuzzle(int puzzleIndex) {
+		public void CreatePuzzle(int puzzleIndex, string actorName = "") {
 			currentPuzzle_ = puzzles_[puzzleIndex];
+			Puzzle.PuzzleDifficulty oldDifficulty = currentPuzzle_.GetDifficulty();
+			if(actorName == "Caleana") {
+				Puzzle.PuzzleDifficulty newDifficulty = oldDifficulty - 1;
+				newDifficulty = newDifficulty < Puzzle.PuzzleDifficulty.Easy ? Puzzle.PuzzleDifficulty.Easy : newDifficulty;
+				currentPuzzle_.SetDifficulty(newDifficulty);
+			}
 			blocksPerLine_ = currentPuzzle_.BlocksPerLine();
 			puzzleOffset_ = new Vector2(
 				puzzleSize_ / 2,
@@ -107,6 +113,7 @@ namespace OperationBlackwell.Puzzles {
 			timerScript_.duration = currentPuzzle_.PuzzleDuration();
 			puzzleTimer_.SetActive(true);
 			PuzzleStarted?.Invoke(this, System.EventArgs.Empty);
+			currentPuzzle_.SetDifficulty(oldDifficulty);
 			StartShuffle();
 		}
 

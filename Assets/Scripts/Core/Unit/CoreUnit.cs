@@ -4,6 +4,7 @@ using System;
 namespace OperationBlackwell.Core {
 	[RequireComponent(typeof(AudioSource))]
 	public abstract class CoreUnit : MonoBehaviour {
+		[SerializeField] protected String name_;
 		[SerializeField] protected Team team_;
 		[SerializeField] protected int maxActionPoints_;
 		[SerializeField] protected Animator animator_;
@@ -56,6 +57,10 @@ namespace OperationBlackwell.Core {
 
 		protected void OnDestroy() {
 			healthSystem_.OnHealthChanged -= HealthSystem_OnHealthChanged;
+		}
+
+		public virtual String GetName() {
+			return name_;
 		}
 
 		public virtual bool IsDead() {
@@ -200,7 +205,6 @@ namespace OperationBlackwell.Core {
 		public abstract string GetActiveWeapon();
 		public abstract Actions.AttackType GetAttackType();
 		public abstract void ExecuteActions();
-		public abstract String GetName();
 		protected abstract void HealthSystem_OnHealthChanged(object sender, EventArgs e);
 	}
 }

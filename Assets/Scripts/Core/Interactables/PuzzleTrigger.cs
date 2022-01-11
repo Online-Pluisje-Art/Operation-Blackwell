@@ -8,7 +8,11 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private int cost_;
 		[SerializeField] private int puzzleId_;
 
-		public static event System.EventHandler<int> PuzzleLaunched;
+		public static event System.EventHandler<PuzzleLaunchedArgs> PuzzleLaunched;
+		public class PuzzleLaunchedArgs : System.EventArgs {
+			public string name;
+			public int id;
+		}
 
 		private List<Transform> children_;
 		private bool solved_;
@@ -32,7 +36,10 @@ namespace OperationBlackwell.Core {
 				return;
 			}
 			GridCombatSystem.instance.SetState(GridCombatSystem.State.Cutscene);
-			PuzzleLaunched?.Invoke(this, puzzleId_);
+			PuzzleLaunched?.Invoke(this, new PuzzleLaunchedArgs {
+				name = unit.GetName(),
+				id = puzzleId_
+			});
 		}
 
 		public bool IsInRange(Vector3 unitPos) {
