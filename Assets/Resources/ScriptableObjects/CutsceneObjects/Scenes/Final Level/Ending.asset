@@ -12,6 +12,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
   m_Name: Ending
   m_EditorClassIdentifier: 
-  characterLeft_: {fileID: 0}
-  characterRight_: {fileID: 0}
-  messages_: []
+  characterLeft_: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+  characterRight_: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Sorry it had to be this way Jonah, but this one is on you.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Caleana, Kinro, Let\u2019s get to work. Here\u2019s the keycard."
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: On it!
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Aizen, Spade is down, I repeat, Spade is down.
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: Affirmative. YES!
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: "I\u2019m almost disappointed I wasn\u2019t there to fight him myself"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "We are not out of the water yet. If we can\u2019t get that message
+      out they will just install another lunatic and we will be back to square one"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Kinro, what is your status?
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: "Almost done, Caleana should get access any second now\u2026\r\nAnd
+      done\u2026 Caleana you\u2019re up!\r\n"
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: "Let\u2019s go. It\u2019s been a while since i\u2019ve worked this puppy.
+      Let\u2019s see\u2026"
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: "Reconnect there\u2026 Route through those relay stations\u2026"
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: "Okay Adam, If we broadcast now we will reach 74% of the galaxy and
+      the other 26% with rebroadcasts. It\u2019s now or never!"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: 'Citizens of <the galaxy?>, this is Adam Blackwell speaking. I have
+      an important message about your government. '
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: They have been lying to you, stealing from you and hurting you. The
+      horrific terrorists that have been plagueing you and your families for years
+      are a governmental puppet organisation.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "The government used them to keep all of you scared and docile, dependent
+      on their \u2018protection\u2019. That ends today."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Their power and control is based on lies and fear. Rise up and take
+      back your freedom, your safety. Rise up!
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: May I?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Go ahead
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: This is Terrorist leader Aizen Rhodes speaking. Everything Blackwell
+      just said is true. I am sorry.
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: I am sorry for all the pain I have caused. I do not expect forgiveness,
+      all I ask for is that those who forced me in this position are brought to justice.
+      That is all.
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: "The intercoms are blowing up galaxy wide. Message received. People
+      are angry\u2026"
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: "We did it! Hahaha, I wish I could see the officials\u2019 faces right
+      now!"
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: I hate to interrupt your celebrations
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: "but I would like to remind you we are still in a terrorist base filled
+      with lunatics\u2026"
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: 'I suggest we extract first and then celebrate?
+
+      I presume you
+      still remember the way out? I will meet you there.
+
+'
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Let's go

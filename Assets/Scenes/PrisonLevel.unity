@@ -24360,7 +24360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1942434042043666953, guid: 232a1537f78d2e27ea649faecefd494c, type: 3}
       propertyPath: cutscenes_.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1942434042043666953, guid: 232a1537f78d2e27ea649faecefd494c, type: 3}
       propertyPath: cutscenes_.Array.data[0]
@@ -24373,7 +24373,7 @@ PrefabInstance:
     - target: {fileID: 1942434042043666953, guid: 232a1537f78d2e27ea649faecefd494c, type: 3}
       propertyPath: cutscenes_.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 100d0e8f0048365408fa72b17b00f392, type: 2}
+      objectReference: {fileID: 11400000, guid: 5ff4cb05979fba04aa429b03e1a98014, type: 2}
     - target: {fileID: 1942434042043666953, guid: 232a1537f78d2e27ea649faecefd494c, type: 3}
       propertyPath: cutscenes_.Array.data[3]
       value: 
@@ -24583,7 +24583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1100748560876800028, guid: a69490719092a56109a601ebb9222a05, type: 3}
       propertyPath: cutsceneIndex_
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1410140857959488003, guid: a69490719092a56109a601ebb9222a05, type: 3}
       propertyPath: m_RootOrder
@@ -38046,6 +38046,76 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8448686381630515856, guid: 4007a6facb759dd42b29be757e734cb2, type: 3}
   m_PrefabInstance: {fileID: 1188663627}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1159946166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1943657818}
+    m_Modifications:
+    - target: {fileID: 3821334394082802645, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: index_
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302663041194414869, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_Name
+      value: Cutscene (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7540968779339270536, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+--- !u!4 &1159946167 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7879245417875882050, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+  m_PrefabInstance: {fileID: 1159946166}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1160146874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8448686381630515856, guid: 4007a6facb759dd42b29be757e734cb2, type: 3}
@@ -39404,6 +39474,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1943657818}
     m_Modifications:
+    - target: {fileID: 3821334394082802645, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
+      propertyPath: index_
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7302663041194414869, guid: 971cfed821239075f93ad1a6ab7dd000, type: 3}
       propertyPath: m_Name
       value: Cutscene
@@ -59799,6 +59873,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1004970548}
+  - {fileID: 1159946167}
   m_Father: {fileID: 1315455309}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -14,4 +14,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterLeft_: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
   characterRight_: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
-  messages_: []
+  messages_:
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: "Well well well, if it isn\u2019t the government's most loyal dog."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Ex-dog at this point. Loyalty is also running low.
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: So, what brings the great Blackwell to my humble abode? Did you bring
+      me a new dagger so I can stab you again?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: No, but I did bring this keycard. See it as a form of apology.
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: WHAT!? How did you get your hands on one of those?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Story for another time, Can you use this?
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: Of Course I can. What are you trying to achieve?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Well, I recently learned the truth about the government's practices
+      and I believe everyone deserves to know as well.
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: Wait, you are talking about a galaxy wide broadcast? I knew you were
+      a brave idiot but this takes it to a whole new level. I would need access to
+      a broadcasting terminal to do that. Those are some of the best guarded locations
+      in the galaxy.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: The ones managed by the government yes, but what if I told you their
+      puppet terrorist organisation also has a broadcast terminal.
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: Wait, they gave those idiots a broadcasting terminal? I guess those
+      terrorists are good for something afterall huh
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: So? Are you in or not?
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: Sure, on the condition you let me go after.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Deal
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: "Okay, let\u2019s get out of here."

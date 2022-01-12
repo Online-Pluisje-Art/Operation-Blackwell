@@ -54,7 +54,8 @@ MonoBehaviour:
     message: What did you say that brought you here? You need a mechanic? For what?
   - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
     direction: 0
-    message: '[TBD]'
+    message: We need to use the broadcasting network and I wont be able to acces
+      the terminal without you
   - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
     direction: 1
     message: "Well, I\u2019ve got bad news for you, you came to the right person

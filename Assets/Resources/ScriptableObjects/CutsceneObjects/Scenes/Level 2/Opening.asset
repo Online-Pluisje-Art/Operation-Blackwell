@@ -13,8 +13,32 @@ MonoBehaviour:
   m_Name: Opening
   m_EditorClassIdentifier: 
   characterLeft_: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
-  characterRight_: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+  characterRight_: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
   messages_:
   - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
     direction: 0
-    message: hallo
+    message: "Okay, I\u2019m here. Where is Baron?"
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: "Miss Baron is at the end of the hallway. \r\nAfter you find her, get
+      out of here using the vents. "
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Affirmative
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Let\u2019s hope she hears me out before she stabs me again..."
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: "Again? I presume she doesn\u2019t have the highest opinion of you?"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "I\u2019m why she is stuck here, the only reason she stopped simply
+      walking out of here is because I would always catch her again. That is not
+      an amazing foundation to build a friendship on you know\u2026 "
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: "Well, let\u2019s indeed hope she doesn\u2019t stab you again."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Amen
