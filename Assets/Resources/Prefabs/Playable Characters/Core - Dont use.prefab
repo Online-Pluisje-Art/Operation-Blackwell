@@ -124,7 +124,7 @@ Animator:
   m_GameObject: {fileID: 7544449360146827313}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 627a2c8d4bb8c3b43a90939c54ac5b6c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -209,11 +209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0af036b690810680a9cceaaa13a91e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name_: 
   team_: 0
   maxActionPoints_: 0
   animator_: {fileID: 0}
   weapons_: []
-  name_: 
 --- !u!114 &2343956742568336423
 MonoBehaviour:
   m_ObjectHideFlags: 0
