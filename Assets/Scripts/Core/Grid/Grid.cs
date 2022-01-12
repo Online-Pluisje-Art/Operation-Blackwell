@@ -5,7 +5,6 @@ using System;
 
 namespace OperationBlackwell.Core {
 	public class Grid<TGridObject> {
-		private readonly bool debugGrid_ = false;
 		public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
 		public class OnGridObjectChangedEventArgs : EventArgs {
 			public int x;
@@ -58,6 +57,10 @@ namespace OperationBlackwell.Core {
 
 		public Vector3 GetWorldPosition(int x, int y) {
 			return new Vector3(x, y) * cellSize + originPosition_;
+		}
+
+		public Vector3 GetPosition(int x, int y) {
+			return new Vector3(x + cellSize / 2, y + cellSize / 2) * cellSize + originPosition_;
 		}
 
 		public void GetXY(Vector3 worldPosition, out int x, out int y) {

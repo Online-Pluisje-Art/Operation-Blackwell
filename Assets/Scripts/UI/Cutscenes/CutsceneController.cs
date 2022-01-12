@@ -3,11 +3,10 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using OperationBlackwell.Core;
+using OperationBlackwell.LevelTransitions;
 
 namespace OperationBlackwell.UI {
-	public class CutsceneController : BaseCutsceneController {
-		public static CutsceneController Instance { get; private set; }
-
+	public class CutsceneController : Singleton<CutsceneController> {
 		[SerializeField] private Cutscene[] cutscenes_;
 		private Cutscene currentCutscene_;
 		private int currentCutsceneIndex_;
@@ -27,18 +26,9 @@ namespace OperationBlackwell.UI {
 		public System.EventHandler<System.EventArgs> OnCutsceneStart;
 		public System.EventHandler<System.EventArgs> OnCutsceneEnd;
 
-		private void Awake() {
-			if(Instance == null) {
-				Instance = this;
-			} else {
-				Destroy(gameObject);
-				return;
-			}
-			children_ = new List<GameObject>();
-		}
-
 		private void Start() {
 			currentCutscene_ = null;
+			children_ = new List<GameObject>();
 			foreach(Transform child in transform) {
 				children_.Add(child.gameObject);
 			}
@@ -54,6 +44,14 @@ namespace OperationBlackwell.UI {
 			text_ = children_[9].GetComponent<TextMeshProUGUI>();
 
 			SetActive(false);
+
+			// Subscribe to events
+			if(GridCombatSystem.instance != null) {
+				GridCombatSystem.instance.CutsceneTriggered += StartCutscene;
+			}
+			if(LevelTransitionController.instance != null) {
+				LevelTransitionController.instance.LeveltransitionCutsceneTriggered += StartCutscene;
+			}
 		}
 
 		private void Show(int index) {
@@ -70,18 +68,24 @@ namespace OperationBlackwell.UI {
 			SetActive(false);
 		}
 
-		public override void StartCutscene(int index) {
-			if(GridCombatSystem.Instance != null) {
-				GridCombatSystem.Instance.SetState(GridCombatSystem.State.Cutscene);
+		public void StartCutscene(object sender, int index) {
+			if(sender is GridCombatSystem combatsystem) {
+				combatsystem.SetState(GridCombatSystem.State.Cutscene);
 			}
 			currentCutsceneIndex_ = index;
 			OnCutsceneStart?.Invoke(this, System.EventArgs.Empty);
+			if(index < 0 || index >= cutscenes_.Length) {
+				EndCutscene();
+			}
 			Show(index);
 		}
 
-		public override void EndCutscene() {
-			if(GridCombatSystem.Instance != null) {
-				GridCombatSystem.Instance.SetState(GridCombatSystem.State.OutOfCombat);
+		public void EndCutscene() {
+			if(LevelTransitionController.instance.IsTransitioning()) {
+				GridCombatSystem.instance.SetState(GridCombatSystem.State.Transition);
+				LevelTransitionController.instance.TransitionDone?.Invoke(this, System.EventArgs.Empty);
+			} else {
+				GridCombatSystem.instance.SetState(GridCombatSystem.State.OutOfCombat);
 			}
 			OnCutsceneEnd?.Invoke(this, System.EventArgs.Empty);
 			Hide();

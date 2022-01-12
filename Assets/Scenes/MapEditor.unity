@@ -152,12 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605c203f89e2ef3ba89fcf792c69e92f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorAnimationList_:
-  - cursorType: 0
-    textureArray:
-    - {fileID: 2800000, guid: afc2209df170e55458a8de37eeb5bc6e, type: 3}
-    frameRate: 1
-    offset: {x: 0, y: 0}
 --- !u!4 &283388077
 Transform:
   m_ObjectHideFlags: 0
@@ -201,13 +195,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26751571ef139955ea2a9d5219807f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWorldSize_: {x: 51, y: 24, z: 0}
+  gridWorldSize_: {x: 75, y: 35, z: 0}
   cellSize_: 1
   drawGridLines_: 1
   movementTilemapVisual_: {fileID: 0}
   arrowTilemapVisual_: {fileID: 0}
   selectorTilemapVisual_: {fileID: 0}
   tilemapVisual_: {fileID: 818614313}
+  puzzleDestroyableObjects_: []
 --- !u!4 &593590128
 Transform:
   m_ObjectHideFlags: 0
@@ -571,7 +566,7 @@ TextMesh:
 
     - ''\'' saves to the given filename
 
-    - ''|'' loads the specified
+    - ''='' loads the specified
     save
 
     - Esc goes back to the main menu'

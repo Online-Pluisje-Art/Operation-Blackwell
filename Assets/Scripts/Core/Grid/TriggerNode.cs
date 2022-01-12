@@ -9,16 +9,14 @@ namespace OperationBlackwell.Core {
 			Cutscene,
 		}
 		[SerializeField] private Trigger trigger_;
-		[Header("Cutscene")]
-		// Only set this if you want to use the trigger node for a cutscene. Use -1 for the combat triggers.
-		[SerializeField] private int cutsceneIndex_;
+		[SerializeField] private int index_;
 
 		private void Start() {
-			GameController.Instance.GetGrid().GetGridObject(transform.position).SetTrigger(this);
+			GameController.instance.GetGrid().GetGridObject(transform.position).SetTrigger(this);
 		}
 
-		public int GetCutsceneIndex() {
-			return cutsceneIndex_;
+		public int GetIndex() {
+			return index_;
 		}
 
 		public Trigger GetTrigger() {

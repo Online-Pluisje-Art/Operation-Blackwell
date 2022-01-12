@@ -1,6 +1,7 @@
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
+	[System.Serializable]
 	public class Actions : IQueueItem {
 		public enum ActionType {
 			None,
@@ -68,14 +69,14 @@ namespace OperationBlackwell.Core {
 						if(destination.GetUnitGridCombat() == null) {
 							destination.SetUnitGridCombat(invoker);
 						} else {
-							Tilemap.Node node = GameController.Instance.GetGrid().GetGridObject(invoker.GetPosition());
+							Tilemap.Node node = GameController.instance.GetGrid().GetGridObject(invoker.GetPosition());
 							node.SetUnitGridCombat(invoker);
 						}
 						
 						GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {
 							unit = invoker
 						};
-						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						GridCombatSystem.instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 						isComplete_ = true;
 					});
 					break;
@@ -84,7 +85,7 @@ namespace OperationBlackwell.Core {
 						GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {
 							unit = invoker
 						};
-						GridCombatSystem.Instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+						GridCombatSystem.instance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 						isComplete_ = true;
 					});
 					break;

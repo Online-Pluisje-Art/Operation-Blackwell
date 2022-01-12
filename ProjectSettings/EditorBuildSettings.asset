@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MapEditor.unity
     guid: d5d5fa8d1bb1ecf90b81f4b86ffb13b7
+  - enabled: 1
+    path: Assets/Scenes/LoseScreen.unity
+    guid: aa9379406e17798db85239d6f5e5a57d
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: f448cd06a37284360a6ae2a527667c28
+  - enabled: 1
+    path: Assets/Scenes/Final Level.unity
+    guid: 8b6a99bb2ff3efc4ba1060efd893cc71
+  - enabled: 1
+    path: Assets/Scenes/PrisonLevel.unity
+    guid: cfe547ec1c48b644fb091d6784600aa9
   m_configObjects: {}

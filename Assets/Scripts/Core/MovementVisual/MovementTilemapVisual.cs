@@ -46,7 +46,6 @@ namespace OperationBlackwell.Core {
 			UpdateHeatMapVisual();
 
 			grid_.OnGridObjectChanged += Grid_OnGridValueChanged;
-			tilemap.OnLoaded += Tilemap_OnLoaded;
 		}
 
 		private void Tilemap_OnLoaded(object sender, System.EventArgs e) {

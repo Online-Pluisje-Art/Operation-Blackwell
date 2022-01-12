@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace OperationBlackwell.Core {
+	[System.Serializable]
 	public class WaitingQueue<T> where T : IQueueItem {
 		private List<T> queue_;
 		public int head { get; private set; }
@@ -32,6 +34,8 @@ namespace OperationBlackwell.Core {
 
 		public void Clear() {
 			queue_.Clear();
+			head = 0;
+			tail = 0;
 		}
 
 		public int Count() {
@@ -47,7 +51,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void Sort() {
-			queue_.Sort((x, y) => x.GetInitiative() <= y.GetInitiative() ? 1 : -1);
+			queue_ = queue_.OrderBy(x => x.GetInitiative()).ToList();
 		}
 	}
 }

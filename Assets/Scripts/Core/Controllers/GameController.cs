@@ -2,68 +2,83 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace OperationBlackwell.Core {
-	public class GameController : MonoBehaviour {
+	public class GameController : Singleton<GameController> {
 		private const bool DebugMovement = false;
 
-		public static GameController Instance { get; private set; }
-
+		[Header("World data")]
 		[SerializeField] private Vector3 gridWorldSize_;
 		[SerializeField] private float cellSize_;
-
 		[SerializeField] private bool drawGridLines_;
 
+		[Header("Map visuals")]
 		[SerializeField] private MovementTilemapVisual movementTilemapVisual_;
 		[SerializeField] private MovementTilemapVisual arrowTilemapVisual_;
 		[SerializeField] private MovementTilemapVisual selectorTilemapVisual_;
-
 		private MovementTilemap movementTilemap_;
 		private MovementTilemap arrowTilemap_;
 		private MovementTilemap selectorTilemap_;
-
 		public Grid<Tilemap.Node> grid { get; private set; }
-
 		public GridPathfinding gridPathfinding { get; private set; }
 		public Tilemap tilemap { get; private set; }
-
 		[SerializeField] private TilemapVisual tilemapVisual_;
 
-		private void Awake() {
+		[Header("Puzzles")]
+		[SerializeField] private List<PuzzleComplete> puzzleDestroyableObjects_;
+		public System.EventHandler<PuzzleCompleteArgs> PuzzleEnded;
+		public System.EventHandler<int> PuzzleCompleted;
+
+		public class PuzzleCompleteArgs : System.EventArgs {
+			public int id;
+			public bool success;
+		}
+
+		[Header("Cursor")]
+		public EventHandler<string> CursorChanged;
+
+		[Header("LevelTransitions")]
+		public EventHandler<LevelTransitionArgs> LevelTransitionStarted;
+		public class LevelTransitionArgs : System.EventArgs {
+			public string currentLevel;
+			public string nextLevel;
+			public int cutsceneIndex;
+		}
+
+		private void Start() {
 			grid = new Grid<Tilemap.Node>((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0), 
 				(Grid<Tilemap.Node> g, Vector3 worldPos, int x, int y) => new Tilemap.Node(worldPos, x, y, g, false, Tilemap.Node.wallHitChanceModifier, false), drawGridLines_);
 			tilemap = new Tilemap(grid);
-			Instance = this;
 			Vector3 origin = new Vector3(0, 0);
 
 			gridPathfinding = new GridPathfinding(origin + new Vector3(1, 1) * cellSize_ * .5f, new Vector3(gridWorldSize_.x, gridWorldSize_.y) * cellSize_, cellSize_);
 			if(movementTilemapVisual_ != null) {
 				movementTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+				movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
 			}
 			if(arrowTilemapVisual_ != null) {
 				arrowTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
+				arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
 			}
 			if(selectorTilemapVisual_ != null) {
 				selectorTilemap_ = new MovementTilemap((int)gridWorldSize_.x, (int)gridWorldSize_.y, cellSize_, new Vector3(0, 0, 0));
-			}
-		}
-
-		private void Start() {
-			tilemap.SetTilemapVisual(tilemapVisual_);
-			if(movementTilemap_ != null) {
-				movementTilemap_.SetTilemapVisual(movementTilemapVisual_);
-			}
-			if(arrowTilemap_ != null) {
-				arrowTilemap_.SetTilemapVisual(arrowTilemapVisual_);
-			}
-			if(selectorTilemap_ != null) {
 				selectorTilemap_.SetTilemapVisual(selectorTilemapVisual_);
 			}
+			tilemap.SetTilemapVisual(tilemapVisual_);
+
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
-				tilemap.Load("tutoriallevel");
+				LoadTilemapData("tutorial_V4.5");
+			} else if(SceneManager.GetActiveScene().name == "PrisonLevel") {
+				// LoadTilemapData("prisonlevel");
+			} else if(SceneManager.GetActiveScene().name == "Final Level") {
+				LoadTilemapData("finallevel_V1.6");
 			} else {
 				Debug.Log(SceneManager.GetActiveScene().name + " has no level to load!");
 			}
+
+			PuzzleEnded += OnPuzzleComplete;
+			GridCombatSystem.instance.GameEnded += OnGameEnded;
 		}
 
 		private void Update() {
@@ -88,9 +103,39 @@ namespace OperationBlackwell.Core {
 
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
-				CursorController.Instance.SetActiveCursorType(CursorController.CursorType.Arrow);
+				CursorChanged?.Invoke(this, "Arrow");
 				SceneManager.LoadScene("MainMenu");
 			}
 		}
+
+		private void OnPuzzleComplete(object sender, PuzzleCompleteArgs args) {
+			foreach(PuzzleComplete puzzle in puzzleDestroyableObjects_) {
+				if(puzzle.puzzleID == args.id && args.success) {
+					foreach(GameObject destroyableObject in puzzle.destroyableObjects) {
+						Destroy(destroyableObject);
+					}
+					PuzzleCompleted?.Invoke(this, args.id);
+					break;
+				}
+			}
+		}
+		
+		private void OnGameEnded(object sender, bool won) {
+			if(won) {
+				SceneManager.LoadScene("WinScreen");
+			} else {
+				SceneManager.LoadScene("LoseScreen");
+			}
+		}
+
+		public void LoadTilemapData(string jsonFilePath) {
+			tilemap.Load(jsonFilePath);
+		}
 	}
+}
+
+[System.Serializable]
+public struct PuzzleComplete {
+	public int puzzleID;
+	public List<GameObject> destroyableObjects;
 }

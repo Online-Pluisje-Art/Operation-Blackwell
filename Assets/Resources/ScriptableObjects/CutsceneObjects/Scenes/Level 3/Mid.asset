@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
+  m_Name: Mid
+  m_EditorClassIdentifier: 
+  characterLeft_: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+  characterRight_: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: Halt! Who goes there?`!
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: "Caleana? Aren\u2019t you supposed to be stuck in prison? They let you
+      out on parole?"
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: "Eh\u2026 more or less."
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: And who might your companion be?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Hi, I\u2019m Adam, Adam Blackwell, you might have heard of me."
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: Caleana, you brought a government agent here?! Do you want to get us
+      killed?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Ex-agent\u2026 That is why we are here. We are looking for a skilled
+      mechanic."
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: Ex? What did you do to get kicked from your golden pedestal?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Oh nothing much, I just got betrayed by my best friend and discovered
+      my life's work was a lie. You know, the usual.
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: Ayy fair enough.
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: What did you say that brought you here? You need a mechanic? For what?
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: '[TBD]'
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: "Well, I\u2019ve got bad news for you, you came to the right person
+      at the wrong time. I support your mission and would be happy to help but I
+      have people here I need to protect."
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: "With the terrorists having set up a local outpost I can\u2019t leave
+      my village undefended. Not without the shields online.\r\n"
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 0
+    message: Well, how do we get the shields online?
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: "I would need a new shield capsule. There is probably one in the scrap
+      out there, but I can\u2019t go look for it like I said."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: But we can.

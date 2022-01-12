@@ -56,8 +56,8 @@ namespace OperationBlackwell.Core {
 			heightMax_ = mapHeight;
 
 			Initialize(mapWidth, mapHeight);
-			GameController.Instance.grid.OnGridObjectChanged += OnNodeChanged;
-			GameController.Instance.tilemap.OnLoaded += OnLevelChanged;
+			GameController.instance.grid.OnGridObjectChanged += OnNodeChanged;
+			GameController.instance.tilemap.OnLoaded += OnLevelChanged;
 		}
 
 		public GridPathfinding(int mapWidth, int mapHeight, float nodeSize_, Vector3 worldOrigin_) {//, Texture2D map) {
@@ -89,14 +89,14 @@ namespace OperationBlackwell.Core {
 		private void OnNodeChanged(object grid, Grid<Tilemap.Node>.OnGridObjectChangedEventArgs args) {
 			int x = args.x;
 			int y = args.y;
-			Tilemap.Node node = GameController.Instance.grid.GetGridObject(x, y);
+			Tilemap.Node node = GameController.instance.grid.GetGridObject(x, y);
 			if(node != null && x >= 0 && x < widthMax_ && y >= 0 && y < heightMax_) {
 				mapNodes_[x][y].SetWalkable(node.walkable);
 			}
 		}
 
 		private void OnLevelChanged(object grid, System.EventArgs args) {
-			Grid<Tilemap.Node> grid_ = GameController.Instance.grid;
+			Grid<Tilemap.Node> grid_ = GameController.instance.grid;
 			foreach(Tilemap.Node node in grid_.GetAllGridObjects()) {
 				if(node.walkable) {
 					SetWalkable(node.gridX, node.gridY, true);
@@ -105,7 +105,7 @@ namespace OperationBlackwell.Core {
 				}
 			}
 		}
-		
+
 		public void ModifySize(int modifyX, int modifyY, int newPathNodeWeight) {
 			if(modifyX == 0 && modifyY == 0) {
 				return;
@@ -113,7 +113,7 @@ namespace OperationBlackwell.Core {
 
 			int newWidth = widthMax_ + modifyX;
 			int newHeight = heightMax_ + modifyY;
-		
+
 			PathNode[][] newMapNodes = new PathNode[newWidth][];
 			for(int i = 0; i < newWidth; i++) {
 				newMapNodes[i] = new PathNode[newHeight];
@@ -177,6 +177,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		public void Initialize(int mapWidth, int mapHeight) {
+			binaryTree_ = new BinaryTree();
 			// Creates PathNodes
 			for(int x = 0; x < mapNodes_.Length; x++) {
 				for(int y = 0; y < mapNodes_[x].Length; y++) {
@@ -310,7 +311,7 @@ namespace OperationBlackwell.Core {
 				List<PathNode> path = GetFindPath(startPos, allFinalPos[i]);
 				if(path != null) {
 					if(closest == null) {
-						closest = path; 
+						closest = path;
 					} else {
 						if(path.Count < closest.Count) {
 							closest = path;
@@ -323,14 +324,12 @@ namespace OperationBlackwell.Core {
 		}
 
 		public bool HasPath(int startX, int startY, int endX, int endY) {
-			return FindPath(startX, startY, new MapPos(endX, endY), (List<PathNode> path, MapPos finalPos) => { });
+			// return FindPath(startX, startY, new List<MapPos>() { new MapPos(endX, endY) });
+			bool found = findPath(startX, startY, endX, endY).Count > 0;
+			return found;
 		}
 
-		public bool FindPath(int startX, int startY, MapPos finalPos, OnPathCallback callback) {
-			return FindPath(startX, startY, new List<MapPos>() { finalPos }, callback);
-		}
-
-		public bool FindPath(int startX, int startY, List<MapPos> finalPositions, OnPathCallback callback) {
+		public bool FindPath(int startX, int startY, List<MapPos> finalPositions) {
 			int width = widthMax_;
 			int height = heightMax_;
 
@@ -371,8 +370,6 @@ namespace OperationBlackwell.Core {
 			if(paths.Count <= 0 || (paths.Count > 0 && paths[smallest].pathNodeList.Count <= 0)) {
 				// No path
 				return false;
-			} else {
-				callback(paths[smallest].pathNodeList, paths[smallest].finalPos);
 			}
 			return true;
 		}
@@ -389,14 +386,14 @@ namespace OperationBlackwell.Core {
 			int width = widthMax_;
 			int height = heightMax_;
 			// Inside bounds
-			while(mapX < 0) { 
-				mapX++; 
+			while(mapX < 0) {
+				mapX++;
 			}
 			while(mapY < 0) {
 				mapY++;
 			}
-			while(mapX >= width) { 
-				mapX--; 
+			while(mapX >= width) {
+				mapX--;
 			}
 			while(mapY >= height) {
 				mapY--;
@@ -519,123 +516,116 @@ namespace OperationBlackwell.Core {
 		}
 
 		public List<PathNode> findPath(int startX, int startY, int endX, int endY) {
-			List<PathNode> ret = new List<PathNode>();
-			// Calculate H for all nodes
-			CalculateAllHeuristics(endX, endY);
+			//Find the path from startPos to targetPos
+			List<PathNode> openList = new List<PathNode>();
+			// Heap<PathNode> openList = new Heap<PathNode>(heightMax_ * widthMax_);
+			HashSet<PathNode> closedList = new HashSet<PathNode>();
+			PathNode current;
 
-			// Start finding target
-			foundTarget_ = false;
-			binaryTree_ = new BinaryTree();
-			openListCount_ = 1;
-
-			PathNode currentNode = mapNodes_[startX][startY];
+			PathNode startNode = mapNodes_[startX][startY];
 			PathNode targetNode = mapNodes_[endX][endY];
 
-			currentNode.SetWalkable(true);
+			startNode.SetWalkable(true);
+			startNode.gValue = 0;
 
-			if(currentNode == targetNode) {
-				return new List<PathNode> { currentNode };
-			}
-			int iterations = 0;
-			do {
-				iterations++;
-				currentNode = FindTarget(currentNode, targetNode);
-			} while(!foundTarget_ && openListCount_ > 0 && iterations < 60000);
-			if(iterations >= 60000) {
-				UnityEngine.Debug.Log("iteration overload");
+			if(startNode == targetNode) {
+				return new List<PathNode> { startNode };
 			}
 
-			if(foundTarget_) {
-				// Get path
-				currentNode = targetNode;
-				ret.Add(currentNode);
-				while(currentNode.parent != null && currentNode.parent != currentNode) {
-					ret.Add(currentNode.parent);
-					currentNode = currentNode.parent;
-				}
-				if(currentNode.parent == currentNode) {
-					UnityEngine.Debug.Log("parent == child");
-				}
-			} else {
-				// No path possible
-			}
-			ret.Reverse();
-			return ret;
-		}
-
-		private PathNode FindTarget(PathNode currentNode, PathNode targetNode) {
-			// Check the north node
-			if(currentNode.moveNorth) {
-				DetermineNodeValues(currentNode, currentNode.north, targetNode);
-			}
-			// Check the east node
-			if(currentNode.moveEast) {
-				DetermineNodeValues(currentNode, currentNode.east, targetNode);
-			}
-			// Check the south node
-			if(currentNode.moveSouth) {
-				DetermineNodeValues(currentNode, currentNode.south, targetNode);
-			}
-			// Check the west node
-			if(currentNode.moveWest) {
-				DetermineNodeValues(currentNode, currentNode.west, targetNode);
+			if(!targetNode.IsWalkable()) {
+				return new List<PathNode>();
 			}
 
-			if(!foundTarget_) {
-				// Once done checking add to the closed list and remove from the open list
-				AddToClosedList(currentNode);
-				RemoveFromOpenList(currentNode);
+			openList.Add(startNode);
+			startNode.parent = null;
 
-				// Get the next node with the smallest F value
-				return GetSmallestFValueNode();
-			} else {
-				return null;
-			}
-		}
-
-		private void DetermineNodeValues(PathNode currentNode, PathNode testing, PathNode targetNode) {
-			// Dont work on null nodes
-			if(testing == null) {
-				return;
-			}
-
-			// Check to see if the node is the target
-			if(testing == targetNode) {
-				targetNode.parent = currentNode;
-				foundTarget_ = true;
-				return;
-			}
-
-			// Ignore Walls
-			if(currentNode.weight == WALL_WEIGHT || testing.weight == WALL_WEIGHT) {
-				return;
-			}
-
-			// While the node has not already been tested
-			if(!testing.isOnClosedList) {
-				// Check to see if the node is already on the open list
-				if(testing.isOnOpenList) {
-					// Get a Gcost to move from this node to the testing node
-					int newGcost = currentNode.gValue + currentNode.weight + movementCost_;
-
-					// If the G cost is better then change the nodes parent and update its costs.
-					if(newGcost < testing.gValue) {
-						testing.parent = currentNode;
-						testing.gValue = newGcost;
-						binaryTree_.RemoveNode(testing);
-						testing.CalculateFValue();
-						binaryTree_.AddNode(testing);
+			while(openList.Count > 0) {
+				current = openList[0];
+				for(int i = 1; i < openList.Count; i ++) {
+					if(openList[i].fValue < current.fValue) {
+						if(openList[i].hValue < current.hValue) {
+							current = openList[i];
+						}
 					}
-				} else {
-					// Set the testing nodes parent to the current location, calculate its costs, and add it to the open list
-					testing.parent = currentNode;
-					testing.gValue = currentNode.gValue + currentNode.weight + movementCost_;
-					testing.CalculateFValue();
-					AddToOpenList(testing);
+				}
+				openList.Remove(current);
+				// current = openList.RemoveFirst();
+				closedList.Add(current);
+
+				if(current == targetNode) {
+					break;
+				}
+				
+				foreach(PathNode neighbour in GetNeighbours(current)) {
+					if(!neighbour.IsWalkable() || closedList.Contains(neighbour)) {
+						continue;
+					}
+
+					int newCostToNeighbour = current.gValue + GetDistance(current, neighbour);
+					if(newCostToNeighbour < neighbour.gValue || !openList.Contains(neighbour)) {
+						neighbour.gValue = newCostToNeighbour;
+						neighbour.hValue = GetDistance(neighbour, targetNode);
+						neighbour.parent = current;
+						if(!openList.Contains(neighbour)) {
+							openList.Add(neighbour);
+						}
+					}
 				}
 			}
+
+			startNode.gValue = int.MaxValue;
+			return RetracePath(startNode, targetNode);
 		}
 
+		private List<PathNode> RetracePath(PathNode startNode, PathNode endNode) {
+			List<PathNode> path = new List<PathNode>();
+			PathNode currentNode = endNode;
+
+			while(currentNode != startNode && currentNode != null) {
+				path.Add(currentNode);
+				currentNode = currentNode.parent;
+			}
+			if(currentNode == null) {
+				path.Clear();
+			} else {
+				path.Reverse();
+			}
+			return path;
+		}
+
+		private List<PathNode> GetNeighbours(PathNode current) {
+			List<PathNode> neighbours = new List<PathNode>();
+			for(int x = -1; x <= 1; x++) {
+				for(int y = -1; y <= 1; y++) {
+					if(x == 0 && y == 0
+						|| x == -1 && y == -1
+						|| x == 1 && y == -1
+						|| x == -1 && y == 1
+						|| x == 1 && y == 1) {
+						continue;
+					}
+					int checkX = current.xPos + x;
+					int checkY = current.yPos + y;
+
+					if(checkX >= 0 && checkX < widthMax_ && checkY >= 0 && checkY < heightMax_) {
+						neighbours.Add(mapNodes_[checkX][checkY]);
+					}
+				}
+			}
+			return neighbours;
+		}
+
+		private int GetDistance(PathNode a, PathNode b) {
+			int cX = Mathf.Abs(a.xPos - b.xPos);
+			int cY = Mathf.Abs(a.yPos - b.yPos);
+
+			if(cX > cY) {
+				return movementCost_ * (cX - cY);
+			} else {
+				return movementCost_ * (cY - cX);
+			}
+		}
+		
 		private void AddToOpenList(PathNode node) {
 			binaryTree_.AddNode(node);
 			openListCount_++;
@@ -662,7 +652,7 @@ namespace OperationBlackwell.Core {
 			currentNode.isOnOpenList = false;
 			currentNode.isOnClosedList = false;
 		}
-		
+
 		private void CalculateAllHeuristics(int endX, int endY) {
 			int rows = heightMax_;
 			int cols = widthMax_;
@@ -722,7 +712,7 @@ namespace OperationBlackwell.Core {
 			x = (int)((position.x - worldOrigin_.x) / nodeSize_);
 			y = (int)((position.y - worldOrigin_.y) / nodeSize_);
 		}
-		
+
 		private void ConvertVectorPositionValidate(Vector3 position, out int x, out int y) {
 			ConvertVectorPosition(position, out x, out y);
 

@@ -7,11 +7,6 @@ namespace OperationBlackwell.Player {
 		[SerializeField] private float moveSpeed_;
 
 		private Vector3 velocityVector_;
-		private PlayerBase characterBase_;
-
-		private void Awake() {
-			characterBase_ = GetComponent<PlayerBase>();
-		}
 
 		public void SetVelocity(Vector3 velocityVector) {
 			this.velocityVector_ = velocityVector;

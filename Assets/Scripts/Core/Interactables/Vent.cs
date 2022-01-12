@@ -10,13 +10,13 @@ namespace OperationBlackwell.Core {
 		[SerializeReference] private Vent targetVent_;
 
 		private void Start() {
-			GameController.Instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
+			GameController.instance.GetGrid().GetGridObject(transform.position).SetInteractable(this);
 		}
 
 		public void Interact(CoreUnit unit) {
-			GridCombatSystem combatInstance = GridCombatSystem.Instance;
+			GridCombatSystem combatInstance = GridCombatSystem.instance;
 			CoreUnit player = unit;
-			Grid<Tilemap.Node> grid = GameController.Instance.GetGrid();
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
 			Vector3 targetPosition = new Vector3(targetVent_.transform.position.x + targetVent_.offsetX_, targetVent_.transform.position.y + targetVent_.offsetY_, 0);
 			Tilemap.Node gridObject = grid.GetGridObject(targetPosition);
 			// Remove player from current position
@@ -36,7 +36,7 @@ namespace OperationBlackwell.Core {
 
 		public bool IsInRange(Vector3 unitPos) {
 			// Calculate the distance between the two units. But due to the -1 we can attack diagonal units, but also sometimes 1 node extra on the range.
-			int nodesBetweenPlayers = GridCombatSystem.Instance.CalculatePoints(unitPos, transform.position).Count - 1;
+			int nodesBetweenPlayers = Utils.CalculatePoints(unitPos, transform.position).Count - 1;
 			return nodesBetweenPlayers <= range_;
 		}
 

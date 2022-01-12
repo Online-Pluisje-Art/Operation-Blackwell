@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
+  m_Name: 1-2 Transition
+  m_EditorClassIdentifier: 
+  characterLeft_: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+  characterRight_: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: Ah, good, I see you managed to escape. Do you still have the keycard?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Yes, but before you continue, who the hell are you?!
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: My identity is of no concern right now. All you need to know is that
+      I want to protect the people from the government's tyranny. As you just heard
+      the rebelion you have been fighting for these past years is actually a governmental
+      puppet organisation
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: How can that be true, what use would the government have in terrorizing
+      their own people!?
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: "Power, a people that is scared of an enemy will accept a lot more oppression
+      from their government, \u2018everyone needs to make sacrifices to win the war\u2019,
+      or so they are taught."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Then where do the rebel fighters come from?
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: "Poor citizens that either don\u2019t care, do it for the money or are
+      just straight up sadists."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: How do you know all this?
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: "Again, my past and identity are not relevant, let\u2019s just say I
+      have a lot of first hand experience"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "So\u2026 what now\u2026? My life has been a lie, everything I\u2019ve
+      worked for has been for nothing and my best friend betrayed me. What is there
+      left for me to do?"
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: Well, you could try to be an actual hero for the people.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "And how would I go about doing that? Last time it didn't work out that
+      great apparently\u2026"
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: You have that keycard, remember. That key can grant you unrestricted
+      access to the galaxy wide broadcasting network. If we could reach a broadcast
+      terminal we could expose their practices. The resulting riots would be too
+      much for even them to handle.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Okay I like the sentiment, but not to burst your bubble, I have basic
+      hacking skills but I doubt I can actually use that keycard. Those systems are
+      way too advanced for me.
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: That just means we need to get someone who does know how to work with
+      those systems.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: The only people who know how to operate those systems are the maintainers
+      themselves. How do you reckon we are going to persuade them? They are fiercely
+      loyal to the government.
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: Almost correct. There is one other person besides the maintainers that
+      knows how those systems work. Its creator.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Baron!? Caleana Baron!? The criminal I put behind bars 5 times? Are
+      you kidding me?
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: Serious as can be.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Last time I checked she was stuck in Carcerov Prison, you know, the
+      best secured prison in the entire galaxy!
+  - character: {fileID: 11400000, guid: 4b4d80066a9bcf747aec1c9f8755858c, type: 2}
+    direction: 1
+    message: Ah good, you already know your next destination then.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Screw you man\u2026"

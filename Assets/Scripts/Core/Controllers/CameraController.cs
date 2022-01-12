@@ -17,8 +17,15 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void Start() {
-			GridCombatSystem.Instance.OnUnitSelect += OnNewPlayerSelect;
-			GridCombatSystem.Instance.OnUnitMove += OnPlayerMove;
+			GridCombatSystem.instance.OnUnitSelect += OnNewPlayerSelect;
+			GridCombatSystem.instance.OnUnitMove += OnPlayerMove;
+			GameController.instance.LevelTransitionStarted += OnLevelTransitionStarted;
+		}
+
+		private void OnDestroy() {
+			GridCombatSystem.instance.OnUnitSelect -= OnNewPlayerSelect;
+			GridCombatSystem.instance.OnUnitMove -= OnPlayerMove;
+			GameController.instance.LevelTransitionStarted -= OnLevelTransitionStarted;
 		}
 
 		private void FixedUpdate() {
@@ -46,8 +53,8 @@ namespace OperationBlackwell.Core {
 			float moveSpeed = 15f;
 
 			Vector3 activePlayerPosition = new Vector3(0, 0, 0);
-			if(GridCombatSystem.Instance.GetActiveUnit() != null) {
-				activePlayerPosition = GridCombatSystem.Instance.GetActiveUnit().transform.position;
+			if(GridCombatSystem.instance.GetActiveUnit() != null) {
+				activePlayerPosition = GridCombatSystem.instance.GetActiveUnit().transform.position;
 				//Lock the camera to the active player plus a range of 10
 				if(activePlayerPosition.x - distance > camera_.transform.position.x || activePlayerPosition.x + distance < camera_.transform.position.x) {
 					moveDir.x = 0;
@@ -72,11 +79,6 @@ namespace OperationBlackwell.Core {
 			return false;
 		}
 
-		private void OnDestroy() {
-			GridCombatSystem.Instance.OnUnitSelect -= OnNewPlayerSelect;
-			GridCombatSystem.Instance.OnUnitMove -= OnPlayerMove;
-		}
-
 		private void OnNewPlayerSelect(object player, GridCombatSystem.UnitPositionEvent args) {
 			if(args.unit != null) {
 				targetPosition_ = new Vector3((int)args.position.x, (int)args.position.y, camera_.transform.position.z);
@@ -87,6 +89,11 @@ namespace OperationBlackwell.Core {
 			if(args.unit != null) {
 				targetPosition_ = new Vector3((int)args.position.x, (int)args.position.y, camera_.transform.position.z);
 			}
+		}
+
+		private void OnLevelTransitionStarted(object sender, GameController.LevelTransitionArgs args) {
+			camera_.transform.position = new Vector3(5, 0, camera_.transform.position.z);
+			targetPosition_ = camera_.transform.position;
 		}
 	}
 }
