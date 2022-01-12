@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using OperationBlackwell.Core;
 
-namespace OperationBlackwell.UI {
-	public class ActivePlayer : MonoBehaviour {
+namespace OperationBlackwell.UI
+{
+	public class ActivePlayer : MonoBehaviour
+	{
 		[SerializeField] private Image activePlayer_;
 
 		private void Start() {
@@ -25,7 +27,8 @@ namespace OperationBlackwell.UI {
 			}
 		}
 
-		private void HidePlayer(object sender, System.EventArgs args) {
+		private void HidePlayer(object sender, System.EventArgs args)
+		{
 			activePlayer_.gameObject.SetActive(false);
 		}
 	}
