@@ -20,7 +20,7 @@ namespace OperationBlackwell.Player {
 
 		protected override void Awake() {
 			movePosition_ = GetComponent<MovePositionPathfinding>();
-			healthBar_ = new WorldBar(transform, new Vector3(0, 6.6f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
+			healthBar_ = new WorldBar(transform, new Vector3(0, 1.65f), new Vector3(1, .13f), Color.grey, Color.red, 1f, 10000, new WorldBar.Outline { color = Color.black, size = .05f });
 			enabled_ = false;
 			healthBar_.Hide();
 			base.Awake();
