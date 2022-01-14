@@ -19,6 +19,8 @@ MonoBehaviour:
     direction: 1
     message: See those crates and barrels lying around? Those objects can be used
       as cover. Every action you or the enemy makes has a chance to hit the enemy
-      but when you or an enemy is behind cover the chances lower. Also the further
-      away you are from an enemy the less likely you are to hit, this also counts
-      the other way so use this to your advantage!
+      but when you or an enemy is behind cover the chances lower.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: Also the further away you are from an enemy the less likely you are
+      to hit, this also counts the other way so use this to your advantage!

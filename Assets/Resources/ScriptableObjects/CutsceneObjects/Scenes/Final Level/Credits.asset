@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e80f66b08a07e81adeb41c67c3662c, type: 3}
+  m_Name: Credits
+  m_EditorClassIdentifier: 
+  characterLeft_: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+  characterRight_: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+  messages_:
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: Galactic comms are still one fire. Reports of riots everywhere. We did
+      it guys, we actually did it!
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: Glad everyone made it out okay.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "So\u2026 what do you all want to do now?"
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: I just want to live a peaceful life in my village. This has been enough
+      action for me.
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: Fair enough, How about you Caleana?
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: "I\u2019m just going to live my life like I used to, before a certain
+      someone stopped me. And this time you are going to leave me alone!"
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: You never change do you?
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: You promised!
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Technically I only promised to let you go after. Never said anything
+      about after that. But as long as you keep it morally acceptable I\u2019ll leave
+      you be."
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: How about you Aizen? I think most of the galaxy wants revenge.
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: "Not sure, I think I want to see my mother one more time before they
+      catch me. After that I\u2019ll see what happens."
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: And you Adam? What about you?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: "Honestly Kinro, your plans sound the most appealing to me. I think
+      I\u2019m going to look for a quiet corner of the universe and enjoy the slow
+      life there."
+  - character: {fileID: 11400000, guid: 1e8ec58cf075eac4e807102da1adda12, type: 2}
+    direction: 1
+    message: Good on you man
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: "I guess that concludes Operation Blackwell huh? It\u2019s been a wild
+      ride. Caleana, can you patch me through to the government systems?"
+  - character: {fileID: 11400000, guid: 1f5e500ad48d319498fde44154a3708f, type: 2}
+    direction: 1
+    message: Sure. What are you trying to do?
+  - character: {fileID: 11400000, guid: 79e2e6aa5b7894140aa3c0be4b0f9ade, type: 2}
+    direction: 1
+    message: Mark Operation Blackwell as complete. Fitting end is it not?
+  - character: {fileID: 11400000, guid: 4871a25a90651f74d98d5dbf0f707d44, type: 2}
+    direction: 0
+    message: I guess so.
+  - character: {fileID: 11400000, guid: 771e3d34ed4b9134eb4cb8e7abcb4689, type: 2}
+    direction: 1
+    message: '*MISSION COMPLETE: Operation Blackwell*'

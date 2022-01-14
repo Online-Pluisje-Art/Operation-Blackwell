@@ -20,21 +20,26 @@ MonoBehaviour:
     message: 'Well done! You just triggered a cutscene. '
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
-    message: 'In the bottom right corner you will see grey square with some information.
+    message: 'In the bottom left corner you will see grey square with some information.
       When you select a player that corresponding players health, portret and action
       points will be visible. On the bottom there is a bar that represents your health,
       when this bar is empty you have been defeated. '
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
-    message: When you get close enough to an enemy you will enter a combat state.
+    message: 'When you get close enough to an enemy you will enter a combat state.
       In this state you select a player and plan out his actions ahead of time by
       rightclicking on the tiles you wish to walk. By pressing 1 you will equip your
-      sword and 2 will equip your rifle. Every action you do like walking, shooting
-      and hitting with your sword will cost an action point. You only have a set
-      amount of action points per round. When the round is over the enemy will try
-      to defeat you.Try walking to an enemy, selecting the player and defeat your
-      enemy by equipping your rifle and shooting him! Keep your HP and Action Points
-      in mind!
+      sword and 2 will equip your rifle. '
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: Every action you do like walking, shooting and hitting with your sword
+      will cost an action point. You only have a set amount of action points per
+      round. When the round is over the enemy will try to defeat you.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: Try walking to an enemy, selecting the player and defeat your enemy
+      by equipping your rifle and shooting him! Keep your HP and Action Points in
+      mind!
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
     message: In the game there is also a initiative system. [WIP Need HELP]
