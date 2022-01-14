@@ -9,6 +9,7 @@ namespace OperationBlackwell.UI {
 		[SerializeField] protected GameObject mainMenu_;
 		[SerializeField] protected GameObject optionsMenu_;
 		[SerializeField] protected GameObject graphicsOptionsMenu_;
+		[SerializeField] protected GameObject audioOptionsMenu_;
 
 		public virtual void ReturnOrExit() {
 			Debug.Log("Please implement ReturnOrExit for this menu!");
