@@ -72,7 +72,7 @@ namespace OperationBlackwell.Core {
 			} else if(SceneManager.GetActiveScene().name == "PrisonLevel") {
 				// LoadTilemapData("prisonlevel");
 			} else if(SceneManager.GetActiveScene().name == "Final Level") {
-				LoadTilemapData("finallevel_V1.6");
+				LoadTilemapData("finallevel_V1.10");
 			} else {
 				Debug.Log(SceneManager.GetActiveScene().name + " has no level to load!");
 			}
