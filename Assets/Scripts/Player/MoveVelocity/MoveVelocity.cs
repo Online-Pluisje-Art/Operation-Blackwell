@@ -19,17 +19,13 @@ namespace OperationBlackwell.Player {
 
 		private void FixedUpdate() {
 			rigidbody2D_.velocity = velocityVector_ * moveSpeed_;
-			if(this.name == "Adam" || this.name == "Adam (1)") {
-				updateAnimation();
-			}
+			updateAnimation();
 		}
 
 		public void Disable() {
 			this.enabled = false;
 			rigidbody2D_.velocity = Vector3.zero;
-			if(this.name == "Adam" || this.name == "Adam (1)") {
-				updateAnimation();
-			}
+			updateAnimation();
 		}
 
 		public void Enable() {
