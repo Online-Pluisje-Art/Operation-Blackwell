@@ -31,7 +31,7 @@ namespace OperationBlackwell.UI {
 			fillValuePerBar_ = fillValueMax_ / barAmount;
 
 			barList_ = new List<Bar>();
-			for (int i = 0; i < barAmount; i++) {
+			for(int i = 0; i < barAmount; i++) {
 				Vector2 barSize = new Vector2(1000, 35);
 				float barSizeOffset = 0f;
 				Vector2 barAnchoredPosition = new Vector2((barSize.x + barSizeOffset) * i, -65);
@@ -61,20 +61,20 @@ namespace OperationBlackwell.UI {
 		private void SetFillValue(float fillValue_) {
 			this.fillValue_ = fillValue_;
 
-			for (int i = 0; i < barList_.Count; i++) {
+			for(int i = 0; i < barList_.Count; i++) {
 				Bar bar = barList_[i];
 				float barValueMin = i * fillValuePerBar_;
-				float barValueMax = (i + 1) * fillValuePerBar_;
-				if (fillValue_ <= barValueMin) {
+				float barValueMax =(i + 1) * fillValuePerBar_;
+				if(fillValue_ <= barValueMin) {
 					// Fill value doesnt reach this bar
 					bar.SetFillAmount(0f);
 				} else {
-					if (fillValue_ >= barValueMax) {
+					if(fillValue_ >= barValueMax) {
 						// Fill value completely fills this bar
 						bar.SetFillAmount(1f);
 					} else {
 						// Fill value is somewhere in between
-						float barFillAmount = (fillValue_ - barValueMin) / (barValueMax - barValueMin);
+						float barFillAmount =(fillValue_ - barValueMin) /(barValueMax - barValueMin);
 						bar.SetFillAmount(barFillAmount);
 					}
 				}
@@ -114,8 +114,8 @@ namespace OperationBlackwell.UI {
 			}
 
 			public void SetFillAmount(float fillAmount) {
-				if (fillAmount >= 1f) {
-					if (barFilledImage.fillAmount < 1f) {
+				if(fillAmount >= 1f) {
+					if(barFilledImage.fillAmount < 1f) {
 						// Previous frame was under 1f
 					}
 				}

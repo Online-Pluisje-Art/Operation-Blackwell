@@ -20,6 +20,9 @@ namespace OperationBlackwell.Boss {
 
 		protected override void HealthSystem_OnHealthChanged(object sender, EventArgs e) {
 			HealthChanged?.Invoke(this, healthSystem_.GetHealth());
+			if(!enabled_) {
+				return;
+			}
 			List<BossStage> stages = BossController.instance.GetStages();
 			stages = stages.FindAll(x => x.triggerHealth <= healthSystem_.GetHealth());
 			float health = stages.Max(x => x.triggerHealth);

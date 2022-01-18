@@ -134,6 +134,14 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
+		public virtual void Die() {
+			healthSystem_.Damage((int)healthSystem_.GetHealthMax());
+			if(healthSystem_.IsDead()) {
+				GridCombatSystem.instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
+				Destroy(gameObject);
+			}
+		}
+
 		protected void DetermineAttackAnimation(CoreUnit unitGridCombat) {
 			shouldPlayAttackAnimation_ = true;
 			Vector3 attackerPosition = this.GetPosition();

@@ -52,6 +52,7 @@ namespace OperationBlackwell.Core {
 
 		// All variables below are for optimization purposes. NEVER use them directly.
 		private CoreUnit prevUnit_;
+		private CoreUnit loadCamUnit_;
 		private Tilemap.Node prevNode_;
 		private Vector3 prevPosition_;
 		private int prevActionCount_;
@@ -283,6 +284,7 @@ namespace OperationBlackwell.Core {
 						unit = unitGridCombat_
 					};
 					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+					loadCamUnit_ = unitGridCombat_;
 
 					interactable_ = null;
 					
@@ -614,6 +616,11 @@ namespace OperationBlackwell.Core {
 				isComplete = orderList_.Peek().IsComplete();
 				if(!hasExecuted) {
 					orderList_.Peek().ExecuteActions();
+					CoreUnit unit = orderList_.Peek().GetUnit();
+					OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+						unit = unit,
+						position = unit.GetPosition()
+					});
 				} 
 				if(isComplete) {
 					orderList_.Dequeue();
@@ -631,6 +638,10 @@ namespace OperationBlackwell.Core {
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
 			state_ = State.Normal;
+			OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+				unit = loadCamUnit_,
+				position = loadCamUnit_.GetPosition()
+			});
 			setAiTurn_ = true;
 			CheckTriggers();
 		}
@@ -868,6 +879,7 @@ namespace OperationBlackwell.Core {
 
 		public void EndBossStages() {
 			BossEnded?.Invoke();
+			state_ = State.OutOfCombat;
 		}
 	}
 }

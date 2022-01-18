@@ -80,6 +80,12 @@ namespace OperationBlackwell.AI {
 			GridCombatSystem.instance.LoadAllEnemies(unitsToLoad);
 		}
 
+		public void AddBoss(AIUnit boss) {
+			boss.LoadUnit();
+			activeUnits_.Add(boss);
+			GridCombatSystem.instance.LoadAllEnemies(new List<CoreUnit>() { boss });
+		}
+
 		public void SetUnitActionsTurn() {
 			GridCombatSystem combatSystem = GridCombatSystem.instance;
 			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();

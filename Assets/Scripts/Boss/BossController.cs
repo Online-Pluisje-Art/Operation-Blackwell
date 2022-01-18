@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using OperationBlackwell.Core;
+using OperationBlackwell.AI;
 using OperationBlackwell.Player;
 
 namespace OperationBlackwell.Boss {
@@ -8,8 +9,11 @@ namespace OperationBlackwell.Boss {
 		[SerializeField] private Boss boss_;
 		[SerializeField] private List<BossStage> stages_;
 		private int currentStage_;
+		private List<int> loadedStages_;
 
 		private void Start() {
+			loadedStages_ = new List<int>();
+
 			if(stages_.Count == 0) {
 				Debug.LogError("No stages found in BossController");
 			}
@@ -22,6 +26,9 @@ namespace OperationBlackwell.Boss {
 		}
 
 		public void SpawnUnits(int id) {
+			if(loadedStages_.Contains(id)) {
+				return;
+			}
 			int index = stages_.FindIndex(x => x.ID == id);
 			if(index < 0) {
 				Debug.LogError("Cannot find stage with id: " + id);
@@ -29,11 +36,12 @@ namespace OperationBlackwell.Boss {
 			}
 			currentStage_ = index;
 			stages_[index].SpawnUnits();
+			loadedStages_.Add(id);
 		}
 
 		private void OnBossStarted() {
-			boss_.LoadUnit();
-			SpawnUnits(0);
+			AIController.instance.AddBoss(boss_);
+			SpawnUnits(1);
 		}
 
 		public List<BossStage> GetStages() {
@@ -42,6 +50,11 @@ namespace OperationBlackwell.Boss {
 
 		public void BossDied() {
 			GridCombatSystem.instance.EndBossStages();
+			foreach(BossStage stage in stages_) {
+				foreach(SpawnUnits unit in stage.units) {
+					unit.unit.Die();
+				}
+			}
 		}
 	}
 
@@ -66,11 +79,15 @@ namespace OperationBlackwell.Boss {
 		}
 
 		public void SpawnUnits() {
+			List<AIUnit> unitsToSpawn = new List<AIUnit>();
 			foreach(SpawnUnits unit in units) {
 				unit.unit.gameObject.SetActive(true);
 				unit.unit.transform.position = unit.spawnPosition;
-				unit.unit.LoadUnit();
+				GameController.instance.GetGrid().GetGridObject(unit.unit.GetPosition())
+					.SetUnitGridCombat(unit.unit);
+				unitsToSpawn.Add(unit.unit);
 			}
+			AIController.instance.SpawnUnits(unitsToSpawn);
 		}
 	}
 
