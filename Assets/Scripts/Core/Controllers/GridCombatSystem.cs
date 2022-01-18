@@ -14,14 +14,16 @@ namespace OperationBlackwell.Core {
 		// Cutscene events
 		public EventHandler<int> CutsceneTriggered;
 
+		// Boss events
+		public event Action BossStarted;
+		public event Action BossEnded;
+
 		[Header("Units")]
 		[SerializeField] private List<CoreUnit> blueTeamList_;
 
 		private State state_;
 		private CoreUnit unitGridCombat_;
 		private List<CoreUnit> redTeamList_;
-		private int blueTeamActiveUnitIndex_;
-		private int redTeamActiveUnitIndex_;
 
 		private List<int> playedCutsceneIndexes_;
 
@@ -75,8 +77,6 @@ namespace OperationBlackwell.Core {
 		private void Start() {
 			turn_ = 1;
 			redTeamList_ = new List<CoreUnit>();
-			blueTeamActiveUnitIndex_ = -1;
-			redTeamActiveUnitIndex_ = -1;
 
 			playedCutsceneIndexes_ = new List<int>();
 
@@ -115,6 +115,12 @@ namespace OperationBlackwell.Core {
 
 		public List<CoreUnit> GetBlueTeam() {
 			return blueTeamList_;
+		}
+
+		public void AddToTeam(CoreUnit unit) {
+			if(unit.GetTeam() == Team.Blue) {
+				blueTeamList_.Add(unit);
+			}
 		}
 
 		private void RemoveUnitOnDeath(object sender, EventArgs e) {
@@ -516,6 +522,7 @@ namespace OperationBlackwell.Core {
 								node.SetUnitGridCombat(unitB);
 								CheckTriggers();
 								CheckLevelTransition();
+								CheckBossTrigger();
 							});
 							DeselectUnit();
 						} else if(gridObject.GetInteractable() != null) {
@@ -530,6 +537,7 @@ namespace OperationBlackwell.Core {
 								}
 								CheckTriggers();
 								CheckLevelTransition();
+								CheckBossTrigger();
 							}
 							DeselectUnit();
 						}
@@ -834,6 +842,32 @@ namespace OperationBlackwell.Core {
 				state_ = State.Transition;
 				break;
 			}
+		}
+
+		private void CheckBossTrigger() {
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
+			Vector3 position;
+			Tilemap.Node node;
+			BossTrigger trigger;
+			foreach(CoreUnit unit in blueTeamList_) {
+				position = unit.GetPosition();
+				node = grid.GetGridObject(position);
+				trigger = node.GetBossTrigger();
+				if(trigger == null) {
+					continue;
+				}
+
+				BossStarted?.Invoke();
+
+				DeselectUnit();
+
+				state_ = State.Normal;
+				break;
+			}
+		}
+
+		public void EndBossStages() {
+			BossEnded?.Invoke();
 		}
 	}
 }

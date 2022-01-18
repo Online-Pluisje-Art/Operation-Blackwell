@@ -8,15 +8,15 @@ namespace OperationBlackwell.Player {
 	public class AIUnit : CoreUnit {
 		[SerializeField] private List<Weapon> weapons_;
 
-		private MovePositionPathfinding movePosition_;
+		protected MovePositionPathfinding movePosition_;
 
-		private WorldBar healthBar_;
+		protected WorldBar healthBar_;
 
-		private Weapon currentWeapon_;
+		protected Weapon currentWeapon_;
 
-		private string animatorClipName_ = "";
+		protected string animatorClipName_ = "";
 
-		private bool enabled_;
+		protected bool enabled_;
 
 		protected override void Awake() {
 			movePosition_ = GetComponent<MovePositionPathfinding>();
@@ -26,7 +26,7 @@ namespace OperationBlackwell.Player {
 			base.Awake();
 		}
 
-		private void Update() {
+		protected void Update() {
 			if(!enabled_) {
 				return;
 			}
@@ -253,7 +253,9 @@ namespace OperationBlackwell.Player {
 
 		public void LoadUnit() {
 			enabled_ = true;
-			healthBar_.Show();
+			if(healthBar_ != null) {
+				healthBar_.Show();
+			}
 		}
 
 		public bool GetLoaded() {
