@@ -59,5 +59,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kinro
       objectReference: {fileID: 0}
+    - target: {fileID: 6483948572834718202, guid: ec9cf89d3585c9142970cc6e4df12826, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b51f555d072b4246859331b03aae475, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec9cf89d3585c9142970cc6e4df12826, type: 3}

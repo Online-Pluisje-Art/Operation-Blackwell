@@ -2,10 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using OperationBlackwell.Core;
 
-namespace OperationBlackwell.UI
-{
-	public class ActivePlayer : MonoBehaviour
-	{
+namespace OperationBlackwell.UI {
+	public class ActivePlayer : MonoBehaviour {
 		[SerializeField] private Image activePlayer_;
 
 		private void Start() {
@@ -23,12 +21,14 @@ namespace OperationBlackwell.UI
 				if(GridCombatSystem.instance.GetActiveUnit().GetName() == "Adam") {
 					activePlayer_.sprite = Resources.Load<Sprite>("Textures/Adam/AdamCutscene");
 					activePlayer_.gameObject.SetActive(true);
+				} else if(GridCombatSystem.instance.GetActiveUnit().GetName() == "Caleana") {
+					activePlayer_.sprite = Resources.Load<Sprite>("Textures/Caleana/CaleanaPortret");
+					activePlayer_.gameObject.SetActive(true);
 				}
 			}
 		}
 
-		private void HidePlayer(object sender, System.EventArgs args)
-		{
+		private void HidePlayer(object sender, System.EventArgs args) {
 			activePlayer_.gameObject.SetActive(false);
 		}
 	}
