@@ -35,5 +35,18 @@ namespace OperationBlackwell.Core {
 		private void LoadNewLevel(string level) {
 			SceneManager.LoadScene(level);
 		}
+
+		public void ContinueLastLevel() {
+			int index = levels_.FindLastIndex(x => x.completed);
+			if(index < 0) {
+				index = 0;
+			}
+			string level = levels_[0].id;
+			LoadNewLevel(level);
+		}
+
+		public void ReturnMainMenu() {
+			LoadNewLevel("MainMenu");
+		}
 	}
 }
