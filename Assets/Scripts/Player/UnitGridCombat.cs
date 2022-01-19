@@ -123,13 +123,6 @@ namespace OperationBlackwell.Player {
 			GetComponent<IMoveVelocity>().Enable();
 		}
 
-		[ContextMenu("Test")]
-		public void Die() {
-			healthSystem_.Damage(100);
-			GridCombatSystem.instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
-			Destroy(gameObject);
-		}
-
 		public override bool IsDead() {
 			return healthSystem_.IsDead();
 		}

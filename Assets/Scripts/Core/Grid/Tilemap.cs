@@ -93,6 +93,7 @@ namespace OperationBlackwell.Core {
 
 			private TriggerNode trigger_;
 			private LevelTransitionTrigger levelTransitionTrigger_;
+			private BossTrigger bossTrigger_;
 
 			public Node(Vector3 worldPosition, int gridX, int gridY, Grid<Node> grid, bool walkable, float hitChanceModifier, bool cover) {
 				this.worldPosition = worldPosition;
@@ -103,6 +104,8 @@ namespace OperationBlackwell.Core {
 				this.hitChanceModifier = hitChanceModifier;
 				this.cover = cover;
 				this.trigger_ = null;
+				this.levelTransitionTrigger_ = null;
+				this.bossTrigger_ = null;
 			}
 
 			[System.Serializable]
@@ -219,6 +222,14 @@ namespace OperationBlackwell.Core {
 
 			public LevelTransitionTrigger GetLevelTransitionTrigger() {
 				return levelTransitionTrigger_;
+			}
+
+			public void SetBossTrigger(BossTrigger bossTrigger) {
+				this.bossTrigger_ = bossTrigger;
+			}
+
+			public BossTrigger GetBossTrigger() {
+				return bossTrigger_;
 			}
 		}
 	}

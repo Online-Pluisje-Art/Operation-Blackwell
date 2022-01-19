@@ -36,7 +36,7 @@ namespace OperationBlackwell.Core {
 		protected bool hasExecuted_;
 		protected bool isComplete_;
 
-		public static EventHandler<float> HealthChanged;
+		public EventHandler<float> HealthChanged;
 
 		protected virtual void Awake() {
 			audioSource_ = GetComponent<AudioSource>();
@@ -134,6 +134,14 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
+		public virtual void Die() {
+			healthSystem_.Damage((int)healthSystem_.GetHealthMax());
+			if(healthSystem_.IsDead()) {
+				GridCombatSystem.instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
+				Destroy(gameObject);
+			}
+		}
+
 		protected void DetermineAttackAnimation(CoreUnit unitGridCombat) {
 			shouldPlayAttackAnimation_ = true;
 			Vector3 attackerPosition = this.GetPosition();
@@ -195,6 +203,10 @@ namespace OperationBlackwell.Core {
 				// Should never happen, signal an error.
 				direction_ = Direction.Null;
 			}
+		}
+
+		public virtual int GetHealth() {
+			return healthSystem_.GetHealth();
 		}
 
 		public abstract void MoveTo(Vector3 targetPosition, Vector3 originPosition, Action onReachedPosition);
