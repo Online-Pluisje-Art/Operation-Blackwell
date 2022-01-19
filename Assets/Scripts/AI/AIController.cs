@@ -62,6 +62,7 @@ namespace OperationBlackwell.AI {
 				unitsToLoad.Add(unit);
 			}
 			GridCombatSystem.instance.LoadAllEnemies(unitsToLoad);
+			GridCombatSystem.instance.StageLoaded?.Invoke(this, System.EventArgs.Empty);
 			loadedStages_.Add(currentStage_.ID);
 		}
 

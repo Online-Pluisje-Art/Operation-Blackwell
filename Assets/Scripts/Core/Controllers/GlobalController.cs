@@ -41,7 +41,7 @@ namespace OperationBlackwell.Core {
 			if(index < 0) {
 				index = 0;
 			}
-			string level = levels_[0].id;
+			string level = levels_[index].id;
 			LoadNewLevel(level);
 		}
 

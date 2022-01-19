@@ -10,6 +10,7 @@ namespace OperationBlackwell.Core {
 		public EventHandler<int> AIStageUnloaded;
 		public EventHandler<EventArgs> AISetTurn;
 		public EventHandler<EventArgs> AITurnSet;
+		public EventHandler<EventArgs> StageLoaded;
 
 		// Cutscene events
 		public EventHandler<int> CutsceneTriggered;
@@ -97,6 +98,7 @@ namespace OperationBlackwell.Core {
 			state_ = State.OutOfCombat;
 			OnUnitDeath += RemoveUnitOnDeath;
 			AITurnSet += OnAITurnSet;
+			StageLoaded += OnStageLoaded;
 
 			firstUpdate_ = true;
 		}
@@ -104,6 +106,7 @@ namespace OperationBlackwell.Core {
 		private void OnDestroy() {
 			OnUnitDeath -= RemoveUnitOnDeath;
 			AITurnSet -= OnAITurnSet;
+			StageLoaded -= OnStageLoaded;
 		}
 
 		public void LoadAllEnemies(List<CoreUnit> enemies) {
@@ -734,7 +737,6 @@ namespace OperationBlackwell.Core {
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
 						state_ = State.Cutscene;
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
-						state_ = State.Normal;
 						AIStageLoaded?.Invoke(this, trigger.GetIndex());
 					}
 				}
@@ -880,6 +882,10 @@ namespace OperationBlackwell.Core {
 		public void EndBossStages() {
 			BossEnded?.Invoke();
 			state_ = State.OutOfCombat;
+		}
+
+		private void OnStageLoaded(object sender, EventArgs e) {
+			state_ = State.Normal;
 		}
 	}
 }
