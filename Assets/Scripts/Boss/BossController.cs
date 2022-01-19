@@ -23,12 +23,10 @@ namespace OperationBlackwell.Boss {
 			}
 
 			GridCombatSystem.instance.BossStarted += OnBossStarted;
+			boss_.BossStageTrigged += OnBossStageTriggered;
 		}
 
 		public void SpawnUnits(int id) {
-			if(loadedStages_.Contains(id)) {
-				return;
-			}
 			int index = stages_.FindIndex(x => x.ID == id);
 			if(index < 0) {
 				Debug.LogError("Cannot find stage with id: " + id);
@@ -55,6 +53,13 @@ namespace OperationBlackwell.Boss {
 					unit.unit.Die();
 				}
 			}
+		}
+
+		private void OnBossStageTriggered(int id) {
+			if(loadedStages_.Contains(id)) {
+				return;
+			}
+			SpawnUnits(id);
 		}
 	}
 

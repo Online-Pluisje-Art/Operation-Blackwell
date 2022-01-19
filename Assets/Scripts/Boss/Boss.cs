@@ -24,10 +24,10 @@ namespace OperationBlackwell.Boss {
 				return;
 			}
 			List<BossStage> stages = BossController.instance.GetStages();
-			stages = stages.FindAll(x => x.triggerHealth <= healthSystem_.GetHealth());
-			float health = stages.Max(x => x.triggerHealth);
+			stages = stages.FindAll(x => x.triggerHealth >= healthSystem_.GetHealth());
+			float health = stages.Min(x => x.triggerHealth);
 			BossStage stage = stages.Find(x => x.triggerHealth == health);
-			BossController.instance.SpawnUnits(stage.ID);
+			BossStageTrigged?.Invoke(stage.ID);
 		}
 		
 		/*	
