@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (70)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 70
@@ -203,6 +207,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (242)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -641,6 +649,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (78)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 78
@@ -1012,6 +1024,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (68)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 68
@@ -1110,6 +1126,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (81)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -1358,6 +1378,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (177)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 177
@@ -1433,6 +1457,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -1556,6 +1584,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -2199,6 +2231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (232)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 232
@@ -2312,6 +2348,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 228455980099277315, guid: e527fbf181b394b29a569afae275ef12, type: 3}
   m_PrefabInstance: {fileID: 1194463842}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &77928497
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 957489676}
+    m_Modifications:
+    - target: {fileID: 463495156910400832, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_Name
+      value: Caleana
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+--- !u!4 &77928498 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+  m_PrefabInstance: {fileID: 77928497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &77928499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 469213884600294494, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+  m_PrefabInstance: {fileID: 77928497}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0af036b690810680a9cceaaa13a91e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &78363579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7930691839557344146, guid: fe9a12e8b29f2cb5ba644d961fd951ce, type: 3}
@@ -2523,6 +2632,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (187)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 187
@@ -2588,6 +2701,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (143)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -2659,6 +2776,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (197)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -2901,6 +3022,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (178)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -3732,6 +3857,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3808,6 +3937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (306)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 306
@@ -3879,6 +4012,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 50
@@ -3945,6 +4082,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (181)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 181
@@ -4010,6 +4151,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -4200,6 +4345,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (82)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -4396,6 +4545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (135)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 135
@@ -4461,6 +4614,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (98)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -4533,6 +4690,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (125)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 125
@@ -4599,6 +4760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (204)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 204
@@ -4664,6 +4829,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (256)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -5269,6 +5438,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 45
@@ -5334,6 +5507,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (282)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -5514,6 +5691,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -5710,6 +5891,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -5780,6 +5965,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (301)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -6204,6 +6393,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -6274,6 +6467,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (133)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -6641,6 +6838,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (288)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 288
@@ -6706,6 +6907,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (258)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -6829,6 +7034,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (259)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -6994,6 +7203,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -7552,6 +7765,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (284)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 284
@@ -7622,6 +7839,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (119)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -7746,6 +7967,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (261)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 261
@@ -7816,6 +8041,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -8335,6 +8564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (246)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 246
@@ -8462,6 +8695,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (252)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -8896,6 +9133,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (311)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 311
@@ -9262,6 +9503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (64)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 64
@@ -9384,6 +9629,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (201)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -9513,6 +9762,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (101)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 101
@@ -9583,6 +9836,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (173)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -9769,6 +10026,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (88)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 88
@@ -9949,6 +10210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (113)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 113
@@ -10072,6 +10337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (236)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 236
@@ -10194,6 +10463,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (281)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -10556,6 +10829,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (305)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 305
@@ -10626,6 +10903,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (297)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -10742,6 +11023,10 @@ PrefabInstance:
     - target: {fileID: 2812289394121214317, guid: f967cdb495f75f7518f48e69c7f6ccbe, type: 3}
       propertyPath: m_Name
       value: Door (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2812289394121214317, guid: f967cdb495f75f7518f48e69c7f6ccbe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f967cdb495f75f7518f48e69c7f6ccbe, type: 3}
@@ -10893,6 +11178,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (146)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -11213,6 +11502,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (124)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 124
@@ -11283,6 +11576,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (57)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -11411,6 +11708,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (239)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -11892,6 +12193,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (170)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 170
@@ -11957,6 +12262,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -12266,6 +12575,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (136)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -13127,6 +13440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -13197,6 +13514,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (227)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -13411,6 +13732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 18
@@ -13476,6 +13801,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -13666,6 +13995,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (96)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -14066,6 +14399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (153)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 153
@@ -14131,6 +14468,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (228)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -14602,17 +14943,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6437565210891732903, guid: 0a053020703957ad784f9efa0977cc85, type: 3}
   m_PrefabInstance: {fileID: 517168853}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &517168855 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6133796063777407150, guid: 0a053020703957ad784f9efa0977cc85, type: 3}
-  m_PrefabInstance: {fileID: 517168853}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff27c3ffbaf1d24f81ac41fab7ca7dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &517608066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14627,6 +14957,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (167)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -14693,6 +15027,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (270)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -14817,6 +15155,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (65)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 65
@@ -14882,6 +15224,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (269)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -15011,6 +15357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (244)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 244
@@ -15134,6 +15484,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (216)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 216
@@ -15210,6 +15564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (303)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 303
@@ -15275,6 +15633,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (122)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -15404,6 +15766,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -15469,6 +15835,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (89)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -15593,6 +15963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (234)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 234
@@ -15663,6 +16037,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (255)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -16285,6 +16663,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (72)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 72
@@ -16775,6 +17157,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 47
@@ -16912,6 +17298,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (142)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -17321,6 +17711,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 38
@@ -17653,6 +18047,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (272)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 272
@@ -17883,6 +18281,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (90)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -18169,6 +18571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 56
@@ -18240,6 +18646,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (268)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 268
@@ -18310,6 +18720,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (249)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -18449,6 +18863,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (165)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 165
@@ -18519,6 +18937,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (114)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -18916,6 +19338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -19158,6 +19584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (193)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 193
@@ -19223,6 +19653,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (69)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -19486,6 +19920,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (296)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -19871,6 +20309,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (92)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 92
@@ -19936,6 +20378,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (86)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -20529,6 +20975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 35
@@ -20599,6 +21049,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (202)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -20847,6 +21301,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (271)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 271
@@ -21026,6 +21484,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -21378,6 +21840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (151)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 151
@@ -21532,6 +21998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 44
@@ -21597,6 +22067,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (210)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -21747,6 +22221,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (275)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -22166,6 +22644,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (226)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 226
@@ -22356,6 +22838,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (238)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 238
@@ -22488,6 +22974,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -22684,6 +23174,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (283)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 283
@@ -22752,7 +23246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6884121164622706816, guid: fd813534084e8c89db9eef4d9aa72aef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 70.5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 6884121164622706816, guid: fd813534084e8c89db9eef4d9aa72aef, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22822,6 +23316,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (235)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -23086,6 +23584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (194)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 194
@@ -23151,6 +23653,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -23999,6 +24505,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (260)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 260
@@ -24132,6 +24642,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 46
@@ -24203,6 +24717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (203)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 203
@@ -24268,6 +24786,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (168)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -24339,6 +24861,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (240)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -24462,6 +24988,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -24664,6 +25194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (211)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 211
@@ -24858,6 +25392,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (164)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -25139,6 +25677,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (129)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 129
@@ -25345,6 +25887,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 37
@@ -25415,6 +25961,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (313)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -25487,6 +26037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (137)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 137
@@ -25552,6 +26106,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (264)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -25766,6 +26324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -25945,6 +26507,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (245)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -26373,6 +26939,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (220)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 220
@@ -26438,6 +27008,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (127)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -26691,6 +27265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (251)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 251
@@ -26907,6 +27485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (106)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 106
@@ -26991,6 +27573,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 795753035}
+  - {fileID: 77928498}
+  - {fileID: 1969831477}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27127,6 +27711,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (62)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -27556,6 +28144,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (74)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 74
@@ -27750,6 +28342,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (257)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -27946,6 +28542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (266)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 266
@@ -28017,6 +28617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (205)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 205
@@ -28083,6 +28687,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (141)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 141
@@ -28148,6 +28756,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -28329,6 +28941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 42
@@ -28456,6 +29072,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (294)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -28589,6 +29209,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (175)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -28951,6 +29575,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (179)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 179
@@ -29084,6 +29712,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (97)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 97
@@ -29164,6 +29796,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (147)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -29411,6 +30047,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (195)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -29707,7 +30347,7 @@ PrefabInstance:
       objectReference: {fileID: 1073086821}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0]
@@ -29718,44 +30358,144 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
-      propertyPath: stages_.Array.data[0].units.Array.size
+      propertyPath: stages_.Array.data[1].id_
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].id_
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[0].triggerHealth_
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].triggerHealth_
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].triggerHealth_
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[0].units.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[0].unit
       value: 
-      objectReference: {fileID: 517168855}
+      objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[1].unit
       value: 
-      objectReference: {fileID: 2078955715}
+      objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[2].unit
       value: 
-      objectReference: {fileID: 1714954805}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[0].unit
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[1].unit
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[2].unit
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[0].unit
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[1].unit
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[2].unit
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[0].spawnPosition.x
-      value: 93.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[0].spawnPosition.y
-      value: 23.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[1].spawnPosition.x
-      value: 83.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[1].spawnPosition.y
-      value: 13.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[2].spawnPosition.x
-      value: 78.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: stages_.Array.data[0].units.Array.data[2].spawnPosition.y
-      value: 18.5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[0].spawnPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[0].spawnPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[1].spawnPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[1].spawnPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[2].spawnPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[1].units.Array.data[2].spawnPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[0].spawnPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[0].spawnPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[1].spawnPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[1].spawnPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[2].spawnPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634066659927859143, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
+      propertyPath: stages_.Array.data[2].units.Array.data[2].spawnPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7455798935912991740, guid: 5b3841420d4bece2bb0158751b81426b, type: 3}
       propertyPath: m_Name
@@ -29782,6 +30522,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (180)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -29921,6 +30665,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (254)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 254
@@ -29991,6 +30739,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (111)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -30136,6 +30888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (192)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 192
@@ -30242,6 +30998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 2812289394121214317, guid: f967cdb495f75f7518f48e69c7f6ccbe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f967cdb495f75f7518f48e69c7f6ccbe, type: 3}
 --- !u!4 &1073551567 stripped
@@ -30331,6 +31091,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (109)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 109
@@ -30396,6 +31160,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (198)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -30601,6 +31369,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (184)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -30906,6 +31678,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (79)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 79
@@ -31091,6 +31867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (158)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 158
@@ -31166,6 +31946,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (276)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -31715,6 +32499,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (247)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 247
@@ -31822,6 +32610,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (71)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -32173,6 +32965,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (262)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -32953,6 +33749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (134)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 134
@@ -33033,6 +33833,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (110)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -33326,6 +34130,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -33631,6 +34439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (160)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 160
@@ -33930,6 +34742,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -34124,6 +34940,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (156)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -34422,6 +35242,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 34
@@ -34487,6 +35311,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (277)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -34587,6 +35415,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (128)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -34716,6 +35548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (183)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 183
@@ -34781,6 +35617,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (224)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -35232,6 +36072,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (132)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 132
@@ -35432,6 +36276,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (144)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 144
@@ -35622,6 +36470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (166)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 166
@@ -35692,6 +36544,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (310)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -35826,6 +36682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -35891,6 +36751,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (302)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -36025,6 +36889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (172)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 172
@@ -36147,6 +37015,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (107)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -36332,6 +37204,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (176)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -36537,6 +37413,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -36800,6 +37680,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (231)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 231
@@ -36925,12 +37809,20 @@ PrefabInstance:
       objectReference: {fileID: 99272258}
     - target: {fileID: -6690279119826971292, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
       propertyPath: blueTeamList_.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -6690279119826971292, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
       propertyPath: blueTeamList_.Array.data[0]
       value: 
       objectReference: {fileID: 795753036}
+    - target: {fileID: -6690279119826971292, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
+      propertyPath: blueTeamList_.Array.data[1]
+      value: 
+      objectReference: {fileID: 77928499}
+    - target: {fileID: -6690279119826971292, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
+      propertyPath: blueTeamList_.Array.data[2]
+      value: 
+      objectReference: {fileID: 1969831475}
     - target: {fileID: 219145489949315618, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
       propertyPath: m_Name
       value: Combat Controller
@@ -37283,6 +38175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (117)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 117
@@ -37353,6 +38249,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (115)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -37534,6 +38434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (209)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 209
@@ -37656,6 +38560,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (314)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -37920,6 +38828,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (241)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 241
@@ -37986,6 +38898,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (155)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 155
@@ -38051,6 +38967,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -38211,6 +39131,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (84)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -38755,6 +39679,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (309)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 309
@@ -38821,6 +39749,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (157)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 157
@@ -38886,6 +39818,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (120)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -39019,6 +39955,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (145)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -39163,6 +40103,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (291)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 291
@@ -39290,6 +40234,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (217)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -39486,6 +40434,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -39789,6 +40741,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (182)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 182
@@ -39860,6 +40816,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 30
@@ -39925,6 +40885,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (214)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -40230,6 +41194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (63)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 63
@@ -40402,6 +41370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (304)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 304
@@ -40472,6 +41444,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (312)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -40657,6 +41633,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (95)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -40952,6 +41932,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (131)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 131
@@ -41183,6 +42167,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -41315,6 +42303,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (105)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -41615,6 +42607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (286)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 286
@@ -41686,6 +42682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (307)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 307
@@ -41756,6 +42756,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (278)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -42061,6 +43065,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (75)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 75
@@ -42189,6 +43197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (218)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 218
@@ -42264,6 +43276,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (213)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -42590,6 +43606,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (102)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 102
@@ -42712,6 +43732,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (199)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -43180,6 +44204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (229)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 229
@@ -43245,6 +44273,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (263)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -43316,6 +44348,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -43504,6 +44540,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 55
@@ -43636,6 +44676,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -43874,6 +44918,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (196)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 196
@@ -43997,6 +45045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (185)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 185
@@ -44062,6 +45114,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (162)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -44138,6 +45194,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (66)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -44386,6 +45446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -44575,6 +45639,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (273)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -44828,6 +45896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (287)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 287
@@ -44898,6 +45970,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (212)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -45146,6 +46222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (99)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 99
@@ -45325,6 +46405,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (174)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -45769,6 +46853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (85)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 85
@@ -45875,6 +46963,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2812289394121214317, guid: f967cdb495f75f7518f48e69c7f6ccbe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f967cdb495f75f7518f48e69c7f6ccbe, type: 3}
 --- !u!4 &1641620678 stripped
@@ -45901,6 +46993,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (91)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -46173,6 +47269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (94)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 94
@@ -46300,6 +47400,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (299)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -46486,6 +47590,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (171)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 171
@@ -46614,6 +47722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 32
@@ -46694,6 +47806,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -46879,6 +47995,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (285)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -47222,6 +48342,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (293)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 293
@@ -47287,6 +48411,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (206)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -47354,6 +48482,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (138)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 138
@@ -47419,6 +48551,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (250)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -47553,6 +48689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (289)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 289
@@ -47655,6 +48795,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (130)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -47893,6 +49037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (215)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 215
@@ -48006,17 +49154,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6437565210891732903, guid: 0a053020703957ad784f9efa0977cc85, type: 3}
   m_PrefabInstance: {fileID: 1714954803}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1714954805 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6133796063777407150, guid: 0a053020703957ad784f9efa0977cc85, type: 3}
-  m_PrefabInstance: {fileID: 1714954803}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff27c3ffbaf1d24f81ac41fab7ca7dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1717483081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48031,6 +49168,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (169)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -48185,6 +49326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (280)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 280
@@ -48261,6 +49406,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (118)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 118
@@ -48326,6 +49475,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (100)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -48459,6 +49612,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -48951,6 +50108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (77)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 77
@@ -49017,6 +50178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (274)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 274
@@ -49082,6 +50247,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (121)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -49263,6 +50432,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (116)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 116
@@ -49334,6 +50507,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (112)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 112
@@ -49399,6 +50576,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (233)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -49475,6 +50656,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -49871,6 +51056,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (149)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -50538,6 +51727,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 58
@@ -50666,6 +51859,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (189)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 189
@@ -50737,6 +51934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 40
@@ -50802,6 +52003,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (104)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -50926,6 +52131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (237)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 237
@@ -51001,6 +52210,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (221)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -51302,6 +52515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (139)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 139
@@ -51439,6 +52656,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (219)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -51749,6 +52970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (225)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 225
@@ -52023,6 +53248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (61)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 61
@@ -52150,6 +53379,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (279)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -52284,6 +53517,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (126)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 126
@@ -52349,6 +53586,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (223)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -52932,6 +54173,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (295)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 295
@@ -52997,6 +54242,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -53691,6 +54940,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (80)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 80
@@ -53844,6 +55097,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (222)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 222
@@ -53972,6 +55229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (60)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 60
@@ -54042,6 +55303,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (298)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -54342,6 +55607,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (248)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 248
@@ -54470,6 +55739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (76)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 76
@@ -54540,6 +55813,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (186)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -54726,6 +56003,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (300)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 300
@@ -54796,6 +56077,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (140)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -54910,6 +56195,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6238058716552792254, guid: 0f35d99036394798ba8689ba84f9f3ca, type: 3}
   m_PrefabInstance: {fileID: 1018633054}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1969831475 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3609964151620672272, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+  m_PrefabInstance: {fileID: 2011354776}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0af036b690810680a9cceaaa13a91e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1969831477 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+  m_PrefabInstance: {fileID: 2011354776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1970761964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54982,6 +56283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 54
@@ -55052,6 +56357,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (159)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -55175,6 +56484,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (253)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -55355,6 +56668,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (73)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -55829,6 +57146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (67)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 67
@@ -56190,6 +57511,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (191)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 191
@@ -56255,6 +57580,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (123)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -56326,6 +57655,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (87)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -56440,6 +57773,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e527fbf181b394b29a569afae275ef12, type: 3}
+--- !u!1001 &2011354776
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 957489676}
+    m_Modifications:
+    - target: {fileID: 3671975956931977742, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_Name
+      value: Kinro
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 19.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6581783413366517571, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 89aa73e43e56b3043ba93176545a80e4, type: 3}
 --- !u!4 &2012693537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2379550987986703723, guid: a9f3d2e5b61a0952282a7ea5ed7c7755, type: 3}
@@ -56459,6 +57849,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (200)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -56531,6 +57925,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (163)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 163
@@ -56596,6 +57994,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -56673,6 +58075,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (208)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 208
@@ -56738,6 +58144,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (103)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -56872,6 +58282,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (265)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 265
@@ -56938,6 +58352,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (154)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 154
@@ -57003,6 +58421,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (108)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -57251,6 +58673,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 41
@@ -57383,6 +58809,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (230)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -57641,6 +59071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (161)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 161
@@ -57706,6 +59140,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (290)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -57834,6 +59272,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -58134,17 +59576,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6437565210891732903, guid: 0a053020703957ad784f9efa0977cc85, type: 3}
   m_PrefabInstance: {fileID: 2078955713}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2078955715 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6133796063777407150, guid: 0a053020703957ad784f9efa0977cc85, type: 3}
-  m_PrefabInstance: {fileID: 2078955713}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff27c3ffbaf1d24f81ac41fab7ca7dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2079322432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6238058716552792254, guid: 0f35d99036394798ba8689ba84f9f3ca, type: 3}
@@ -58164,6 +59595,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (267)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -58347,6 +59782,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 62563015}
     m_Modifications:
+    - target: {fileID: 532557526807062716, guid: c9cdd6bd58bf336db82cf2daa60cd908, type: 3}
+      propertyPath: maxHealth_
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 5786115339099423951, guid: c9cdd6bd58bf336db82cf2daa60cd908, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -58411,6 +59850,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -58482,6 +59925,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (148)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -58606,6 +60053,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (59)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 59
@@ -58671,6 +60122,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (207)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -58852,6 +60307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -59001,6 +60460,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (243)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -59258,6 +60721,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (150)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -59573,6 +61040,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (292)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 292
@@ -59758,6 +61229,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (188)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 188
@@ -59823,6 +61298,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (152)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -59890,6 +61369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (83)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 83
@@ -59955,6 +61438,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -60099,6 +61586,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (93)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
@@ -60347,6 +61838,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combat (308)
       objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder
       value: 308
@@ -60412,6 +61907,10 @@ PrefabInstance:
     - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_Name
       value: Combat (190)
+      objectReference: {fileID: 0}
+    - target: {fileID: 971722814146395616, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2211444462327834201, guid: c92eabe282b4db136ba2db7c9cf453cb, type: 3}
       propertyPath: m_RootOrder

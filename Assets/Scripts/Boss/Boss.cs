@@ -28,6 +28,7 @@ namespace OperationBlackwell.Boss {
 			float health = stages.Min(x => x.triggerHealth);
 			BossStage stage = stages.Find(x => x.triggerHealth == health);
 			BossStageTrigged?.Invoke(stage.ID);
+			animator_.SetInteger("Stage", stage.ID);
 		}
 		
 		/*	

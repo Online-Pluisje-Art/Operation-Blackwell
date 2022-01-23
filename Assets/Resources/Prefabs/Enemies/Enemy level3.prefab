@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1422989152112334647, guid: 40afdcb6299e54414933aa9b9731dc7f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1246cd0fad0027941a64fcb849e03637, type: 2}
     - target: {fileID: 8630909774855803007, guid: 40afdcb6299e54414933aa9b9731dc7f, type: 3}
       propertyPath: m_Size.x
       value: 2.56
@@ -67,10 +71,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0748164c4cc080f46b5cc8fd74ab8148, type: 3}
-    - target: {fileID: 8630909774855803007, guid: 40afdcb6299e54414933aa9b9731dc7f, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8827876707810031362, guid: 40afdcb6299e54414933aa9b9731dc7f, type: 3}
       propertyPath: m_Name
       value: Enemy level3

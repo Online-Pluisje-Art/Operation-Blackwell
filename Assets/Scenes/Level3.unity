@@ -11540,24 +11540,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caleana
       objectReference: {fileID: 0}
-    - target: {fileID: 469213884600294494, guid: 53b49df1db961124285468f5a888cdba, type: 3}
-      propertyPath: name_
-      value: Caleana
-      objectReference: {fileID: 0}
     - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
-      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
@@ -19602,6 +19586,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4210792057395363732, guid: c320dd77ffaf62047862a04773a939ae, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3fc7aa9096ef55649b8223019462d849, type: 2}
     - target: {fileID: 4247005051567182572, guid: c320dd77ffaf62047862a04773a939ae, type: 3}
       propertyPath: m_RootOrder
       value: 0
