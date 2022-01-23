@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caleana
       objectReference: {fileID: 0}
+    - target: {fileID: 3947217992054459603, guid: fd813534084e8c89db9eef4d9aa72aef, type: 3}
+      propertyPath: name_
+      value: Caleana
+      objectReference: {fileID: 0}
     - target: {fileID: 4282581920378376880, guid: fd813534084e8c89db9eef4d9aa72aef, type: 3}
       propertyPath: m_Sprite
       value: 

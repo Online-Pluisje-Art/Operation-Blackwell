@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4150975213174284056}
   - component: {fileID: 6181240117612248933}
   - component: {fileID: 6346637677959274161}
+  - component: {fileID: 7344002054689060329}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1075557343089466883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5786115339099423951}
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a778615beeaaf1046841a1229c4cad65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f26fe66826bb9e40b23148a07b8f579, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,6 +99,25 @@ MonoBehaviour:
   sortingOrderBase_: 5000
   offset_: -1
   runOnlyOnce_: 0
+--- !u!95 &7344002054689060329
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075557343089466883}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cda21a8bfd43eee4f91896b6cc6abb95, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8620701614862765565
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,8 +147,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8620701614862765565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4150975213174284056}
   m_Father: {fileID: 0}
@@ -245,7 +265,7 @@ MonoBehaviour:
   name_: Jonah Spade
   team_: 1
   maxActionPoints_: 10
-  animator_: {fileID: 0}
+  animator_: {fileID: 7344002054689060329}
   weapons_:
   - {fileID: 11400000, guid: 1867dd448d4d30f68b072219a42ff0ba, type: 2}
   maxHealth_: 840
@@ -274,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed_: 5
-  animator_: {fileID: 0}
+  animator_: {fileID: 7344002054689060329}
 --- !u!50 &6708665120726217535
 Rigidbody2D:
   serializedVersion: 4
