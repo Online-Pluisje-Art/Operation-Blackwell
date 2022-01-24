@@ -139,8 +139,9 @@ namespace OperationBlackwell.Core {
 		public virtual void Die() {
 			healthSystem_.Damage((int)healthSystem_.GetHealthMax());
 			if(healthSystem_.IsDead()) {
+				animator_.SetBool("isDead", true);
 				GridCombatSystem.instance.OnUnitDeath?.Invoke(this, EventArgs.Empty);
-				Destroy(gameObject);
+				Destroy(gameObject, 1.4f);
 			}
 		}
 
