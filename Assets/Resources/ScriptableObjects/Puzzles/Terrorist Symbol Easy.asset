@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24c8047b3dca14eac97e14a790ec6599, type: 3}
-  m_Name: Government Symbol
+  m_Name: Terrorist Symbol Easy
   m_EditorClassIdentifier: 
-  puzzleImage_: {fileID: 21300000, guid: 1c2b8d57605d949469e8c239d231403a, type: 3}
-  puzzleID_: 0
+  puzzleImage_: {fileID: 21300000, guid: c98d636adfa75954caf425cd6a71f188, type: 3}
+  puzzleID_: 3
   puzzleDifficulty_: 0
