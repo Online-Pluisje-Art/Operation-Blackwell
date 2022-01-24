@@ -2853,7 +2853,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8582226755303966873, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
       propertyPath: levels_.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8582226755303966873, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
       propertyPath: levels_.Array.data[0].id
@@ -2865,6 +2865,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8582226755303966873, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
       propertyPath: levels_.Array.data[2].id
+      value: Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8582226755303966873, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
+      propertyPath: levels_.Array.data[3].id
       value: Final Level
       objectReference: {fileID: 0}
     - target: {fileID: 4035799117962822203, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
