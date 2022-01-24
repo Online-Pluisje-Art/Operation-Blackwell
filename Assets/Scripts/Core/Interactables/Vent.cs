@@ -31,6 +31,7 @@ namespace OperationBlackwell.Core {
 			GridCombatSystem.UnitEvent unitEvent = new GridCombatSystem.UnitEvent() {
 				unit = player
 			};
+			player.SetActionPoints(player.GetActionPoints() - cost_);
 			combatInstance.OnUnitActionPointsChanged?.Invoke(this, unitEvent);
 		}
 

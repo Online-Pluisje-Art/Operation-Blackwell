@@ -57,6 +57,7 @@ namespace OperationBlackwell.Core {
 
 		protected void OnDestroy() {
 			healthSystem_.OnHealthChanged -= HealthSystem_OnHealthChanged;
+			GridCombatSystem.instance.GameEnded?.Invoke(this, false);
 		}
 
 		public virtual String GetName() {
