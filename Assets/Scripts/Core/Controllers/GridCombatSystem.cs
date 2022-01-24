@@ -132,7 +132,6 @@ namespace OperationBlackwell.Core {
 			if(unit.GetTeam() == Team.Blue) {
 				blueTeamList_.Remove(unit);
 				state_ = State.Waiting;
-				GameEnded?.Invoke(this, false);
 			} else {
 				redTeamList_.Remove(unit);
 				if(redTeamList_.Count <= 0) {
@@ -454,13 +453,13 @@ namespace OperationBlackwell.Core {
 								unitGridCombat_.SaveAction(unitAction);
 								OrderObject unitOrder = GetOrderObject(unitGridCombat_);
 								if(unitOrder == null) {
-									int cost = GenerateTotalCost(0, pathLength_, 0);
-									int initiative = GenerateInitiative(cost, pathLength_, 0);
+									int cost = GenerateTotalCost(0, interactCost, 0);
+									int initiative = GenerateInitiative(cost, interactCost, 0);
 									unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
 									orderList_.Enqueue(unitOrder);
 								} else {
-									int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), pathLength_, 0);
-									int newInitiative = GenerateInitiative(newCost, pathLength_, 0);
+									int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), interactCost, 0);
+									int newInitiative = GenerateInitiative(newCost, interactCost, 0);
 									unitOrder.SetTotalCost(newCost);
 									unitOrder.SetInitiative(newInitiative);
 								}
@@ -886,6 +885,14 @@ namespace OperationBlackwell.Core {
 
 		private void OnStageLoaded(object sender, EventArgs e) {
 			state_ = State.Normal;
+		}
+
+		public void SetActiveWeapon(int index) {
+			if(state_ == State.Transition || state_ == State.OutOfCombat || state_ == State.Cutscene || unitGridCombat_ == null) {
+				return;
+			}
+			print("SetActiveWeapon: " + index);
+			unitGridCombat_.SetActiveWeapon(index);
 		}
 	}
 }
