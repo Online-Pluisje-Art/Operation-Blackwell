@@ -9554,18 +9554,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8207136792189107596, guid: 0b436db71018af019af60aaf3add7b42, type: 3}
-      propertyPath: puzzles_.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8207136792189107596, guid: 0b436db71018af019af60aaf3add7b42, type: 3}
-      propertyPath: puzzles_.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 9c193d2875108be1bbae3bd904ee0ea1, type: 2}
-    - target: {fileID: 8207136792189107596, guid: 0b436db71018af019af60aaf3add7b42, type: 3}
-      propertyPath: puzzles_.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b436db71018af019af60aaf3add7b42, type: 3}
 --- !u!1001 &399227032
@@ -21469,7 +21457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7216664894778261315, guid: 8f743635f10583bc08d1971da2781954, type: 3}
       propertyPath: puzzleDestroyableObjects_.Array.data[0].puzzleID
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -7216664894778261315, guid: 8f743635f10583bc08d1971da2781954, type: 3}
       propertyPath: puzzleDestroyableObjects_.Array.data[0].destroyableObjects.Array.size
@@ -83917,7 +83905,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2160969972717473138, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
       propertyPath: puzzleId_
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3969538400539265792, guid: 36b4851cfb605083e9572307460da8d7, type: 3}
       propertyPath: m_RootOrder
@@ -88848,7 +88836,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
+  m_AnchoredPosition: {x: 0, y: -10.0000305}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1721889206
@@ -89862,7 +89850,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -792, y: -392}
+  m_AnchoredPosition: {x: -792, y: -391.99997}
   m_SizeDelta: {x: -1260.26, y: -589.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768171587
