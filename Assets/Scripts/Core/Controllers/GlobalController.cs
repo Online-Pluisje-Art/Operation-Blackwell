@@ -33,6 +33,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void LoadNewLevel(string level) {
+			GridCombatSystem.instance.GameEnded -= GameController.instance.OnGameEnded;
 			SceneManager.LoadScene(level);
 		}
 
