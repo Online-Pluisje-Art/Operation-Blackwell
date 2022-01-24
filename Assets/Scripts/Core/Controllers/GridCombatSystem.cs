@@ -886,5 +886,13 @@ namespace OperationBlackwell.Core {
 		private void OnStageLoaded(object sender, EventArgs e) {
 			state_ = State.Normal;
 		}
+
+		public void SetActiveWeapon(int index) {
+			if(state_ == State.Transition || state_ == State.OutOfCombat || state_ == State.Cutscene || unitGridCombat_ == null) {
+				return;
+			}
+			print("SetActiveWeapon: " + index);
+			unitGridCombat_.SetActiveWeapon(index);
+		}
 	}
 }
