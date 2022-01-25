@@ -8824,7 +8824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &376128188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21997,6 +21997,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5464497232172593651, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
+      propertyPath: gunButton_
+      value: 
+      objectReference: {fileID: 1746044876}
+    - target: {fileID: 5464497232172593651, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
+      propertyPath: swordButton_
+      value: 
+      objectReference: {fileID: 1746044877}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
 --- !u!4 &934602432 stripped
@@ -22013,6 +22021,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ee29562aba893b0ca2a42fe75a0af4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &934602434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5464497232172593651, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
+  m_PrefabInstance: {fileID: 934602431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe62ccf26f702b89a64fe0ec10c67e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &935670186 stripped
@@ -88819,7 +88838,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1721889205
 RectTransform:
   m_ObjectHideFlags: 0
@@ -88836,7 +88855,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10.0000305}
+  m_AnchoredPosition: {x: 0, y: -10}
   m_SizeDelta: {x: 0, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1721889206
@@ -89442,7 +89461,15 @@ PrefabInstance:
       value: Weapon Selector
       objectReference: {fileID: 0}
     - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
@@ -89450,19 +89477,51 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 934602433}
     - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 934602434}
+    - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActiveWeapon
       objectReference: {fileID: 0}
     - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeActiveWeaponIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: OperationBlackwell.Core.GridCombatSystem, OperationBlackwell.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: OperationBlackwell.Core.WeaponSwitcher, OperationBlackwell.Core
       objectReference: {fileID: 0}
     - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225412420785002255, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
@@ -89470,18 +89529,48 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 934602433}
     - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 934602434}
+    - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActiveWeapon
       objectReference: {fileID: 0}
     - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeActiveWeaponIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: OperationBlackwell.Core.GridCombatSystem, OperationBlackwell.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: OperationBlackwell.Core.WeaponSwitcher, OperationBlackwell.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855232308168694167, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
 --- !u!224 &1746044875 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1325048915835042125, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+  m_PrefabInstance: {fileID: 1746044874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1746044876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1997668930147910719, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
+  m_PrefabInstance: {fileID: 1746044874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1746044877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3453443173641432756, guid: 6c07d60bd2a2eb11bbd380c093fd483d, type: 3}
   m_PrefabInstance: {fileID: 1746044874}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1746225743
@@ -89850,7 +89939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -792, y: -391.99997}
+  m_AnchoredPosition: {x: -792, y: -392}
   m_SizeDelta: {x: -1260.26, y: -589.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768171587
