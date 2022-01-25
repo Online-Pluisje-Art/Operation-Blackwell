@@ -383,7 +383,7 @@ namespace OperationBlackwell.Core {
 									}
 								}
 							}
-						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+						} else if(Input.GetKeyDown(KeyCode.F)) {
 							DeselectUnit();
 							state_ = State.Normal;
 						}
@@ -466,7 +466,7 @@ namespace OperationBlackwell.Core {
 								state_ = State.EndingTurn;
 							}
 						}
-						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+						if(Input.GetKeyDown(KeyCode.F)) {
 							DeselectUnit();
 							state_ = State.Normal;
 						}
@@ -891,7 +891,6 @@ namespace OperationBlackwell.Core {
 			if(state_ == State.Transition || state_ == State.OutOfCombat || state_ == State.Cutscene || unitGridCombat_ == null) {
 				return;
 			}
-			print("SetActiveWeapon: " + index);
 			unitGridCombat_.SetActiveWeapon(index);
 		}
 	}
