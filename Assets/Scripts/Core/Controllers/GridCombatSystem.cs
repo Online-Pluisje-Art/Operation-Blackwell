@@ -270,14 +270,12 @@ namespace OperationBlackwell.Core {
 					unit = gridObject.GetUnitGridCombat();
 					if(unit != null && unit.GetTeam() == Team.Blue) {
 						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
-							if(unit != null && unit.GetTeam() == Team.Blue) {
-								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
-									unit = unit,
-									position = unit.GetPosition()
-								});
-								unitGridCombat_ = unit;
-								state_ = State.UnitSelected;
-							}
+							OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+								unit = unit,
+								position = unit.GetPosition()
+							});
+							unitGridCombat_ = unit;
+							state_ = State.UnitSelected;
 						}
 					}
 					break;
