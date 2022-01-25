@@ -270,14 +270,12 @@ namespace OperationBlackwell.Core {
 					unit = gridObject.GetUnitGridCombat();
 					if(unit != null && unit.GetTeam() == Team.Blue) {
 						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
-							if(unit != null && unit.GetTeam() == Team.Blue) {
-								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
-									unit = unit,
-									position = unit.GetPosition()
-								});
-								unitGridCombat_ = unit;
-								state_ = State.UnitSelected;
-							}
+							OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+								unit = unit,
+								position = unit.GetPosition()
+							});
+							unitGridCombat_ = unit;
+							state_ = State.UnitSelected;
 						}
 					}
 					break;
@@ -596,6 +594,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		IEnumerator ExecuteAllActionsCoroutine() {
+			state_ = State.Normal;
 			bool hasExecuted = false;
 			bool isComplete = false;
 			// Sort the orderlist queue by initiative
@@ -626,7 +625,6 @@ namespace OperationBlackwell.Core {
 			ResetAllActionPoints();
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
-			state_ = State.Normal;
 			OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
 				unit = loadCamUnit_,
 				position = loadCamUnit_.GetPosition()
