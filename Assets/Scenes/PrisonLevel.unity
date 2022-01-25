@@ -54469,6 +54469,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8056062231687882765, guid: 53b49df1db961124285468f5a888cdba, type: 3}
   m_PrefabInstance: {fileID: 1700981812}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1700981814 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 469213884600294494, guid: 53b49df1db961124285468f5a888cdba, type: 3}
+  m_PrefabInstance: {fileID: 1700981812}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0af036b690810680a9cceaaa13a91e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1702159730
 GameObject:
   m_ObjectHideFlags: 0
@@ -55642,12 +55653,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6690279119826971292, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
       propertyPath: blueTeamList_.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6690279119826971292, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
       propertyPath: blueTeamList_.Array.data[0]
       value: 
       objectReference: {fileID: 1148797518}
+    - target: {fileID: -6690279119826971292, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
+      propertyPath: blueTeamList_.Array.data[1]
+      value: 
+      objectReference: {fileID: 1700981814}
     - target: {fileID: -6690279119826971292, guid: 66b119de71b244a7d87b3b709643bef3, type: 3}
       propertyPath: unitGridCombatArray_.Array.size
       value: 1
