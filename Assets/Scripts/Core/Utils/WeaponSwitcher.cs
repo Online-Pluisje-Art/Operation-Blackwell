@@ -15,13 +15,22 @@ namespace OperationBlackwell.Core {
 		[SerializeField] private GameObject gunButton_;
 		[SerializeField] private Sprite gunButtonTextureSelected_;
 		[SerializeField] private Sprite gunButtonTextureUnselected_;
+
+		private Image swordButtonImage_;
+		private Image gunButtonImage_;
+
+		private void Awake() {
+			swordButtonImage_ = swordButton_.GetComponent<Image>();
+			gunButtonImage_ = gunButton_.GetComponent<Image>();
+		}
+
 		public void ChangeActiveWeaponIndicator(int index) {
 			if(index == 0) {
-				swordButton_.GetComponent<Image>().sprite = swordButtonTextureSelected_;
-				gunButton_.GetComponent<Image>().sprite = gunButtonTextureUnselected_;
+				swordButtonImage_.sprite = swordButtonTextureSelected_;
+				gunButtonImage_.sprite = gunButtonTextureUnselected_;
 			} else if(index == 1) {
-				swordButton_.GetComponent<Image>().sprite = swordButtonTextureUnselected_;
-				gunButton_.GetComponent<Image>().sprite = gunButtonTextureSelected_;
+				swordButtonImage_.sprite = swordButtonTextureUnselected_;
+				gunButtonImage_.sprite = gunButtonTextureSelected_;
 			}
 		}
 	}
