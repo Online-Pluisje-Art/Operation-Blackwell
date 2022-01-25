@@ -294,7 +294,6 @@ namespace OperationBlackwell.Core {
 						prevNode_ = gridObject;
 						return;
 					}
-					HandleWeaponSwitch();
 
 					// Set arrow to target position
 					List<Actions> actions = unitGridCombat_.LoadActions().GetQueue();
@@ -569,18 +568,6 @@ namespace OperationBlackwell.Core {
 					unitGridCombat_.ClearActions();
 					prevActionCount_ = unitGridCombat_.GetActionCount();
 				}
-			}
-		}
-
-		private void HandleWeaponSwitch() {
-			if(unitGridCombat_ == null) {
-				return;
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha1)) {
-				unitGridCombat_.SetActiveWeapon(0);
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha2)) {
-				unitGridCombat_.SetActiveWeapon(1);
 			}
 		}
 
