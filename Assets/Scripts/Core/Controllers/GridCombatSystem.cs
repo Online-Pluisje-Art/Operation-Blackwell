@@ -596,6 +596,7 @@ namespace OperationBlackwell.Core {
 		}
 
 		IEnumerator ExecuteAllActionsCoroutine() {
+			state_ = State.Normal;
 			bool hasExecuted = false;
 			bool isComplete = false;
 			// Sort the orderlist queue by initiative
@@ -626,7 +627,6 @@ namespace OperationBlackwell.Core {
 			ResetAllActionPoints();
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
-			state_ = State.Normal;
 			OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
 				unit = loadCamUnit_,
 				position = loadCamUnit_.GetPosition()
