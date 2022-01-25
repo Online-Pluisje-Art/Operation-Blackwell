@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   damage_:
-  - 70
-  - 100
-  costs_: 0200000004000000
+  - 55
+  - 75
+  costs_: 0200000005000000
   range_: 1
   baseHitchance_: 100
   name_: Sword
