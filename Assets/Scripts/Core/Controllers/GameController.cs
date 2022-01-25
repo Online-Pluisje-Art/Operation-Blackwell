@@ -106,7 +106,7 @@ namespace OperationBlackwell.Core {
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
 				CursorChanged?.Invoke(this, "Arrow");
-				SceneManager.LoadScene("MainMenu");
+				GlobalController.instance.ReturnMainMenu();
 			}
 		}
 
@@ -122,7 +122,7 @@ namespace OperationBlackwell.Core {
 			}
 		}
 		
-		private void OnGameEnded(object sender, bool won) {
+		public void OnGameEnded(object sender, bool won) {
 			if(won) {
 				SceneManager.LoadScene("WinScreen");
 			} else {

@@ -294,7 +294,6 @@ namespace OperationBlackwell.Core {
 						prevNode_ = gridObject;
 						return;
 					}
-					HandleWeaponSwitch();
 
 					// Set arrow to target position
 					List<Actions> actions = unitGridCombat_.LoadActions().GetQueue();
@@ -383,7 +382,7 @@ namespace OperationBlackwell.Core {
 									}
 								}
 							}
-						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+						} else if(Input.GetKeyDown(KeyCode.F)) {
 							DeselectUnit();
 							state_ = State.Normal;
 						}
@@ -466,7 +465,7 @@ namespace OperationBlackwell.Core {
 								state_ = State.EndingTurn;
 							}
 						}
-						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+						if(Input.GetKeyDown(KeyCode.F)) {
 							DeselectUnit();
 							state_ = State.Normal;
 						}
@@ -569,18 +568,6 @@ namespace OperationBlackwell.Core {
 					unitGridCombat_.ClearActions();
 					prevActionCount_ = unitGridCombat_.GetActionCount();
 				}
-			}
-		}
-
-		private void HandleWeaponSwitch() {
-			if(unitGridCombat_ == null) {
-				return;
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha1)) {
-				unitGridCombat_.SetActiveWeapon(0);
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha2)) {
-				unitGridCombat_.SetActiveWeapon(1);
 			}
 		}
 
@@ -891,7 +878,6 @@ namespace OperationBlackwell.Core {
 			if(state_ == State.Transition || state_ == State.OutOfCombat || state_ == State.Cutscene || unitGridCombat_ == null) {
 				return;
 			}
-			print("SetActiveWeapon: " + index);
 			unitGridCombat_.SetActiveWeapon(index);
 		}
 	}

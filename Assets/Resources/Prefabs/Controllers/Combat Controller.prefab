@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1389655976451561204}
   - component: {fileID: -6690279119826971292}
+  - component: {fileID: 5464497232172593651}
   m_Layer: 0
   m_Name: Combat Controller
   m_TagString: Untagged
@@ -43,5 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee29562aba893b0ca2a42fe75a0af4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneController_: {fileID: 0}
   blueTeamList_: []
+--- !u!114 &5464497232172593651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219145489949315618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe62ccf26f702b89a64fe0ec10c67e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordButton_: {fileID: 0}
+  swordButtonTextureSelected_: {fileID: 21300000, guid: bed4a61dda175a808b3bf2a1d1f24961, type: 3}
+  swordButtonTextureUnselected_: {fileID: 21300000, guid: 84a44a9b3fdeb515aa6d17667e0b7a05, type: 3}
+  gunButton_: {fileID: 0}
+  gunButtonTextureSelected_: {fileID: 21300000, guid: 13d3215972e1916bfadc8c1dc4cf3966, type: 3}
+  gunButtonTextureUnselected_: {fileID: 21300000, guid: 1b64acbce4e10754c80585da88de510c, type: 3}
