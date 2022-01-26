@@ -53,10 +53,17 @@ namespace OperationBlackwell.Boss {
 		}
 
 		public override void Damage(CoreUnit attacker, float damageAmount) {
-			base.Damage(attacker, damageAmount);
+			healthSystem_.Damage((int)damageAmount);
 			if(healthSystem_.IsDead()) {
 				BossController.instance.BossDied();
 			}
+		}
+
+		public void UnloadBoss() {
+			enabled_ = false;
+		}
+		public void ReloadBoss() {
+			enabled_ = true;
 		}
 	}
 }

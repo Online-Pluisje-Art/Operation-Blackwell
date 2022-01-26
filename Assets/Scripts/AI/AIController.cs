@@ -57,6 +57,7 @@ namespace OperationBlackwell.AI {
 
 			List<CoreUnit> unitsToLoad = new List<CoreUnit>();
 			foreach(AIUnit unit in currentStage_.units) {
+				unit.gameObject.SetActive(true);
 				unit.LoadUnit();
 				activeUnits_.Add(unit);
 				unitsToLoad.Add(unit);
@@ -105,6 +106,9 @@ namespace OperationBlackwell.AI {
 			 * Add the orderObject to the list in gridcombatsystem.
 			 */
 			foreach(AIUnit unit in activeUnits_) {
+				if(!unit.GetLoaded()) {
+					continue;
+				}
 				walk = true;
 				enemyToAttack = null;
 				obj = null;
