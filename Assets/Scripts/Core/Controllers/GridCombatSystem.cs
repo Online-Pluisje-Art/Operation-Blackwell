@@ -18,6 +18,7 @@ namespace OperationBlackwell.Core {
 		// Boss events
 		public event Action BossStarted;
 		public event Action BossEnded;
+		public event Action BossReenabled;
 
 		[Header("Units")]
 		[SerializeField] private List<CoreUnit> blueTeamList_;
@@ -59,9 +60,11 @@ namespace OperationBlackwell.Core {
 		private int prevActionCount_;
 		private bool setAiTurn_;
 		private bool firstUpdate_;
+		private bool inBossFight_;
 
 		public enum State {
 			Normal,
+			Boss,
 			UnitSelected,
 			EndingTurn,
 			Waiting,
@@ -101,6 +104,7 @@ namespace OperationBlackwell.Core {
 			StageLoaded += OnStageLoaded;
 
 			firstUpdate_ = true;
+			inBossFight_ = false;
 		}
 
 		private void OnDestroy() {
@@ -134,9 +138,11 @@ namespace OperationBlackwell.Core {
 				state_ = State.Waiting;
 			} else {
 				redTeamList_.Remove(unit);
-				if(redTeamList_.Count <= 0) {
+				if(redTeamList_.Count <= 0 && state_ != State.Boss) {
 					AIStageUnloaded?.Invoke(this, 0);
 					state_ = State.OutOfCombat;
+				} else if(redTeamList_.Count <= 1 && state_ == State.Boss) {
+					BossReenabled?.Invoke();
 				}
 			}
 			orderList_.GetQueue().RemoveAll(x => x.GetUnit() == unit);
@@ -265,6 +271,7 @@ namespace OperationBlackwell.Core {
 			}
 			switch(state_) {
 				case State.Normal:
+				case State.Boss:
 					interactable_ = null;
 					
 					unit = gridObject.GetUnitGridCombat();
@@ -382,7 +389,11 @@ namespace OperationBlackwell.Core {
 							}
 						} else if(Input.GetKeyDown(KeyCode.F)) {
 							DeselectUnit();
-							state_ = State.Normal;
+							if(inBossFight_) {
+								state_ = State.Boss;
+							} else {
+								state_ = State.Normal;;
+							}
 						}
 					} else if(gridObject.GetUnitGridCombat() != null && gridObject.GetUnitGridCombat().GetTeam() != Team.Blue) {
 						if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick)) {
@@ -465,7 +476,11 @@ namespace OperationBlackwell.Core {
 						}
 						if(Input.GetKeyDown(KeyCode.F)) {
 							DeselectUnit();
-							state_ = State.Normal;
+							if(inBossFight_) {
+								state_ = State.Boss;
+							} else {
+								state_ = State.Normal;;
+							}
 						}
 					}
 					break;
@@ -594,7 +609,11 @@ namespace OperationBlackwell.Core {
 		}
 
 		IEnumerator ExecuteAllActionsCoroutine() {
-			state_ = State.Normal;
+			if(inBossFight_) {
+				state_ = State.Boss;
+			} else {
+				state_ = State.Normal;;
+			}
 			bool hasExecuted = false;
 			bool isComplete = false;
 			// Sort the orderlist queue by initiative
@@ -674,6 +693,10 @@ namespace OperationBlackwell.Core {
 		private int GenerateInitiative(int cost, int pathLength, int attackRange) {
 			int initiative = UnityEngine.Random.Range(1, 10);
 			return initiative;
+		}
+
+		public WaitingQueue<OrderObject> GetOrderList() {
+			return orderList_;
 		}
 
 		private OrderObject GetOrderObject(CoreUnit unit) {
@@ -858,13 +881,15 @@ namespace OperationBlackwell.Core {
 
 				DeselectUnit();
 
-				state_ = State.Normal;
+				state_ = State.Boss;
+				inBossFight_ = true;
 				break;
 			}
 		}
 
 		public void EndBossStages() {
 			BossEnded?.Invoke();
+			inBossFight_ = false;
 			state_ = State.OutOfCombat;
 		}
 

@@ -8,6 +8,9 @@ namespace OperationBlackwell.Boss {
 	public class BossController : Singleton<BossController> {
 		[SerializeField] private Boss boss_;
 		[SerializeField] private List<BossStage> stages_;
+
+		[Header("Barriers")]
+		[SerializeField] private List<GameObject> barriers_;
 		private int currentStage_;
 		private List<int> loadedStages_;
 
@@ -23,6 +26,7 @@ namespace OperationBlackwell.Boss {
 			}
 
 			GridCombatSystem.instance.BossStarted += OnBossStarted;
+			GridCombatSystem.instance.BossReenabled += OnBossReenabled;
 			boss_.BossStageTrigged += OnBossStageTriggered;
 		}
 
@@ -39,6 +43,9 @@ namespace OperationBlackwell.Boss {
 
 		private void OnBossStarted() {
 			AIController.instance.AddBoss(boss_);
+			foreach(GameObject obj in barriers_) {
+				obj.SetActive(true);
+			}
 			SpawnUnits(1);
 		}
 
@@ -59,7 +66,22 @@ namespace OperationBlackwell.Boss {
 			if(loadedStages_.Contains(id)) {
 				return;
 			}
+			GridCombatSystem.instance.GetOrderList().GetQueue().RemoveAll(x => x.GetUnit() == (CoreUnit)boss_);
+			if(id == 2) {
+				// move boss to location and let him wait there till all enemies are dead
+				GameController con = GameController.instance;
+				Tilemap.Node node = con.grid.GetGridObject(boss_.transform.position);
+				node.ClearUnitGridCombat();
+				boss_.transform.position = new Vector3(103.5f, 18.5f, 0);
+				node = con.grid.GetGridObject(boss_.transform.position);
+				node.SetUnitGridCombat(boss_);
+				boss_.UnloadBoss();
+			}
 			SpawnUnits(id);
+		}
+
+		private void OnBossReenabled() {
+			boss_.ReloadBoss();
 		}
 	}
 

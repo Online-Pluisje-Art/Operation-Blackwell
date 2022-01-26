@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: KineticPistol
   m_EditorClassIdentifier: 
   damage_:
-  - 80
-  - 120
-  costs_: 0500000009000000
-  range_: 2
+  - 35
+  - 110
+  costs_: 0600000008000000
+  range_: 3
   baseHitchance_: 80
   name_: Kinetic Pistol
   type_: 3

@@ -144,4 +144,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkable_: 0
   cover_: 0
-  hitChanceModifier_: 0
+  hitChanceModifier_: 100
