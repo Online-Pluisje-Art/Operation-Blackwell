@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 220188144}
   - component: {fileID: 220188143}
   m_Layer: 5
-  m_Name: ExitButton
+  m_Name: CreditButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 645882997}
         m_TargetAssemblyTypeName: OperationBlackwell.Core.Levelswitcher, OperationBlackwell.Core
-        m_MethodName: ReturnMainMenu
+        m_MethodName: GoToCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

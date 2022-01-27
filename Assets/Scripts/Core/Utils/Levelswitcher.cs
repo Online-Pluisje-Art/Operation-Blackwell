@@ -9,5 +9,9 @@ namespace OperationBlackwell.Core {
 		public void ReturnMainMenu() {
 			GlobalController.instance.ReturnMainMenu();
 		}
+
+		public void GoToCredits() {
+			GlobalController.instance.LoadCreditScreen();
+		}
 	}
 }
