@@ -476,9 +476,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<align=center>Made By:\n- Luuk van Bekkum\n- Dennis Bonke\n- Ruben Both\n-
-    Daniel Flederus\n- Noah Knegt\n- Fabian Olsthoorn\n\nSpecial thanks to:\n- Rick
-    Appleton\n- Vincent Broeren\n- Matthijs Eigenraam\n- Nick van \u2018t End\n-
-    Mathijs Koning\n- Robbert-Jan van Ommeren\n- Erwin Steenbergen\n- Dave Stikkolorum\n-
+    Daniel Flederus\n- Noah Knegt\n- Fabian Olsthoorn\n\nSpecial thanks to:\n- Erwin
+    Steenbergen\n\n- Rick Appleton\n- Vincent Broeren\n- Matthijs Eigenraam\n- Nick
+    van \u2018t End\n- Mathijs Koning\n- Robbert-Jan van Ommeren\n- Dave Stikkolorum\n-
     Leon Tiggelman     \n- Marcella Veldthuis\n- CodeMonkey\n\nThis game is licensed
     under the GNU General Public License version 3 or (at your option) a later version.
     The source code can be found at https://github.com/Online-Pluisje-Art/Operation-Blackwell.

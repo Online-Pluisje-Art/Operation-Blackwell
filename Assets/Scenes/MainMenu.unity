@@ -3009,6 +3009,18 @@ PrefabInstance:
       propertyPath: levels_.Array.data[0].completed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8582226755303966873, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
+      propertyPath: levels_.Array.data[1].completed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8582226755303966873, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
+      propertyPath: levels_.Array.data[2].completed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8582226755303966873, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
+      propertyPath: levels_.Array.data[3].completed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4035799117962822203, guid: d744aff5280f1d5f7bc48caeb1aa0400, type: 3}
       propertyPath: m_RootOrder
       value: 4
