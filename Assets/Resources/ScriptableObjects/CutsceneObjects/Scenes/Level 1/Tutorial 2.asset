@@ -26,10 +26,10 @@ MonoBehaviour:
       when this bar is empty you have been defeated. '
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
-    message: 'When you get close enough to an enemy you will enter a combat state.
+    message: When you get close enough to an enemy you will enter a combat state.
       In this state you select a player and plan out his actions ahead of time by
-      rightclicking on the tiles you wish to walk. By pressing 1 you will equip your
-      sword and 2 will equip your rifle. '
+      rightclicking on the tiles you wish to walk. The buttons at the bottom of your
+      screen will switch weapons, you can click them after you've selected your player.
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
     message: To perform the actions you can either spend all your action points and
