@@ -40,9 +40,9 @@ namespace OperationBlackwell.Core {
 		public void ContinueLastLevel() {
 			int index = levels_.FindLastIndex(x => x.completed);
 			if(index < 0) {
-				index = 0;
+				index = -1;
 			}
-			string level = levels_[index].id;
+			string level = levels_[index++].id;
 			LoadNewLevel(level);
 		}
 

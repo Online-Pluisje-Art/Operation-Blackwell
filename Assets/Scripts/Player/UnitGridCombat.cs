@@ -37,7 +37,7 @@ namespace OperationBlackwell.Player {
 		}
 
 		protected override void HealthSystem_OnHealthChanged(object sender, EventArgs e) {
-			HealthChanged?.Invoke(this, healthSystem_.GetHealthNormalized());
+			healthBar_.SetSize(healthSystem_.GetHealthNormalized());
 		}
 
 		public override void SetActiveWeapon(int index) {
