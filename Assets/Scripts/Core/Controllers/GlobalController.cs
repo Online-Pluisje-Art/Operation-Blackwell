@@ -33,7 +33,9 @@ namespace OperationBlackwell.Core {
 		}
 
 		private void LoadNewLevel(string level) {
-			GridCombatSystem.instance.GameEnded -= GameController.instance.OnGameEnded;
+			if(GridCombatSystem.instance != null) {
+				GridCombatSystem.instance.GameEnded -= GameController.instance.OnGameEnded;
+			}
 			SceneManager.LoadScene(level);
 		}
 
@@ -42,12 +44,16 @@ namespace OperationBlackwell.Core {
 			if(index < 0) {
 				index = -1;
 			}
-			string level = levels_[index++].id;
+			string level = levels_[++index].id;
 			LoadNewLevel(level);
 		}
 
 		public void ReturnMainMenu() {
 			LoadNewLevel("MainMenu");
+		}
+
+		public void LoadCreditScreen() {
+			LoadNewLevel("CreditScreen");
 		}
 	}
 }
