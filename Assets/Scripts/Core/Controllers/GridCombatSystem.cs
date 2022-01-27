@@ -739,7 +739,7 @@ namespace OperationBlackwell.Core {
 					continue;
 				}
 				if(trigger.GetTrigger() != TriggerNode.Trigger.None) {
-					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex())) {
+					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex()) && state_ == State.OutOfCombat) {
 						CutsceneTriggered?.Invoke(this, trigger.GetIndex());
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
 						state_ = State.Cutscene;
