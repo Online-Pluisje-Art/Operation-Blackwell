@@ -10,9 +10,15 @@ namespace OperationBlackwell.Core {
 		public EventHandler<int> AIStageUnloaded;
 		public EventHandler<EventArgs> AISetTurn;
 		public EventHandler<EventArgs> AITurnSet;
+		public EventHandler<EventArgs> StageLoaded;
 
 		// Cutscene events
 		public EventHandler<int> CutsceneTriggered;
+
+		// Boss events
+		public event Action BossStarted;
+		public event Action BossEnded;
+		public event Action BossReenabled;
 
 		[Header("Units")]
 		[SerializeField] private List<CoreUnit> blueTeamList_;
@@ -20,8 +26,6 @@ namespace OperationBlackwell.Core {
 		private State state_;
 		private CoreUnit unitGridCombat_;
 		private List<CoreUnit> redTeamList_;
-		private int blueTeamActiveUnitIndex_;
-		private int redTeamActiveUnitIndex_;
 
 		private List<int> playedCutsceneIndexes_;
 
@@ -50,14 +54,17 @@ namespace OperationBlackwell.Core {
 
 		// All variables below are for optimization purposes. NEVER use them directly.
 		private CoreUnit prevUnit_;
+		private CoreUnit loadCamUnit_;
 		private Tilemap.Node prevNode_;
 		private Vector3 prevPosition_;
 		private int prevActionCount_;
 		private bool setAiTurn_;
 		private bool firstUpdate_;
+		private bool inBossFight_;
 
 		public enum State {
 			Normal,
+			Boss,
 			UnitSelected,
 			EndingTurn,
 			Waiting,
@@ -75,8 +82,6 @@ namespace OperationBlackwell.Core {
 		private void Start() {
 			turn_ = 1;
 			redTeamList_ = new List<CoreUnit>();
-			blueTeamActiveUnitIndex_ = -1;
-			redTeamActiveUnitIndex_ = -1;
 
 			playedCutsceneIndexes_ = new List<int>();
 
@@ -96,13 +101,16 @@ namespace OperationBlackwell.Core {
 			state_ = State.OutOfCombat;
 			OnUnitDeath += RemoveUnitOnDeath;
 			AITurnSet += OnAITurnSet;
+			StageLoaded += OnStageLoaded;
 
 			firstUpdate_ = true;
+			inBossFight_ = false;
 		}
 
 		private void OnDestroy() {
 			OnUnitDeath -= RemoveUnitOnDeath;
 			AITurnSet -= OnAITurnSet;
+			StageLoaded -= OnStageLoaded;
 		}
 
 		public void LoadAllEnemies(List<CoreUnit> enemies) {
@@ -117,17 +125,24 @@ namespace OperationBlackwell.Core {
 			return blueTeamList_;
 		}
 
+		public void AddToTeam(CoreUnit unit) {
+			if(unit.GetTeam() == Team.Blue) {
+				blueTeamList_.Add(unit);
+			}
+		}
+
 		private void RemoveUnitOnDeath(object sender, EventArgs e) {
 			CoreUnit unit = (CoreUnit)sender;
 			if(unit.GetTeam() == Team.Blue) {
 				blueTeamList_.Remove(unit);
 				state_ = State.Waiting;
-				GameEnded?.Invoke(this, false);
 			} else {
 				redTeamList_.Remove(unit);
-				if(redTeamList_.Count <= 0) {
+				if(redTeamList_.Count <= 0 && state_ != State.Boss) {
 					AIStageUnloaded?.Invoke(this, 0);
 					state_ = State.OutOfCombat;
+				} else if(redTeamList_.Count <= 1 && state_ == State.Boss) {
+					BossReenabled?.Invoke();
 				}
 			}
 			orderList_.GetQueue().RemoveAll(x => x.GetUnit() == unit);
@@ -256,19 +271,18 @@ namespace OperationBlackwell.Core {
 			}
 			switch(state_) {
 				case State.Normal:
+				case State.Boss:
 					interactable_ = null;
 					
 					unit = gridObject.GetUnitGridCombat();
 					if(unit != null && unit.GetTeam() == Team.Blue) {
 						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
-							if(unit != null && unit.GetTeam() == Team.Blue) {
-								OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
-									unit = unit,
-									position = unit.GetPosition()
-								});
-								unitGridCombat_ = unit;
-								state_ = State.UnitSelected;
-							}
+							OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+								unit = unit,
+								position = unit.GetPosition()
+							});
+							unitGridCombat_ = unit;
+							state_ = State.UnitSelected;
 						}
 					}
 					break;
@@ -277,6 +291,7 @@ namespace OperationBlackwell.Core {
 						unit = unitGridCombat_
 					};
 					OnUnitActionPointsChanged?.Invoke(this, unitEvent);
+					loadCamUnit_ = unitGridCombat_;
 
 					interactable_ = null;
 					
@@ -284,7 +299,6 @@ namespace OperationBlackwell.Core {
 						prevNode_ = gridObject;
 						return;
 					}
-					HandleWeaponSwitch();
 
 					// Set arrow to target position
 					List<Actions> actions = unitGridCombat_.LoadActions().GetQueue();
@@ -373,9 +387,13 @@ namespace OperationBlackwell.Core {
 									}
 								}
 							}
-						} else if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+						} else if(Input.GetKeyDown(KeyCode.F)) {
 							DeselectUnit();
-							state_ = State.Normal;
+							if(inBossFight_) {
+								state_ = State.Boss;
+							} else {
+								state_ = State.Normal;;
+							}
 						}
 					} else if(gridObject.GetUnitGridCombat() != null && gridObject.GetUnitGridCombat().GetTeam() != Team.Blue) {
 						if(Input.GetMouseButtonDown((int)MouseButtons.Rightclick)) {
@@ -443,22 +461,26 @@ namespace OperationBlackwell.Core {
 								unitGridCombat_.SaveAction(unitAction);
 								OrderObject unitOrder = GetOrderObject(unitGridCombat_);
 								if(unitOrder == null) {
-									int cost = GenerateTotalCost(0, pathLength_, 0);
-									int initiative = GenerateInitiative(cost, pathLength_, 0);
+									int cost = GenerateTotalCost(0, interactCost, 0);
+									int initiative = GenerateInitiative(cost, interactCost, 0);
 									unitOrder = new OrderObject(initiative, unitGridCombat_, cost);
 									orderList_.Enqueue(unitOrder);
 								} else {
-									int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), pathLength_, 0);
-									int newInitiative = GenerateInitiative(newCost, pathLength_, 0);
+									int newCost = GenerateTotalCost(unitOrder.GetTotalCost(), interactCost, 0);
+									int newInitiative = GenerateInitiative(newCost, interactCost, 0);
 									unitOrder.SetTotalCost(newCost);
 									unitOrder.SetInitiative(newInitiative);
 								}
 								state_ = State.EndingTurn;
 							}
 						}
-						if(Input.GetMouseButtonDown((int)MouseButtons.Leftclick)) {
+						if(Input.GetKeyDown(KeyCode.F)) {
 							DeselectUnit();
-							state_ = State.Normal;
+							if(inBossFight_) {
+								state_ = State.Boss;
+							} else {
+								state_ = State.Normal;;
+							}
 						}
 					}
 					break;
@@ -516,6 +538,7 @@ namespace OperationBlackwell.Core {
 								node.SetUnitGridCombat(unitB);
 								CheckTriggers();
 								CheckLevelTransition();
+								CheckBossTrigger();
 							});
 							DeselectUnit();
 						} else if(gridObject.GetInteractable() != null) {
@@ -530,6 +553,7 @@ namespace OperationBlackwell.Core {
 								}
 								CheckTriggers();
 								CheckLevelTransition();
+								CheckBossTrigger();
 							}
 							DeselectUnit();
 						}
@@ -560,18 +584,6 @@ namespace OperationBlackwell.Core {
 			}
 		}
 
-		private void HandleWeaponSwitch() {
-			if(unitGridCombat_ == null) {
-				return;
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha1)) {
-				unitGridCombat_.SetActiveWeapon(0);
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha2)) {
-				unitGridCombat_.SetActiveWeapon(1);
-			}
-		}
-
 		private void DeselectUnit() {
 			unitGridCombat_ = null;
 			ResetMoveTiles();
@@ -597,6 +609,11 @@ namespace OperationBlackwell.Core {
 		}
 
 		IEnumerator ExecuteAllActionsCoroutine() {
+			if(inBossFight_) {
+				state_ = State.Boss;
+			} else {
+				state_ = State.Normal;;
+			}
 			bool hasExecuted = false;
 			bool isComplete = false;
 			// Sort the orderlist queue by initiative
@@ -606,6 +623,11 @@ namespace OperationBlackwell.Core {
 				isComplete = orderList_.Peek().IsComplete();
 				if(!hasExecuted) {
 					orderList_.Peek().ExecuteActions();
+					CoreUnit unit = orderList_.Peek().GetUnit();
+					OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+						unit = unit,
+						position = unit.GetPosition()
+					});
 				} 
 				if(isComplete) {
 					orderList_.Dequeue();
@@ -622,7 +644,10 @@ namespace OperationBlackwell.Core {
 			ResetAllActionPoints();
 			turn_++;
 			OnTurnEnded?.Invoke(this, turn_);
-			state_ = State.Normal;
+			OnUnitSelect?.Invoke(this, new UnitPositionEvent() {
+				unit = loadCamUnit_,
+				position = loadCamUnit_.GetPosition()
+			});
 			setAiTurn_ = true;
 			CheckTriggers();
 		}
@@ -670,6 +695,10 @@ namespace OperationBlackwell.Core {
 			return initiative;
 		}
 
+		public WaitingQueue<OrderObject> GetOrderList() {
+			return orderList_;
+		}
+
 		private OrderObject GetOrderObject(CoreUnit unit) {
 			if(orderList_ == null || orderList_.IsEmpty()) {
 				return null;
@@ -710,12 +739,11 @@ namespace OperationBlackwell.Core {
 					continue;
 				}
 				if(trigger.GetTrigger() != TriggerNode.Trigger.None) {
-					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex())) {
+					if(trigger.GetTrigger() == TriggerNode.Trigger.Cutscene && !playedCutsceneIndexes_.Contains(trigger.GetIndex()) && state_ == State.OutOfCombat) {
 						CutsceneTriggered?.Invoke(this, trigger.GetIndex());
 						playedCutsceneIndexes_.Add(trigger.GetIndex());
 						state_ = State.Cutscene;
 					} else if(trigger.GetTrigger() == TriggerNode.Trigger.Combat) {
-						state_ = State.Normal;
 						AIStageLoaded?.Invoke(this, trigger.GetIndex());
 					}
 				}
@@ -834,6 +862,46 @@ namespace OperationBlackwell.Core {
 				state_ = State.Transition;
 				break;
 			}
+		}
+
+		private void CheckBossTrigger() {
+			Grid<Tilemap.Node> grid = GameController.instance.GetGrid();
+			Vector3 position;
+			Tilemap.Node node;
+			BossTrigger trigger;
+			foreach(CoreUnit unit in blueTeamList_) {
+				position = unit.GetPosition();
+				node = grid.GetGridObject(position);
+				trigger = node.GetBossTrigger();
+				if(trigger == null) {
+					continue;
+				}
+
+				BossStarted?.Invoke();
+
+				DeselectUnit();
+
+				state_ = State.Boss;
+				inBossFight_ = true;
+				break;
+			}
+		}
+
+		public void EndBossStages() {
+			BossEnded?.Invoke();
+			inBossFight_ = false;
+			state_ = State.OutOfCombat;
+		}
+
+		private void OnStageLoaded(object sender, EventArgs e) {
+			state_ = State.Normal;
+		}
+
+		public void SetActiveWeapon(int index) {
+			if(state_ == State.Transition || state_ == State.OutOfCombat || state_ == State.Cutscene || unitGridCombat_ == null) {
+				return;
+			}
+			unitGridCombat_.SetActiveWeapon(index);
 		}
 	}
 }

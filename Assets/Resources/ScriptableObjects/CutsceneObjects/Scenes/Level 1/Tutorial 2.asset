@@ -26,10 +26,18 @@ MonoBehaviour:
       when this bar is empty you have been defeated. '
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
-    message: 'When you get close enough to an enemy you will enter a combat state.
+    message: When you get close enough to an enemy you will enter a combat state.
       In this state you select a player and plan out his actions ahead of time by
-      rightclicking on the tiles you wish to walk. By pressing 1 you will equip your
-      sword and 2 will equip your rifle. '
+      rightclicking on the tiles you wish to walk. The buttons at the bottom of your
+      screen will switch weapons, you can click them after you've selected your player.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: To perform the actions you can either spend all your action points and
+      the actions will automatically take place or press enter.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: If you wish to reset your planned actions this is possible through pressing
+      r. It is not possible to reset actions once they have already been performed.
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
     message: Every action you do like walking, shooting and hitting with your sword
@@ -42,4 +50,24 @@ MonoBehaviour:
       mind!
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
-    message: In the game there is also a initiative system. [WIP Need HELP]
+    message: 'In the game there is also a initiative system. '
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: Combat is turn based. The system that determines what character gets
+      to act in what order is called the initiative system.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: The way it works is that at the start of every turn you get to plan
+      the actions for all your characters.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: After that is done the initiative system will determine the order based
+      on how much each character wants to do.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: The further you walk and the further you shoot the slower your character
+      will be and the later their turn will be.
+  - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
+    direction: 1
+    message: So if you want to act before your enemies think of how much your planned
+      actions will cost!

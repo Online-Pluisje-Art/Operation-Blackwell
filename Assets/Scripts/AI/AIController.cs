@@ -10,6 +10,7 @@ namespace OperationBlackwell.AI {
 		private CombatStage currentStage_;
 		private List<AIUnit> activeUnits_;
 		private List<Tilemap.Node> endPoints_;
+		private List<int> loadedStages_;
 
 		private void Start() {
 			if(stages_.Count == 0) {
@@ -19,6 +20,7 @@ namespace OperationBlackwell.AI {
 			currentStage_ = new CombatStage();
 			activeUnits_ = new List<AIUnit>();
 			endPoints_ = new List<Tilemap.Node>();
+			loadedStages_ = new List<int>();
 
 			// Subscribe to events
 			if(GridCombatSystem.instance != null) {
@@ -40,26 +42,39 @@ namespace OperationBlackwell.AI {
 			SetUnitActionsTurn();
 		}
 
-		public void LoadStage(int index) {
-			if(currentStage_.ID == index) {
+		public void LoadStage(int id) {
+			if(currentStage_.ID == id || loadedStages_.Contains(id)) {
+				Debug.LogError("Stage already loaded");
 				return;
 			}
-			bool found = false;
-			for(int i = 0; i < stages_.Count; i++) {
-				if(stages_[i].ID == index) {
-					found = true;
-					currentStage_ = stages_[i];
-					break;
-				}
-			}
-			if(index < 0 || !found) {
-				Debug.LogError("Invalid stage index");
+			int index = stages_.FindIndex(x => x.ID == id);
+			if(index < 0) {
+				Debug.LogError("Stage not found with id: " + id);
 				currentStage_ = new CombatStage();
 				return;
 			}
-			
+			currentStage_ = stages_[index];
+
 			List<CoreUnit> unitsToLoad = new List<CoreUnit>();
 			foreach(AIUnit unit in currentStage_.units) {
+				unit.gameObject.SetActive(true);
+				unit.LoadUnit();
+				activeUnits_.Add(unit);
+				unitsToLoad.Add(unit);
+			}
+			GridCombatSystem.instance.LoadAllEnemies(unitsToLoad);
+			GridCombatSystem.instance.StageLoaded?.Invoke(this, System.EventArgs.Empty);
+			loadedStages_.Add(currentStage_.ID);
+		}
+
+		public void UnloadStage() {
+			currentStage_ = new CombatStage();
+			activeUnits_.Clear();
+		}
+
+		public void SpawnUnits(List<AIUnit> units) {
+			List<CoreUnit> unitsToLoad = new List<CoreUnit>();
+			foreach(AIUnit unit in units) {
 				unit.LoadUnit();
 				activeUnits_.Add(unit);
 				unitsToLoad.Add(unit);
@@ -67,9 +82,10 @@ namespace OperationBlackwell.AI {
 			GridCombatSystem.instance.LoadAllEnemies(unitsToLoad);
 		}
 
-		public void UnloadStage() {
-			currentStage_ = new CombatStage();
-			activeUnits_.Clear();
+		public void AddBoss(AIUnit boss) {
+			boss.LoadUnit();
+			activeUnits_.Add(boss);
+			GridCombatSystem.instance.LoadAllEnemies(new List<CoreUnit>() { boss });
 		}
 
 		public void SetUnitActionsTurn() {
@@ -90,6 +106,9 @@ namespace OperationBlackwell.AI {
 			 * Add the orderObject to the list in gridcombatsystem.
 			 */
 			foreach(AIUnit unit in activeUnits_) {
+				if(!unit.GetLoaded()) {
+					continue;
+				}
 				walk = true;
 				enemyToAttack = null;
 				obj = null;

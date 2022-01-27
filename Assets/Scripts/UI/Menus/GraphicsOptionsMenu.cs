@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OperationBlackwell.Core;
 using TMPro;
 
 namespace OperationBlackwell.UI {
@@ -18,8 +19,8 @@ namespace OperationBlackwell.UI {
 			UpdateFullscreenText(!Screen.fullScreen);
 		}
 
-		public void Option2Clicked() {
-			Debug.Log("Option 2 clicked");
+		public void CreditButton() {
+			GlobalController.instance.LoadCreditScreen();
 		}
 
 		public override void ReturnOrExit() {

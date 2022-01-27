@@ -70,9 +70,11 @@ namespace OperationBlackwell.Core {
 			if(SceneManager.GetActiveScene().name == "TutorialLevel") {
 				LoadTilemapData("tutorial_V4.5");
 			} else if(SceneManager.GetActiveScene().name == "PrisonLevel") {
-				// LoadTilemapData("prisonlevel");
+				// Nothing to load here.
 			} else if(SceneManager.GetActiveScene().name == "Final Level") {
 				LoadTilemapData("finallevel_V1.10");
+			} else if(SceneManager.GetActiveScene().name == "Level3") {
+				tilemap.Load("level3");
 			} else {
 				Debug.Log(SceneManager.GetActiveScene().name + " has no level to load!");
 			}
@@ -104,7 +106,7 @@ namespace OperationBlackwell.Core {
 		private void HandleMisc() {
 			if(Input.GetKeyDown(KeyCode.Escape)) {
 				CursorChanged?.Invoke(this, "Arrow");
-				SceneManager.LoadScene("MainMenu");
+				GlobalController.instance.ReturnMainMenu();
 			}
 		}
 
@@ -120,7 +122,7 @@ namespace OperationBlackwell.Core {
 			}
 		}
 		
-		private void OnGameEnded(object sender, bool won) {
+		public void OnGameEnded(object sender, bool won) {
 			if(won) {
 				SceneManager.LoadScene("WinScreen");
 			} else {

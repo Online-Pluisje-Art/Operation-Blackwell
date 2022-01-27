@@ -52,7 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff48f9e5eb6fcc32a5c550752c7530d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzles:
+  puzzles_:
+  - {fileID: 11400000, guid: a538f6dd1e497614abc32666f1418e92, type: 2}
+  - {fileID: 11400000, guid: f160f7bf8e285294eac9f0d42d021a7b, type: 2}
+  - {fileID: 11400000, guid: e0ac852db10c70e439e52126468e17de, type: 2}
+  - {fileID: 11400000, guid: 37e8089fd10a6914988c747693f64fec, type: 2}
+  - {fileID: 11400000, guid: 19e49d0a511d7bb4ab5305021c504180, type: 2}
   - {fileID: 11400000, guid: 9c193d2875108be1bbae3bd904ee0ea1, type: 2}
   puzzleVictory_: {fileID: 7036955093703670645}
   puzzleTimer_: {fileID: 6375909982450815257}

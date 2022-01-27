@@ -21,6 +21,9 @@ namespace OperationBlackwell.UI {
 				if(GridCombatSystem.instance.GetActiveUnit().GetName() == "Adam") {
 					activePlayer_.sprite = Resources.Load<Sprite>("Textures/Adam/AdamCutscene");
 					activePlayer_.gameObject.SetActive(true);
+				} else if(GridCombatSystem.instance.GetActiveUnit().GetName() == "Caleana") {
+					activePlayer_.sprite = Resources.Load<Sprite>("Textures/Caleana/CaleanaPortret");
+					activePlayer_.gameObject.SetActive(true);
 				}
 			}
 		}
