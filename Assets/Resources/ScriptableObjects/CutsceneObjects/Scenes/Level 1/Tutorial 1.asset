@@ -21,8 +21,10 @@ MonoBehaviour:
       the next dialogue press the arrow on the right.
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
     direction: 1
-    message: 'When the player is selected, move the mouse cursor to the tile you
-      wish to walk to. Keep the range of walking in mind.
+    message: 'When the player is selected with the left mouse button, move the mouse
+      cursor to the tile you wish to walk to and press the left mouse button to confirm.
+      Keep the range of walking in mind.
+
 
 '
   - character: {fileID: 11400000, guid: 3e0c323bd2a15d844af5a11751a9250e, type: 2}
